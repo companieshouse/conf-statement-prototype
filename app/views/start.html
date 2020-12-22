@@ -16,21 +16,13 @@
       <h1 class="govuk-heading-xl">
         {% if serviceName %}
           {{ serviceName }}
-          ????
         {% endif %}
       </h1>
 
-      {% set updateHTML %}
+      <p class="govuk-body-l">Use this service to confirm that the basic company information is up to date.</p>
       <p>If any information needs to be updated you must file these changes using
         <a href="">the relevant form</a>
         before submitting the confirmation statement. Recent filings that have not yet been accepted will not be reflected in the information shown in this service.</p>
-      {% endset %}
-
-      <p class="govuk-body-l">Use this service to confirm that the basic company information has been delivered and is up to date.</p>
-
-      {{ govukInsetText({
-        html: updateHTML
-      }) }}
 
       <a href="/sign-in" role="button" draggable="false" class="govuk-button govuk-button--start govuk-!-margin-top-2 govuk-!-margin-bottom-8" data-module="govuk-button">
         Start now
@@ -49,7 +41,5 @@
       </ul>
 
     </div>
-
-    <div class="govuk-grid-column-one-third"></div>
   </div>
 {% endblock %}
