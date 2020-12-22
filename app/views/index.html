@@ -13,57 +13,135 @@
         <span class="govuk-caption-xl">{{releaseVersion}}</span>
       </h1>{{releaseVersion | log }}
 
-      <table class="govuk-table">
-        <caption class="govuk-table__caption govuk-heading-m">Previously tested versions</caption>
-        <thead class="govuk-table__head">
-          <tr class="govuk-table__row">
-            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Version</th>
-            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Tested on</th>
-            <th scope="col" class="govuk-table__header govuk-!-width-two-thirds">Changes</th>
-            <th scope="col" class="govuk-table__header govuk-!-width-one-eighth">Status</th>
-          </tr>
-        </thead>
-        <tbody class="govuk-table__body">
-          <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">
-              <a href="https://conf-statement-mvp-v1.herokuapp.com/">MVP - Version 1</th>
-              <td class="govuk-table__cell">TBC</td>
-              <td class="govuk-table__cell">
-                <details class="govuk-details" data-module="govuk-details">
-                  <summary class="govuk-details__summary">
-                    <span class="govuk-details__summary-text">
-                      Changes included in MVP version 1
-                    </span>
-                  </summary>
-                  <div class="govuk-details__text">
-                    <ul class="govuk-list--bulletlist">
-                      <li>
-                        <a class="govuk-link" href="https://conf-statement-mvp-v1.herokuapp.com/start">Start page content</a>
-                      </li>
-                    </ul>
-                  </div>
-                </details>
-              </td>
-              <td class="govuk-table__cell">
-                <strong class="govuk-tag govuk-tag--grey">
-                  Work in progress
-                </strong>
-              </tr>
-            </tr>
-          </tbody>
-        </table>
-
-        <h2 class="govuk-heading-m">Examples and documentation</h2>
-
-        <ul class="govuk-list govuk-list--bullet">
-          <li>
-            <a href="/docs/tutorials-and-examples">Example pages and documentation</a>
+      <div class="govuk-tabs" data-module="govuk-tabs">
+        <h2 class="govuk-tabs__title">
+          Contents
+        </h2>
+        <ul class="govuk-tabs__list">
+          <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+            <a class="govuk-tabs__tab" href="#shortcuts">
+              Shortcuts
+            </a>
           </li>
-          <li>
-            <a href="https://design-system.service.gov.uk">GOV.UK Design System</a>
+          <li class="govuk-tabs__list-item">
+            <a class="govuk-tabs__tab" href="#mvp-versions">
+              MVP versions
+            </a>
           </li>
+
         </ul>
-      </div>
-    </div>
+        <div class="govuk-tabs__panel" id="shortcuts">
+          <div class="govuk-grid-row">
+            <h1 class="govuk-heading-xl">Shortcuts (MVP)</h1>
+            <h2 class="govuk-heading-l">Happy path</h2>
+            <ul class="govuk-list govuk-list--bullet">
+              <li>
+                <a href="/start">Start</a>
+                File a confirmation statement
+              </li>
+              <li>
+                <a href="/sign-in">Sign in</a>
+                Sign in
+              </li>
+              <li>
+                <a href="/company-number">Enter company number</a>
+                What is the company number?
+              </li>
+              <li>
+                <a href="/confirm-company">Confirm company</a>
+                Confirm the company
+              </li>
+              <li>
+                <a href="/authenticate">Authenticate</a>
+                Authenticate
+              </li>
+              <li>
+                <a href="/upload">Review company information</a>
+                Review
+              </li>
+              <ul class="govuk-bulleted--list">
+                <li>
+                  <a href="/upload-with-doc">Pay</a>
+                  Pay
+                </li>
+                <li>
+                  <a href="/confirmation">Confirmation</a>
+                  Confirmation
+                </li>
+              </ul>
+              <br>
+              <h2 class="govuk-heading-l">Stop pages</h2>
 
-  {% endblock %}
+              <h2 class="govuk-heading-l">Error pages</h2>
+              <ul class="govuk-list  govuk-list--bullet">
+                <li>
+                  <a href="/service-offline">Service offline</a>
+                  Service offline - File a confirmation statement
+                </li>
+                <li>
+                  <a href="/page-not-found">Page not found</a>
+                  Page not found - File a confirmation statement
+                </li>
+              </ul>
+              <h2 class="govuk-heading-l">Emails</h2>
+
+              <h2 class="govuk-heading-l">Resources</h2>
+
+            </div>
+          </div>
+          <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="mvp-versions">
+
+            <table class="govuk-table">
+              <caption class="govuk-table__caption govuk-heading-m">Previously tested versions</caption>
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Version</th>
+                  <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Tested on</th>
+                  <th scope="col" class="govuk-table__header govuk-!-width-two-thirds">Changes</th>
+                  <th scope="col" class="govuk-table__header govuk-!-width-one-eighth">Status</th>
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header">
+                    <a href="https://conf-statement-mvp-v1.herokuapp.com/">MVP - Version 1</th>
+                    <td class="govuk-table__cell">TBC</td>
+                    <td class="govuk-table__cell">
+                      <details class="govuk-details" data-module="govuk-details">
+                        <summary class="govuk-details__summary">
+                          <span class="govuk-details__summary-text">
+                            Changes included in MVP version 1
+                          </span>
+                        </summary>
+                        <div class="govuk-details__text">
+                          <ul class="govuk-list--bulletlist">
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-mvp-v1.herokuapp.com/start">Start page content</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </details>
+                    </td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--grey">
+                        Work in progress
+                      </strong>
+                    </tr>
+                  </tr>
+                </tbody>
+              </table>
+
+              <h2 class="govuk-heading-m">Examples and documentation</h2>
+
+              <ul class="govuk-list govuk-list--bullet">
+                <li>
+                  <a href="/docs/tutorials-and-examples">Example pages and documentation</a>
+                </li>
+                <li>
+                  <a href="https://design-system.service.gov.uk">GOV.UK Design System</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+        {% endblock %}
