@@ -1,0 +1,86 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Check the company information
+{% endblock %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/authenticate"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">Check the company information</h1>
+      <h2 class="govuk-heading-l">{{scenario.company.name}}</h2>
+      <form action="" method="post">
+
+        {{ govukTable({
+
+  firstCellIsHeader: true,
+  classes: "align-top",
+  rows: [
+    [
+      {
+        text: "Registered office address"
+      },
+      {
+        text: scenario.company.address | nl2br
+      }
+    ],
+    [
+      {
+        text: "Status"
+      },
+      {
+        text: scenario.company.status
+      }
+    ],
+    [
+      {
+        text: "Incorporation date"
+      },
+      {
+        text: scenario.company.incorporationDate
+      }
+    ],
+    [
+      {
+        text: "Company type"
+      },
+      {
+        text: scenario.company.companyType
+      }
+    ],
+    [
+      {
+        text: "Registered office address"
+      },
+      {
+        html: scenario.company.address | nl2br
+      }
+    ],
+    [
+      {
+        text: "Confirmation statement due date"
+      },
+      {
+        html: scenario.company.csDueDate
+      }
+    ]
+  ]
+}) }}
+        {{ govukButton({
+text: "Confirm and continue",
+href: "/authenticate"
+}) }}
+        <p>
+          <a href="/company-number">Choose a different company</a>
+        </p>
+      </form>
+    </div>
+  </div>
+{% endblock %}
