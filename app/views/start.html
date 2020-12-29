@@ -13,6 +13,14 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      {% set fileByPostHTML %}
+      <p>Download and fill in a
+        <a href="https://www.gov.uk/government/publications/confirmation-statement-cs01">confirmation statement form</a>
+        and post it to Companies House - the address is on the form.</p>
+      <p>You’ll need to download and fill in parts 1 to 4 if you’re updating information about your company.</p>
+      <p>It costs £40. Include a cheque with your company number written on the back.</p>
+      {% endset %}
+
       <h1 class="govuk-heading-xl">
         {% if serviceName %}
           {{ serviceName }}
@@ -20,6 +28,9 @@
       </h1>
 
       <p class="govuk-body-l">Use this service to confirm that the basic company information is up to date.</p>
+      <p>You should
+        <a href="https://www.gov.uk/running-a-limited-company/company-annual-return">prepare your confirmation statement</a>
+        before using this service.</p>
       <p>If any information needs to be updated you must file these changes using
         <a href="">the relevant form</a>
         before submitting the confirmation statement. Recent filings that have not yet been accepted will not be reflected in the information shown in this service.</p>
@@ -39,6 +50,11 @@
         <li>the company number</li>
         <li>a credit or debit card to pay the £13 fee</li>
       </ul>
+
+      {{ govukDetails({
+        summaryText: "Other ways to apply",
+        html: fileByPostHTML
+      }) }}
 
     </div>
   </div>
