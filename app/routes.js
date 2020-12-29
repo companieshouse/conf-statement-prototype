@@ -52,5 +52,25 @@ router.post('/authenticate', function (req, res) {
   var authCode = req.body.authCode
 
   authCode = authCode.toUpperCase()
+  res.redirect('/confirmation-statement')
+})
+router.get('/confirmation-statement', function (req, res) {
+  var date = new Date()
+
+  res.render('confirmation-statement', {
+    scenario: req.session.scenario,
+    date: date
+  })
+})
+router.post('/confirmation-statement', function (req, res) {
+  var authCode = req.body.authCode
+
+  authCode = authCode.toUpperCase()
   res.redirect('/check-company-information')
+})
+router.get('/confirmation', function (req, res) {
+  res.render('confirmation-statement', {
+    scenario: req.session.scenario,
+    email: req.session.email
+  })
 })
