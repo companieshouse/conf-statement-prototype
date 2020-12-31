@@ -28,11 +28,15 @@
               MVP versions
             </a>
           </li>
-
+          <li class="govuk-tabs__list-item">
+            <a class="govuk-tabs__tab" href="#ideal-versions">
+              Ideal versions
+            </a>
+          </li>
         </ul>
         <div class="govuk-tabs__panel" id="shortcuts">
           <div class="govuk-grid-row">
-            <h1 class="govuk-heading-xl">Shortcuts (MVP)</h1>
+            <h1 class="govuk-heading-xl">Shortcuts (Ideal)</h1>
             <h2 class="govuk-heading-l">Happy path</h2>
             <ul class="govuk-list govuk-list--bullet">
               <li>
@@ -56,8 +60,8 @@
                 Authenticate
               </li>
               <li>
-                <a href="/confirmation-statement">Review company information</a>
-                Review
+                <a href="/confirmation-statement">Review ROA</a>
+                Review registered office address
               </li>
               <li>
                 <a href="/https://products.payments.service.gov.uk/pay/f2e467141a084c49972ec199dcad6e78">Pay</a>
@@ -87,8 +91,10 @@
 
             </div>
           </div>
-          <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="mvp-versions">
 
+          <!-- MVP VERSION TAB -->
+
+          <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="mvp-versions">
             <table class="govuk-table">
               <caption class="govuk-table__caption govuk-heading-m">Previously tested versions</caption>
               <thead class="govuk-table__head">
@@ -170,6 +176,92 @@
                 </li>
               </ul>
             </div>
-          </div>
 
-        {% endblock %}
+            <!-- IDEAL VERSION TAB -->
+
+            <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="ideal-versions">
+              <table class="govuk-table">
+                <caption class="govuk-table__caption govuk-heading-m">Previously tested versions</caption>
+                <thead class="govuk-table__head">
+                  <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Version</th>
+                    <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Tested on</th>
+                    <th scope="col" class="govuk-table__header govuk-!-width-two-thirds">Changes</th>
+                    <th scope="col" class="govuk-table__header govuk-!-width-one-eighth">Status</th>
+                  </tr>
+                </thead>
+                <tbody class="govuk-table__body">
+                  <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">
+                      <a href="https://conf-statement-mvp-v1.herokuapp.com/">Ideal - Version 1</th>
+                      <td class="govuk-table__cell">TBC</td>
+                      <td class="govuk-table__cell">
+                        <details class="govuk-details" data-module="govuk-details">
+                          <summary class="govuk-details__summary">
+                            <span class="govuk-details__summary-text">
+                              Changes included in ideal version 1
+                            </span>
+                          </summary>
+                          <div class="govuk-details__text">
+                            <ul class="govuk-list--bulletlist">
+                              <li>
+                                <a class="govuk-link" href="https://conf-statement-mvp-v1.herokuapp.com/start">Start page content</a>
+                              </li>
+                              <li>
+                                <a class="govuk-link" href="https://conf-statement-mvp-v1.herokuapp.com/sign-in">Sign in page</a>
+                              </li>
+                              <li>
+                                <a class="govuk-link" href="https://conf-statement-mvp-v1.herokuapp.com/company-number">Company number page</a>
+                              </li>
+                              <li>
+                                <a class="govuk-link" href="https://conf-statement-mvp-v1.herokuapp.com/confirm-company">Confirm company page</a>
+                              </li>
+                              <li>
+                                <a class="govuk-link" href="https://conf-statement-mvp-v1.herokuapp.com/authenticate">Authentication page</a>
+                              </li>
+                              <li>
+                                <a class="govuk-link" href="https://conf-statement-mvp-v1.herokuapp.com/confirmation-statement-ro">Registered office address review</a>
+                              </li>
+                              <li>
+                                Scenario: company number 00111222. Auth code 222222
+                              </li>
+                              <li>
+                                <a class="govuk-link" href="http://localhost:3000/https://products.payments.service.gov.uk/pay/f2e467141a084c49972ec199dcad6e78">Payment feature</a>
+                              </li>
+                              <li>
+                                <a class="govuk-link" href="https://conf-statement-mvp-v1.herokuapp.com/confirmation">Confirmation page</a>
+                              </li>
+                              <li>
+                                <a class="govuk-link" href="https://conf-statement-mvp-v1.herokuapp.com/page-not-found">Page not found error page</a>
+                              </li>
+                              <li>
+                                <a class="govuk-link" href="https://conf-statement-mvp-v1.herokuapp.com/service-offline">Service offline error page</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </details>
+                      </td>
+                      <td class="govuk-table__cell">
+                        <strong class="govuk-tag govuk-tag--grey">
+                          Work in progress
+                        </strong>
+                      </tr>
+
+                    </tr>
+                  </tbody>
+                </table>
+
+                <h2 class="govuk-heading-m">Examples and documentation</h2>
+
+                <ul class="govuk-list govuk-list--bullet">
+                  <li>
+                    <a href="/docs/tutorials-and-examples">Example pages and documentation</a>
+                  </li>
+                  <li>
+                    <a href="https://design-system.service.gov.uk">GOV.UK Design System</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+          {% endblock %}

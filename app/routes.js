@@ -52,7 +52,15 @@ router.post('/authenticate', function (req, res) {
   var authCode = req.body.authCode
 
   authCode = authCode.toUpperCase()
-  res.redirect('/confirmation-statement')
+  res.redirect('/confirmation-statement-ro')
+})
+router.get('/confirmation-statement-ro', function (req, res, nl2br) {
+  res.render('confirmation-statement-ro', {
+    scenario: req.session.scenario
+  })
+})
+router.post('/confirmation-statement-ro', function (req, res) {
+  res.redirect('/confirmation-statement-officers')
 })
 router.get('/confirmation-statement', function (req, res) {
   var date = new Date()
