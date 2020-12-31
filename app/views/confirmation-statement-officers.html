@@ -1,13 +1,13 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Review the registered office address
+  Review the officers
 {% endblock %}
 
 {% block backLink %}
   {{ govukBackLink({
     text: "Back",
-    href: "/authenticate"
+    href: "/confirmation-statement-ro"
   }) }}
 {% endblock %}
 
@@ -18,16 +18,16 @@
       <form action="" method="post">
 
         {% set roaHTML %}
-        {{ scenario.company.address | nl2br }}
+        Name. Role. DOB.
         {% endset %}
 
         {{ govukRadios({
           classes: "govuk-radios--inline",
-          idPrefix: "registered-office-address",
-          name: "registered-office-address",
+          idPrefix: "officers",
+          name: "officers",
           fieldset: {
             legend: {
-              html: "Is the registered office correct?",
+              html: "Are the officers correct?",
               isPageHeading: false,
               classes: "govuk-fieldset__legend--l"
             }
