@@ -60,7 +60,16 @@ router.get('/confirmation-statement-ro', function (req, res, nl2br) {
   })
 })
 router.post('/confirmation-statement-ro', function (req, res) {
-  res.redirect('/confirmation-statement-officers')
+  var ro = req.session.data['registered-office-address']
+
+  switch (ro) {
+    case 'yes':
+      res.redirect('/confirmation-statement-officers')
+      break
+    case 'no':
+      res.redirect('/wrong-ro')
+      break
+  }
 })
 router.get('/confirmation-statement', function (req, res) {
   var date = new Date()
