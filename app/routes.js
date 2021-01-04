@@ -120,7 +120,7 @@ router.post('/confirmation-statement', function (req, res) {
   res.redirect('/check-company-information')
 })
 router.get('/confirmation', function (req, res) {
-  res.render('confirmation-statement', {
+  res.render('confirmation', {
     scenario: req.session.scenario,
     email: req.session.email
   })
