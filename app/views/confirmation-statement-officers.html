@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Review the officers
+{% endblock %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/confirmation-statement-ro"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="" method="post">
+
+        {% set roaHTML %}
+        Name. Role. DOB.
+        {% endset %}
+
+        {{ govukRadios({
+          classes: "govuk-radios--inline",
+          idPrefix: "officers",
+          name: "officers",
+          fieldset: {
+            legend: {
+              html: "Are the officers correct?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+    html: roaHTML
+  },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+text: "Continue"
+}) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}
