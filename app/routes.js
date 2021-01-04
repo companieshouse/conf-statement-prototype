@@ -71,6 +71,40 @@ router.post('/confirmation-statement-ro', function (req, res) {
       break
   }
 })
+router.get('/confirmation-statement-officers', function (req, res, nl2br) {
+  res.render('confirmation-statement-officers', {
+    scenario: req.session.scenario
+  })
+})
+router.post('/confirmation-statement-officers', function (req, res) {
+  var officers = req.session.data['officers']
+
+  switch (officers) {
+    case 'yes':
+      res.redirect('/confirmation-statement-registers')
+      break
+    case 'no':
+      res.redirect('/wrong-officers')
+      break
+  }
+})
+router.get('/confirmation-statement-registers', function (req, res, nl2br) {
+  res.render('confirmation-statement-registers', {
+    scenario: req.session.scenario
+  })
+})
+router.post('/confirmation-statement-registers', function (req, res) {
+  var registers = req.session.data['registers']
+
+  switch (registers) {
+    case 'yes':
+      res.redirect('/confirmation-statement-sic')
+      break
+    case 'no':
+      res.redirect('/wrong-registers')
+      break
+  }
+})
 router.get('/confirmation-statement', function (req, res) {
   var date = new Date()
 
