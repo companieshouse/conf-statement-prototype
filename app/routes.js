@@ -166,10 +166,27 @@ router.post('/confirmation-statement-people-with-significant-control', function 
 
   switch (psc) {
     case 'yes':
-      res.redirect('/confirmation-statement-review')
+      res.redirect('/confirmation-statement-psc-statement')
       break
     case 'no':
       res.redirect('/wrong-psc')
+      break
+  }
+})
+router.get('/confirmation-statement-psc-statement', function (req, res, nl2br) {
+  res.render('confirmation-statement-psc-statement', {
+    scenario: req.session.scenario
+  })
+})
+router.post('/confirmation-statement-psc-statement', function (req, res) {
+  var pscStatement = req.session.data['psc-statement']
+
+  switch (pscStatement) {
+    case 'yes':
+      res.redirect('/confirmation-statement-review')
+      break
+    case 'no':
+      res.redirect('/wrong-psc-statement')
       break
   }
 })
