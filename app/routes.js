@@ -122,19 +122,67 @@ router.post('/confirmation-statement-sic', function (req, res) {
       break
   }
 })
-router.get('/confirmation-statement', function (req, res) {
+router.get('/confirmation-statement-shareholder-capital', function (req, res, nl2br) {
+  res.render('confirmation-statement-shareholder-capital', {
+    scenario: req.session.scenario
+  })
+})
+router.post('/confirmation-statement-shareholder-capital', function (req, res) {
+  var shareholderCapital = req.session.data['shareholder-capital']
+
+  switch (shareholderCapital) {
+    case 'yes':
+      res.redirect('/confirmation-statement-members-register')
+      break
+    case 'no':
+      res.redirect('/wrong-shareholder-capital')
+      break
+  }
+})
+router.get('/confirmation-statement-members-register', function (req, res, nl2br) {
+  res.render('confirmation-statement-members-register', {
+    scenario: req.session.scenario
+  })
+})
+router.post('/confirmation-statement-members-register', function (req, res) {
+  var membersRegister = req.session.data['members-register']
+
+  switch (membersRegister) {
+    case 'yes':
+      res.redirect('/confirmation-statement-people-with-significant-control')
+      break
+    case 'no':
+      res.redirect('/wrong-members-register')
+      break
+  }
+})
+router.get('/confirmation-statement-people-with-significant-control', function (req, res, nl2br) {
+  res.render('confirmation-statement-people-with-significant-control', {
+    scenario: req.session.scenario
+  })
+})
+router.post('/confirmation-statement-people-with-significant-control', function (req, res) {
+  var psc = req.session.data['psc']
+
+  switch (psc) {
+    case 'yes':
+      res.redirect('/confirmation-statement-review')
+      break
+    case 'no':
+      res.redirect('/wrong-psc')
+      break
+  }
+})
+router.get('/confirmation-statement-review', function (req, res) {
   var date = new Date()
 
-  res.render('confirmation-statement', {
+  res.render('confirmation-statement-review', {
     scenario: req.session.scenario,
     date: date
   })
 })
-router.post('/confirmation-statement', function (req, res) {
-  var authCode = req.body.authCode
-
-  authCode = authCode.toUpperCase()
-  res.redirect('/check-company-information')
+router.post('/confirmation-statement-review', function (req, res) {
+  res.redirect('https://products.payments.service.gov.uk/pay/f2e467141a084c49972ec199dcad6e78')
 })
 router.get('/confirmation', function (req, res) {
   res.render('confirmation', {

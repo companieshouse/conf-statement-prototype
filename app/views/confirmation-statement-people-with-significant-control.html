@@ -1,13 +1,13 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Review the standard industrial classification
+  Review the people with significant control
 {% endblock %}
 
 {% block backLink %}
   {{ govukBackLink({
     text: "Back",
-    href: "/confirmation-statement-registers"
+    href: "/confirmation-statement-members-registers"
   }) }}
 {% endblock %}
 
@@ -17,23 +17,23 @@
 
       <form action="" method="post">
 
-        {% set sicHTML %}
-        List of SIC codes
+        {% set pscHTML %}
+        table with names and DOB here
         {% endset %}
 
         {{ govukRadios({
           classes: "govuk-radios--inline",
-          idPrefix: "sic",
-          name: "sic",
+          idPrefix: "psc",
+          name: "psc",
           fieldset: {
             legend: {
-              html: "Is the standard industrial classification correct?",
+              html: "Are the people with significant control correct?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
           hint: {
-    html: sicHTML
+    html: pscHTML
   },
           items: [
             {
