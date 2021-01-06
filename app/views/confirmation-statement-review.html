@@ -19,6 +19,59 @@
     visuallyHiddenText: "registered office address"
 } %}
 
+  {% set officerChange = {
+  href: "/confirmation-statement-officers",
+  text: "Change",
+  visuallyHiddenText: "officer"
+} %}
+
+  {% set registerChange = {
+href: "/confirmation-statement-registers",
+text: "Change",
+visuallyHiddenText: "registers"
+} %}
+
+  {% set sicChange = {
+href: "/confirmation-statement-sic",
+text: "Change",
+visuallyHiddenText: "standard industrial classification"
+} %}
+
+  {% set shareholderCapitalChange = {
+href: "/confirmation-statement-shareholder-capital",
+text: "Change",
+visuallyHiddenText: "shareholder capital"
+} %}
+
+  {% set membersRegisterChange = {
+href: "/confirmation-statement-members-register",
+text: "Change",
+visuallyHiddenText: "members register"
+} %}
+
+  {% set pscChange = {
+href: "/confirmation-statement-people-with-significant-control",
+text: "Change",
+visuallyHiddenText: "people with significant control"
+} %}
+
+  {% set pscStatementChange = {
+href: "/confirmation-statement-psc-statement",
+text: "Change",
+visuallyHiddenText: "people with significant control statement"
+} %}
+
+  {% if scenario.company.csDue === 'due' %}
+    {% set feeHTML = {
+      key: {
+        text: "Fee"
+      },
+      value: {
+        text: "£13"
+      }
+    } %}
+  {% endif %}
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-xl">Review the confirmation statement</h1>
@@ -37,12 +90,90 @@
     text: "Registered office address"
   },
   value: {
-    html: scenario.company.address | nl2br
+    text: "No changes"
   },
   actions: {
     items: [roChange]
     }
-  }
+  },
+  {
+    key: {
+    text: "Officers"
+  },
+  value: {
+    text: "No changes"
+  },
+  actions: {
+    items: [officerChange]
+    }
+  },
+  {
+    key: {
+    text: "SAIL address"
+  },
+  value: {
+    text: "No changes"
+  },
+  actions: {
+    items: [registerChange]
+    }
+  },
+  {
+    key: {
+    text: "Standard industrial classification"
+  },
+  value: {
+    text: "No changes"
+  },
+  actions: {
+    items: [sicChange]
+    }
+  },
+  {
+    key: {
+    text: "Members register"
+  },
+  value: {
+    text: "No changes"
+  },
+  actions: {
+    items: [membersRegisterChange]
+    }
+  },
+  {
+    key: {
+    text: "Shareholder capital"
+  },
+  value: {
+    text: "No changes"
+  },
+  actions: {
+    items: [shareholderCapitalChange]
+    }
+  },
+  {
+    key: {
+    text: "People with significant control"
+  },
+  value: {
+    text: "No changes"
+  },
+  actions: {
+    items: [pscChange]
+    }
+  },
+  {
+    key: {
+    text: "People with significant control statement"
+  },
+  value: {
+    text: "No changes"
+  },
+  actions: {
+    items: [pscStatementChange]
+    }
+  },
+feeHTML
   ]
 }) }}
 
@@ -50,10 +181,18 @@
 
         <p>By continuing, you confirm that all information required to be delivered by the company pursuant to section 853A(1)(a) of the Companies Act 2006 in relation to the confirmation period ending on the confirmation date above either has been delivered
           with this statement.</p>
-        {{ govukButton({
+
+        {% if scenario.company.csDue === 'due' %}
+          {{ govukButton({
 text: "Confirm and pay",
 href: "https://products.payments.service.gov.uk/pay/f2e467141a084c49972ec199dcad6e78"
 }) }}
+        {% else %}
+          {{ govukButton({
+text: "Confirm and submit",
+href: "/confirmation"
+}) }}
+        {% endif %}
 
       </form>
     </div>

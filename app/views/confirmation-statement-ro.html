@@ -17,9 +17,8 @@
 
       <form action="" method="post">
 
-        {% set roaHTML %}
-        {{ scenario.company.address | nl2br }}
-        {% endset %}
+        {% set roaHTML = scenario.company.address | nl2br
+ %}
 
         {{ govukRadios({
           classes: "govuk-radios--inline",

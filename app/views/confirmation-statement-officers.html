@@ -13,12 +13,181 @@
 
 {% block content %}
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-three-quarters">
 
       <form action="" method="post">
 
-        {% set roaHTML %}
-        Name. Role. DOB.
+        {% set officerHTML %}
+        {% set directorsHtml %}
+        {{ govukTable({
+  head: [
+    {
+      text: "Name"
+    },
+    {
+      text: "Appointment date"
+    },
+    {
+      text: "Date of birth"
+    }
+  ],
+  rows: [
+    [
+      {
+        text: "David Francis"
+      },
+      {
+        text: "3 March 2013"
+      },
+      {
+        text: "May 1971"
+      }
+    ],
+    [
+      {
+        text: "Paul Farmer"
+      },
+      {
+        text: "1 December 2012"
+      },
+      {
+        text: "January 1980"
+      }
+    ],
+    [
+      {
+        text: "Rita Patel"
+      },
+      {
+        text: "1 December 2012"
+      },
+      {
+        text: "December 1985"
+      }
+    ]
+  ]
+}) }}
+        {% endset -%}
+
+        {% set corporateDirectorsHtml %}
+        {{ govukTable({
+          head: [
+            {
+              text: "Name"
+            },
+            {
+              text: "Appointment date"
+            },
+            {
+              text: "Date of birth"
+            }
+          ],
+          rows: [
+            [
+              {
+                text: "DAVID FRANCIS LTD"
+              },
+              {
+                text: "8 August 2017"
+              },
+              {
+                text: "95 Spark Place"
+              }
+            ]
+          ]
+}) }}
+        {% endset -%}
+
+        {% set secretaryHtml %}
+        {{ govukTable({
+          head: [
+            {
+              text: "Name"
+            },
+            {
+              text: "Appointment date"
+            },
+            {
+              text: "Date of birth"
+            }
+          ],
+  rows: [
+    [
+      {
+        text: "Francis Francis"
+      },
+      {
+        text: "8 August 2017"
+      },
+      {
+        text: "9 August 1977"
+      }
+    ]
+  ]
+}) }}
+        {% endset -%}
+
+        {% set corporateSecretaryHtml %}
+        {{ govukTable({
+          head: [
+            {
+              text: "Name"
+            },
+            {
+              text: "Appointment date"
+            },
+            {
+              text: "Service address"
+            }
+          ],
+  rows: [
+    [
+      {
+        text: "NUMBERS BY NUMBERS FOR NUMBERS IN NUMBERS AT NUMBERS LTD"
+      },
+      {
+        text: "13 Decmeber 2018"
+      },
+      {
+        text: "123 Count Lane"
+      }
+    ]
+  ]
+}) }}
+        {% endset -%}
+
+        {{ govukTabs({
+  items: [
+    {
+      label: "Directors",
+      id: "directors",
+      panel: {
+        html: directorsHtml
+      }
+    },
+    {
+      label: "Corporate directors",
+      id: "corporate-directors",
+      panel: {
+        html: corporateDirectorsHtml
+      }
+    },
+    {
+      label: "Secretaries",
+      id: "secretary",
+      panel: {
+        html: secretaryHtml
+      }
+    },
+    {
+      label: "Corporate secretaries",
+      id: "corporate-secretary",
+      panel: {
+        html: corporateSecretaryHtml
+      }
+    }
+  ]
+}) }}
         {% endset %}
 
         {{ govukRadios({
@@ -33,7 +202,7 @@
             }
           },
           hint: {
-    html: roaHTML
+    html: officerHTML
   },
           items: [
             {
