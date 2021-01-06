@@ -1,13 +1,13 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Review the SAIL address
+  Review the people with significant control statement
 {% endblock %}
 
 {% block backLink %}
   {{ govukBackLink({
     text: "Back",
-    href: "/confirmation-statement-officers"
+    href: "/confirmation-statement-people-with-significant-control"
   }) }}
 {% endblock %}
 
@@ -17,23 +17,23 @@
 
       <form action="" method="post">
 
-        {% set registerHTML %}
-        2 Second Place<br>Portsmouth<br>PO2 2BB
+        {% set pscStatementHTML %}
+        No additional statements relating to PSCs are currently held on the public register
         {% endset %}
 
         {{ govukRadios({
           classes: "govuk-radios--inline",
-          idPrefix: "registers",
-          name: "registers",
+          idPrefix: "psc-statement",
+          name: "psc-statement",
           fieldset: {
             legend: {
-              html: "Is the SAIL address correct?",
-              isPageHeading: false,
+              html: "Is the people with significant control statement correct?",
+              isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
           hint: {
-    html: registerHTML
+    html: pscStatementHTML
   },
           items: [
             {

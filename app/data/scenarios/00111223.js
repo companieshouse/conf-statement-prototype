@@ -1,14 +1,14 @@
 module.exports = {
   company: {
-    name: 'BROS CONSTRUCTION PLC',
-    number: '00111222',
+    name: 'MARIO INSTRUCTION PLC',
+    number: '00111223',
     authCode: '222222',
     status: 'Active',
     incorporationDate: '1 April 2010',
     companyType: 'Private Limited Company',
-    address: '125 Feather Hedge<br>Salisbury<br>SP4 7DE',
+    address: '126 Feather Hedge<br>Salisbury<br>SP4 7DE',
     actionCode: '5005',
-    csDueDate: '16 February 2021',
-    csDue: 'notdue'
+    csDueDate: '16 January 2021',
+    csDue: 'due'
   }
 }
