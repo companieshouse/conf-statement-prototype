@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Review the register
+  Review the SAIL address
 {% endblock %}
 
 {% block backLink %}
@@ -18,7 +18,7 @@
       <form action="" method="post">
 
         {% set registerHTML %}
-        SAIL address
+        2 Second Place<br>Portsmouth<br>PO2 2BB
         {% endset %}
 
         {{ govukRadios({
@@ -27,7 +27,7 @@
           name: "registers",
           fieldset: {
             legend: {
-              html: "Is the register correct?",
+              html: "Is the SAIL address correct?",
               isPageHeading: false,
               classes: "govuk-fieldset__legend--l"
             }

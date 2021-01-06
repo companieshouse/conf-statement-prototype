@@ -18,6 +18,16 @@
       <h2 class="govuk-heading-l">{{scenario.company.name}}</h2>
       <form action="" method="post">
 
+        {% set warningHTML %}
+        <strong class="govuk-warning-text__text">
+          You are not due to file a confirmation statement. If you file a confirmation statement today, it will show the date as 7 January 2021 and this will change your future review periods. You will not need to pay a fee if you file your confirmation
+          statement before
+          {{scenario.company.csDueDate}}.
+          <br>
+          <a href="https://www.youtube.com/watch?v=dxN4djaAE3k">This video explains review periods and payment periods (opens in new tab).</a>
+
+        </strong>
+        {% endset %}
         {{ govukTable({
 
   firstCellIsHeader: true,
@@ -73,6 +83,14 @@
     ]
   ]
 }) }}
+        {% if scenario.company.csDue === "notdue" %}
+          {{ govukWarningText({
+  html: warningHTML,
+  iconFallbackText: "Warning"
+}) }}
+        {% else %}
+        {% endif %}
+
         {{ govukButton({
 text: "Confirm and continue",
 href: "/authenticate"
