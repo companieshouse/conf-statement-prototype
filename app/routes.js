@@ -173,19 +173,16 @@ router.post('/confirmation-statement-people-with-significant-control', function 
       break
   }
 })
-router.get('/confirmation-statement', function (req, res) {
+router.get('/confirmation-statement-review', function (req, res) {
   var date = new Date()
 
-  res.render('confirmation-statement', {
+  res.render('confirmation-statement-review', {
     scenario: req.session.scenario,
     date: date
   })
 })
-router.post('/confirmation-statement', function (req, res) {
-  var authCode = req.body.authCode
-
-  authCode = authCode.toUpperCase()
-  res.redirect('/check-company-information')
+router.post('/confirmation-statement-review', function (req, res) {
+  res.redirect('https://products.payments.service.gov.uk/pay/f2e467141a084c49972ec199dcad6e78')
 })
 router.get('/confirmation', function (req, res) {
   res.render('confirmation', {

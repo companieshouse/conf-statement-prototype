@@ -27,78 +27,22 @@
       <h3 class="govuk-heading-l">{{scenario.company.name}}</h3>
       <form action="" method="post">
 
-        {{ govukTable({
+        {{ govukSummaryList({
 
   firstCellIsHeader: true,
   classes: "align-top",
   rows: [
-    [
-      {
-        text: "Registered office address"
-      },
-      {
-        html: scenario.company.address | nl2br
-      },
-      {
-        html: roChange
-      }
-    ],
-    [
-      {
-        text: "Officers (name, role, DOB)"
-      },
-      {
-        text: "name, role, DOB"
-      }
-    ],
-    [
-      {
-        text: "Registers"
-      },
-      {
-        text: "SAIL address"
-      }
-    ],
-    [
-      {
-        text: "Standard industrial classification (SIC)"
-      },
-      {
-        text: "code, type, desciption"
-      }
-    ],
-    [
-      {
-        text: "Share capital"
-      },
-      {
-        html: "Statement of capital here"
-      }
-    ],
-    [
-      {
-        text: "Members register"
-      },
-      {
-        html: "What goes here?"
-      }
-    ],
-    [
-      {
-        text: "People with significant control (PSCs)"
-      },
-      {
-        html: "Names and DOB here"
-      }
-    ],
-    [
-      {
-        text: "Fee"
-      },
-      {
-        html: "£13"
-      }
-    ]
+  {
+    key: {
+    text: "Registered office address"
+  },
+  value: {
+    html: scenario.company.address | nl2br
+  },
+  actions: {
+    items: [roChange]
+    }
+  }
   ]
 }) }}
 
