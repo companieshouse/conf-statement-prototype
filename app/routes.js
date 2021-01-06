@@ -105,6 +105,23 @@ router.post('/confirmation-statement-registers', function (req, res) {
       break
   }
 })
+router.get('/confirmation-statement-sic', function (req, res, nl2br) {
+  res.render('confirmation-statement-sic', {
+    scenario: req.session.scenario
+  })
+})
+router.post('/confirmation-statement-sic', function (req, res) {
+  var sic = req.session.data['sic']
+
+  switch (sic) {
+    case 'yes':
+      res.redirect('/confirmation-statement-shareholder-capital')
+      break
+    case 'no':
+      res.redirect('/wrong-sic')
+      break
+  }
+})
 router.get('/confirmation-statement', function (req, res) {
   var date = new Date()
 
