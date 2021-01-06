@@ -13,12 +13,146 @@
 
 {% block content %}
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-three-quarters">
 
       <form action="" method="post">
 
         {% set pscHTML %}
-        table with names and DOB here
+        {% set personHtml %}
+        {{ govukTable({
+  head: [
+    {
+      text: "Name"
+    },
+    {
+      text: "Appointment date"
+    },
+    {
+      text: "Date of birth"
+    }
+  ],
+  rows: [
+    [
+      {
+        text: "David Francis"
+      },
+      {
+        text: "3 March 2013"
+      },
+      {
+        text: "May 1971"
+      }
+    ],
+    [
+      {
+        text: "Paul Farmer"
+      },
+      {
+        text: "1 December 2012"
+      },
+      {
+        text: "January 1980"
+      }
+    ],
+    [
+      {
+        text: "Rita Patel"
+      },
+      {
+        text: "1 December 2012"
+      },
+      {
+        text: "December 1985"
+      }
+    ]
+  ]
+}) }}
+        {% endset -%}
+
+        {% set legalEntityHtml %}
+        {{ govukTable({
+          head: [
+            {
+              text: "Name"
+            },
+            {
+              text: "Appointment date"
+            },
+            {
+              text: "Date of birth"
+            }
+          ],
+          rows: [
+            [
+              {
+                text: "DAVID FRANCIS LTD"
+              },
+              {
+                text: "8 August 2017"
+              },
+              {
+                text: "95 Spark Place"
+              }
+            ]
+          ]
+}) }}
+        {% endset -%}
+
+        {% set otherPersonHtml %}
+        {{ govukTable({
+          head: [
+            {
+              text: "Name"
+            },
+            {
+              text: "Appointment date"
+            },
+            {
+              text: "Date of birth"
+            }
+          ],
+  rows: [
+    [
+      {
+        text: "Francis Francis"
+      },
+      {
+        text: "8 August 2017"
+      },
+      {
+        text: "9 August 1977"
+      }
+    ]
+  ]
+}) }}
+        {% endset -%}
+
+        {{ govukTabs({
+  items: [
+    {
+      label: "Individual person",
+      id: "individualPerson",
+      panel: {
+        html: personHtml
+      }
+    },
+    {
+      label: "Relevant legal entity",
+      id: "relevant-legal-entity",
+      panel: {
+        html: legalEntityHtml
+      }
+    },
+    {
+      label: "Other registrable person",
+      id: "otherRegistrablePerson",
+      panel: {
+        html: otherPersonHtml
+      }
+
+    }
+  ]
+}) }}
         {% endset %}
 
         {{ govukRadios({
