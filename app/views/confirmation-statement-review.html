@@ -1,20 +1,27 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Confirmation statement
+  Review the confirmation statement
 {% endblock %}
 
 {% block backLink %}
   {{ govukBackLink({
     text: "Back",
-    href: "/authenticate"
+    href: "/confirmation-statment-psc"
   }) }}
 {% endblock %}
 
 {% block content %}
+
+  {% set roChange = {
+    href: "/confirmation-statement-ro",
+    text: "Change",
+    visuallyHiddenText: "registered office address"
+} %}
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-xl">Confirmation statement</h1>
+      <h1 class="govuk-heading-xl">Review the confirmation statement</h1>
       <h2 class="govuk-heading-m">Statement date:
         {{ date }}</h2>
       <h3 class="govuk-heading-l">{{scenario.company.name}}</h3>
@@ -31,6 +38,9 @@
       },
       {
         html: scenario.company.address | nl2br
+      },
+      {
+        html: roChange
       }
     ],
     [
@@ -80,6 +90,14 @@
       {
         html: "Names and DOB here"
       }
+    ],
+    [
+      {
+        text: "Fee"
+      },
+      {
+        html: "£13"
+      }
     ]
   ]
 }) }}
@@ -89,7 +107,7 @@
         <p>By continuing, you confirm that all information required to be delivered by the company pursuant to section 853A(1)(a) of the Companies Act 2006 in relation to the confirmation period ending on the confirmation date above either has been delivered
           with this statement.</p>
         {{ govukButton({
-text: "Confirm and continue",
+text: "Confirm and pay",
 href: "https://products.payments.service.gov.uk/pay/f2e467141a084c49972ec199dcad6e78"
 }) }}
 

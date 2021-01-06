@@ -1,13 +1,13 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Review the standard industrial classification
+  Review the members register
 {% endblock %}
 
 {% block backLink %}
   {{ govukBackLink({
     text: "Back",
-    href: "/confirmation-statement-registers"
+    href: "/confirmation-statement-shareholder-capital"
   }) }}
 {% endblock %}
 
@@ -17,23 +17,23 @@
 
       <form action="" method="post">
 
-        {% set sicHTML %}
-        List of SIC codes
+        {% set membersRegisterHTML %}
+        Members registers
         {% endset %}
 
         {{ govukRadios({
           classes: "govuk-radios--inline",
-          idPrefix: "sic",
-          name: "sic",
+          idPrefix: "members-register",
+          name: "members-register",
           fieldset: {
             legend: {
-              html: "Is the standard industrial classification correct?",
+              html: "Is the members register correct?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
           hint: {
-    html: sicHTML
+    html: membersRegisterHTML
   },
           items: [
             {
