@@ -17,9 +17,8 @@
 
       <form action="" method="post">
 
-        {% set registerHTML %}
-        2 Second Place<br>Portsmouth<br>PO2 2BB
-        {% endset %}
+        {% set registerHTML = scenario.company.sailAddress | nl2br
+ %}
 
         {{ govukRadios({
           classes: "govuk-radios--inline",

@@ -18,7 +18,10 @@
       <form action="" method="post">
 
         {% set sicHTML %}
-        List of SIC codes
+        <b>82990</b>
+        - Other business support service activities not elsewhere classified<br>
+        <b>82110</b>
+        - Combined office administrative service activities
         {% endset %}
 
         {{ govukRadios({
@@ -27,7 +30,7 @@
           name: "sic",
           fieldset: {
             legend: {
-              html: "Is the standard industrial classification correct?",
+              html: "Is the nature of business (SIC) correct?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
