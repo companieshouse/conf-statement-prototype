@@ -3,6 +3,7 @@ module.exports = {
     name: 'BROS CONSTRUCTION PLC',
     number: '00111222',
     authCode: '222222',
+    type: 'PLC',
     status: 'Active',
     incorporationDate: '1 April 2010',
     companyType: 'Private Limited Company',

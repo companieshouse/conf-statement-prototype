@@ -19,7 +19,7 @@ router.get('/sign-in', function (req, res) {
 })
 
 router.post('/sign-in', function (req, res) {
-  req.session.email = req.body.email
+  var email = req.session.data['email']
   res.redirect('/company-number')
 })
 router.get('/company-number', function (req, res) {
@@ -40,7 +40,6 @@ router.get('/confirm-company', function (req, res) {
 })
 
 router.post('/confirm-company', function (req, res) {
-  req.session.email = req.body.email
   res.redirect('/authenticate')
 })
 router.get('/authenticate', function (req, res) {
@@ -202,8 +201,10 @@ router.post('/confirmation-statement-review', function (req, res) {
   res.redirect('https://products.payments.service.gov.uk/pay/f2e467141a084c49972ec199dcad6e78')
 })
 router.get('/confirmation', function (req, res) {
+  var email = req.session.data.email
+
   res.render('confirmation', {
     scenario: req.session.scenario,
-    email: req.session.email
+    email: email
   })
 })
