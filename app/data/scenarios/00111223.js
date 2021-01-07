@@ -4,6 +4,7 @@ module.exports = {
     number: '00111223',
     authCode: '222222',
     status: 'Active',
+    type: 'PLC',
     incorporationDate: '1 April 2010',
     companyType: 'Private Limited Company',
     address: '126 Feather Hedge<br>Salisbury<br>SP4 7DE',
