@@ -11,6 +11,7 @@ module.exports = {
     sailAddress: '3 Second Place<br>Portsmouth<br>PO2 2BB',
     actionCode: '5005',
     csDueDate: '16 January 2021',
-    csDue: 'due'
+    csDue: 'due',
+    nextCsDue: '16 January 2022'
   }
 }

@@ -131,27 +131,27 @@ router.post('/confirmation-statement-shareholder-capital', function (req, res) {
 
   switch (shareholderCapital) {
     case 'yes':
-      res.redirect('/confirmation-statement-members-register')
+      res.redirect('/confirmation-statement-shareholders')
       break
     case 'no':
       res.redirect('/wrong-shareholder-capital')
       break
   }
 })
-router.get('/confirmation-statement-members-register', function (req, res, nl2br) {
-  res.render('confirmation-statement-members-register', {
+router.get('/confirmation-statement-shareholders', function (req, res, nl2br) {
+  res.render('confirmation-statement-shareholders', {
     scenario: req.session.scenario
   })
 })
-router.post('/confirmation-statement-members-register', function (req, res) {
-  var membersRegister = req.session.data['members-register']
+router.post('/confirmation-statement-shareholders', function (req, res) {
+  var shareholders = req.session.data['shareholders']
 
-  switch (membersRegister) {
+  switch (shareholders) {
     case 'yes':
       res.redirect('/confirmation-statement-people-with-significant-control')
       break
     case 'no':
-      res.redirect('/wrong-members-register')
+      res.redirect('/wrong-shareholders')
       break
   }
 })

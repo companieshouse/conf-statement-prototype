@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Review the standard industrial classification
+  Review the SIC codes
 {% endblock %}
 
 {% block backLink %}
@@ -18,19 +18,22 @@
       <form action="" method="post">
 
         {% set sicHTML %}
-        <b>82990</b>
-        - Other business support service activities not elsewhere classified<br>
-        <b>82110</b>
-        - Combined office administrative service activities
-        {% endset %}
+        The SIC (Standard Industrial Classification) code indicates the nature of the company’s business. A company can have up to 4 SIC codes.
+        <br><br>
+        <p>
+          <b>82990</b>
+          - Other business support service activities not elsewhere classified<br>
+          <b>82110</b>
+          - Combined office administrative service activities
+          {% endset %}
 
-        {{ govukRadios({
+          {{ govukRadios({
           classes: "govuk-radios--inline",
           idPrefix: "sic",
           name: "sic",
           fieldset: {
             legend: {
-              html: "Is the nature of business (SIC) correct?",
+              html: "Are the SIC codes correct?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
@@ -50,10 +53,10 @@
           ]
         }) }}
 
-        {{ govukButton({
+          {{ govukButton({
 text: "Continue"
 }) }}
-      </form>
+        </form>
+      </div>
     </div>
-  </div>
-{% endblock %}
+  {% endblock %}
