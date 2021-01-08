@@ -120,7 +120,7 @@ visuallyHiddenText: "people with significant control statement"
   },
   {
     key: {
-    text: "Standard industrial classification"
+    text: "SIC codes"
   },
   value: {
     text: "Information is correct"
@@ -179,8 +179,9 @@ feeHTML
 
         <h4 class="govuk-heading-m">Confirm this information</h4>
 
-        <p>By continuing, you confirm that all information required to be delivered by the company pursuant to section 853A(1)(a) of the Companies Act 2006 in relation to the confirmation period ending on the confirmation date above either has been delivered
-          with this statement.</p>
+        <p>By continuing, you confirm that all information required to be delivered by the company pursuant to
+          <a href="https://www.legislation.gov.uk/ukpga/2006/46/section/853A">section 853A(1)(a) of the Companies Act 2006</a>
+          in relation to the confirmation period ending on the confirmation date above either has been delivered or is being delivered with this statement.</p>
 
         {% if scenario.company.csDue === 'due' %}
           {{ govukButton({
