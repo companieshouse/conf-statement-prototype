@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Review the members register
+  Review the shareholders
 {% endblock %}
 
 {% block backLink %}
@@ -17,23 +17,23 @@
 
       <form action="" method="post">
 
-        {% set membersRegisterHTML %}
-        Members registers
+        {% set shareholdersHTML %}
+        shareholders registers
         {% endset %}
 
         {{ govukRadios({
           classes: "govuk-radios--inline",
-          idPrefix: "members-register",
-          name: "members-register",
+          idPrefix: "shareholders",
+          name: "shareholders",
           fieldset: {
             legend: {
-              html: "Is the members register correct?",
+              html: "Are the shareholders correct?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
           hint: {
-    html: membersRegisterHTML
+    html: shareholdersHTML
   },
           items: [
             {
