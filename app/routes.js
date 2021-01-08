@@ -148,10 +148,27 @@ router.post('/confirmation-statement-shareholders', function (req, res) {
 
   switch (shareholders) {
     case 'yes':
-      res.redirect('/confirmation-statement-people-with-significant-control')
+      res.redirect('/psc-exemption')
       break
     case 'no':
       res.redirect('/wrong-shareholders')
+      break
+  }
+})
+router.get('/psc-exemption', function (req, res, nl2br) {
+  res.render('psc-exemption', {
+    scenario: req.session.scenario
+  })
+})
+router.post('/psc-exemption', function (req, res) {
+  var exemption = req.session.data['exemption']
+
+  switch (exemption) {
+    case 'yes':
+      res.redirect('/confirmation-statement-review')
+      break
+    case 'no':
+      res.redirect('/confirmation-statement-people-with-significant-control')
       break
   }
 })
@@ -191,10 +208,12 @@ router.post('/confirmation-statement-psc-statement', function (req, res) {
 })
 router.get('/confirmation-statement-review', function (req, res) {
   var date = new Date()
+  var exemption = req.session.data['exemption']
 
   res.render('confirmation-statement-review', {
     scenario: req.session.scenario,
-    date: date
+    date: date,
+    exemption: exemption
   })
 })
 router.post('/confirmation-statement-review', function (req, res) {

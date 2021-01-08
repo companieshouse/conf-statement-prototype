@@ -43,10 +43,10 @@ text: "Change",
 visuallyHiddenText: "shareholder capital"
 } %}
 
-  {% set membersRegisterChange = {
-href: "/confirmation-statement-members-register",
+  {% set shareholdersChange = {
+href: "/confirmation-statement-shareholders",
 text: "Change",
-visuallyHiddenText: "members register"
+visuallyHiddenText: "shareholders"
 } %}
 
   {% set pscChange = {
@@ -70,6 +70,36 @@ visuallyHiddenText: "people with significant control statement"
         text: "£13"
       }
     } %}
+  {% endif %}
+
+  {% if exemption !== 'yes' %}
+    {% set pscHTML = {
+      key: {
+        text: "PSCs"
+      },
+      value: {
+        text: "Information is correct"
+      },
+      actions: {
+        items: [pscChange]
+      }
+    } %}
+  {% else %}
+  {% endif %}
+
+  {% if exemption !== 'yes' %}
+    {% set pscStatementHTML = {
+      key: {
+        text: "PSC statement"
+      },
+      value: {
+        text: "Information is correct"
+      },
+      actions: {
+        items: [pscStatementChange]
+      }
+    } %}
+  {% else %}
   {% endif %}
 
   <div class="govuk-grid-row">
@@ -131,17 +161,6 @@ visuallyHiddenText: "people with significant control statement"
   },
   {
     key: {
-    text: "Members register"
-  },
-  value: {
-    text: "Information is correct"
-  },
-  actions: {
-    items: [membersRegisterChange]
-    }
-  },
-  {
-    key: {
     text: "Shareholder capital"
   },
   value: {
@@ -153,27 +172,18 @@ visuallyHiddenText: "people with significant control statement"
   },
   {
     key: {
-    text: "People with significant control"
+    text: "Shareholders"
   },
   value: {
     text: "Information is correct"
   },
   actions: {
-    items: [pscChange]
+    items: [shareholdersChange]
     }
   },
-  {
-    key: {
-    text: "People with significant control statement"
-  },
-  value: {
-    text: "Information is correct"
-  },
-  actions: {
-    items: [pscStatementChange]
-    }
-  },
-feeHTML
+  pscHTML,
+  pscStatementHTML,
+  feeHTML
   ]
 }) }}
 
