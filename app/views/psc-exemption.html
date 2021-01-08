@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Exemption from keeping a PSC register
+{% endblock %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/shareholders"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="" method="post">
+
+        {% set yesHtml %}
+        {{ govukRadios({
+          id: "exempt",
+          name: "exempt",
+          spellcheck: false,
+          classes: "govuk-!-width-full govuk-!-align-bottom",
+          items: [
+            {
+              value: "option1",
+              text: "The company is exempt from the requirement to obtain information and keep a register of its PSC because the company has voting shares admitted to trading on a regulated market in an EEA State other than the United Kingdom"
+            },
+            {
+              value: "option2",
+              text: "The company is exempt from the requirement to obtain information and keep a register of its PSC because the company has voting shares admitted to trading on a traded market listed in Schedule 1 of the Register of the People with Significant Control Regulations 2016"
+            },
+            {
+              value: "option3",
+              text: "The company is exempt from the requirement to obtain information and keep a register of its PSC because the company has voting shares admitted to trading on a UK regulated market"
+            }
+          ]
+        }) }}
+        {% endset -%}
+
+        {{ govukRadios({
+          idPrefix: "exemption",
+          name: "exemption",
+          fieldset: {
+            legend: {
+              text: "Is the company exempt or has it ever been exempt from keeping a PSC register?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes",
+              conditional: {
+                html: yesHtml
+              }
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+text: "Continue"
+}) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}
