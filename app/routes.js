@@ -8,7 +8,61 @@ router.get('/', function (req, res) {
   req.session.scenario = {}
   res.render('index')
 })
+// filter journey
 
+router.get('/start-2', function (req, res) {
+  req.session.scenario = {}
+  res.render('start-2')
+})
+router.get('/limited-company', function (req, res) {
+  req.session.scenario = {}
+  res.render('limited-company')
+})
+router.post('/limited-company', function (req, res) {
+  var limitedCompany = req.session.data['limited-company']
+
+  switch (limitedCompany) {
+    case 'yes':
+      res.redirect('/more-than-5-officers')
+      break
+    case 'no':
+      res.redirect('/use-webfiling')
+      break
+  }
+})
+router.get('/more-than-5-officers', function (req, res) {
+  req.session.scenario = {}
+  res.render('more-than-5-officers')
+})
+router.post('/more-than-5-officers', function (req, res) {
+  var fiveOfficers = req.session.data['5-officers']
+
+  switch (fiveOfficers) {
+    case 'yes':
+      res.redirect('/use-webfiling')
+      break
+    case 'no':
+      res.redirect('/more-than-5-shareholders')
+      break
+  }
+})
+router.get('/more-than-5-shareholders', function (req, res) {
+  req.session.scenario = {}
+  res.render('more-than-5-shareholders')
+})
+router.post('/more-than-5-shareholders', function (req, res) {
+  var fiveShareholders = req.session.data['5-shareholders']
+
+  switch (fiveShareholders) {
+    case 'yes':
+      res.redirect('/use-webfiling')
+      break
+    case 'no':
+      res.redirect('/sign-in')
+      break
+  }
+})
+// standard journey
 router.get('/start', function (req, res) {
   req.session.scenario = {}
   res.render('start')
@@ -51,6 +105,15 @@ router.post('/authenticate', function (req, res) {
   var authCode = req.body.authCode
 
   authCode = authCode.toUpperCase()
+  res.redirect('/trading-status')
+})
+
+router.get('/trading-status', function (req, res) {
+  res.render('trading-status', {
+    scenario: req.session.scenario
+  })
+})
+router.post('/trading-status', function (req, res) {
   res.redirect('/confirmation-statement-ro')
 })
 router.get('/confirmation-statement-ro', function (req, res, nl2br) {
@@ -70,7 +133,7 @@ router.post('/confirmation-statement-ro', function (req, res) {
       break
   }
 })
-router.get('/confirmation-statement-officers', function (req, res, nl2br) {
+router.get('/confirmation-statement-officers', function (req, res) {
   res.render('confirmation-statement-officers', {
     scenario: req.session.scenario
   })
@@ -87,7 +150,7 @@ router.post('/confirmation-statement-officers', function (req, res) {
       break
   }
 })
-router.get('/confirmation-statement-registers', function (req, res, nl2br) {
+router.get('/confirmation-statement-registers', function (req, res) {
   res.render('confirmation-statement-registers', {
     scenario: req.session.scenario
   })
@@ -104,7 +167,7 @@ router.post('/confirmation-statement-registers', function (req, res) {
       break
   }
 })
-router.get('/confirmation-statement-sic', function (req, res, nl2br) {
+router.get('/confirmation-statement-sic', function (req, res) {
   res.render('confirmation-statement-sic', {
     scenario: req.session.scenario
   })
@@ -121,41 +184,51 @@ router.post('/confirmation-statement-sic', function (req, res) {
       break
   }
 })
-router.get('/confirmation-statement-shareholder-capital', function (req, res, nl2br) {
+router.get('/confirmation-statement-shareholder-capital', function (req, res) {
   res.render('confirmation-statement-shareholder-capital', {
     scenario: req.session.scenario
   })
 })
 router.post('/confirmation-statement-shareholder-capital', function (req, res) {
   var shareholderCapital = req.session.data['shareholder-capital']
+  var trading = req.session.data['trading']
 
   switch (shareholderCapital) {
     case 'yes':
-      res.redirect('/confirmation-statement-shareholders')
+      if (trading === 'yes') {
+        res.redirect('/psc-exemption')
+      } else {
+        res.redirect('/confirmation-statement-shareholders')
+      }
       break
     case 'no':
       res.redirect('/wrong-shareholder-capital')
       break
   }
 })
-router.get('/confirmation-statement-shareholders', function (req, res, nl2br) {
+router.get('/confirmation-statement-shareholders', function (req, res) {
   res.render('confirmation-statement-shareholders', {
     scenario: req.session.scenario
   })
 })
 router.post('/confirmation-statement-shareholders', function (req, res) {
   var shareholders = req.session.data['shareholders']
+  var tradingStatus = req.session.data['trading-status']
 
   switch (shareholders) {
     case 'yes':
-      res.redirect('/psc-exemption')
+      if (tradingStatus === 'yes') {
+        res.redirect('/confirmation-statement-review')
+      } else {
+        res.redirect('/psc-exemption')
+      }
       break
     case 'no':
       res.redirect('/wrong-shareholders')
       break
   }
 })
-router.get('/psc-exemption', function (req, res, nl2br) {
+router.get('/psc-exemption', function (req, res) {
   res.render('psc-exemption', {
     scenario: req.session.scenario
   })
@@ -172,7 +245,7 @@ router.post('/psc-exemption', function (req, res) {
       break
   }
 })
-router.get('/confirmation-statement-people-with-significant-control', function (req, res, nl2br) {
+router.get('/confirmation-statement-people-with-significant-control', function (req, res) {
   res.render('confirmation-statement-people-with-significant-control', {
     scenario: req.session.scenario
   })
@@ -189,7 +262,7 @@ router.post('/confirmation-statement-people-with-significant-control', function 
       break
   }
 })
-router.get('/confirmation-statement-psc-statement', function (req, res, nl2br) {
+router.get('/confirmation-statement-psc-statement', function (req, res) {
   res.render('confirmation-statement-psc-statement', {
     scenario: req.session.scenario
   })

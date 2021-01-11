@@ -19,33 +19,44 @@
 
         {% set yesHtml %}
         {{ govukRadios({
-          id: "exempt",
-          name: "exempt",
+          id: "trading",
+          name: "trading",
           spellcheck: false,
           classes: "govuk-!-width-full govuk-!-align-bottom",
+          fieldset: {
+            legend: {
+              text: "Throughout the confirmation period was the company an issuer to which DTR5 applies, with shared admitted to trading on a market?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "If you answer NO you will be asked to provide the names and addresses of those shareholders with 5% or more shareholdings as at the date of the confirmation statement"
+          },
           items: [
             {
-              value: "option1",
-              text: "The company is exempt from the requirement to obtain information and keep a register of its PSC because the company has voting shares admitted to trading on a regulated market in an EEA State other than the United Kingdom"
+              value: "yes",
+              text: "Yes"
             },
             {
-              value: "option2",
-              text: "The company is exempt from the requirement to obtain information and keep a register of its PSC because the company has voting shares admitted to trading on a traded market listed in Schedule 1 of the Register of the People with Significant Control Regulations 2016"
-            },
-            {
-              value: "option3",
-              text: "The company is exempt from the requirement to obtain information and keep a register of its PSC because the company has voting shares admitted to trading on a UK regulated market"
+              value: "no",
+              text: "No"
             }
           ]
+        }) }}
+        <br>
+        {{ govukDetails({
+          summaryText: "What is DTR5?",
+          text: "DTR5 refers to Vote Holder and Issuer Notification Rules contained in Chapter 5 of the Disclosure and Transparency Rules source book issued by the Financial Conduct Authority. For example, notification is required when the % acquisition of a shareholder in the company has reached a certain threshold (starting at 3%)."
         }) }}
         {% endset -%}
 
         {{ govukRadios({
-          idPrefix: "exemption",
-          name: "exemption",
+          idPrefix: "trading-status",
+          name: "trading-status",
           fieldset: {
             legend: {
-              text: "Is the company exempt or has it ever been exempt from keeping a PSC register?",
+              text: "Were any of the company's shares admitted to trading on a market at any time during this confirmation statement period?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
@@ -55,7 +66,8 @@
               value: "yes",
               text: "Yes",
               conditional: {
-                html: yesHtml
+                html: yesHtml,
+                doRenderAfterFieldset: true
               }
             },
             {
@@ -64,6 +76,13 @@
             }
           ]
         }) }}
+
+        {% if doRenderAfterFieldset === true %}
+          {{ govukDetails({
+          summaryText: "What is DTR5?",
+          text: "DTR5 refers to Vote Holder and Issuer Notification Rules contained in Chapter 5 of the Disclosure and Transparency Rules source book issued by the Financial Conduct Authority. For example, notification is required when the % acquisition of a shareholder in the company has reached a certain threshold (starting at 3%)."
+        }) }}
+        {% endif %}
 
         {{ govukButton({
 text: "Continue"
