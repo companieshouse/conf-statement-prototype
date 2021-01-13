@@ -17,8 +17,10 @@
 
       <form action="" method="post">
 
-        {% set registerHTML = scenario.company.sailAddress | nl2br
- %}
+        {% set registerHTML %}
+        <p>The registers are held at the registered office:</p>
+        {{ scenario.company.address }}
+        {% endset %}
 
         {{ govukRadios({
           classes: "govuk-radios--inline",
@@ -27,7 +29,7 @@
           fieldset: {
             legend: {
               html: "Is this where your registers are kept?",
-              isPageHeading: false,
+              isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
