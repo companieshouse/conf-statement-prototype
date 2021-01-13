@@ -307,7 +307,7 @@ router.get('/confirmation-statement-review', function (req, res) {
   })
 })
 router.post('/confirmation-statement-review', function (req, res) {
-  res.redirect('https://products.payments.service.gov.uk/pay/f2e467141a084c49972ec199dcad6e78')
+  res.redirect('https://products.payments.service.gov.uk/pay/f90761a2258f4b60baa29f045cd78ca2')
 })
 router.get('/confirmation', function (req, res) {
   var email = req.session.data.email
