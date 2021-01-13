@@ -17,15 +17,20 @@
 
       <form action="" method="post">
         <h1 class="govuk-heading-l">Check the officer details</h1>
-        <h2 class="govuk-heading-m">Officers<br>2 officers / 0 resignations</h2>
+        <h2 class="govuk-heading-m">Officers<br>1 officer / 0 resignations</h2>
+
         {% set directorHTML %}
         <ul class="govuk-list govuk-list--bullet">
-          <li>David Francis</li>
-          <li>Appointed: 27 March 2012</li>
-          <li>Date of birth: March 1974</li>
-          <li>Correspondence address: 132 Bakula Road, Cardiff, United Kingdom, CF32 4UA</li>
+          <li>{{ scenario.company.directors.director1.name }}</li>
+          <li>Appointed:
+            {{scenario.company.directors.director1.appointment}}</li>
+          <li>Date of birth:
+            {{scenario.company.directors.director1.dob}}</li>
+          <li>Correspondence address:
+            {{scenario.company.directors.director1.correspondenceAddress}}</li>
         </ul>
         {% endset %}
+
         {% set director2HTML %}
         <ul class="govuk-list govuk-list--bullet">
           <li>Fran Francis</li>
@@ -38,17 +43,14 @@
         {{ govukTable({
 
   rows: [
-    [
-      {
-        html: directorHTML
-      }
-    ],
-    [
-    {
-      html: director2HTML
+  {
+    value: {
+      html: scenario.company.directors.director1.name
     }
-    ]
+  }
   ]
+
+
 }) }}
 
         {{ govukRadios({
