@@ -18,7 +18,7 @@ module.exports = {
     directors: {
       director1: {
         name: 'Kyrie Irving',
-        dob: '1 March 1992',
+        dob: 'March 1992',
         appointment: '1 April 2012',
         correspondenceAddress: '2 Nets Way\nNewcastle\nNE2 3BB'
       }
