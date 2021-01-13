@@ -150,6 +150,23 @@ router.post('/confirmation-statement-officers', function (req, res) {
       break
   }
 })
+router.get('/confirmation-statement-officers-2', function (req, res) {
+  res.render('confirmation-statement-officers-2', {
+    scenario: req.session.scenario
+  })
+})
+router.post('/confirmation-statement-officers-2', function (req, res) {
+  var officers = req.session.data['officers']
+
+  switch (officers) {
+    case 'yes':
+      res.redirect('/confirmation-statement-registers')
+      break
+    case 'no':
+      res.redirect('/wrong-officers')
+      break
+  }
+})
 router.get('/confirmation-statement-registers', function (req, res) {
   res.render('confirmation-statement-registers', {
     scenario: req.session.scenario

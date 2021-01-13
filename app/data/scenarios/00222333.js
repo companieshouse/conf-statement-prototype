@@ -14,6 +14,14 @@ module.exports = {
     csDueDate: '16 February 2021',
     csLast: '16 February 2020',
     csDue: 'due',
-    nextCsDue: '16 February 2022'
+    nextCsDue: '16 February 2022',
+    directors: {
+      director1: {
+        name: 'Kyrie Irving',
+        dob: '1 March 1992',
+        appointment: '1 April 2012',
+        correspondenceAddress: '2 Nets Way<br>Newcastle<br>NE2 3BB'
+      }
+    }
   }
 }
