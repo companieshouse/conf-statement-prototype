@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const moment = require('moment')
 
 // Add your routes here - above the module.exports line
 
@@ -299,10 +300,12 @@ router.post('/confirmation-statement-psc-statement', function (req, res) {
 router.get('/confirmation-statement-review', function (req, res) {
   var date = new Date()
   var exemption = req.session.data['exemption']
+  var moment = require('moment') // require
 
   res.render('confirmation-statement-review', {
     scenario: req.session.scenario,
     date: date,
+    moment: moment().format('DD MMMM yyy'),
     exemption: exemption
   })
 })
