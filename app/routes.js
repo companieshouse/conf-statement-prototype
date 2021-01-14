@@ -15,6 +15,9 @@ router.get('/start-2', function (req, res) {
   req.session.scenario = {}
   res.render('start-2')
 })
+router.post('/start-2', function (req, res) {
+  res.redirect('/limited-company')
+})
 router.get('/limited-company', function (req, res) {
   req.session.scenario = {}
   res.render('limited-company')
@@ -68,7 +71,9 @@ router.get('/start', function (req, res) {
   req.session.scenario = {}
   res.render('start')
 })
-
+router.post('/start', function (req, res) {
+  res.redirect('/sign-in')
+})
 router.get('/sign-in', function (req, res) {
   res.render('sign-in')
 })
