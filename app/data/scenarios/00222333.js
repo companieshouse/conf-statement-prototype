@@ -7,8 +7,8 @@ module.exports = {
     status: 'Active',
     incorporationDate: '1 April 2010',
     companyType: 'Private Limited Company',
-    address: '125 Feather Hedge<br>Salisbury<br>SP4 7DE',
-    sailAddress: '2 Second Place<br>Portsmouth<br>PO2 2BB',
+    address: '125 Feather Hedge\nSalisbury\nSP4 7DE',
+    sailAddress: '2 Second Place\nPortsmouth\nPO2 2BB',
     actionCode: '5005',
     csDate: '2 February 2021',
     csDueDate: '16 February 2021',
@@ -18,9 +18,9 @@ module.exports = {
     directors: {
       director1: {
         name: 'Kyrie Irving',
-        dob: '1 March 1992',
+        dob: 'March 1992',
         appointment: '1 April 2012',
-        correspondenceAddress: '2 Nets Way<br>Newcastle<br>NE2 3BB'
+        correspondenceAddress: '2 Nets Way\nNewcastle\nNE2 3BB'
       }
     }
   }
