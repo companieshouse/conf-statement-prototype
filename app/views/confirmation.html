@@ -28,10 +28,10 @@
         <a href="https://find-and-update.company-information.service.gov.uk/">Companies House register</a>.</p>
       <p>
         <p>Your next confirmation statement is due
-          <b>date</b>.<p>
+          <b>{{ scenario.company.nextCsDue }}</b>.<p>
             {% if csDue === 'notDue' %}
               You will need to pay a £13 fee for your next payment period when you file a confirmation statement after
-              <b>{{scneario.company.nextCsDue}}</b>.
+              <b>{{scenario.company.nextCsDue}}</b>.
             {% endif %}
             <a href="https://www.research.net/">What did you think of this service?</a>
             (takes 2 minutes)</p>
