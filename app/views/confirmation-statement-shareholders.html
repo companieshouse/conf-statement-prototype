@@ -18,14 +18,10 @@
       <form action="" method="post">
 
         {% set shareholdersHTML %}
-        <ul class="govuk-list govuk-list--bullet">
+        <ul class="govuk-body">
           <li>{{scenario.company.directors.director1.name}}</li>
-          <li>Appointed:
-            {{scenario.company.directors.director1.appointment}}</li>
-          <li>Date of birth:
-            {{scenario.company.directors.director1.dob}}</li>
-          <li>Correspondence address:
-            {{ scenario.company.directors.director1.correspondenceAddress | nl2br }}</li>
+          <li>Correspondence address:<br>2 Nets Way<br>Newcastle<br>NE2 3BB
+          </li>
         </ul>
         {% endset %}
 
