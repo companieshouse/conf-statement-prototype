@@ -7,188 +7,21 @@
 {% block backLink %}
   {{ govukBackLink({
     text: "Back",
-    href: "/confirmation-statment-people-with-significant-control"
+    href: "/task-list-complete"
   }) }}
 {% endblock %}
 
 {% block content %}
 
-  {% set roChange = {
-    href: "/confirmation-statement-ro",
-    text: "Change",
-    visuallyHiddenText: "registered office address"
-} %}
-
-  {% set officerChange = {
-  href: "/confirmation-statement-officers",
-  text: "Change",
-  visuallyHiddenText: "officer"
-} %}
-
-  {% set registerChange = {
-href: "/confirmation-statement-registers",
-text: "Change",
-visuallyHiddenText: "registers"
-} %}
-
-  {% set sicChange = {
-href: "/confirmation-statement-sic",
-text: "Change",
-visuallyHiddenText: "standard industrial classification"
-} %}
-
-  {% set shareholderCapitalChange = {
-href: "/confirmation-statement-shareholder-capital",
-text: "Change",
-visuallyHiddenText: "shareholder capital"
-} %}
-
-  {% set shareholdersChange = {
-href: "/confirmation-statement-shareholders",
-text: "Change",
-visuallyHiddenText: "shareholders"
-} %}
-
-  {% set pscChange = {
-href: "/confirmation-statement-people-with-significant-control",
-text: "Change",
-visuallyHiddenText: "people with significant control"
-} %}
-
-  {% set pscStatementChange = {
-href: "/confirmation-statement-psc-statement",
-text: "Change",
-visuallyHiddenText: "people with significant control statement"
-} %}
-
-  {% if scenario.company.csDue === 'due' %}
-    {% set feeHTML = {
-      key: {
-        text: "Fee"
-      },
-      value: {
-        text: "£13"
-      }
-    } %}
-  {% endif %}
-
-  {% if exemption !== 'yes' %}
-    {% set pscHTML = {
-      key: {
-        text: "PSCs"
-      },
-      value: {
-        text: "Information is correct"
-      },
-      actions: {
-        items: [pscChange]
-      }
-    } %}
-  {% else %}
-  {% endif %}
-
-  {% if exemption !== 'yes' %}
-    {% set pscStatementHTML = {
-      key: {
-        text: "PSC statement"
-      },
-      value: {
-        text: "Information is correct"
-      },
-      actions: {
-        items: [pscStatementChange]
-      }
-    } %}
-  {% else %}
-  {% endif %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-xl">Review the confirmation statement</h1>
-      <h2 class="govuk-heading-m">Statement date:
-        {{ moment }}</h2>
 
-      <h3 class="govuk-heading-l">{{scenario.company.name}}</h3>
+      <h2 class="govuk-heading-l">{{scenario.company.name}}</h2>
       <form action="" method="post">
-
-        {{ govukSummaryList({
-
-  firstCellIsHeader: true,
-  classes: "align-top",
-  rows: [
-  {
-    key: {
-    text: "Registered office address"
-  },
-  value: {
-    text: "Information is correct"
-  },
-  actions: {
-    items: [roChange]
-    }
-  },
-  {
-    key: {
-    text: "Officers"
-  },
-  value: {
-    text: "Information is correct"
-  },
-  actions: {
-    items: [officerChange]
-    }
-  },
-  {
-    key: {
-    text: "SAIL address"
-  },
-  value: {
-    text: "Information is correct"
-  },
-  actions: {
-    items: [registerChange]
-    }
-  },
-  {
-    key: {
-    text: "SIC codes"
-  },
-  value: {
-    text: "Information is correct"
-  },
-  actions: {
-    items: [sicChange]
-    }
-  },
-  {
-    key: {
-    text: "Shareholder capital"
-  },
-  value: {
-    text: "Information is correct"
-  },
-  actions: {
-    items: [shareholderCapitalChange]
-    }
-  },
-  {
-    key: {
-    text: "Shareholders"
-  },
-  value: {
-    text: "Information is correct"
-  },
-  actions: {
-    items: [shareholdersChange]
-    }
-  },
-  pscHTML,
-  pscStatementHTML,
-  feeHTML
-  ]
-}) }}
-
-        <h4 class="govuk-heading-m">Confirm this information</h4>
-
+        {% if scenario.company.csDue === 'due' %}
+          <p>You will need to pay of £13 to submit your confirmation statement.</p>
+        {% endif %}
         <p>By continuing, you confirm that all information required to be delivered by the company pursuant to
           <a href="https://www.legislation.gov.uk/ukpga/2006/46/section/853A">section 853A(1)(a) of the Companies Act 2006</a>
           in relation to the confirmation period ending
