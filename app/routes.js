@@ -363,6 +363,23 @@ router.post('/psc-exemption', function (req, res) {
       break
   }
 })
+router.get('/psc-exempt-options', function (req, res) {
+  res.render('psc-exempt-options', {
+    scenario: req.session.scenario
+  })
+})
+router.post('/psc-exempt-options', function (req, res) {
+  var exempt = req.session.data['exempt']
+
+  switch (exempt) {
+    case 'yes':
+      res.redirect('/task-list')
+      break
+    case 'no':
+      res.redirect('/task-list')
+      break
+  }
+})
 router.get('/confirmation-statement-people-with-significant-control', function (req, res) {
   res.render('confirmation-statement-people-with-significant-control', {
     scenario: req.session.scenario
