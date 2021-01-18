@@ -7,7 +7,7 @@
 {% block backLink %}
   {{ govukBackLink({
     text: "Back",
-    href: "/psc-exemption"
+    href: "/task-list"
   }) }}
 {% endblock %}
 
@@ -25,44 +25,28 @@
       text: "Name"
     },
     {
-      text: "Appointment date"
+      text: "Nationality"
     },
     {
-      text: "Date of birth"
+      text: "Correspondence address"
+    },
+    {
+      text: "Nature of control"
     }
   ],
   rows: [
     [
       {
-        text: "David Francis"
+        text: "Kyrie Irving"
       },
       {
-        text: "3 March 2013"
+        text: "British"
       },
       {
-        text: "May 1971"
-      }
-    ],
-    [
-      {
-        text: "Paul Farmer"
+        html: "2 Nets Way<br>Newcastle<br>NE2 3BB"
       },
       {
-        text: "1 December 2012"
-      },
-      {
-        text: "January 1980"
-      }
-    ],
-    [
-      {
-        text: "Rita Patel"
-      },
-      {
-        text: "1 December 2012"
-      },
-      {
-        text: "December 1985"
+        text: "Ownership of voting rights - 75% or more"
       }
     ]
   ]
