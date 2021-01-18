@@ -120,6 +120,27 @@ router.get('/trading-status', function (req, res) {
   })
 })
 router.post('/trading-status', function (req, res) {
+  res.redirect('/task-list')
+})
+router.get('/task-list', function (req, res) {
+  var completedTasks = req.session.data['completed']
+  var exemption = req.session.data['exemption']
+  var officers = req.session.data['officers']
+  var psc = req.session.data['psc']
+  var register = req.session.data['register']
+  var ro = req.session.data['registered-office-address']
+
+  res.render('task-list', {
+    scenario: req.session.scenario,
+    completedTasks: completedTasks,
+    exemption: exemption,
+    officers: officers,
+    psc: psc,
+    register: register,
+    ro: ro
+  })
+})
+router.post('/task-list', function (req, res) {
   res.redirect('/confirmation-statement-ro')
 })
 router.get('/confirmation-statement-ro', function (req, res, nl2br) {
@@ -139,6 +160,14 @@ router.post('/confirmation-statement-ro', function (req, res) {
       break
   }
 })
+router.get('/wrong-ro', function (req, res) {
+  res.render('wrong-ro', {
+    scenario: req.session.scenario
+  })
+})
+router.post('/wrong-ro', function (req, res) {
+  res.redirect('/task-list')
+})
 router.get('/confirmation-statement-officers', function (req, res) {
   res.render('confirmation-statement-officers', {
     scenario: req.session.scenario
@@ -149,7 +178,7 @@ router.post('/confirmation-statement-officers', function (req, res) {
 
   switch (officers) {
     case 'yes':
-      res.redirect('/confirmation-statement-registers')
+      res.redirect('/task-list')
       break
     case 'no':
       res.redirect('/wrong-officers')
@@ -166,12 +195,20 @@ router.post('/confirmation-statement-officers-2', function (req, res) {
 
   switch (officers) {
     case 'yes':
-      res.redirect('/confirmation-statement-registers')
+      res.redirect('/task-list')
       break
     case 'no':
       res.redirect('/wrong-officers')
       break
   }
+})
+router.get('/wrong-officers', function (req, res) {
+  res.render('wrong-officers', {
+    scenario: req.session.scenario
+  })
+})
+router.post('/wrong-officers', function (req, res) {
+  res.redirect('/task-list')
 })
 router.get('/confirmation-statement-registers', function (req, res) {
   res.render('confirmation-statement-registers', {
@@ -183,12 +220,20 @@ router.post('/confirmation-statement-registers', function (req, res) {
 
   switch (registers) {
     case 'yes':
-      res.redirect('/confirmation-statement-sic')
+      res.redirect('/task-list')
       break
     case 'no':
       res.redirect('/wrong-registers')
       break
   }
+})
+router.get('/wrong-registers', function (req, res) {
+  res.render('wrong-registers', {
+    scenario: req.session.scenario
+  })
+})
+router.post('/wrong-registers', function (req, res) {
+  res.redirect('/task-list')
 })
 router.get('/confirmation-statement-sic', function (req, res) {
   res.render('confirmation-statement-sic', {
@@ -200,12 +245,20 @@ router.post('/confirmation-statement-sic', function (req, res) {
 
   switch (sic) {
     case 'yes':
-      res.redirect('/confirmation-statement-shareholder-capital')
+      res.redirect('/task-list')
       break
     case 'no':
       res.redirect('/wrong-sic')
       break
   }
+})
+router.get('/wrong-sic', function (req, res) {
+  res.render('wrong-sic', {
+    scenario: req.session.scenario
+  })
+})
+router.post('/wrong-sic', function (req, res) {
+  res.redirect('/task-list')
 })
 router.get('/confirmation-statement-shareholder-capital', function (req, res) {
   res.render('confirmation-statement-shareholder-capital', {
@@ -219,15 +272,23 @@ router.post('/confirmation-statement-shareholder-capital', function (req, res) {
   switch (shareholderCapital) {
     case 'yes':
       if (trading === 'yes') {
-        res.redirect('/psc-exemption')
+        res.redirect('/task-list')
       } else {
-        res.redirect('/confirmation-statement-shareholders')
+        res.redirect('/task-list')
       }
       break
     case 'no':
       res.redirect('/wrong-shareholder-capital')
       break
   }
+})
+router.get('/wrong-shareholder-capital', function (req, res) {
+  res.render('wrong-shareholder-capital', {
+    scenario: req.session.scenario
+  })
+})
+router.post('/wrong-shareholder-capital', function (req, res) {
+  res.redirect('/task-list')
 })
 router.get('/confirmation-statement-shareholders', function (req, res) {
   res.render('confirmation-statement-shareholders', {
@@ -241,15 +302,23 @@ router.post('/confirmation-statement-shareholders', function (req, res) {
   switch (shareholders) {
     case 'yes':
       if (tradingStatus === 'yes') {
-        res.redirect('/confirmation-statement-review')
+        res.redirect('/task-list-complete')
       } else {
-        res.redirect('/psc-exemption')
+        res.redirect('/task-list-complete')
       }
       break
     case 'no':
       res.redirect('/wrong-shareholders')
       break
   }
+})
+router.get('/wrong-shareholders', function (req, res) {
+  res.render('wrong-shareholders', {
+    scenario: req.session.scenario
+  })
+})
+router.post('/wrong-shareholders', function (req, res) {
+  res.redirect('/task-list')
 })
 router.get('/psc-exemption', function (req, res) {
   res.render('psc-exemption', {
@@ -261,7 +330,7 @@ router.post('/psc-exemption', function (req, res) {
 
   switch (exemption) {
     case 'yes':
-      res.redirect('/confirmation-statement-review')
+      res.redirect('/task-list')
       break
     case 'no':
       res.redirect('/confirmation-statement-people-with-significant-control')
@@ -285,6 +354,14 @@ router.post('/confirmation-statement-people-with-significant-control', function 
       break
   }
 })
+router.get('/wrong-psc', function (req, res) {
+  res.render('wrong-psc', {
+    scenario: req.session.scenario
+  })
+})
+router.post('/wrong-psc', function (req, res) {
+  res.redirect('/task-list')
+})
 router.get('/confirmation-statement-psc-statement', function (req, res) {
   res.render('confirmation-statement-psc-statement', {
     scenario: req.session.scenario
@@ -295,12 +372,41 @@ router.post('/confirmation-statement-psc-statement', function (req, res) {
 
   switch (pscStatement) {
     case 'yes':
-      res.redirect('/confirmation-statement-review')
+      res.redirect('/task-list')
       break
     case 'no':
       res.redirect('/wrong-psc-statement')
       break
   }
+})
+router.get('/wrong-psc-statement', function (req, res) {
+  res.render('wrong-psc-statement', {
+    scenario: req.session.scenario
+  })
+})
+router.post('/wrong-psc-statement', function (req, res) {
+  res.redirect('/task-list')
+})
+router.get('/task-list-complete', function (req, res) {
+  var completedTasks = req.session.data['completed']
+  var exemption = req.session.data['exemption']
+  var officers = req.session.data['officers']
+  var psc = req.session.data['psc']
+  var register = req.session.data['register']
+  var ro = req.session.data['registered-office-address']
+
+  res.render('task-list-complete', {
+    scenario: req.session.scenario,
+    completedTasks: completedTasks,
+    exemption: exemption,
+    officers: officers,
+    psc: psc,
+    register: register,
+    ro: ro
+  })
+})
+router.post('/task-list-complete', function (req, res) {
+  res.redirect('/confirmation-statement-review')
 })
 router.get('/confirmation-statement-review', function (req, res) {
   var date = new Date()
