@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Company trading details
+{% endblock %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/trading-status"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="" method="post">
+
+        {{ govukRadios({
+          classes: "govuk-radios--inline",
+          idPrefix: "trading-dtr5",
+          name: "trading-dtr5",
+          fieldset: {
+            legend: {
+              text: "Throughout the confirmation period was the company an issuer to which DTR5 applies, with shared admitted to trading on a market?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "If you answer NO you will be asked to provide the names and addresses of those shareholders with 5% or more shareholdings as at the date of the confirmation statement"
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        {{ govukDetails({
+          summaryText: "What is DTR5?",
+          text: "DTR5 refers to Vote Holder and Issuer Notification Rules contained in Chapter 5 of the Disclosure and Transparency Rules source book issued by the Financial Conduct Authority. For example, notification is required when the % acquisition of a shareholder in the company has reached a certain threshold (starting at 3%)."
+        }) }}
+
+        {{ govukButton({
+text: "Continue"
+}) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

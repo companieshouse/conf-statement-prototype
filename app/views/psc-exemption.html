@@ -17,46 +17,22 @@
 
       <form action="" method="post">
 
-        {% set yesHtml %}
         {{ govukRadios({
-          id: "exempt",
-          name: "exempt",
-          spellcheck: false,
-          classes: "govuk-!-width-full govuk-!-align-bottom",
-          items: [
-            {
-              value: "option1",
-              text: "The company is exempt from the requirement to obtain information and keep a register of its PSC because the company has voting shares admitted to trading on a regulated market in an EEA State other than the United Kingdom"
-            },
-            {
-              value: "option2",
-              text: "The company is exempt from the requirement to obtain information and keep a register of its PSC because the company has voting shares admitted to trading on a traded market listed in Schedule 1 of the Register of the People with Significant Control Regulations 2016"
-            },
-            {
-              value: "option3",
-              text: "The company is exempt from the requirement to obtain information and keep a register of its PSC because the company has voting shares admitted to trading on a UK regulated market"
-            }
-          ]
-        }) }}
-        {% endset -%}
 
-        {{ govukRadios({
+          classes: "govuk-radios--inline",
           idPrefix: "exemption",
           name: "exemption",
           fieldset: {
-            legend: {
-              text: "Is the company exempt or has it ever been exempt from keeping a people with significant control (PSC) register?",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
-            }
-          },
+             legend: {
+             text: "Is the company exempt or has it ever been exempt from keeping a people with significant control (PSC) register?",
+             isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+    }
+  },
           items: [
             {
               value: "yes",
-              text: "Yes",
-              conditional: {
-                html: yesHtml
-              }
+              text: "Yes"
             },
             {
               value: "no",
