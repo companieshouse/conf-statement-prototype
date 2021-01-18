@@ -21,3 +21,7 @@ $govuk-assets-path: '/govuk/assets/';
 .govuk-input--company-number {
   max-width: 13ex;
 }
+
+.govuk-hint-text {
+  color: $govuk-secondary-text-colour;
+}

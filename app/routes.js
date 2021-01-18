@@ -120,7 +120,33 @@ router.get('/trading-status', function (req, res) {
   })
 })
 router.post('/trading-status', function (req, res) {
-  res.redirect('/task-list')
+  var tradingStatus = req.session.data['trading-status']
+
+  switch (tradingStatus) {
+    case 'yes':
+      res.redirect('/trading-status-dtr5')
+      break
+    case 'no':
+      res.redirect('/task-list')
+      break
+  }
+})
+router.get('/trading-status-dtr5', function (req, res) {
+  res.render('trading-status-dtr5', {
+    scenario: req.session.scenario
+  })
+})
+router.post('/trading-status-dtr5', function (req, res) {
+  var tradingDtr = req.session.data['trading-dtr5']
+
+  switch (tradingDtr) {
+    case 'yes':
+      res.redirect('/task-list')
+      break
+    case 'no':
+      res.redirect('/task-list')
+      break
+  }
 })
 router.get('/task-list', function (req, res) {
   var completedTasks = req.session.data['completed']
@@ -334,6 +360,23 @@ router.post('/psc-exemption', function (req, res) {
       break
     case 'no':
       res.redirect('/confirmation-statement-people-with-significant-control')
+      break
+  }
+})
+router.get('/psc-exempt-options', function (req, res) {
+  res.render('psc-exempt-options', {
+    scenario: req.session.scenario
+  })
+})
+router.post('/psc-exempt-options', function (req, res) {
+  var exempt = req.session.data['exempt']
+
+  switch (exempt) {
+    case 'yes':
+      res.redirect('/task-list')
+      break
+    case 'no':
+      res.redirect('/task-list')
       break
   }
 })
