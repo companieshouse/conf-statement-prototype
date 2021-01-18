@@ -17,8 +17,9 @@
 
       <form action="" method="post">
 
-        {% set roaHTML = scenario.company.address | nl2br
- %}
+        {% set roaHTML %}
+        <p>125 Feather Hedge<br>Salisbury<br>SP4 7DE</p>
+        {% endset %}
 
         {{ govukRadios({
           classes: "govuk-radios--inline",
