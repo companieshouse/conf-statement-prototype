@@ -18,24 +18,23 @@
       <form action="" method="post">
 
         {{ govukRadios({
-          classes: "govuk-radios--inline",
           idPrefix: "5-shareholders",
           name: "5-shareholders",
           fieldset: {
             legend: {
-              html: "Does the company have more than 5 shareholders?",
+              html: "How many shareholders does the company have?",
               isPageHeading: false,
               classes: "govuk-fieldset__legend--l"
             }
           },
           items: [
             {
-              value: "yes",
-              text: "Yes"
+              value: "upTo5",
+              text: "1 to 5"
             },
             {
-              value: "no",
-              text: "No"
+              value: "moreThan6",
+              text: "6 or more"
             }
           ]
         }) }}

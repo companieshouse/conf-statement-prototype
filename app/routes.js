@@ -42,10 +42,10 @@ router.post('/more-than-5-officers', function (req, res) {
   var fiveOfficers = req.session.data['5-officers']
 
   switch (fiveOfficers) {
-    case 'yes':
+    case 'moreThan6':
       res.redirect('/use-webfiling')
       break
-    case 'no':
+    case 'upTo5':
       res.redirect('/more-than-5-shareholders')
       break
   }
@@ -58,10 +58,10 @@ router.post('/more-than-5-shareholders', function (req, res) {
   var fiveShareholders = req.session.data['5-shareholders']
 
   switch (fiveShareholders) {
-    case 'yes':
+    case 'moreThan6':
       res.redirect('/use-webfiling')
       break
-    case 'no':
+    case 'upTo5':
       res.redirect('/sign-in')
       break
   }
@@ -137,16 +137,7 @@ router.get('/trading-status-dtr5', function (req, res) {
   })
 })
 router.post('/trading-status-dtr5', function (req, res) {
-  var tradingDtr = req.session.data['trading-dtr5']
-
-  switch (tradingDtr) {
-    case 'yes':
-      res.redirect('/task-list')
-      break
-    case 'no':
-      res.redirect('/task-list')
-      break
-  }
+  res.redirect('/task-list')
 })
 router.get('/task-list', function (req, res) {
   var completedTasks = req.session.data['completed']
@@ -179,7 +170,7 @@ router.post('/confirmation-statement-ro', function (req, res) {
 
   switch (ro) {
     case 'yes':
-      res.redirect('/confirmation-statement-officers')
+      res.redirect('/task-list')
       break
     case 'no':
       res.redirect('/wrong-ro')
