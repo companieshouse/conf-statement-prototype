@@ -5,10 +5,24 @@
 {% block main %}
 
   <div class="govuk-width-container">
-    {% include "includes/chs-user-menu-logged-in.html" %}
 
     <main class="govuk-main-wrapper govuk-body">
+      <div class="js-toggle-nav">
 
+        <nav role="navigation" class="content">
+
+          <p id="signed-in-user" class="user">surveys@ch.gov.uk:</p>
+
+          <a class="nav-spacing" href="/chs-profile">Your details</a>
+
+          <a class="nav-spacing" href="/your-filings">Your filings</a>
+
+          <a class="nav-spacing" href="https://follow-staging.company-information.service.gov.uk">Companies you follow</a>
+
+          <a class="nav-spacing" href="/">Sign out</a>
+
+        </nav>
+      </div>
       <form id="search" action="results.html" method="get" accept-charset="utf-8" role="search" class="search-header js-search-hash">
         <div class="searchfield search-bar-active">
           <input type="search" autocomplete="off" name="q" id="site-search-text" placeholder="Search for a company or officer" autofocus="autofocus" class="js-search-focus govuk-input "/>
