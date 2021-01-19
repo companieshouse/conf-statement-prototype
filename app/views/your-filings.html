@@ -1,0 +1,158 @@
+{% extends "layout.html" %}
+{% block pageTitle %}
+  Your filings
+{% endblock %}
+{% block main %}
+
+  <div class="govuk-width-container">
+
+    <main class="govuk-main-wrapper" role="main">
+      <div class="js-toggle-nav">
+
+        <nav role="navigation" class="content">
+
+          <p id="signed-in-user" class="user">surveys@ch.gov.uk:</p>
+
+          <a class="nav-spacing" href="/chs-profile">Your details</a>
+
+          <a class="nav-spacing" href="/your-filings">Your filings</a>
+
+          <a class="nav-spacing" href="https://follow-staging.company-information.service.gov.uk">Companies you follow</a>
+
+          <a class="nav-spacing" href="/">Sign out</a>
+
+        </nav>
+      </div>
+
+      {{ govukBackLink({
+          text: "Back",
+          href: "javascript:history.back()"
+        }) }}
+
+      <header class="text">
+        <h1 id="page-header" class="govuk-heading-xl">Your filings</h1>
+      </header>
+
+      <div class="your-filings govuk-body">
+
+        <div class="one-filing">
+
+          <h2 class="govuk-heading-m">
+            <a href="/task-list">
+              <span class="uppercase govuk-!-font-size-24 govuk-!-font-weight-bold govuk-!-padding-bottom-1">HAPPY HOUSE LTD</span></a>
+            <br>
+            <p>Company number
+              <strong>00222333</strong>
+            </p>
+          </h2>
+          <div class="govuk-grid-row">
+            <div class="govuk-grid-column-one-third">
+              Description<br>
+              <strong>Confirmation statement</strong>
+            </div>
+            <div class="govuk-grid-column-one-third">
+              Reference number<br>
+              <strong>
+                776846-998567-222333</strong>
+            </div>
+            <div class="govuk-grid-column-one-third">
+              Last updated<br>
+              <strong>
+                {{ moment }}</strong>
+
+            </div>
+          </div>
+          <br>
+          <table id="rf_table" class="govuk-table">
+            <caption class="govuk-visually-hidden">This is a list of company information filed by jsmith@testcompany.co.uk</caption>
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header description"></th>
+                <th class="govuk-table__header status">Status</th>
+                <th class="govuk-table__header actions">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell ">
+                  <strong>Confirmation statement</strong>
+                  made up to 2 February 2021</td>
+                <td class="govuk-table__cell ">
+                  <strong class="status">Incomplete</strong>
+                </td>
+                <td class="govuk-table__cell ">
+                  <a id="" href="/task-list" target="_blank">Continue<span class="govuk-visually-hidden">HAPPY HOUSE LTD Confirmation statement made up to 2 February 2021 (Opens link in new window)</span</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="one-filing">
+
+            <h2 class="govuk-heading-m">
+              <a href="/task-list">
+                <span class="uppercase govuk-!-font-size-24 govuk-!-font-weight-bold govuk-!-padding-bottom-1">HAPPY HOUSE LTD</span></a>
+              <br>
+              <p>Company number
+                <strong>00222333</strong>
+              </p>
+            </h2>
+            <div class="govuk-grid-row">
+              <div class="govuk-grid-column-one-third">
+                Description<br>
+                <strong>Annual accounts</strong>
+              </div>
+              <div class="govuk-grid-column-one-third">
+                Reference number<br>
+                <strong>
+                  776846-998567-228911</strong>
+              </div>
+              <div class="govuk-grid-column-one-third">
+                Received on<br>
+                <strong>
+                  31 March 2020 2:01 pm</strong>
+
+              </div>
+            </div>
+            <br>
+            <table id="rf_table" class="govuk-table">
+              <caption class="govuk-visually-hidden">This is a list of company information filed by jsmith@testcompany.co.uk</caption>
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th class="govuk-table__header description"></th>
+                  <th class="govuk-table__header status">Status</th>
+                  <th class="govuk-table__header actions">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell ">
+                    <strong>Full accounts</strong>
+                    made up to 31 March 2020</td>
+                  <td class="govuk-table__cell ">
+                    <strong class="status">Accepted</strong>
+                  </td>
+                  <td class="govuk-table__cell ">
+                    <a id="" href="/public/pdf/cics-sample.pdf" target="_blank">View<span class="govuk-visually-hidden">A TEST COMPANY LIMITED full accounts made up to 31 March 2020 (Opens PDF in new window)</span</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+      <!--One Filing-->
+
+    </div>
+    <!--your filings-->
+
+  </main>
+
+</div>
+<!---govuk-width-container-->
+
+{% endblock %}
