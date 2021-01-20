@@ -356,7 +356,7 @@ router.post('/psc-exemption', function (req, res) {
 
   switch (exemption) {
     case 'yes':
-      res.redirect('/psc-exempt-topions')
+      res.redirect('/psc-exempt-options')
       break
     case 'no':
       res.redirect('/confirmation-statement-people-with-significant-control')
