@@ -13,18 +13,47 @@
       </h1>
 
       <h2 class="govuk-heading-s govuk-!-margin-bottom-2">Statement
-        {% if completedTasks === '9' %}
+        {% if result === '7' %}
           complete
         {% else %}
           incomplete</h2>
       {% endif %}
-      <p class="govuk-body govuk-!-margin-bottom-7">You have completed 1 of 9 sections.</p>
+      <p class="govuk-body govuk-!-margin-bottom-7">
+        {% if officers === 'yes' %}
+          {% set result = result + 1
+ %}
+        {% endif %}
+        {% if psc === 'yes' %}
+          {% set result = result + 1 %}
+        {% endif %}
+        {% if register === 'yes' %}
+          {% set result = result + 1 %}
+        {% endif %}
+        {% if ro === 'yes' %}
+          {% set result = result + 1
+ %}
+        {% endif %}
+        {% if shareholderCapital === 'yes' %}
+          {% set result = result + 1
+ %}
+        {% endif %}
+        {% if shareholders === 'yes' %}
+          {% set result = result + 1
+ %}
+        {% endif %}
+        {% if sic === 'yes' %}
+          {% set result = result + 1
+ %}
+        {% endif %}
+        You have completed
+        {{result}}
+        of 8 sections</p>
 
       <ol class="app-task-list">
         <li>
           <h2 class="app-task-list__section">
 
-            1. People
+            People
           </h2>
           <ul class="app-task-list__items">
             <li class="app-task-list__item">
@@ -72,7 +101,7 @@
         <li>
           <h2 class="app-task-list__section">
 
-            2. Addresses
+            Addresses
           </h2>
           <ul class="app-task-list__items">
             <li class="app-task-list__item">
@@ -115,7 +144,7 @@
 
         <li>
           <h2 class="app-task-list__section">
-            3. Shareholder information
+            Shareholder information
           </h2>
           <ul class="app-task-list__items">
             <li class="app-task-list__item">
@@ -157,7 +186,7 @@
         <li>
           <h2 class="app-task-list__section">
 
-            4. Nature of business
+            Nature of business
           </h2>
           <ul class="app-task-list__items">
             <li class="app-task-list__item">
@@ -182,22 +211,29 @@
 
         <li>
           <h2 class="app-task-list__section">
-            5. Confirm and submit
+            Confirm and submit
           </h2>
           <ul class="app-task-list__items">
             <li class="app-task-list__item">
               <span class="app-task-list__task-name">
+                {% if result === 7 %}
+                  <a href="/review">Review statement and pay</a>
+                </span>
+                <strong class="govuk-tag govuk-tag--grey app-task-list__tag" id="submit-pay-status">Not started</strong>
+              {% else %}
                 Review statement and pay
               </span>
               <strong class="govuk-tag govuk-tag--grey app-task-list__tag" id="submit-pay-status">Cannot start yet</strong>
-            </li>
-          </ul>
-        </li>
-      </ol>
-      <p>
-        <a href="/sign-out">Save and sign out</a>
-      </p>
-    </div>
+            {% endif %}
+
+          </li>
+        </ul>
+      </li>
+    </ol>
+    <p>
+      <a href="/sign-out">Save and sign out</a>
+    </p>
   </div>
+</div>
 
 {% endblock %}

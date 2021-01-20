@@ -152,6 +152,7 @@ router.get('/task-list', function (req, res) {
   var officers = req.session.data['officers']
   var psc = req.session.data['psc']
   var register = req.session.data['registers']
+  var result = 0
   var ro = req.session.data['registered-office-address']
   var shareholderCapital = req.session.data['shareholder-capital']
   var shareholders = req.session.data['shareholders']
@@ -164,6 +165,7 @@ router.get('/task-list', function (req, res) {
     officers: officers,
     psc: psc,
     register: register,
+    result: result,
     ro: ro,
     shareholderCapital: shareholderCapital,
     shareholders: shareholders,
@@ -275,7 +277,7 @@ router.post('/confirmation-statement-sic', function (req, res) {
 
   switch (sic) {
     case 'yes':
-      res.redirect('/task-list-complete')
+      res.redirect('/task-list')
       break
     case 'no':
       res.redirect('/wrong-sic')
