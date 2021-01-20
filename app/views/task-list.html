@@ -12,21 +12,19 @@
         {{ serviceName }}
       </h1>
 
-      <h2 class="govuk-heading-s govuk-!-margin-bottom-2">Application
+      <h2 class="govuk-heading-s govuk-!-margin-bottom-2">Statement
         {% if completedTasks === '9' %}
           complete
         {% else %}
           incomplete</h2>
       {% endif %}
-      <p class="govuk-body govuk-!-margin-bottom-7">You have completed
-        {{ result }}
-        of 9 sections.</p>
+      <p class="govuk-body govuk-!-margin-bottom-7">You have completed 1 of 9 sections.</p>
 
       <ol class="app-task-list">
         <li>
           <h2 class="app-task-list__section">
 
-            People
+            1. People
           </h2>
           <ul class="app-task-list__items">
             <li class="app-task-list__item">
@@ -74,7 +72,7 @@
         <li>
           <h2 class="app-task-list__section">
 
-            Addresses
+            2. Addresses
           </h2>
           <ul class="app-task-list__items">
             <li class="app-task-list__item">
@@ -111,29 +109,13 @@
                 <strong class="govuk-tag govuk-tag--grey app-task-list__tag" id="medical-information-status">Not started</strong>
               {% endif %}
             </li>
-            <li class="app-task-list__item">
-              <span class="app-task-list__task-name">
-                <a href="/confirmation-statement-sic" aria-describedby="contact-details-status">
-                  SIC codes
-                </a>
-              </span>
-              {% if sic === 'yes' %}
-                <strong class="govuk-tag app-task-list__tag" id="eligibility-status">
-                  Completed</strong>
 
-              {% elseif sic === 'no' %}
-                <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="eligibility-status">In progress</strong>
-
-              {% else %}
-                <strong class="govuk-tag govuk-tag--grey app-task-list__tag" id="medical-information-status">Not started</strong>
-              {% endif %}
-            </li>
           </ul>
         </li>
 
         <li>
           <h2 class="app-task-list__section">
-            Shareholder capital
+            3. Shareholder information
           </h2>
           <ul class="app-task-list__items">
             <li class="app-task-list__item">
@@ -172,10 +154,35 @@
             </li>
           </ul>
         </li>
+        <li>
+          <h2 class="app-task-list__section">
+
+            4. Nature of business
+          </h2>
+          <ul class="app-task-list__items">
+            <li class="app-task-list__item">
+              <span class="app-task-list__task-name">
+                <a href="/confirmation-statement-sic" aria-describedby="contact-details-status">
+                  SIC codes
+                </a>
+              </span>
+              {% if sic === 'yes' %}
+                <strong class="govuk-tag app-task-list__tag" id="eligibility-status">
+                  Completed</strong>
+
+              {% elseif sic === 'no' %}
+                <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="eligibility-status">In progress</strong>
+
+              {% else %}
+                <strong class="govuk-tag govuk-tag--grey app-task-list__tag" id="medical-information-status">Not started</strong>
+              {% endif %}
+            </li>
+          </ul>
+        </li>
 
         <li>
           <h2 class="app-task-list__section">
-            Confirm
+            5. Confirm and submit
           </h2>
           <ul class="app-task-list__items">
             <li class="app-task-list__item">
