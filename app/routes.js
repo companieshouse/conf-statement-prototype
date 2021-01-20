@@ -275,7 +275,7 @@ router.post('/confirmation-statement-sic', function (req, res) {
 
   switch (sic) {
     case 'yes':
-      res.redirect('/task-list')
+      res.redirect('/task-list-complete')
       break
     case 'no':
       res.redirect('/wrong-sic')
@@ -331,11 +331,7 @@ router.post('/confirmation-statement-shareholders', function (req, res) {
 
   switch (shareholders) {
     case 'yes':
-      if (tradingStatus === 'yes') {
-        res.redirect('/task-list-complete')
-      } else {
-        res.redirect('/task-list-complete')
-      }
+      res.redirect('/task-list')
       break
     case 'no':
       res.redirect('/wrong-shareholders')
