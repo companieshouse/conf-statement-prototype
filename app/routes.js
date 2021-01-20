@@ -151,8 +151,11 @@ router.get('/task-list', function (req, res) {
   var exemption = req.session.data['exemption']
   var officers = req.session.data['officers']
   var psc = req.session.data['psc']
-  var register = req.session.data['register']
+  var register = req.session.data['registers']
   var ro = req.session.data['registered-office-address']
+  var shareholderCapital = req.session.data['shareholder-capital']
+  var shareholders = req.session.data['shareholders']
+  var sic = req.session.data['sic']
 
   res.render('task-list', {
     scenario: req.session.scenario,
@@ -161,7 +164,10 @@ router.get('/task-list', function (req, res) {
     officers: officers,
     psc: psc,
     register: register,
-    ro: ro
+    ro: ro,
+    shareholderCapital: shareholderCapital,
+    shareholders: shareholders,
+    sic: sic
   })
 })
 router.post('/task-list', function (req, res) {
@@ -269,7 +275,7 @@ router.post('/confirmation-statement-sic', function (req, res) {
 
   switch (sic) {
     case 'yes':
-      res.redirect('/task-list')
+      res.redirect('/task-list-complete')
       break
     case 'no':
       res.redirect('/wrong-sic')
@@ -325,11 +331,7 @@ router.post('/confirmation-statement-shareholders', function (req, res) {
 
   switch (shareholders) {
     case 'yes':
-      if (tradingStatus === 'yes') {
-        res.redirect('/task-list-complete')
-      } else {
-        res.redirect('/task-list-complete')
-      }
+      res.redirect('/task-list')
       break
     case 'no':
       res.redirect('/wrong-shareholders')
@@ -354,7 +356,7 @@ router.post('/psc-exemption', function (req, res) {
 
   switch (exemption) {
     case 'yes':
-      res.redirect('/task-list')
+      res.redirect('/psc-exempt-topions')
       break
     case 'no':
       res.redirect('/confirmation-statement-people-with-significant-control')
