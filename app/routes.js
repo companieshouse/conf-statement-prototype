@@ -151,8 +151,11 @@ router.get('/task-list', function (req, res) {
   var exemption = req.session.data['exemption']
   var officers = req.session.data['officers']
   var psc = req.session.data['psc']
-  var register = req.session.data['register']
+  var register = req.session.data['registers']
   var ro = req.session.data['registered-office-address']
+  var shareholderCapital = req.session.data['shareholder-capital']
+  var shareholders = req.session.data['shareholders']
+  var sic = req.session.data['sic']
 
   res.render('task-list', {
     scenario: req.session.scenario,
@@ -161,7 +164,10 @@ router.get('/task-list', function (req, res) {
     officers: officers,
     psc: psc,
     register: register,
-    ro: ro
+    ro: ro,
+    shareholderCapital: shareholderCapital,
+    shareholders: shareholders,
+    sic: sic
   })
 })
 router.post('/task-list', function (req, res) {
