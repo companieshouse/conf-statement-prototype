@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Review the people with significant control
+  Review the officers
 {% endblock %}
 
 {% block backLink %}
@@ -17,43 +17,45 @@
 
       <form action="" method="post">
 
-        {% set pscHTML %}
-        {% set personHtml %}
+        {% set officerHTML %}
+        {% set directorsHtml %}
         {{ govukTable({
   head: [
     {
       text: "Name"
     },
     {
-      text: "Nationality"
+      text: "Appointment date"
+    },
+    {
+      text: "Date of birth"
     },
     {
       text: "Correspondence address"
-    },
-    {
-      text: "Nature of control"
     }
   ],
   rows: [
     [
       {
-        text: "Kyrie Irving"
+        html: scenario.company.directors.director1.name
       },
       {
-        text: "British"
+        text: scenario.company.directors.director1.appointment
       },
       {
-        html: "2 Nets Way<br>Newcastle<br>NE2 3BB"
+        text: scenario.company.directors.director1.dob
       },
       {
-        text: "Ownership of voting rights - 75% or more"
+        html: scenario.company.directors.director1.correspondenceAddress
       }
-    ]
+    ],
+      director2HTML,
+      director3HTML
   ]
 }) }}
         {% endset -%}
 
-        {% set legalEntityHtml %}
+        {% set corporateDirectorsHtml %}
         {{ govukTable({
           head: [
             {
@@ -69,20 +71,20 @@
           rows: [
             [
               {
-                text: "LEGAL FRANCIS LTD"
+                text: "DAVID FRANCIS LTD"
               },
               {
                 text: "8 August 2017"
               },
               {
-                text: "96 Spark Place"
+                text: "95 Spark Place"
               }
             ]
           ]
 }) }}
         {% endset -%}
 
-        {% set otherPersonHtml %}
+        {% set secretaryHtml %}
         {{ govukTable({
           head: [
             {
@@ -111,29 +113,64 @@
 }) }}
         {% endset -%}
 
+        {% set corporateSecretaryHtml %}
+        {{ govukTable({
+          head: [
+            {
+              text: "Name"
+            },
+            {
+              text: "Appointment date"
+            },
+            {
+              text: "Correspondence address"
+            }
+          ],
+  rows: [
+    [
+      {
+        text: "NUMBERS BY NUMBERS FOR NUMBERS IN NUMBERS AT NUMBERS LTD"
+      },
+      {
+        text: "13 December 2018"
+      },
+      {
+        text: "123 Count Lane"
+      }
+    ]
+  ]
+}) }}
+        {% endset -%}
+
         {{ govukTabs({
   items: [
     {
-      label: "Individual person",
-      id: "individualPerson",
+      label: "Directors",
+      id: "directors",
       panel: {
-        html: personHtml
+        html: directorsHtml
       }
     },
     {
-      label: "Relevant legal entity",
-      id: "relevant-legal-entity",
+      label: "Corporate directors",
+      id: "corporate-directors",
       panel: {
-        html: legalEntityHtml
+        html: corporateDirectorsHtml
       }
     },
     {
-      label: "Other registrable person",
-      id: "otherRegistrablePerson",
+      label: "Secretaries",
+      id: "secretary",
       panel: {
-        html: otherPersonHtml
+        html: secretaryHtml
       }
-
+    },
+    {
+      label: "Corporate secretaries",
+      id: "corporate-secretary",
+      panel: {
+        html: corporateSecretaryHtml
+      }
     }
   ]
 }) }}
@@ -141,17 +178,17 @@
 
         {{ govukRadios({
           classes: "govuk-radios--inline",
-          idPrefix: "psc",
-          name: "psc",
+          idPrefix: "officers",
+          name: "officers",
           fieldset: {
             legend: {
-              html: "Are the PSC details correct?",
-              isPageHeading: true,
+              html: "Are the officer details correct?",
+              isPageHeading: false,
               classes: "govuk-fieldset__legend--l"
             }
           },
           hint: {
-    html: pscHTML
+    html: officerHTML
   },
           items: [
             {
@@ -174,4 +211,5 @@ text: "Continue"
       </p>
     </div>
   </div>
+
 {% endblock %}

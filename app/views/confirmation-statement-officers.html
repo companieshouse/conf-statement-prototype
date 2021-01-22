@@ -16,165 +16,37 @@
     <div class="govuk-grid-column-three-quarters">
 
       <form action="" method="post">
-
-        {% set officerHTML %}
-        {% set directorsHtml %}
-        {{ govukTable({
-  head: [
-    {
-      text: "Name"
-    },
-    {
-      text: "Appointment date"
-    },
-    {
-      text: "Date of birth"
-    },
-    {
-      text: "Correspondence address"
-    }
-  ],
-  rows: [
-    [
-      {
-        html: scenario.company.directors.director1.name
-      },
-      {
-        text: scenario.company.directors.director1.appointment
-      },
-      {
-        text: scenario.company.directors.director1.dob
-      },
-      {
-        html: scenario.company.directors.director1.correspondenceAddress
-      }
-    ],
-      director2HTML,
-      director3HTML
-  ]
-}) }}
-        {% endset -%}
-
-        {% set corporateDirectorsHtml %}
-        {{ govukTable({
-          head: [
-            {
-              text: "Name"
-            },
-            {
-              text: "Appointment date"
-            },
-            {
-              text: "Correspondence address"
-            }
-          ],
-          rows: [
-            [
-              {
-                text: "DAVID FRANCIS LTD"
-              },
-              {
-                text: "8 August 2017"
-              },
-              {
-                text: "95 Spark Place"
-              }
-            ]
-          ]
-}) }}
-        {% endset -%}
-
-        {% set secretaryHtml %}
-        {{ govukTable({
-          head: [
-            {
-              text: "Name"
-            },
-            {
-              text: "Appointment date"
-            },
-            {
-              text: "Date of birth"
-            }
-          ],
-  rows: [
-    [
-      {
-        text: "Francis Francis"
-      },
-      {
-        text: "8 August 2017"
-      },
-      {
-        text: "9 August 1977"
-      }
-    ]
-  ]
-}) }}
-        {% endset -%}
-
-        {% set corporateSecretaryHtml %}
-        {{ govukTable({
-          head: [
-            {
-              text: "Name"
-            },
-            {
-              text: "Appointment date"
-            },
-            {
-              text: "Correspondence address"
-            }
-          ],
-  rows: [
-    [
-      {
-        text: "NUMBERS BY NUMBERS FOR NUMBERS IN NUMBERS AT NUMBERS LTD"
-      },
-      {
-        text: "13 Decemeber 2018"
-      },
-      {
-        text: "123 Count Lane"
-      }
-    ]
-  ]
-}) }}
-        {% endset -%}
-
-        {{ govukTabs({
-  items: [
-    {
-      label: "Directors",
-      id: "directors",
-      panel: {
-        html: directorsHtml
-      }
-    },
-    {
-      label: "Corporate directors",
-      id: "corporate-directors",
-      panel: {
-        html: corporateDirectorsHtml
-      }
-    },
-    {
-      label: "Secretaries",
-      id: "secretary",
-      panel: {
-        html: secretaryHtml
-      }
-    },
-    {
-      label: "Corporate secretaries",
-      id: "corporate-secretary",
-      panel: {
-        html: corporateSecretaryHtml
-      }
-    }
-  ]
-}) }}
+        <h1 class="govuk-heading-l">Check the officer details</h1>
+        <h2 class="govuk-heading-m">Officers<br>1 officer</h2>
+        {% set directorHTML %}
+        <ul class="govuk-list govuk-list--bullet">
+          <li>{{scenario.company.directors.director1.name}}</li>
+          <li>Appointed:
+            {{scenario.company.directors.director1.appointment}}</li>
+          <li>Date of birth:
+            {{scenario.company.directors.director1.dob}}</li>
+          <li>Correspondence address:<br>2 Nets Way<br>Newcastle<br>NE2 3BB</li>
+        </ul>
         {% endset %}
+        {% set director2HTML %}
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Fran Francis</li>
+          <li>Appointed: 17 March 2012</li>
+          <li>Date of birth: May 1990</li>
+          <li>Correspondence address:<br>2 Nets Way<br>Newcastle<br>NE2 3BB</li>
+        </ul>
+        {% endset %}
+
+        {{ govukTable({
+
+  rows: [
+    [
+      {
+        html: directorHTML
+      }
+    ]
+  ]
+}) }}
 
         {{ govukRadios({
           classes: "govuk-radios--inline",
@@ -182,7 +54,7 @@
           name: "officers",
           fieldset: {
             legend: {
-              html: "Are the officer details correct?",
+              html: "Are the officers correct?",
               isPageHeading: false,
               classes: "govuk-fieldset__legend--l"
             }
@@ -206,9 +78,9 @@
 text: "Continue"
 }) }}
       </form>
-
+      <p>
+        <a href="/sign-out">Save and sign out</a>
+      </p>
     </div>
   </div>
-
-  <a href="/confirmation-statement-officers-2">Version B</a>
 {% endblock %}

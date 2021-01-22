@@ -53,6 +53,32 @@
         <li>
           <h2 class="app-task-list__section">
 
+            Nature of business
+          </h2>
+          <ul class="app-task-list__items">
+            <li class="app-task-list__item">
+              <span class="app-task-list__task-name">
+                <a href="/confirmation-statement-sic" aria-describedby="contact-details-status">
+                  SIC codes
+                </a>
+              </span>
+              {% if sic === 'yes' %}
+                <strong class="govuk-tag app-task-list__tag" id="eligibility-status">
+                  Completed</strong>
+
+              {% elseif sic === 'no' %}
+                <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="eligibility-status">In progress</strong>
+
+              {% else %}
+                <strong class="govuk-tag govuk-tag--grey app-task-list__tag" id="medical-information-status">Not started</strong>
+              {% endif %}
+            </li>
+          </ul>
+        </li>
+
+        <li>
+          <h2 class="app-task-list__section">
+
             People
           </h2>
           <ul class="app-task-list__items">
@@ -175,31 +201,6 @@
                   Completed</strong>
 
               {% elseif shareholders === 'no' %}
-                <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="eligibility-status">In progress</strong>
-
-              {% else %}
-                <strong class="govuk-tag govuk-tag--grey app-task-list__tag" id="medical-information-status">Not started</strong>
-              {% endif %}
-            </li>
-          </ul>
-        </li>
-        <li>
-          <h2 class="app-task-list__section">
-
-            Nature of business
-          </h2>
-          <ul class="app-task-list__items">
-            <li class="app-task-list__item">
-              <span class="app-task-list__task-name">
-                <a href="/confirmation-statement-sic" aria-describedby="contact-details-status">
-                  SIC codes
-                </a>
-              </span>
-              {% if sic === 'yes' %}
-                <strong class="govuk-tag app-task-list__tag" id="eligibility-status">
-                  Completed</strong>
-
-              {% elseif sic === 'no' %}
                 <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="eligibility-status">In progress</strong>
 
               {% else %}
