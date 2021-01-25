@@ -157,6 +157,7 @@ router.get('/task-list', function (req, res) {
   var shareholderCapital = req.session.data['shareholder-capital']
   var shareholders = req.session.data['shareholders']
   var sic = req.session.data['sic']
+  var trading = req.session.data['trading-status']
 
   res.render('task-list', {
     scenario: req.session.scenario,
@@ -169,7 +170,8 @@ router.get('/task-list', function (req, res) {
     ro: ro,
     shareholderCapital: shareholderCapital,
     shareholders: shareholders,
-    sic: sic
+    sic: sic,
+    trading: trading
   })
 })
 router.post('/task-list', function (req, res) {
@@ -371,16 +373,7 @@ router.get('/psc-exempt-options', function (req, res) {
   })
 })
 router.post('/psc-exempt-options', function (req, res) {
-  var exempt = req.session.data['exempt']
-
-  switch (exempt) {
-    case 'yes':
-      res.redirect('/task-list')
-      break
-    case 'no':
-      res.redirect('/task-list')
-      break
-  }
+  res.redirect('/task-list')
 })
 router.get('/confirmation-statement-people-with-significant-control', function (req, res) {
   res.render('confirmation-statement-people-with-significant-control', {
