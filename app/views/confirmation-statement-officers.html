@@ -17,15 +17,18 @@
 
       <form action="" method="post">
         <h1 class="govuk-heading-l">Check the officer details</h1>
-        <h2 class="govuk-heading-m">Officers<br>1 officer</h2>
+        <h2 class="govuk-heading-m">Directors<br>1 director</h2>
         {% set directorHTML %}
         <ul class="govuk-list govuk-list--bullet">
-          <li>{{scenario.company.directors.director1.name}}</li>
-          <li>Appointed:
-            {{scenario.company.directors.director1.appointment}}</li>
-          <li>Date of birth:
-            {{scenario.company.directors.director1.dob}}</li>
+          <li>
+            <strong>Irving, Kyrie</strong>
+          </li>
+          <li>Nationality: British</li>
+          <li>Date of birth: 1 January 1988</li>
+          <li>Occupation: Director</li>
           <li>Correspondence address:<br>2 Nets Way<br>Newcastle<br>NE2 3BB</li>
+          <li>Usual residential address:<br>2 Nets Way<br>Newcastle<br>NE2 3BB</li>
+
         </ul>
         {% endset %}
         {% set director2HTML %}
