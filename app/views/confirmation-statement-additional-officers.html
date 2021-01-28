@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Review the people with significant control statement
+  Review the officers
 {% endblock %}
 
 {% block backLink %}
@@ -13,31 +13,30 @@
 
 {% block content %}
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-three-quarters">
 
       <form action="" method="post">
-
-        {% set pscStatementHTML %}
-        {% if pscStatement === 'no' %}
+        <h1 class="govuk-heading-l">Check the number of officers</h1>
+        {% if additionalOfficers === 'no' %}
           {{ govukInsetText({
-  html: "A filing to update the PSC statement has been received but it has not yet been updated." }) }}
+  html: "A filing to add officers has been received but it has not yet been updated." }) }}
         {% endif %}
-        No additional statements relating to PSCs are currently held on the public register
-        {% endset %}
+
+        <h2 class="govuk-heading-m">1 Director</h2>
 
         {{ govukRadios({
           classes: "govuk-radios--inline",
-          idPrefix: "psc-statement",
-          name: "psc-statement",
+          idPrefix: "additional-officers",
+          name: "additional-officers",
           fieldset: {
             legend: {
-              html: "Is the PSC statement correct?",
-              isPageHeading: true,
+              html: "Are there any officers to appoint?",
+              isPageHeading: false,
               classes: "govuk-fieldset__legend--l"
             }
           },
           hint: {
-    html: pscStatementHTML
+    html: officerHTML
   },
           items: [
             {
