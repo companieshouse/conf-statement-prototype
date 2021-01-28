@@ -17,6 +17,11 @@
 
       <form action="" method="post">
         <h1 class="govuk-heading-l">Check the director details</h1>
+        {% if officers === 'no' %}
+          {{ govukInsetText({
+  html: "A filing to update officers details has been received but it has not yet been updated." }) }}
+        {% endif %}
+
         <h2 class="govuk-heading-m">1 Director</h2>
         {% set directorHTML %}
         <ul class="govuk-list govuk-list--bullet">

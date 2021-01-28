@@ -58,3 +58,46 @@ $govuk-assets-path: '/govuk/assets/';
 .nav-spacing {
   padding-left: 20px;
 }
+
+.search-bar-active {
+  background: #dee0e2;
+  padding: .5em;
+  border: none;
+  margin: 0;
+  color: #0b0c0c;
+}
+
+.search-header .searchfield {
+  position: relative;
+  vertical-align: baseline;
+
+}
+
+.search-header .search-submit {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 50px;
+  width: 50px;
+  overflow: visible;
+  cursor: pointer;
+
+}
+
+.search-header button {
+
+  box-shadow: none;
+
+  z-index: 4;
+
+  top: 0;
+
+  border: none;
+
+  text-indent: -5000px;
+  color: #fff;
+  background-color: #005ea5;
+  background-image: url('/images/search/search-button.png');
+  background-repeat: no-repeat;
+  background-position: -12.5% 50%;
+}

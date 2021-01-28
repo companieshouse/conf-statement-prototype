@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Review the people with significant control
+  Review the directors
 {% endblock %}
 
 {% block backLink %}
@@ -10,17 +10,19 @@
     href: "/task-list"
   }) }}
 {% endblock %}
+
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-three-quarters">
 
       <form action="" method="post">
-        <h1 class="govuk-heading-l">Check the PSC details</h1>
-        {% if psc === 'no' %}
+        <h1 class="govuk-heading-l">Check the active director</h1>
+        {% if activeDirector === 'no' %}
           {{ govukInsetText({
-  html: "A filing to update PSC details has been received but it has not yet been updated." }) }}
+  html: "A filing to remove inactive directors has been received but it has not yet been updated." }) }}
         {% endif %}
-        <h2 class="govuk-heading-m">PSC<br>1 individual person</h2>
+
+        <h2 class="govuk-heading-m">1 Director</h2>
         {% set directorHTML %}
         <ul class="govuk-list govuk-list--bullet">
           <li>
@@ -28,15 +30,18 @@
           </li>
           <li>Nationality: British</li>
           <li>Date of birth: 1 January 1988</li>
-
+          <li>Occupation: Director</li>
           <li>Correspondence address:<br>2 Nets Way<br>Newcastle<br>NE2 3BB</li>
-          <li>Country of residence: United Kingdom</li>
-          <li>Nature of control:
-            <ul class="govuk-list govuk-list">
-              <li>Ownership of voting rights - 75%</li>
-              <li>Ownership of shares - More than 50%</li>
-            </ul>
-          </li>
+          <li>Usual residential address:<br>2 Nets Way<br>Newcastle<br>NE2 3BB</li>
+
+        </ul>
+        {% endset %}
+        {% set director2HTML %}
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Fran Francis</li>
+          <li>Appointed: 17 March 2012</li>
+          <li>Date of birth: May 1990</li>
+          <li>Correspondence address:<br>2 Nets Way<br>Newcastle<br>NE2 3BB</li>
         </ul>
         {% endset %}
 
@@ -53,18 +58,15 @@
 
         {{ govukRadios({
           classes: "govuk-radios--inline",
-          idPrefix: "psc",
-          name: "psc",
+          idPrefix: "active-directors",
+          name: "active-directors",
           fieldset: {
             legend: {
-              html: "Are the PSC details correct?",
-              isPageHeading: true,
+              html: "Is the director still active?",
+              isPageHeading: false,
               classes: "govuk-fieldset__legend--l"
             }
           },
-          hint: {
-    html: pscHTML
-  },
           items: [
             {
               value: "yes",

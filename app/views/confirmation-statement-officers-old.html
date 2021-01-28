@@ -202,6 +202,12 @@
           ]
         }) }}
 
+        {% if officers === 'no' %}
+          A filing to update officers details for
+          {{ scenario.company.name }}
+          has been received but it has not yet been updated.
+        {% endif %}
+
         {{ govukButton({
 text: "Continue"
 }) }}

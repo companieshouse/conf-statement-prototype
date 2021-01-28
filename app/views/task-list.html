@@ -19,7 +19,7 @@
           incomplete</h2>
       {% endif %}
       <p class="govuk-body govuk-!-margin-bottom-7">
-        {% if officers === 'yes' %}
+        {% if additionalOfficers === 'no' %}
           {% set result = result + 1
  %}
         {% endif %}
@@ -84,15 +84,15 @@
           <ul class="app-task-list__items">
             <li class="app-task-list__item">
               <span class="app-task-list__task-name">
-                <a href="/confirmation-statement-officers" aria-describedby="eligibility-status">
+                <a href="/confirmation-statement-active-directors" aria-describedby="eligibility-status">
                   Officers
                 </a>
               </span>
-              {% if officers === 'yes' %}
+              {% if additionalOfficers === 'no' %}
                 <strong class="govuk-tag app-task-list__tag" id="eligibility-status">
                   Completed</strong>
 
-              {% elseif officers === 'no' %}
+              {% elseif additionalOfficers === 'yes' or officers === 'no' %}
                 <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="eligibility-status">In progress</strong>
 
               {% else %}

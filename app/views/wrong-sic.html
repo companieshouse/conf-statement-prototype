@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Incorrect standard industrial classification - File a confirmation statement
+  You cannot use this service - File a confirmation statement
 {% endblock %}
 
 {% block content %}
@@ -9,19 +9,12 @@
     <div class="govuk-grid-column-two-thirds">
       <form action="" method="post">
         <h1 class="govuk-heading-xl">
-          Incorrect SIC code
+          You cannot use this service
         </h1>
-        <p>You will need to
-          <a href="https://ewf.companieshouse.gov.uk//seclogin?tc=1">update the standard industrial classification (SIC) code</a>
-          before you can file your confirmation statement.</p>
-        <p>Once your SIC code is correct on the
-          <a href="https://find-and-update.company-information.service.gov.uk/">Companies House register</a>
-          return to
-          <a href="/start">this service to file a confirmation statement</a>.</p>
+        <p>Currently, changes to the company SIC codes can only be made by filing a confirmation statement through
+          <a href="https://ewf.companieshouse.gov.uk//seclogin?tc=1">our WebFiling service</a>. You will need to sign in to or create a WebFiling account to do this.
+        </p>
 
-        {{ govukButton({
-    text: "Return to task list"
-  }) }}
       </form>
     </div>
   </div>
