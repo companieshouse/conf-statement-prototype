@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Incorrect members register - File a confirmation statement
+  You cannot use this service - File a confirmation statement
 {% endblock %}
 
 {% block content %}
@@ -9,19 +9,12 @@
     <div class="govuk-grid-column-two-thirds">
       <form action="" method="post">
         <h1 class="govuk-heading-xl">
-          Incorrect shareholder details
+          You cannot use this service
         </h1>
-        <p>You will need to
-          <a href="https://www.gov.uk/government/publications/give-notice-of-an-update-to-members-information-held-on-the-public-register-eh06">update the shareholder details</a>
-          before you can file your confirmation statement.</p>
-        <p>Once your shareholder details are correct on the
-          <a href="https://find-and-update.company-information.service.gov.uk/">Companies House register</a>
-          return to
-          <a href="/start">this service to file a confirmation statement</a>.</p>
+        <p>Currently, changes to shareholder details can only be made by filing a confirmation statement through
+          <a href="https://ewf.companieshouse.gov.uk//seclogin?tc=1">our WebFiling service</a>. You will need to sign in to or create a WebFiling account to do this.
+        </p>
 
-        {{ govukButton({
-    text: "Return to task list"
-  }) }}
       </form>
     </div>
   </div>

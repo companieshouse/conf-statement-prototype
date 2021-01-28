@@ -18,7 +18,12 @@
       <form action="" method="post">
 
         {% set roaHTML %}
+        {% if ro === 'no' %}
+          {{ govukInsetText({
+  html: "A filing to update the registered office address has been received but it has not yet been updated." }) }}
+        {% endif %}
         <p>125 Feather Hedge<br>Salisbury<br>SP4 7DE</p>
+
         {% endset %}
 
         {{ govukRadios({
