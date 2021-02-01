@@ -24,28 +24,21 @@
 
         <h2 class="govuk-heading-m">1 Director</h2>
         {% set directorHTML %}
-        <ul class="govuk-list govuk-list--bullet">
-          <li>
-            <strong>Irving, Kyrie</strong>
-          </li>
-          <li>Nationality: British</li>
-          <li>Date of birth: 1 January 1988</li>
-          <li>Occupation: Director</li>
-          <li>Correspondence address:<br>2 Nets Way<br>Newcastle<br>NE2 3BB</li>
-          <li>Usual residential address:<br>2 Nets Way<br>Newcastle<br>NE2 3BB</li>
 
-        </ul>
-        {% endset %}
-        {% set director2HTML %}
-        <ul class="govuk-list govuk-list--bullet">
-          <li>Fran Francis</li>
-          <li>Appointed: 17 March 2012</li>
-          <li>Date of birth: May 1990</li>
-          <li>Correspondence address:<br>2 Nets Way<br>Newcastle<br>NE2 3BB</li>
-        </ul>
-        {% endset %}
+        Irving, Kyrie
 
-        {{ govukTable({
+    </ul>
+    {% endset %}
+    {% set director2HTML %}
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Fran Francis</li>
+      <li>Appointed: 17 March 2012</li>
+      <li>Date of birth: May 1990</li>
+      <li>Correspondence address:<br>2 Nets Way<br>Newcastle<br>NE2 3BB</li>
+    </ul>
+    {% endset %}
+
+    {{ govukTable({
 
   rows: [
     [
@@ -56,7 +49,7 @@
   ]
 }) }}
 
-        {{ govukRadios({
+    {{ govukRadios({
           classes: "govuk-radios--inline",
           idPrefix: "active-directors",
           name: "active-directors",
@@ -79,13 +72,13 @@
           ]
         }) }}
 
-        {{ govukButton({
+    {{ govukButton({
 text: "Continue"
 }) }}
-      </form>
-      <p>
-        <a href="/sign-out">Save and sign out</a>
-      </p>
-    </div>
-  </div>
+  </form>
+  <p>
+    <a href="/sign-out">Save and sign out</a>
+  </p>
+</div>
+</div>
 {% endblock %}
