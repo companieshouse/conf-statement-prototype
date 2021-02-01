@@ -16,13 +16,11 @@
     <div class="govuk-grid-column-three-quarters">
 
       <form action="" method="post">
-        <h1 class="govuk-heading-l">Check the number of officers</h1>
+
         {% if additionalOfficers === 'no' %}
           {{ govukInsetText({
   html: "A filing to add officers has been received but it has not yet been updated." }) }}
         {% endif %}
-
-        <h2 class="govuk-heading-m">1 Director</h2>
 
         {{ govukRadios({
           classes: "govuk-radios--inline",
@@ -31,7 +29,7 @@
           fieldset: {
             legend: {
               html: "Are there any officers to appoint?",
-              isPageHeading: false,
+              isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },

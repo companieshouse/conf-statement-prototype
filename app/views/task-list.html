@@ -73,6 +73,23 @@
                 <strong class="govuk-tag govuk-tag--grey app-task-list__tag" id="medical-information-status">Not started</strong>
               {% endif %}
             </li>
+            <li class="app-task-list__item">
+              <span class="app-task-list__task-name">
+                <a href="/confirmation-statement-shareholder-capital" aria-describedby="eligibility-status">
+                  Shareholder capital
+                </a>
+              </span>
+              {% if shareholderCapital === 'yes' %}
+                <strong class="govuk-tag app-task-list__tag" id="eligibility-status">
+                  Completed</strong>
+
+              {% elseif shareholderCapital === 'no' %}
+                <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="eligibility-status">In progress</strong>
+
+              {% else %}
+                <strong class="govuk-tag govuk-tag--grey app-task-list__tag" id="medical-information-status">Not started</strong>
+              {% endif %}
+            </li>
           </ul>
         </li>
 
@@ -133,14 +150,7 @@
             {% endif %}
 
           </li>
-        </ul>
-      </li>
 
-      <li>
-        <h2 class="app-task-list__section">
-          Shareholder information
-        </h2>
-        <ul class="app-task-list__items">
           <li class="app-task-list__item">
             <span class="app-task-list__task-name">
               <a href="/confirmation-statement-shareholders" aria-describedby="read-declaration-status">
@@ -152,23 +162,6 @@
                 Completed</strong>
 
             {% elseif shareholders === 'no' %}
-              <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="eligibility-status">In progress</strong>
-
-            {% else %}
-              <strong class="govuk-tag govuk-tag--grey app-task-list__tag" id="medical-information-status">Not started</strong>
-            {% endif %}
-          </li>
-          <li class="app-task-list__item">
-            <span class="app-task-list__task-name">
-              <a href="/confirmation-statement-shareholder-capital" aria-describedby="eligibility-status">
-                Shareholder capital
-              </a>
-            </span>
-            {% if shareholderCapital === 'yes' %}
-              <strong class="govuk-tag app-task-list__tag" id="eligibility-status">
-                Completed</strong>
-
-            {% elseif shareholderCapital === 'no' %}
               <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="eligibility-status">In progress</strong>
 
             {% else %}
