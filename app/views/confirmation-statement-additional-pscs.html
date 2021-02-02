@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Review the PSCs
+{% endblock %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/task-list"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-three-quarters">
+
+      <form action="" method="post">
+        {% if additionalPscs === 'no' %}
+          {{ govukInsetText({
+  html: "A filing to update these details has been received. You can continue filing this confirmation statement, even if the change is not yet reflected on this page." }) }}
+        {% endif %}
+
+        {{ govukRadios({
+          classes: "govuk-radios--inline",
+          idPrefix: "additional-pscs",
+          name: "additional-pscs",
+          fieldset: {
+            legend: {
+              html: "Are there any PSCs to appoint?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+text: "Continue"
+}) }}
+      </form>
+      <p>
+        <a href="/sign-out">Save and sign out</a>
+      </p>
+    </div>
+  </div>
+{% endblock %}
