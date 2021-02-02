@@ -150,6 +150,7 @@ router.get('/task-list', function (req, res) {
   var completedTasks = req.session.data['completed']
   var exemption = req.session.data['exemption']
   var additionalOfficers = req.session.data['additional-officers']
+  var moment = require('moment') // require
   var officers = req.session.data['officers']
   var psc = req.session.data['psc']
   var register = req.session.data['registers']
@@ -165,6 +166,7 @@ router.get('/task-list', function (req, res) {
     additionalOfficers: additionalOfficers,
     completedTasks: completedTasks,
     exemption: exemption,
+    moment: moment().format('DD MMMM yyy'),
     officers: officers,
     psc: psc,
     register: register,
@@ -181,19 +183,25 @@ router.post('/task-list', function (req, res) {
 })
 router.get('/confirmation-statement-ro', function (req, res, nl2br) {
   var ro = req.session.data['registered-office-address']
+  var checked = {}
+
   res.render('confirmation-statement-ro', {
     scenario: req.session.scenario,
+    checked: checked,
     ro: ro
   })
 })
 router.post('/confirmation-statement-ro', function (req, res) {
   var ro = req.session.data['registered-office-address']
+  var checked = {}
 
   switch (ro) {
     case 'yes':
+      checked.yes = true
       res.redirect('/task-list')
       break
     case 'no':
+      checked.yes = true
       res.redirect('/wrong-ro')
       break
   }
@@ -511,7 +519,17 @@ router.get('/confirmation-statement-review', function (req, res) {
     exemption: exemption
   })
 })
-router.post('/confirmation-statement-review', function (req, res) {
+
+router.get('/review-payment', function (req, res) {
+  var moment = require('moment') // require
+
+  res.render('review-payment', {
+    scenario: req.session.scenario,
+    moment: moment().format('DD MMMM yyy')
+
+  })
+})
+router.post('/review-payment', function (req, res) {
   res.redirect('https://products.payments.service.gov.uk/pay/f90761a2258f4b60baa29f045cd78ca2')
 })
 router.get('/confirmation', function (req, res) {
