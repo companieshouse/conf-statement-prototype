@@ -187,19 +187,19 @@ router.get('/task-list', function (req, res) {
   })
 })
 router.post('/task-list', function (req, res) {
-  res.redirect('/confirmation-statement-ro')
+  res.redirect('/confirmation-statement/ro')
 })
-router.get('/confirmation-statement-ro', function (req, res, nl2br) {
+router.get('/confirmation-statement/ro', function (req, res, nl2br) {
   var ro = req.session.data['registered-office-address']
   var checked = {}
 
-  res.render('confirmation-statement-ro', {
+  res.render('confirmation-statement/ro', {
     scenario: req.session.scenario,
     checked: checked,
     ro: ro
   })
 })
-router.post('/confirmation-statement-ro', function (req, res) {
+router.post('/confirmation-statement/ro', function (req, res) {
   var ro = req.session.data['registered-office-address']
   var checked = {}
 
@@ -210,84 +210,84 @@ router.post('/confirmation-statement-ro', function (req, res) {
       break
     case 'no':
       checked.yes = true
-      res.redirect('/wrong-ro')
+      res.redirect('/incorrect-information/wrong-ro')
       break
   }
 })
-router.get('/wrong-ro', function (req, res) {
-  res.render('wrong-ro', {
+router.get('/incorrect-information/wrong-ro', function (req, res) {
+  res.render('incorrect-information/wrong-ro', {
     scenario: req.session.scenario
   })
 })
-router.post('/wrong-ro', function (req, res) {
+router.post('/incorrect-information/wrong-ro', function (req, res) {
   res.redirect('/task-list')
 })
-router.get('/confirmation-statement-active-directors', function (req, res) {
+router.get('/confirmation-statement/active-directors', function (req, res) {
   var activeDirectors = req.session.data['active-directors']
 
-  res.render('confirmation-statement-active-directors', {
+  res.render('confirmation-statement/active-directors', {
     scenario: req.session.scenario,
     activeDirectors: activeDirectors
   })
 })
-router.post('/confirmation-statement-active-directors', function (req, res) {
+router.post('/confirmation-statement/active-directors', function (req, res) {
   var activeDirectors = req.session.data['active-directors']
 
   switch (activeDirectors) {
     case 'yes':
-      res.redirect('/confirmation-statement-officers')
+      res.redirect('/confirmation-statement/officers')
       break
     case 'no':
-      res.redirect('/wrong-officers')
+      res.redirect('/incorrect-information/wrong-officers')
       break
   }
 })
-router.get('/confirmation-statement-officers', function (req, res) {
+router.get('/confirmation-statement/officers', function (req, res) {
   var officers = req.session.data['officers']
 
-  res.render('confirmation-statement-officers', {
+  res.render('confirmation-statement/officers', {
     scenario: req.session.scenario,
     officers: officers
   })
 })
-router.post('/confirmation-statement-officers', function (req, res) {
+router.post('/confirmation-statement/officers', function (req, res) {
   var officers = req.session.data['officers']
 
   switch (officers) {
     case 'yes':
-      res.redirect('/confirmation-statement-additional-officers')
+      res.redirect('/confirmation-statement/additional-officers')
       break
     case 'no':
-      res.redirect('/wrong-officers')
+      res.redirect('/incorrect-information/wrong-officers')
       break
   }
 })
-router.get('/confirmation-statement-additional-officers', function (req, res) {
+router.get('/confirmation-statement/additional-officers', function (req, res) {
   var additionalOfficers = req.session.data['additional-officers']
 
-  res.render('confirmation-statement-additional-officers', {
+  res.render('confirmation-statement/additional-officers', {
     scenario: req.session.scenario,
     additionalOfficers: additionalOfficers
   })
 })
-router.post('/confirmation-statement-additional-officers', function (req, res) {
+router.post('/confirmation-statement/additional-officers', function (req, res) {
   var additionalOfficers = req.session.data['additional-officers']
 
   switch (additionalOfficers) {
     case 'yes':
-      res.redirect('/wrong-officers')
+      res.redirect('/incorrect-information/wrong-officers')
       break
     case 'no':
       res.redirect('/task-list')
       break
   }
 })
-router.get('/confirmation-statement-officers-2', function (req, res) {
-  res.render('confirmation-statement-officers-2', {
+router.get('/confirmation-statement/officers-2', function (req, res) {
+  res.render('confirmation-statement/officers-2', {
     scenario: req.session.scenario
   })
 })
-router.post('/confirmation-statement-officers-2', function (req, res) {
+router.post('/confirmation-statement/officers-2', function (req, res) {
   var officers = req.session.data['officers']
 
   switch (officers) {
@@ -295,26 +295,26 @@ router.post('/confirmation-statement-officers-2', function (req, res) {
       res.redirect('/task-list')
       break
     case 'no':
-      res.redirect('/wrong-officers')
+      res.redirect('/incorrect-information/wrong-officers')
       break
   }
 })
-router.get('/wrong-officers', function (req, res) {
-  res.render('wrong-officers', {
+router.get('/incorrect-information/wrong-officers', function (req, res) {
+  res.render('incorrect-information/wrong-officers', {
     scenario: req.session.scenario
   })
 })
-router.post('/wrong-officers', function (req, res) {
+router.post('/incorrect-information/wrong-officers', function (req, res) {
   res.redirect('/task-list')
 })
-router.get('/confirmation-statement-registers', function (req, res) {
+router.get('/confirmation-statement/registers', function (req, res) {
   var registers = req.session.data['registers']
-  res.render('confirmation-statement-registers', {
+  res.render('confirmation-statement/registers', {
     scenario: req.session.scenario,
     registers: registers
   })
 })
-router.post('/confirmation-statement-registers', function (req, res) {
+router.post('/confirmation-statement/registers', function (req, res) {
   var registers = req.session.data['registers']
 
   switch (registers) {
@@ -322,24 +322,24 @@ router.post('/confirmation-statement-registers', function (req, res) {
       res.redirect('/task-list')
       break
     case 'no':
-      res.redirect('/wrong-registers')
+      res.redirect('/incorrect-information/wrong-registers')
       break
   }
 })
-router.get('/wrong-registers', function (req, res) {
-  res.render('wrong-registers', {
+router.get('/incorrect-information/wrong-registers', function (req, res) {
+  res.render('incorrect-information/wrong-registers', {
     scenario: req.session.scenario
   })
 })
-router.post('/wrong-registers', function (req, res) {
+router.post('/incorrect-information/wrong-registers', function (req, res) {
   res.redirect('/task-list')
 })
-router.get('/confirmation-statement-sic', function (req, res) {
-  res.render('confirmation-statement-sic', {
+router.get('/confirmation-statement/sic', function (req, res) {
+  res.render('confirmation-statement/sic', {
     scenario: req.session.scenario
   })
 })
-router.post('/confirmation-statement-sic', function (req, res) {
+router.post('/confirmation-statement/sic', function (req, res) {
   var sic = req.session.data['sic']
 
   switch (sic) {
@@ -347,24 +347,24 @@ router.post('/confirmation-statement-sic', function (req, res) {
       res.redirect('/task-list')
       break
     case 'no':
-      res.redirect('/wrong-sic')
+      res.redirect('/incorrect-information/wrong-sic')
       break
   }
 })
-router.get('/wrong-sic', function (req, res) {
-  res.render('wrong-sic', {
+router.get('/incorrect-information/wrong-sic', function (req, res) {
+  res.render('incorrect-information/wrong-sic', {
     scenario: req.session.scenario
   })
 })
-router.post('/wrong-sic', function (req, res) {
+router.post('/incorrect-information/wrong-sic', function (req, res) {
   res.redirect('/task-list')
 })
-router.get('/confirmation-statement-shareholder-capital', function (req, res) {
-  res.render('confirmation-statement-shareholder-capital', {
+router.get('/confirmation-statement/shareholder-capital', function (req, res) {
+  res.render('confirmation-statement/shareholder-capital', {
     scenario: req.session.scenario
   })
 })
-router.post('/confirmation-statement-shareholder-capital', function (req, res) {
+router.post('/confirmation-statement/shareholder-capital', function (req, res) {
   var shareholderCapital = req.session.data['shareholder-capital']
   var trading = req.session.data['trading']
 
@@ -377,24 +377,24 @@ router.post('/confirmation-statement-shareholder-capital', function (req, res) {
       }
       break
     case 'no':
-      res.redirect('/wrong-shareholder-capital')
+      res.redirect('/incorrect-information/wrong-shareholder-capital')
       break
   }
 })
-router.get('/wrong-shareholder-capital', function (req, res) {
-  res.render('wrong-shareholder-capital', {
+router.get('/incorrect-information/wrong-shareholder-capital', function (req, res) {
+  res.render('incorrect-information/wrong-shareholder-capital', {
     scenario: req.session.scenario
   })
 })
-router.post('/wrong-shareholder-capital', function (req, res) {
+router.post('/incorrect-information/wrong-shareholder-capital', function (req, res) {
   res.redirect('/task-list')
 })
-router.get('/confirmation-statement-shareholders', function (req, res) {
-  res.render('confirmation-statement-shareholders', {
+router.get('/confirmation-statement/shareholders', function (req, res) {
+  res.render('confirmation-statement/shareholders', {
     scenario: req.session.scenario
   })
 })
-router.post('/confirmation-statement-shareholders', function (req, res) {
+router.post('/confirmation-statement/shareholders', function (req, res) {
   var shareholders = req.session.data['shareholders']
   var tradingStatus = req.session.data['trading-status']
 
@@ -403,16 +403,16 @@ router.post('/confirmation-statement-shareholders', function (req, res) {
       res.redirect('/task-list')
       break
     case 'no':
-      res.redirect('/wrong-shareholders')
+      res.redirect('/incorrect-information/wrong-shareholders')
       break
   }
 })
-router.get('/wrong-shareholders', function (req, res) {
-  res.render('wrong-shareholders', {
+router.get('/incorrect-information/wrong-shareholders', function (req, res) {
+  res.render('incorrect-information/wrong-shareholders', {
     scenario: req.session.scenario
   })
 })
-router.post('/wrong-shareholders', function (req, res) {
+router.post('/incorrect-information/wrong-shareholders', function (req, res) {
   res.redirect('/task-list')
 })
 router.get('/psc-exemption', function (req, res) {
@@ -428,7 +428,7 @@ router.post('/psc-exemption', function (req, res) {
       res.redirect('/psc-exempt-options')
       break
     case 'no':
-      res.redirect('/confirmation-statement-people-with-significant-control')
+      res.redirect('/confirmation-statement/people-with-significant-control')
       break
   }
 })
@@ -440,87 +440,87 @@ router.get('/psc-exempt-options', function (req, res) {
 router.post('/psc-exempt-options', function (req, res) {
   res.redirect('/task-list')
 })
-router.get('/confirmation-statement-active-pscs', function (req, res) {
+router.get('/confirmation-statement/active-pscs', function (req, res) {
   var activePscs = req.session.data['active-pscs']
-  res.render('confirmation-statement-active-pscs', {
+  res.render('confirmation-statement/active-pscs', {
     scenario: req.session.scenario,
     activePscs: activePscs
   })
 })
-router.post('/confirmation-statement-active-pscs', function (req, res) {
+router.post('/confirmation-statement/active-pscs', function (req, res) {
   var activePscs = req.session.data['active-pscs']
 
   switch (activePscs) {
     case 'yes':
-      res.redirect('/confirmation-statement-people-with-significant-control')
+      res.redirect('/confirmation-statement/people-with-significant-control')
       break
     case 'no':
-      res.redirect('/wrong-psc')
+      res.redirect('/incorrect-information/wrong-psc')
       break
   }
 })
-router.get('/confirmation-statement-people-with-significant-control', function (req, res) {
+router.get('/confirmation-statement/people-with-significant-control', function (req, res) {
   var psc = req.session.data['psc']
-  res.render('confirmation-statement-people-with-significant-control', {
+  res.render('confirmation-statement/people-with-significant-control', {
     scenario: req.session.scenario,
     psc: psc
   })
 })
-router.post('/confirmation-statement-people-with-significant-control', function (req, res) {
+router.post('/confirmation-statement/people-with-significant-control', function (req, res) {
   var psc = req.session.data['psc']
 
   switch (psc) {
     case 'yes':
-      res.redirect('/confirmation-statement-additional-pscs')
+      res.redirect('/confirmation-statement/additional-pscs')
       break
     case 'no':
-      res.redirect('/wrong-psc-details')
+      res.redirect('/incorrect-information/wrong-psc-details')
       break
   }
 })
-router.get('/confirmation-statement-additional-pscs', function (req, res) {
+router.get('/confirmation-statement/additional-pscs', function (req, res) {
   var additionalPscs = req.session.data['additional-pscs']
-  res.render('confirmation-statement-additional-pscs', {
+  res.render('confirmation-statement/additional-pscs', {
     scenario: req.session.scenario,
     additionalPscs: additionalPscs
   })
 })
-router.post('/confirmation-statement-additional-pscs', function (req, res) {
+router.post('/confirmation-statement/additional-pscs', function (req, res) {
   var additionalPscs = req.session.data['additional-pscs']
 
   switch (additionalPscs) {
     case 'no':
-      res.redirect('/confirmation-statement-psc-statement')
+      res.redirect('/confirmation-statement/psc-statement')
       break
     case 'yes':
-      res.redirect('/wrong-psc')
+      res.redirect('/incorrect-information/wrong-psc')
       break
   }
 })
-router.get('/wrong-psc', function (req, res) {
-  res.render('wrong-psc', {
+router.get('/incorrect-information/wrong-psc', function (req, res) {
+  res.render('incorrect-information/wrong-psc', {
     scenario: req.session.scenario
   })
 })
-router.post('/wrong-psc', function (req, res) {
+router.post('/incorrect-information/wrong-psc', function (req, res) {
   res.redirect('/task-list')
 })
-router.get('/wrong-psc-details', function (req, res) {
-  res.render('wrong-psc-details', {
+router.get('/incorrect-information/wrong-psc-details', function (req, res) {
+  res.render('incorrect-information/wrong-psc-details', {
     scenario: req.session.scenario
   })
 })
-router.post('/wrong-psc-details', function (req, res) {
+router.post('/incorrect-information/wrong-psc-details', function (req, res) {
   res.redirect('/task-list')
 })
-router.get('/confirmation-statement-psc-statement', function (req, res) {
+router.get('/confirmation-statement/psc-statement', function (req, res) {
   var pscStatement = req.session.data['psc-statement']
-  res.render('confirmation-statement-psc-statement', {
+  res.render('confirmation-statement/psc-statement', {
     scenario: req.session.scenario,
     pscStatement: pscStatement
   })
 })
-router.post('/confirmation-statement-psc-statement', function (req, res) {
+router.post('/confirmation-statement/psc-statement', function (req, res) {
   var pscStatement = req.session.data['psc-statement']
 
   switch (pscStatement) {
@@ -528,16 +528,16 @@ router.post('/confirmation-statement-psc-statement', function (req, res) {
       res.redirect('/task-list')
       break
     case 'no':
-      res.redirect('/wrong-psc-statement')
+      res.redirect('/incorrect-information/wrong-psc-statement')
       break
   }
 })
-router.get('/wrong-psc-statement', function (req, res) {
-  res.render('wrong-psc-statement', {
+router.get('/incorrect-information/wrong-psc-statement', function (req, res) {
+  res.render('incorrect-information/wrong-psc-statement', {
     scenario: req.session.scenario
   })
 })
-router.post('/wrong-psc-statement', function (req, res) {
+router.post('/incorrect-information/wrong-psc-statement', function (req, res) {
   res.redirect('/task-list')
 })
 router.get('/task-list-complete', function (req, res) {
@@ -559,14 +559,14 @@ router.get('/task-list-complete', function (req, res) {
   })
 })
 router.post('/task-list-complete', function (req, res) {
-  res.redirect('/confirmation-statement-review')
+  res.redirect('/confirmation-statement/review')
 })
-router.get('/confirmation-statement-review', function (req, res) {
+router.get('/confirmation-statement/review', function (req, res) {
   var date = new Date()
   var exemption = req.session.data['exemption']
   var moment = require('moment') // require
 
-  res.render('confirmation-statement-review', {
+  res.render('confirmation-statement/review', {
     scenario: req.session.scenario,
     date: date,
     moment: moment().format('DD MMMM yyy'),
