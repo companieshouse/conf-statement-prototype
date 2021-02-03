@@ -149,10 +149,14 @@ router.post('/trading-status-dtr5', function (req, res) {
 router.get('/task-list', function (req, res) {
   var completedTasks = req.session.data['completed']
   var exemption = req.session.data['exemption']
+  var activeDirectors = req.session.data['active-directors']
+  var activePscs = req.session.data['active-pscs']
+  var additionalPscs = req.session.data['additional-pscs']
   var additionalOfficers = req.session.data['additional-officers']
   var moment = require('moment') // require
   var officers = req.session.data['officers']
   var psc = req.session.data['psc']
+  var pscStatement = req.session.data['psc-statement']
   var register = req.session.data['registers']
   var result = 0
   var ro = req.session.data['registered-office-address']
@@ -163,12 +167,16 @@ router.get('/task-list', function (req, res) {
 
   res.render('task-list', {
     scenario: req.session.scenario,
+    activeDirectors: activeDirectors,
+    activePscs: activePscs,
+    additionalPscs: additionalPscs,
     additionalOfficers: additionalOfficers,
     completedTasks: completedTasks,
     exemption: exemption,
     moment: moment().format('DD MMMM yyy'),
     officers: officers,
     psc: psc,
+    pscStatement: pscStatement,
     register: register,
     result: result,
     ro: ro,
@@ -432,6 +440,25 @@ router.get('/psc-exempt-options', function (req, res) {
 router.post('/psc-exempt-options', function (req, res) {
   res.redirect('/task-list')
 })
+router.get('/confirmation-statement-active-pscs', function (req, res) {
+  var activePscs = req.session.data['active-pscs']
+  res.render('confirmation-statement-active-pscs', {
+    scenario: req.session.scenario,
+    activePscs: activePscs
+  })
+})
+router.post('/confirmation-statement-active-pscs', function (req, res) {
+  var activePscs = req.session.data['active-pscs']
+
+  switch (activePscs) {
+    case 'yes':
+      res.redirect('/confirmation-statement-people-with-significant-control')
+      break
+    case 'no':
+      res.redirect('/wrong-psc')
+      break
+  }
+})
 router.get('/confirmation-statement-people-with-significant-control', function (req, res) {
   var psc = req.session.data['psc']
   res.render('confirmation-statement-people-with-significant-control', {
@@ -444,9 +471,28 @@ router.post('/confirmation-statement-people-with-significant-control', function 
 
   switch (psc) {
     case 'yes':
-      res.redirect('/confirmation-statement-psc-statement')
+      res.redirect('/confirmation-statement-additional-pscs')
       break
     case 'no':
+      res.redirect('/wrong-psc')
+      break
+  }
+})
+router.get('/confirmation-statement-additional-pscs', function (req, res) {
+  var additionalPscs = req.session.data['additional-pscs']
+  res.render('confirmation-statement-additional-pscs', {
+    scenario: req.session.scenario,
+    additionalPscs: additionalPscs
+  })
+})
+router.post('/confirmation-statement-additional-pscs', function (req, res) {
+  var additionalPscs = req.session.data['additional-pscs']
+
+  switch (additionalPscs) {
+    case 'no':
+      res.redirect('/confirmation-statement-psc-statement')
+      break
+    case 'yes':
       res.redirect('/wrong-psc')
       break
   }
