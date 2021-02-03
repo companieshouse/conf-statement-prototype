@@ -21,7 +21,62 @@
   html: "A filing to update these details has been received. You can continue filing this confirmation statement, even if the change is not yet reflected on this page." }) }}
         {% endif %}
 
-        {{ govukRadios({
+        {% if additionalPscs === 'yes' %}
+          {{ govukRadios({
+          classes: "govuk-radios--inline",
+          idPrefix: "additional-pscs",
+          name: "additional-pscs",
+          fieldset: {
+            legend: {
+              html: "Are there any PSCs to appoint?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "This includes individual people, relevant legal entitities and other registrable people"
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes",
+              checked: true
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+        {% elseif additionalPscs === 'no' %}
+          {{ govukRadios({
+          classes: "govuk-radios--inline",
+          idPrefix: "additional-pscs",
+          name: "additional-pscs",
+          fieldset: {
+            legend: {
+              html: "Are there any PSCs to appoint?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "This includes individual people, relevant legal entitities and other registrable people"
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No",
+              checked: true
+            }
+          ]
+        }) }}
+        {% else %}
+          {{ govukRadios({
           classes: "govuk-radios--inline",
           idPrefix: "additional-pscs",
           name: "additional-pscs",
@@ -46,6 +101,7 @@
             }
           ]
         }) }}
+        {% endif %}
 
         {{ govukButton({
 text: "Continue"

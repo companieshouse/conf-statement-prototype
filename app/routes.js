@@ -474,7 +474,7 @@ router.post('/confirmation-statement-people-with-significant-control', function 
       res.redirect('/confirmation-statement-additional-pscs')
       break
     case 'no':
-      res.redirect('/wrong-psc')
+      res.redirect('/wrong-psc-details')
       break
   }
 })
@@ -503,6 +503,14 @@ router.get('/wrong-psc', function (req, res) {
   })
 })
 router.post('/wrong-psc', function (req, res) {
+  res.redirect('/task-list')
+})
+router.get('/wrong-psc-details', function (req, res) {
+  res.render('wrong-psc-details', {
+    scenario: req.session.scenario
+  })
+})
+router.post('/wrong-psc-details', function (req, res) {
   res.redirect('/task-list')
 })
 router.get('/confirmation-statement-psc-statement', function (req, res) {

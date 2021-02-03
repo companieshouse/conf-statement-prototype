@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Incorrect people with significant control - File a confirmation statement
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form action="" method="post">
+        <h1 class="govuk-heading-xl">
+          You need to update the company details
+        </h1>
+
+        <p>You will need to update the people of significant control (PSC) details before you can file a confirmation statement.</p>
+        <p>You can update this information online. Use
+          <a target="_blank" href="https://ewf.companieshouse.gov.uk//seclogin?tc=1">our WebFiling service</a>
+          (opens in a new tab) to file the form Change of person with significant control (PSC) details — PSC04</p>
+        {{ govukInsetText({
+  text: "Updates can take some time to process, and
+              will not be reflected immediately in the information displayed on this service. As long as the update has been submitted, you can still file the confirmation statement."
+}) }}
+        <p>You can return to this confirmation statement by selecting Your Filings in your Companies House account.</p>
+        {{ govukButton({
+    text: "Return to task list"
+  }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

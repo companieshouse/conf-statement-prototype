@@ -60,7 +60,8 @@
   ]
 }) }}
 
-        {{ govukRadios({
+        {% if psc === 'yes' %}
+          {{ govukRadios({
           classes: "govuk-radios--inline",
           idPrefix: "psc",
           name: "psc",
@@ -85,6 +86,60 @@
             }
           ]
         }) }}
+        {% elseif psc === 'no' %}
+          {{ govukRadios({
+          classes: "govuk-radios--inline",
+          idPrefix: "psc",
+          name: "psc",
+          fieldset: {
+            legend: {
+              html: "Are the PSC details correct?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+    html: pscHTML
+  },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No",
+              checked: true
+            }
+          ]
+        }) }}
+        {% else %}
+          {{ govukRadios({
+          classes: "govuk-radios--inline",
+          idPrefix: "psc",
+          name: "psc",
+          fieldset: {
+            legend: {
+              html: "Are the PSC details correct?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+        html: pscHTML
+        },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+        {% endif %}
 
         {{ govukButton({
 text: "Continue"

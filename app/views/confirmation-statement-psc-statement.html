@@ -25,7 +25,62 @@
         No additional statements relating to PSCs are currently held on the public register
         {% endset %}
 
-        {{ govukRadios({
+        {% if pscStatement === 'yes' %}
+          {{ govukRadios({
+          classes: "govuk-radios--inline",
+          idPrefix: "psc-statement",
+          name: "psc-statement",
+          fieldset: {
+            legend: {
+              html: "Is the PSC statement correct?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+    html: pscStatementHTML
+  },
+          items: [
+            {
+              value: "yes",
+              text: "Yes",
+              checked: true
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+        {% elseif pscStatement === 'no' %}
+          {{ govukRadios({
+          classes: "govuk-radios--inline",
+          idPrefix: "psc-statement",
+          name: "psc-statement",
+          fieldset: {
+            legend: {
+              html: "Is the PSC statement correct?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+    html: pscStatementHTML
+  },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No",
+              checked: true
+            }
+          ]
+        }) }}
+        {% else %}
+          {{ govukRadios({
           classes: "govuk-radios--inline",
           idPrefix: "psc-statement",
           name: "psc-statement",
@@ -50,6 +105,7 @@
             }
           ]
         }) }}
+        {% endif %}
 
         {{ govukButton({
 text: "Continue"
