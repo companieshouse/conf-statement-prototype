@@ -18,7 +18,7 @@
             {% set result = result + 1
  %}
           {% endif %}
-          {% if psc === 'yes' %}
+          {% if pscStatement === 'yes' %}
             {% set result = result + 1 %}
           {% endif %}
           {% if register === 'yes' %}
@@ -104,24 +104,25 @@
                   <strong class="govuk-tag app-task-list__tag" id="eligibility-status">
                     Checked</strong>
 
-                {% elseif additionalOfficers === 'yes' or officers === 'no' %}
+                {% elseif additionalOfficers === 'yes' or officers === 'no' or activeDirectors === 'no' %}
                   <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="eligibility-status">In progress</strong>
 
                 {% else %}
                   <strong class="govuk-tag govuk-tag--grey app-task-list__tag" id="medical-information-status">Not checked</strong>
                 {% endif %}
               </li>
+
               <li class="app-task-list__item">
                 <span class="app-task-list__task-name">
                   {% if trading === 'no' %}
-                    <a href="/confirmation-statement-people-with-significant-control" aria-describedby="read-declaration-status">
+                    <a href="/confirmation-statement-active-pscs" aria-describedby="read-declaration-status">
                       People with significant control (PSC)
                     </a>
                   </span>
-                  {% if psc === 'yes' %}
+                  {% if pscStatement === 'yes' %}
                     <strong class="govuk-tag app-task-list__tag" id="eligibility-status">
                       Checked</strong>
-                  {% elseif psc === 'no' %}
+                  {% elseif additionalPscs === 'yes' or pscs === 'no' or activePscs === 'no' %}
                     <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="eligibility-status">In progress</strong>
                   {% else %}
                     <strong class="govuk-tag govuk-tag--grey app-task-list__tag" id="medical-information-status">Not checked</strong>
@@ -134,7 +135,7 @@
                 {% if exemption === 'no' and psc === 'yes' %}
                   <strong class="govuk-tag app-task-list__tag" id="eligibility-status">
                     Checked</strong>
-                {% elseif exemption === 'no' and psc === 'no' %}
+                {% elseif exemption === 'no' and additionalPscs === 'yes' or pscs === 'no' or activePSCs === 'no' %}
                   <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="eligibility-status">In progress</strong>
                 {% elseif exemption === 'yes' %}
                   <strong class="govuk-tag app-task-list__tag" id="eligibility-status">

@@ -17,7 +17,7 @@
 
       <form action="" method="post">
         <h1 class="govuk-heading-l">Check the active director</h1>
-        {% if activeDirector === 'no' %}
+        {% if activeDirectors === 'no' %}
           {{ govukInsetText({
   html: "A filing to update these details has been received. You can continue filing this confirmation statement, even if the change is not yet reflected on this page." }) }}
         {% endif %}
@@ -48,8 +48,8 @@
     ]
   ]
 }) }}
-
-    {{ govukRadios({
+    {% if activeDirectors === 'yes' %}
+      {{ govukRadios({
           classes: "govuk-radios--inline",
           idPrefix: "active-directors",
           name: "active-directors",
@@ -63,7 +63,8 @@
           items: [
             {
               value: "yes",
-              text: "Yes"
+              text: "Yes",
+              checked: true
             },
             {
               value: "no",
@@ -71,6 +72,54 @@
             }
           ]
         }) }}
+    {% elseif activeDirectors === 'no' %}
+      {{ govukRadios({
+                  classes: "govuk-radios--inline",
+                  idPrefix: "active-directors",
+                  name: "active-directors",
+                  fieldset: {
+                    legend: {
+                      html: "Is the director still active?",
+                      isPageHeading: false,
+                      classes: "govuk-fieldset__legend--l"
+                    }
+                  },
+                  items: [
+                    {
+                      value: "yes",
+                      text: "Yes"
+                    },
+                    {
+                      value: "no",
+                      text: "No",
+                      checked: true
+                    }
+                  ]
+                }) }}
+    {% else %}
+      {{ govukRadios({
+                              classes: "govuk-radios--inline",
+                              idPrefix: "active-directors",
+                              name: "active-directors",
+                              fieldset: {
+                                legend: {
+                                  html: "Is the director still active?",
+                                  isPageHeading: false,
+                                  classes: "govuk-fieldset__legend--l"
+                                }
+                              },
+                              items: [
+                                {
+                                  value: "yes",
+                                  text: "Yes"
+                                },
+                                {
+                                  value: "no",
+                                  text: "No"
+                                }
+                              ]
+                            }) }}
+    {% endif %}
 
     {{ govukButton({
 text: "Continue"
