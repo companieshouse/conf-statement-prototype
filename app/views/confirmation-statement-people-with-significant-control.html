@@ -86,8 +86,8 @@
             }
           ]
         }) }}
-          {% if psc === 'no' %}
-            {{ govukRadios({
+        {% elseif psc === 'no' %}
+          {{ govukRadios({
           classes: "govuk-radios--inline",
           idPrefix: "psc",
           name: "psc",
@@ -113,8 +113,8 @@
             }
           ]
         }) }}
-          {% else %}
-            {{ govukRadios({
+        {% else %}
+          {{ govukRadios({
           classes: "govuk-radios--inline",
           idPrefix: "psc",
           name: "psc",
@@ -139,15 +139,15 @@
             }
           ]
         }) }}
-          {% endif %}
+        {% endif %}
 
-          {{ govukButton({
+        {{ govukButton({
 text: "Continue"
 }) }}
-        </form>
-        <p>
-          <a href="/sign-out">Save and sign out</a>
-        </p>
-      </div>
+      </form>
+      <p>
+        <a href="/sign-out">Save and sign out</a>
+      </p>
     </div>
-  {% endblock %}
+  </div>
+{% endblock %}

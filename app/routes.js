@@ -505,6 +505,14 @@ router.get('/wrong-psc', function (req, res) {
 router.post('/wrong-psc', function (req, res) {
   res.redirect('/task-list')
 })
+router.get('/wrong-psc-details', function (req, res) {
+  res.render('wrong-psc-details', {
+    scenario: req.session.scenario
+  })
+})
+router.post('/wrong-psc-details', function (req, res) {
+  res.redirect('/task-list')
+})
 router.get('/confirmation-statement-psc-statement', function (req, res) {
   var pscStatement = req.session.data['psc-statement']
   res.render('confirmation-statement-psc-statement', {
