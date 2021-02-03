@@ -474,7 +474,7 @@ router.post('/confirmation-statement-people-with-significant-control', function 
       res.redirect('/confirmation-statement-additional-pscs')
       break
     case 'no':
-      res.redirect('/wrong-psc')
+      res.redirect('/wrong-psc-details')
       break
   }
 })

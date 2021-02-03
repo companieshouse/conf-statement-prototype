@@ -30,7 +30,62 @@
         </ul>
         {% endset %}
 
-        {{ govukRadios({
+        {% if shareholders === 'yes' %}
+          {{ govukRadios({
+          classes: "govuk-radios--inline",
+          idPrefix: "shareholders",
+          name: "shareholders",
+          fieldset: {
+            legend: {
+              html: "Are the shareholder details correct?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+    html: shareholdersHTML
+  },
+          items: [
+            {
+              value: "yes",
+              text: "Yes",
+              checked: true
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+        {% elseif shareholder === 'no' %}
+          {{ govukRadios({
+          classes: "govuk-radios--inline",
+          idPrefix: "shareholders",
+          name: "shareholders",
+          fieldset: {
+            legend: {
+              html: "Are the shareholder details correct?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+    html: shareholdersHTML
+  },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No",
+              checked: true
+            }
+          ]
+        }) }}
+        {% else %}
+          {{ govukRadios({
           classes: "govuk-radios--inline",
           idPrefix: "shareholders",
           name: "shareholders",
@@ -55,6 +110,7 @@
             }
           ]
         }) }}
+        {% endif %}
 
         {{ govukButton({
 text: "Continue"

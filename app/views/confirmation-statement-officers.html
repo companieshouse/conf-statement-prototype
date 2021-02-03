@@ -55,8 +55,62 @@
     ]
   ]
 }) }}
-
-        {{ govukRadios({
+        {% if officers === 'yes' %}
+          {{ govukRadios({
+          classes: "govuk-radios--inline",
+          idPrefix: "officers",
+          name: "officers",
+          fieldset: {
+            legend: {
+              html: "Are the director details correct?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+    html: officerHTML
+  },
+          items: [
+            {
+              value: "yes",
+              text: "Yes",
+              checked: true
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+          {% if officers === 'no' %}
+            {{ govukRadios({
+          classes: "govuk-radios--inline",
+          idPrefix: "officers",
+          name: "officers",
+          fieldset: {
+            legend: {
+              html: "Are the director details correct?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+    html: officerHTML
+  },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No",
+              checked: true
+            }
+          ]
+        }) }}
+          {% else %}
+            {{ govukRadios({
           classes: "govuk-radios--inline",
           idPrefix: "officers",
           name: "officers",
@@ -81,14 +135,15 @@
             }
           ]
         }) }}
+          {% endif %}
 
-        {{ govukButton({
+          {{ govukButton({
 text: "Continue"
 }) }}
-      </form>
-      <p>
-        <a href="/sign-out">Save and sign out</a>
-      </p>
+        </form>
+        <p>
+          <a href="/sign-out">Save and sign out</a>
+        </p>
+      </div>
     </div>
-  </div>
-{% endblock %}
+  {% endblock %}

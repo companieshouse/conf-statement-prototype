@@ -50,7 +50,35 @@
         }) }}
         {% endset %}
 
-        {{ govukRadios({
+        {% if registers === 'yes' %}
+          {{ govukRadios({
+          classes: "govuk-radios--inline",
+          idPrefix: "registers",
+          name: "registers",
+          fieldset: {
+            legend: {
+              html: "Is this where the company records are kept?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+    html: registerHTML
+  },
+          items: [
+            {
+              value: "yes",
+              text: "Yes",
+              checked: true
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+        {% elseif registers === 'no' %}
+          {{ govukRadios({
           classes: "govuk-radios--inline",
           idPrefix: "registers",
           name: "registers",
@@ -71,10 +99,38 @@
             },
             {
               value: "no",
-              text: "No"
+              text: "No",
+              checked: true
             }
           ]
         }) }}
+        {% else %}
+          {{ govukRadios({
+  classes: "govuk-radios--inline",
+  idPrefix: "registers",
+  name: "registers",
+  fieldset: {
+    legend: {
+      html: "Is this where the company records are kept?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  hint: {
+html: registerHTML
+},
+  items: [
+    {
+      value: "yes",
+      text: "Yes"
+    },
+    {
+      value: "no",
+      text: "No"
+    }
+  ]
+}) }}
+        {% endif %}
 
         {{ govukButton({
 text: "Continue"
