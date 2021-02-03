@@ -48,8 +48,32 @@
     ]
   ]
 }) }}
-
-    {{ govukRadios({
+    {% if activePscs === 'yes' %}
+      {{ govukRadios({
+      classes: "govuk-radios--inline",
+      idPrefix: "active-pscs",
+      name: "active-pscs",
+      fieldset: {
+        legend: {
+          html: "Is the PSC still active?",
+          isPageHeading: false,
+          classes: "govuk-fieldset__legend--l"
+        }
+      },
+      items: [
+        {
+          value: "yes",
+          text: "Yes",
+          checked: true
+        },
+        {
+          value: "no",
+          text: "No"
+        }
+      ]
+    }) }}
+    {% elseif activePscs === 'no' %}
+      {{ govukRadios({
           classes: "govuk-radios--inline",
           idPrefix: "active-pscs",
           name: "active-pscs",
@@ -67,10 +91,35 @@
             },
             {
               value: "no",
-              text: "No"
+              text: "No",
+              checked: true
             }
           ]
         }) }}
+    {% else %}
+      {{ govukRadios({
+              classes: "govuk-radios--inline",
+              idPrefix: "active-pscs",
+              name: "active-pscs",
+              fieldset: {
+                legend: {
+                  html: "Is the PSC still active?",
+                  isPageHeading: false,
+                  classes: "govuk-fieldset__legend--l"
+                }
+              },
+              items: [
+                {
+                  value: "yes",
+                  text: "Yes"
+                },
+                {
+                  value: "no",
+                  text: "No"
+                }
+              ]
+            }) }}
+    {% endif %}
 
     {{ govukButton({
 text: "Continue"

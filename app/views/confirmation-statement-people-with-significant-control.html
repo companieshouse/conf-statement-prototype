@@ -60,7 +60,8 @@
   ]
 }) }}
 
-        {{ govukRadios({
+        {% if psc === 'yes' %}
+          {{ govukRadios({
           classes: "govuk-radios--inline",
           idPrefix: "psc",
           name: "psc",
@@ -85,14 +86,68 @@
             }
           ]
         }) }}
+          {% if psc === 'no' %}
+            {{ govukRadios({
+          classes: "govuk-radios--inline",
+          idPrefix: "psc",
+          name: "psc",
+          fieldset: {
+            legend: {
+              html: "Are the PSC details correct?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+    html: pscHTML
+  },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No",
+              checked: true
+            }
+          ]
+        }) }}
+          {% else %}
+            {{ govukRadios({
+          classes: "govuk-radios--inline",
+          idPrefix: "psc",
+          name: "psc",
+          fieldset: {
+            legend: {
+              html: "Are the PSC details correct?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+        html: pscHTML
+        },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+          {% endif %}
 
-        {{ govukButton({
+          {{ govukButton({
 text: "Continue"
 }) }}
-      </form>
-      <p>
-        <a href="/sign-out">Save and sign out</a>
-      </p>
+        </form>
+        <p>
+          <a href="/sign-out">Save and sign out</a>
+        </p>
+      </div>
     </div>
-  </div>
-{% endblock %}
+  {% endblock %}

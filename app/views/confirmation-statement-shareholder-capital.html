@@ -89,7 +89,56 @@
         ]
         }) }}
 
-        {{ govukRadios({
+        {% if shareholderCapital === 'yes' %}
+          {{ govukRadios({
+          classes: "govuk-radios--inline",
+          idPrefix: "shareholder-capital",
+          name: "shareholder-capital",
+          fieldset: {
+            legend: {
+              html: "Is the statement of capital correct?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes",
+              checked: true
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+        {% elseif shareholderCapital === 'no' %}
+          {{ govukRadios({
+          classes: "govuk-radios--inline",
+          idPrefix: "shareholder-capital",
+          name: "shareholder-capital",
+          fieldset: {
+            legend: {
+              html: "Is the statement of capital correct?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No",
+              checked: true
+            }
+          ]
+        }) }}
+        {% else %}
+          {{ govukRadios({
           classes: "govuk-radios--inline",
           idPrefix: "shareholder-capital",
           name: "shareholder-capital",
@@ -111,6 +160,7 @@
             }
           ]
         }) }}
+        {% endif %}
 
         {{ govukButton({
 text: "Continue"
