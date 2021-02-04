@@ -1,13 +1,13 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Review the officers
+  Review the PSCs
 {% endblock %}
 
 {% block backLink %}
   {{ govukBackLink({
     text: "Back",
-    href: "/task-list"
+    href: "/confirmation-statement/people-with-significant-control"
   }) }}
 {% endblock %}
 
@@ -16,25 +16,26 @@
     <div class="govuk-grid-column-three-quarters">
 
       <form action="" method="post">
-        {% if additionalOfficers === 'yes' %}
+        {% if additionalPscs === 'no' %}
           {{ govukInsetText({
   html: "A filing to update these details has been received. You can continue filing this confirmation statement, even if the change is not yet reflected on this page." }) }}
         {% endif %}
-        {% if additionalOfficers === 'yes' %}
+
+        {% if additionalPscs === 'yes' %}
           {{ govukRadios({
           classes: "govuk-radios--inline",
-          idPrefix: "additional-officers",
-          name: "additional-officers",
+          idPrefix: "additional-pscs",
+          name: "additional-pscs",
           fieldset: {
             legend: {
-              html: "Are there any officers to appoint?",
+              html: "Are there any PSCs to appoint?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
           hint: {
-    text: "This includes directors, corporate directors, secretaries and corporate secretaries."
-  },
+            text: "This includes individual people, relevant legal entitities and other registrable people."
+          },
           items: [
             {
               value: "yes",
@@ -47,21 +48,21 @@
             }
           ]
         }) }}
-        {% elseif additionalOfficers === 'no' %}
+        {% elseif additionalPscs === 'no' %}
           {{ govukRadios({
           classes: "govuk-radios--inline",
-          idPrefix: "additional-officers",
-          name: "additional-officers",
+          idPrefix: "additional-pscs",
+          name: "additional-pscs",
           fieldset: {
             legend: {
-              html: "Are there any officers to appoint?",
+              html: "Are there any PSCs to appoint?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
           hint: {
-    text: "This includes directors, corporate directors, secretaries and corporate secretaries."
-  },
+            text: "This includes individual people, relevant legal entitities and other registrable people"
+          },
           items: [
             {
               value: "yes",
@@ -77,18 +78,18 @@
         {% else %}
           {{ govukRadios({
           classes: "govuk-radios--inline",
-          idPrefix: "additional-officers",
-          name: "additional-officers",
+          idPrefix: "additional-pscs",
+          name: "additional-pscs",
           fieldset: {
             legend: {
-              html: "Are there any officers to appoint?",
+              html: "Are there any PSCs to appoint?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
           hint: {
-    text: "This includes directors, corporate directors, secretaries and corporate secretaries."
-  },
+            text: "This includes individual people, relevant legal entitities and other registrable people"
+          },
           items: [
             {
               value: "yes",

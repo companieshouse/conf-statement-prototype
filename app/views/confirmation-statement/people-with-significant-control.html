@@ -1,46 +1,84 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Review the PSCs
+  Review the people with significant control
 {% endblock %}
 
 {% block backLink %}
   {{ govukBackLink({
     text: "Back",
-    href: "/task-list"
+    href: "/active-pscs"
   }) }}
 {% endblock %}
-
 {% block content %}
+  {% set pscDetails %}
+  <p>A person with significant control (PSC) is someone who owns or controls the company. For example, anyone with voting rights or more than 25% of the shares. For more information,
+    <a href="https://www.gov.uk/guidance/people-with-significant-control-pscs">read the guidance on PSCs</a>.</p>
+  {% endset %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-three-quarters">
 
       <form action="" method="post">
-        {% if additionalPscs === 'no' %}
+        <h1 class="govuk-heading-l">Check the people with significant control (PSC) details</h1>
+        {% if psc === 'no' %}
           {{ govukInsetText({
   html: "A filing to update these details has been received. You can continue filing this confirmation statement, even if the change is not yet reflected on this page." }) }}
         {% endif %}
+        {{ govukDetails({
+  summaryText: "More about PSCs",
+  html: pscDetails
+}) }}
+        <h2 class="govuk-heading-m">1 individual person</h2>
 
-        {% if additionalPscs === 'yes' %}
+        {% set directorHTML %}
+        <ul class="govuk-list govuk-list--bullet">
+          <li>
+            <strong>Irving, Kyrie</strong>
+          </li>
+          <li>Nationality: British</li>
+          <li>Date of birth: 1 January 1988</li>
+
+          <li>Correspondence address:<br>2 Nets Way<br>Newcastle<br>NE2 3BB</li>
+          <li>Country of residence: United Kingdom</li>
+          <li>Nature of control:
+            <ul class="govuk-list govuk-list">
+              <li>Ownership of voting rights - 75%</li>
+              <li>Ownership of shares - More than 50%</li>
+            </ul>
+          </li>
+        </ul>
+        {% endset %}
+
+        {{ govukTable({
+
+  rows: [
+    [
+      {
+        html: directorHTML
+      }
+    ]
+  ]
+}) }}
+
+        {% if psc === 'yes' %}
           {{ govukRadios({
           classes: "govuk-radios--inline",
-          idPrefix: "additional-pscs",
-          name: "additional-pscs",
+          idPrefix: "psc",
+          name: "psc",
           fieldset: {
             legend: {
-              html: "Are there any PSCs to appoint?",
+              html: "Are the PSC details correct?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
           hint: {
-            text: "This includes individual people, relevant legal entitities and other registrable people."
-          },
+    html: pscHTML
+  },
           items: [
             {
               value: "yes",
-              text: "Yes",
-              checked: true
+              text: "Yes"
             },
             {
               value: "no",
@@ -48,21 +86,21 @@
             }
           ]
         }) }}
-        {% elseif additionalPscs === 'no' %}
+        {% elseif psc === 'no' %}
           {{ govukRadios({
           classes: "govuk-radios--inline",
-          idPrefix: "additional-pscs",
-          name: "additional-pscs",
+          idPrefix: "psc",
+          name: "psc",
           fieldset: {
             legend: {
-              html: "Are there any PSCs to appoint?",
+              html: "Are the PSC details correct?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
           hint: {
-            text: "This includes individual people, relevant legal entitities and other registrable people"
-          },
+    html: pscHTML
+  },
           items: [
             {
               value: "yes",
@@ -78,18 +116,18 @@
         {% else %}
           {{ govukRadios({
           classes: "govuk-radios--inline",
-          idPrefix: "additional-pscs",
-          name: "additional-pscs",
+          idPrefix: "psc",
+          name: "psc",
           fieldset: {
             legend: {
-              html: "Are there any PSCs to appoint?",
+              html: "Are the PSC details correct?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
           hint: {
-            text: "This includes individual people, relevant legal entitities and other registrable people"
-          },
+        html: pscHTML
+        },
           items: [
             {
               value: "yes",

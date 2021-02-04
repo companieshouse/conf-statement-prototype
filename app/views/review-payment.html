@@ -18,23 +18,18 @@
       <h1 class="govuk-heading-xl">Confirmation statement fee for
         {{ scenario.company.name }}</h1>
 
-      {% set feeHTML %}
-      Confirmation statement date
-      {{ moment }}
-      {% endset %}
-
       {{ govukTable({
   caption: feeHTML,
   firstCellIsHeader: false,
   head: [
     {
-      text: "Fee"
+      text: "Item"
     },
     {
       text: "Date"
     },
     {
-      text: "Fee amount"
+      text: "Amount"
     }
   ],
   rows: [
@@ -52,19 +47,13 @@
   ]
 }) }}
 
+      <h2 class="govuk-heading-m">The total amount to pay is £13</h2>
+
       <form action="" method="post">
 
-        {% if scenario.company.csDue === 'due' %}
-          {{ govukButton({
-text: "Confirm and pay",
-href: "https://products.payments.service.gov.uk/pay/f90761a2258f4b60baa29f045cd78ca2"
+        {{ govukButton({
+text: "Continue and pay"
 }) }}
-        {% else %}
-          {{ govukButton({
-text: "Confirm and pay",
-href: "/confirmation"
-}) }}
-        {% endif %}
 
       </form>
     </div>
