@@ -1,84 +1,45 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Review the people with significant control
+  Review the officers
 {% endblock %}
 
 {% block backLink %}
   {{ govukBackLink({
     text: "Back",
-    href: "/task-list"
+    href: "/confirmation-statement/officers"
   }) }}
 {% endblock %}
+
 {% block content %}
-  {% set pscDetails %}
-  <p>A person with significant control (PSC) is someone who owns or controls the company. A PSC must meet one or more conditions known as the ‘nature of control’. For more information,
-    <a href="https://www.gov.uk/guidance/people-with-significant-control-pscs">read the guidance on PSCs</a>.</p>
-  {% endset %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-three-quarters">
 
       <form action="" method="post">
-        <h1 class="govuk-heading-l">Check the PSC details</h1>
-        {% if psc === 'no' %}
+        {% if additionalOfficers === 'yes' %}
           {{ govukInsetText({
   html: "A filing to update these details has been received. You can continue filing this confirmation statement, even if the change is not yet reflected on this page." }) }}
         {% endif %}
-        {{ govukDetails({
-  summaryText: "More about PSCs",
-  html: pscDetails
-}) }}
-        <h2 class="govuk-heading-m">1 individual person</h2>
-
-        {% set directorHTML %}
-        <ul class="govuk-list govuk-list--bullet">
-          <li>
-            <strong>Irving, Kyrie</strong>
-          </li>
-          <li>Nationality: British</li>
-          <li>Date of birth: 1 January 1988</li>
-
-          <li>Correspondence address:<br>2 Nets Way<br>Newcastle<br>NE2 3BB</li>
-          <li>Country of residence: United Kingdom</li>
-          <li>Nature of control:
-            <ul class="govuk-list govuk-list">
-              <li>Ownership of voting rights - 75%</li>
-              <li>Ownership of shares - More than 50%</li>
-            </ul>
-          </li>
-        </ul>
-        {% endset %}
-
-        {{ govukTable({
-
-  rows: [
-    [
-      {
-        html: directorHTML
-      }
-    ]
-  ]
-}) }}
-
-        {% if psc === 'yes' %}
+        {% if additionalOfficers === 'yes' %}
           {{ govukRadios({
           classes: "govuk-radios--inline",
-          idPrefix: "psc",
-          name: "psc",
+          idPrefix: "additional-officers",
+          name: "additional-officers",
           fieldset: {
             legend: {
-              html: "Are the PSC details correct?",
+              html: "Are there any officers to appoint?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
           hint: {
-    html: pscHTML
+    text: "This includes directors, corporate directors, secretaries and corporate secretaries."
   },
           items: [
             {
               value: "yes",
-              text: "Yes"
+              text: "Yes",
+              checked: true
             },
             {
               value: "no",
@@ -86,20 +47,20 @@
             }
           ]
         }) }}
-        {% elseif psc === 'no' %}
+        {% elseif additionalOfficers === 'no' %}
           {{ govukRadios({
           classes: "govuk-radios--inline",
-          idPrefix: "psc",
-          name: "psc",
+          idPrefix: "additional-officers",
+          name: "additional-officers",
           fieldset: {
             legend: {
-              html: "Are the PSC details correct?",
+              html: "Are there any officers to appoint?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
           hint: {
-    html: pscHTML
+    text: "This includes directors, corporate directors, secretaries and corporate secretaries."
   },
           items: [
             {
@@ -116,18 +77,18 @@
         {% else %}
           {{ govukRadios({
           classes: "govuk-radios--inline",
-          idPrefix: "psc",
-          name: "psc",
+          idPrefix: "additional-officers",
+          name: "additional-officers",
           fieldset: {
             legend: {
-              html: "Are the PSC details correct?",
+              html: "Are there any officers to appoint?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
           hint: {
-        html: pscHTML
-        },
+    text: "This includes directors, corporate directors, secretaries and corporate secretaries."
+  },
           items: [
             {
               value: "yes",

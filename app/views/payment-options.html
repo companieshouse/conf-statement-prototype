@@ -1,13 +1,13 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Company trading status
+  How do you want to pay
 {% endblock %}
 
 {% block backLink %}
   {{ govukBackLink({
     text: "Back",
-    href: "/authenticate"
+    href: "/review-payment"
   }) }}
 {% endblock %}
 
@@ -18,29 +18,29 @@
       <form action="" method="post">
         {{ govukRadios({
           classes: "govuk-radios--inline",
-          idPrefix: "trading-status",
-          name: "trading-status",
+          idPrefix: "payment-options",
+          name: "payment-options",
           fieldset: {
             legend: {
-              text: "Were any company shares traded on a market at any time during this confirmation statement period?",
+              text: "How do you want to pay for the confirmation statement?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
           items: [
             {
-              value: "yes",
-              text: "Yes"
+              value: "card",
+              text: "Credit or debit card"
             },
             {
-              value: "no",
-              text: "No"
+              value: "account",
+              text: "Companies House account"
             }
           ]
         }) }}
 
         {{ govukButton({
-text: "Continue"
+text: "Confirm"
 }) }}
       </form>
     </div>
