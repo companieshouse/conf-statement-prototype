@@ -580,11 +580,33 @@ router.get('/review-payment', function (req, res) {
   res.render('review-payment', {
     scenario: req.session.scenario,
     moment: moment().format('DD MMMM yyy')
-
   })
 })
 router.post('/review-payment', function (req, res) {
-  res.redirect('https://products.payments.service.gov.uk/pay/f90761a2258f4b60baa29f045cd78ca2')
+  res.redirect('/payment-options')
+})
+router.get('/payment-options', function (req, res) {
+  res.render('payment-options', {
+    scenario: req.session.scenario
+  })
+})
+router.post('/payment-options', function (req, res) {
+  var paymentOptions = req.session.data['payment-options']
+
+  switch (paymentOptions) {
+    case 'card':
+      res.redirect('https://products.payments.service.gov.uk/pay/f90761a2258f4b60baa29f045cd78ca2')
+      break
+    case 'account':
+      res.redirect('/pay-by-account')
+      break
+  }
+})
+router.get('/pay-by-account', function (req, res) {
+  res.render('pay-by-account')
+})
+router.post('/pay-by-account', function (req, res) {
+  res.redirect('/confirmation')
 })
 router.get('/confirmation', function (req, res) {
   var email = req.session.data.email
