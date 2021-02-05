@@ -154,8 +154,11 @@ router.get('/task-list', function (req, res) {
   var exemption = req.session.data['exemption']
   var activeDirectors = req.session.data['active-directors']
   var activePscs = req.session.data['active-pscs']
+  var activeMembers = req.session.data['active-members']
   var additionalPscs = req.session.data['additional-pscs']
   var additionalOfficers = req.session.data['additional-officers']
+  var additionalMembers = req.session.data['additional-members']
+  var members = req.session.data['members']
   var moment = require('moment') // require
   var officers = req.session.data['officers']
   var psc = req.session.data['psc']
@@ -174,6 +177,9 @@ router.get('/task-list', function (req, res) {
     activePscs: activePscs,
     additionalPscs: additionalPscs,
     additionalOfficers: additionalOfficers,
+    activeMembers: activeMembers,
+    additionalMembers: additionalMembers,
+    members: members,
     completedTasks: completedTasks,
     email: email,
     exemption: exemption,
@@ -194,16 +200,19 @@ router.post('/task-list', function (req, res) {
   res.redirect('/confirmation-statement/ro')
 })
 router.get('/confirmation-statement/ro', function (req, res, nl2br) {
+  var email = req.session.data['email']
   var ro = req.session.data['registered-office-address']
   var checked = {}
 
   res.render('confirmation-statement/ro', {
+    email: email,
     scenario: req.session.scenario,
     checked: checked,
     ro: ro
   })
 })
 router.post('/confirmation-statement/ro', function (req, res) {
+  var email = req.session.data['email']
   var ro = req.session.data['registered-office-address']
   var checked = {}
 
@@ -219,8 +228,10 @@ router.post('/confirmation-statement/ro', function (req, res) {
   }
 })
 router.get('/incorrect-information/wrong-ro', function (req, res) {
+  var email = req.session.data['email']
   res.render('incorrect-information/wrong-ro', {
-    scenario: req.session.scenario
+    scenario: req.session.scenario,
+    email: email
   })
 })
 router.post('/incorrect-information/wrong-ro', function (req, res) {
@@ -228,10 +239,12 @@ router.post('/incorrect-information/wrong-ro', function (req, res) {
 })
 // officers start //
 router.get('/confirmation-statement/active-directors', function (req, res) {
+  var email = req.session.data['email']
   var activeDirectors = req.session.data['active-directors']
 
   res.render('confirmation-statement/active-directors', {
     scenario: req.session.scenario,
+    email: email,
     activeDirectors: activeDirectors
   })
 })
@@ -248,9 +261,11 @@ router.post('/confirmation-statement/active-directors', function (req, res) {
   }
 })
 router.get('/confirmation-statement/officers', function (req, res) {
+  var email = req.session.data['email']
   var officers = req.session.data['officers']
 
   res.render('confirmation-statement/officers', {
+    email: email,
     scenario: req.session.scenario,
     officers: officers
   })
@@ -268,9 +283,11 @@ router.post('/confirmation-statement/officers', function (req, res) {
   }
 })
 router.get('/confirmation-statement/additional-officers', function (req, res) {
+  var email = req.session.data['email']
   var additionalOfficers = req.session.data['additional-officers']
 
   res.render('confirmation-statement/additional-officers', {
+    email: email,
     scenario: req.session.scenario,
     additionalOfficers: additionalOfficers
   })
@@ -288,8 +305,10 @@ router.post('/confirmation-statement/additional-officers', function (req, res) {
   }
 })
 router.get('/confirmation-statement/officers-2', function (req, res) {
+  var email = req.session.data['email']
   res.render('confirmation-statement/officers-2', {
-    scenario: req.session.scenario
+    scenario: req.session.scenario,
+    email: email
   })
 })
 router.post('/confirmation-statement/officers-2', function (req, res) {
@@ -305,8 +324,10 @@ router.post('/confirmation-statement/officers-2', function (req, res) {
   }
 })
 router.get('/incorrect-information/wrong-officers', function (req, res) {
+  var email = req.session.data['email']
   res.render('incorrect-information/wrong-officers', {
-    scenario: req.session.scenario
+    scenario: req.session.scenario,
+    email: email
   })
 })
 router.post('/incorrect-information/wrong-officers', function (req, res) {
@@ -314,9 +335,11 @@ router.post('/incorrect-information/wrong-officers', function (req, res) {
 })
 // members start //
 router.get('/confirmation-statement/active-members', function (req, res) {
+  var email = req.session.data['email']
   var activeMembers = req.session.data['active-members']
 
   res.render('confirmation-statement/active-members', {
+    email: email,
     scenario: req.session.scenario,
     activeMembers: activeMembers
   })
@@ -357,9 +380,11 @@ router.post('/confirmation-statement/members', function (req, res) {
 })
 router.get('/confirmation-statement/additional-members', function (req, res) {
   var additionalMembers = req.session.data['additional-members']
+  var email = req.session.data['email']
 
   res.render('confirmation-statement/additional-members', {
     scenario: req.session.scenario,
+    email: email,
     additionalMembers: additionalMembers
   })
 })
@@ -375,26 +400,11 @@ router.post('/confirmation-statement/additional-members', function (req, res) {
       break
   }
 })
-router.get('/confirmation-statement/members-2', function (req, res) {
-  res.render('confirmation-statement/members-2', {
-    scenario: req.session.scenario
-  })
-})
-router.post('/confirmation-statement/members-2', function (req, res) {
-  var members = req.session.data['members']
-
-  switch (members) {
-    case 'yes':
-      res.redirect('/task-list')
-      break
-    case 'no':
-      res.redirect('/incorrect-information/wrong-members')
-      break
-  }
-})
 router.get('/incorrect-information/wrong-members', function (req, res) {
+  var email = req.session.data['email']
   res.render('incorrect-information/wrong-members', {
-    scenario: req.session.scenario
+    scenario: req.session.scenario,
+    email: email
   })
 })
 router.post('/incorrect-information/wrong-members', function (req, res) {
@@ -402,9 +412,11 @@ router.post('/incorrect-information/wrong-members', function (req, res) {
 })
 // end of officers //
 router.get('/confirmation-statement/registers', function (req, res) {
+  var email = req.session.data['email']
   var registers = req.session.data['registers']
   res.render('confirmation-statement/registers', {
     scenario: req.session.scenario,
+    email: email,
     registers: registers
   })
 })
@@ -421,16 +433,20 @@ router.post('/confirmation-statement/registers', function (req, res) {
   }
 })
 router.get('/incorrect-information/wrong-registers', function (req, res) {
+  var email = req.session.data['email']
   res.render('incorrect-information/wrong-registers', {
-    scenario: req.session.scenario
+    scenario: req.session.scenario,
+    email: email
   })
 })
 router.post('/incorrect-information/wrong-registers', function (req, res) {
   res.redirect('/task-list')
 })
 router.get('/confirmation-statement/sic', function (req, res) {
+  var email = req.session.data['email']
   res.render('confirmation-statement/sic', {
-    scenario: req.session.scenario
+    scenario: req.session.scenario,
+    email: email
   })
 })
 router.post('/confirmation-statement/sic', function (req, res) {
@@ -446,16 +462,20 @@ router.post('/confirmation-statement/sic', function (req, res) {
   }
 })
 router.get('/incorrect-information/wrong-sic', function (req, res) {
+  var email = req.session.data['email']
   res.render('incorrect-information/wrong-sic', {
-    scenario: req.session.scenario
+    scenario: req.session.scenario,
+    email: email
   })
 })
 router.post('/incorrect-information/wrong-sic', function (req, res) {
   res.redirect('/task-list')
 })
 router.get('/confirmation-statement/shareholder-capital', function (req, res) {
+  var email = req.session.data['email']
   res.render('confirmation-statement/shareholder-capital', {
-    scenario: req.session.scenario
+    scenario: req.session.scenario,
+    email: email
   })
 })
 router.post('/confirmation-statement/shareholder-capital', function (req, res) {
@@ -476,16 +496,20 @@ router.post('/confirmation-statement/shareholder-capital', function (req, res) {
   }
 })
 router.get('/incorrect-information/wrong-shareholder-capital', function (req, res) {
+  var email = req.session.data['email']
   res.render('incorrect-information/wrong-shareholder-capital', {
-    scenario: req.session.scenario
+    scenario: req.session.scenario,
+    email: email
   })
 })
 router.post('/incorrect-information/wrong-shareholder-capital', function (req, res) {
   res.redirect('/task-list')
 })
 router.get('/confirmation-statement/shareholders', function (req, res) {
+  var email = req.session.data['email']
   res.render('confirmation-statement/shareholders', {
-    scenario: req.session.scenario
+    scenario: req.session.scenario,
+    email: email
   })
 })
 router.post('/confirmation-statement/shareholders', function (req, res) {
@@ -502,16 +526,20 @@ router.post('/confirmation-statement/shareholders', function (req, res) {
   }
 })
 router.get('/incorrect-information/wrong-shareholders', function (req, res) {
+  var email = req.session.data['email']
   res.render('incorrect-information/wrong-shareholders', {
-    scenario: req.session.scenario
+    scenario: req.session.scenario,
+    email: email
   })
 })
 router.post('/incorrect-information/wrong-shareholders', function (req, res) {
   res.redirect('/task-list')
 })
 router.get('/psc-exemption', function (req, res) {
+  var email = req.session.data['email']
   res.render('psc-exemption', {
-    scenario: req.session.scenario
+    scenario: req.session.scenario,
+    email: email
   })
 })
 router.post('/psc-exemption', function (req, res) {
@@ -527,8 +555,10 @@ router.post('/psc-exemption', function (req, res) {
   }
 })
 router.get('/psc-exempt-options', function (req, res) {
+  var email = req.session.data['email']
   res.render('psc-exempt-options', {
-    scenario: req.session.scenario
+    scenario: req.session.scenario,
+    email: email
   })
 })
 router.post('/psc-exempt-options', function (req, res) {
@@ -536,9 +566,11 @@ router.post('/psc-exempt-options', function (req, res) {
 })
 router.get('/confirmation-statement/active-pscs', function (req, res) {
   var activePscs = req.session.data['active-pscs']
+  var email = req.session.data['email']
   res.render('confirmation-statement/active-pscs', {
     scenario: req.session.scenario,
-    activePscs: activePscs
+    activePscs: activePscs,
+    email: email
   })
 })
 router.post('/confirmation-statement/active-pscs', function (req, res) {
@@ -555,9 +587,11 @@ router.post('/confirmation-statement/active-pscs', function (req, res) {
 })
 router.get('/confirmation-statement/people-with-significant-control', function (req, res) {
   var psc = req.session.data['psc']
+  var email = req.session.data['email']
   res.render('confirmation-statement/people-with-significant-control', {
     scenario: req.session.scenario,
-    psc: psc
+    psc: psc,
+    email: email
   })
 })
 router.post('/confirmation-statement/people-with-significant-control', function (req, res) {
@@ -573,10 +607,12 @@ router.post('/confirmation-statement/people-with-significant-control', function 
   }
 })
 router.get('/confirmation-statement/additional-pscs', function (req, res) {
+  var email = req.session.data['email']
   var additionalPscs = req.session.data['additional-pscs']
   res.render('confirmation-statement/additional-pscs', {
     scenario: req.session.scenario,
-    additionalPscs: additionalPscs
+    additionalPscs: additionalPscs,
+    email: email
   })
 })
 router.post('/confirmation-statement/additional-pscs', function (req, res) {
@@ -592,16 +628,20 @@ router.post('/confirmation-statement/additional-pscs', function (req, res) {
   }
 })
 router.get('/incorrect-information/wrong-psc', function (req, res) {
+  var email = req.session.data['email']
   res.render('incorrect-information/wrong-psc', {
-    scenario: req.session.scenario
+    scenario: req.session.scenario,
+    email: email
   })
 })
 router.post('/incorrect-information/wrong-psc', function (req, res) {
   res.redirect('/task-list')
 })
 router.get('/incorrect-information/wrong-psc-details', function (req, res) {
+  var email = req.session.data['email']
   res.render('incorrect-information/wrong-psc-details', {
-    scenario: req.session.scenario
+    scenario: req.session.scenario,
+    email: email
   })
 })
 router.post('/incorrect-information/wrong-psc-details', function (req, res) {
@@ -609,9 +649,11 @@ router.post('/incorrect-information/wrong-psc-details', function (req, res) {
 })
 router.get('/confirmation-statement/psc-statement', function (req, res) {
   var pscStatement = req.session.data['psc-statement']
+  var email = req.session.data['email']
   res.render('confirmation-statement/psc-statement', {
     scenario: req.session.scenario,
-    pscStatement: pscStatement
+    pscStatement: pscStatement,
+    email: email
   })
 })
 router.post('/confirmation-statement/psc-statement', function (req, res) {
@@ -627,8 +669,10 @@ router.post('/confirmation-statement/psc-statement', function (req, res) {
   }
 })
 router.get('/incorrect-information/wrong-psc-statement', function (req, res) {
+  var email = req.session.data['email']
   res.render('incorrect-information/wrong-psc-statement', {
-    scenario: req.session.scenario
+    scenario: req.session.scenario,
+    email: email
   })
 })
 router.post('/incorrect-information/wrong-psc-statement', function (req, res) {
@@ -658,30 +702,36 @@ router.post('/task-list-complete', function (req, res) {
 router.get('/confirmation-statement/review', function (req, res) {
   var date = new Date()
   var exemption = req.session.data['exemption']
+  var email = req.session.data['email']
   var moment = require('moment') // require
 
   res.render('confirmation-statement/review', {
     scenario: req.session.scenario,
     date: date,
     moment: moment().format('DD MMMM yyy'),
-    exemption: exemption
+    exemption: exemption,
+    email: email
   })
 })
 
 router.get('/review-payment', function (req, res) {
   var moment = require('moment') // require
+  var email = req.session.data['email']
 
   res.render('review-payment', {
     scenario: req.session.scenario,
-    moment: moment().format('DD MMMM yyy')
+    moment: moment().format('DD MMMM yyy'),
+    email: email
   })
 })
 router.post('/review-payment', function (req, res) {
   res.redirect('/payment-options')
 })
 router.get('/payment-options', function (req, res) {
+  var email = req.session.data['email']
   res.render('payment-options', {
-    scenario: req.session.scenario
+    scenario: req.session.scenario,
+    email: email
   })
 })
 router.post('/payment-options', function (req, res) {
@@ -697,7 +747,10 @@ router.post('/payment-options', function (req, res) {
   }
 })
 router.get('/pay-by-account', function (req, res) {
-  res.render('pay-by-account')
+  var email = req.session.data['email']
+  res.render('pay-by-account', {
+    email: email
+  })
 })
 router.post('/pay-by-account', function (req, res) {
   res.redirect('/confirmation')

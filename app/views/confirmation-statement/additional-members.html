@@ -1,13 +1,13 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Review the officers
+  Review the members
 {% endblock %}
 
 {% block backLink %}
   {{ govukBackLink({
     text: "Back",
-    href: "/confirmation-statement/officers"
+    href: "/confirmation-statement/members"
   }) }}
 {% endblock %}
 
@@ -16,18 +16,18 @@
     <div class="govuk-grid-column-three-quarters">
 
       <form action="" method="post">
-        {% if additionalOfficers === 'yes' %}
+        {% if additionalMembers === 'yes' %}
           {{ govukInsetText({
   html: "A filing to update these details has been received. You can continue filing this confirmation statement, even if the change is not yet reflected on this page." }) }}
         {% endif %}
-        {% if additionalOfficers === 'yes' %}
+        {% if additionalMembers === 'yes' %}
           {{ govukRadios({
           classes: "govuk-radios--inline",
-          idPrefix: "additional-officers",
-          name: "additional-officers",
+          idPrefix: "additional-members",
+          name: "additional-members",
           fieldset: {
             legend: {
-              html: "Are there any officers to appoint?",
+              html: "Are there any members to appoint?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
@@ -47,20 +47,20 @@
             }
           ]
         }) }}
-        {% elseif additionalOfficers === 'no' %}
+        {% elseif additionalMembers === 'no' %}
           {{ govukRadios({
           classes: "govuk-radios--inline",
-          idPrefix: "additional-officers",
-          name: "additional-officers",
+          idPrefix: "additional-members",
+          name: "additional-members",
           fieldset: {
             legend: {
-              html: "Are there any officers to appoint?",
+              html: "Are there any members to appoint?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
           hint: {
-    text: "This includes directors, corporate directors, secretaries and corporate secretaries."
+    text: "This includes all types of members."
   },
           items: [
             {
@@ -77,17 +77,17 @@
         {% else %}
           {{ govukRadios({
           classes: "govuk-radios--inline",
-          idPrefix: "additional-officers",
-          name: "additional-officers",
+          idPrefix: "additional-members",
+          name: "additional-members",
           fieldset: {
             legend: {
-              html: "Are there any officers to appoint?",
+              html: "Are there any members to appoint?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
           hint: {
-    text: "This includes directors, corporate directors, secretaries and corporate secretaries."
+    text: "This includes all types of members."
   },
           items: [
             {
