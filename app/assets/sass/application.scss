@@ -47,12 +47,31 @@ $govuk-assets-path: '/govuk/assets/';
   padding-bottom: 20px;
 }
 
+.js-signout {
+  text-align: right;
+  font-size: 16px;
+  font-family: 'proxima_nova', Arial, sans-serif;
+  font-weight: 400;
+  text-transform: none;
+  z-index: 60;
+  clear: none;
+  background: transparent;
+  border-bottom: 1px solid #bfc1c3;
+  vertical-align: middle;
+  padding-bottom: 20px;
+}
+
 .user {
   display: inline;
 }
 
 .content {
   display: inline;
+}
+
+.content-email {
+  display: inline;
+  padding-right: 20px;
 }
 
 .nav-spacing {

@@ -1,0 +1,114 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Review the officers
+{% endblock %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/confirmation-statement/officers"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-three-quarters">
+
+      <form action="" method="post">
+        {% if additionalOfficers === 'yes' %}
+          {{ govukInsetText({
+  html: "A filing to update these details has been received. You can continue filing this confirmation statement, even if the change is not yet reflected on this page." }) }}
+        {% endif %}
+        {% if additionalOfficers === 'yes' %}
+          {{ govukRadios({
+          classes: "govuk-radios--inline",
+          idPrefix: "additional-officers",
+          name: "additional-officers",
+          fieldset: {
+            legend: {
+              html: "Are there any officers to appoint?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+    text: "This includes directors, corporate directors, secretaries and corporate secretaries."
+  },
+          items: [
+            {
+              value: "yes",
+              text: "Yes",
+              checked: true
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+        {% elseif additionalOfficers === 'no' %}
+          {{ govukRadios({
+          classes: "govuk-radios--inline",
+          idPrefix: "additional-officers",
+          name: "additional-officers",
+          fieldset: {
+            legend: {
+              html: "Are there any officers to appoint?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+    text: "This includes directors, corporate directors, secretaries and corporate secretaries."
+  },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No",
+              checked: true
+            }
+          ]
+        }) }}
+        {% else %}
+          {{ govukRadios({
+          classes: "govuk-radios--inline",
+          idPrefix: "additional-officers",
+          name: "additional-officers",
+          fieldset: {
+            legend: {
+              html: "Are there any officers to appoint?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+    text: "This includes directors, corporate directors, secretaries and corporate secretaries."
+  },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+        {% endif %}
+
+        {{ govukButton({
+text: "Continue"
+}) }}
+      </form>
+      <p>
+        <a href="/sign-out">Save and sign out</a>
+      </p>
+    </div>
+  </div>
+{% endblock %}

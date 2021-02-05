@@ -1,0 +1,191 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Review the officers
+{% endblock %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/confirmation-statement/active-members"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-three-quarters">
+
+      <form action="" method="post">
+        <h1 class="govuk-heading-l">Check the member details</h1>
+        {% if members === 'no' %}
+          {{ govukInsetText({
+  html: "A filing to update these details has been received. You can continue filing this confirmation statement, even if the change is not yet reflected on this page." }) }}
+        {% endif %}
+        {% if scenario.company.members === '1' %}
+          <h2 class="govuk-heading-m">1 Member</h2>
+        {% elseif scenario.company.members === '5' %}
+          <h2 class="govuk-heading-m">5 Members</h2>
+        {% endif %}
+        {% set memberHTML %}
+        {% if scenario.company.members === '1' %}
+          <ul class="govuk-list govuk-list--bullet">
+            <li>
+              <strong>Irving, Kyrie</strong>
+            </li>
+            <li>Nationality: British</li>
+            <li>Date of birth: 1 January 1988</li>
+            <li>Occupation: Director</li>
+            <li>Correspondence address: 2 Nets Way, Newcastle, NE2 3BB</li>
+            <li>Usual residential address: 2 Nets Way, Newcastle, NE2 3BB</li>
+
+          </ul>
+        {% elseif scenario.company.members === '5' %}
+          <ul class="govuk-list govuk-list--bullet">
+            <li>
+              <strong>Irving, Kyrie</strong>
+            </li>
+            <li>Nationality: British</li>
+            <li>Date of birth: 1 January 1988</li>
+            <li>Occupation: Director</li>
+            <li>Correspondence address: 2 Nets Way, Newcastle, NE2 3BB</li>
+            <li>Usual residential address: 2 Nets Way, Newcastle, NE2 3BB</li>
+          </ul>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>
+              <strong>Irving, Kyrie</strong>
+            </li>
+            <li>Nationality: British</li>
+            <li>Date of birth: 1 January 1988</li>
+            <li>Occupation: Director</li>
+            <li>Correspondence address: 2 Nets Way, Newcastle, NE2 3BB</li>
+            <li>Usual residential address: 2 Nets Way, Newcastle, NE2 3BB</li>
+          </ul>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>
+              <strong>Irving, Kyrie</strong>
+            </li>
+            <li>Nationality: British</li>
+            <li>Date of birth: 1 January 1988</li>
+            <li>Occupation: Director</li>
+            <li>Correspondence address: 2 Nets Way, Newcastle, NE2 3BB</li>
+            <li>Usual residential address: 2 Nets Way, Newcastle, NE2 3BB</li>
+          </ul>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>
+              <strong>Irving, Kyrie</strong>
+            </li>
+            <li>Nationality: British</li>
+            <li>Date of birth: 1 January 1988</li>
+            <li>Occupation: Director</li>
+            <li>Correspondence address: 2 Nets Way, Newcastle, NE2 3BB</li>
+            <li>Usual residential address: 2 Nets Way, Newcastle, NE2 3BB</li>
+          </ul>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>
+              <strong>Irving, Kyrie</strong>
+            </li>
+            <li>Nationality: British</li>
+            <li>Date of birth: 1 January 1988</li>
+            <li>Occupation: Director</li>
+            <li>Correspondence address: 2 Nets Way, Newcastle, NE2 3BB</li>
+            <li>Usual residential address: 2 Nets Way, Newcastle, NE2 3BB</li>
+          </ul>
+        {% endif %}
+        {% endset %}
+
+        {{ govukTable({
+
+  rows: [
+    [
+      {
+        html: memberHTML
+      }
+    ]
+  ]
+}) }}
+        {% if members === 'yes' %}
+          {{ govukRadios({
+          classes: "govuk-radios--inline",
+          idPrefix: "members",
+          name: "members",
+          fieldset: {
+            legend: {
+              html: "Are the member details correct?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+
+          items: [
+            {
+              value: "yes",
+              text: "Yes",
+              checked: true
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+        {% elseif members === 'no' %}
+          {{ govukRadios({
+          classes: "govuk-radios--inline",
+          idPrefix: "members",
+          name: "members",
+          fieldset: {
+            legend: {
+              html: "Are the member details correct?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No",
+              checked: true
+            }
+          ]
+        }) }}
+        {% else %}
+          {{ govukRadios({
+          classes: "govuk-radios--inline",
+          idPrefix: "members",
+          name: "members",
+          fieldset: {
+            legend: {
+              html: "Are the member details correct?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+        {% endif %}
+
+        {{ govukButton({
+text: "Continue"
+}) }}
+      </form>
+      <p>
+        <a href="/sign-out">Save and sign out</a>
+      </p>
+    </div>
+  </div>
+{% endblock %}

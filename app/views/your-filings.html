@@ -2,6 +2,7 @@
 {% block pageTitle %}
   Your filings
 {% endblock %}
+{% block signOut %}{% endblock %}
 {% block main %}
 
   <div class="govuk-width-container">
@@ -19,7 +20,7 @@
 
           <a class="nav-spacing" href="https://follow-staging.company-information.service.gov.uk">Companies you follow</a>
 
-          <a class="nav-spacing" href="/">Sign out</a>
+          <a class="nav-spacing" target="_self" href="/">Sign out</a>
 
         </nav>
       </div>
@@ -81,7 +82,7 @@
                   <strong class="status">Incomplete</strong>
                 </td>
                 <td class="govuk-table__cell ">
-                  <a id="" href="/task-list" target="_blank">Continue<span class="govuk-visually-hidden">HAPPY HOUSE LTD Confirmation statement made up to 2 February 2021 (Opens link in new window)</span</a>
+                  <a href="/task-list" target="_self">Continue<span class="govuk-visually-hidden">HAPPY HOUSE LTD Confirmation statement made up to 2 February 2021 (Opens link in new window)</span</a>
                   </td>
                 </tr>
               </tbody>

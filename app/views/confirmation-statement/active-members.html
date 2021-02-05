@@ -1,0 +1,133 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Review the members
+{% endblock %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/task-list"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-three-quarters">
+
+      <form action="" method="post">
+        <h1 class="govuk-heading-l">Check the active member</h1>
+        {% if activeMembers === 'no' %}
+          {{ govukInsetText({
+  html: "A filing to update these details has been received. You can continue filing this confirmation statement, even if the change is not yet reflected on this page." }) }}
+        {% endif %}
+
+        <h2 class="govuk-heading-m">1 Member</h2>
+        {% set memberHTML %}
+
+        Irving, Kyrie
+
+    </ul>
+    {% endset %}
+    {% set member2HTML %}
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Fran Francis</li>
+      <li>Appointed: 17 March 2012</li>
+      <li>Date of birth: May 1990</li>
+      <li>Correspondence address:<br>2 Nets Way<br>Newcastle<br>NE2 3BB</li>
+    </ul>
+    {% endset %}
+
+    {{ govukTable({
+
+  rows: [
+    [
+      {
+        html: memberHTML
+      }
+    ]
+  ]
+}) }}
+    {% if activeMembers === 'yes' %}
+      {{ govukRadios({
+          classes: "govuk-radios--inline",
+          idPrefix: "active-members",
+          name: "active-members",
+          fieldset: {
+            legend: {
+              html: "Is the member still active?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes",
+              checked: true
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+    {% elseif activeMembers === 'no' %}
+      {{ govukRadios({
+                  classes: "govuk-radios--inline",
+                  idPrefix: "active-members",
+                  name: "active-members",
+                  fieldset: {
+                    legend: {
+                      html: "Is the member still active?",
+                      isPageHeading: false,
+                      classes: "govuk-fieldset__legend--l"
+                    }
+                  },
+                  items: [
+                    {
+                      value: "yes",
+                      text: "Yes"
+                    },
+                    {
+                      value: "no",
+                      text: "No",
+                      checked: true
+                    }
+                  ]
+                }) }}
+    {% else %}
+      {{ govukRadios({
+                              classes: "govuk-radios--inline",
+                              idPrefix: "active-members",
+                              name: "active-members",
+                              fieldset: {
+                                legend: {
+                                  html: "Is the member still active?",
+                                  isPageHeading: false,
+                                  classes: "govuk-fieldset__legend--l"
+                                }
+                              },
+                              items: [
+                                {
+                                  value: "yes",
+                                  text: "Yes"
+                                },
+                                {
+                                  value: "no",
+                                  text: "No"
+                                }
+                              ]
+                            }) }}
+    {% endif %}
+
+    {{ govukButton({
+text: "Continue"
+}) }}
+  </form>
+  <p>
+    <a href="/sign-out">Save and sign out</a>
+  </p>
+</div>
+</div>
+{% endblock %}

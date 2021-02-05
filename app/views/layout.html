@@ -55,6 +55,15 @@
     },
     html: 'This is a new service - Help us improve it by providing <a class="govuk-link" href="https://www.research.net/" target="_blank">feedback <span class="govuk-visually-hidden">(This link opens in a new window)</span></a>'
   }) }}
+  {% block signOut %}
+    <ul class="js-signout" id="navigation">
+      <li class="content-email" id="signed-in-user">
+        {{email}}</li>
+      <li class="content">
+        <a href="/sign-out" id="user-signout">Sign out</a>
+      </li>
+    </ul>
+  {% endblock %}
   {% block backLink %}{% endblock %}
 {% endblock %}
 
