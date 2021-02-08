@@ -23,74 +23,13 @@
         {% endif %}
         {% if scenario.company.members === '1' %}
           <h2 class="govuk-heading-m">1 Member</h2>
-        {% elseif scenario.company.members === '5' %}
-          <h2 class="govuk-heading-m">5 Members</h2>
+        {% else %}
+          <h2 class="govuk-heading-m">{{scenario.company.members}}
+            Members</h2>
         {% endif %}
-        {% set memberHTML %}
-        {% if scenario.company.members === '1' %}
-          <ul class="govuk-list govuk-list--bullet">
-            <li>
-              <strong>Irving, Kyrie</strong>
-            </li>
-            <li>Nationality: British</li>
-            <li>Date of birth: 1 January 1988</li>
-            <li>Occupation: Director</li>
-            <li>Correspondence address: 2 Nets Way, Newcastle, NE2 3BB</li>
-            <li>Usual residential address: 2 Nets Way, Newcastle, NE2 3BB</li>
 
-          </ul>
-        {% elseif scenario.company.members === '5' %}
-          <ul class="govuk-list govuk-list--bullet">
-            <li>
-              <strong>Irving, Kyrie</strong>
-            </li>
-            <li>Nationality: British</li>
-            <li>Date of birth: 1 January 1988</li>
-            <li>Occupation: Director</li>
-            <li>Correspondence address: 2 Nets Way, Newcastle, NE2 3BB</li>
-            <li>Usual residential address: 2 Nets Way, Newcastle, NE2 3BB</li>
-          </ul>
-          <ul class="govuk-list govuk-list--bullet">
-            <li>
-              <strong>Irving, Kyrie</strong>
-            </li>
-            <li>Nationality: British</li>
-            <li>Date of birth: 1 January 1988</li>
-            <li>Occupation: Director</li>
-            <li>Correspondence address: 2 Nets Way, Newcastle, NE2 3BB</li>
-            <li>Usual residential address: 2 Nets Way, Newcastle, NE2 3BB</li>
-          </ul>
-          <ul class="govuk-list govuk-list--bullet">
-            <li>
-              <strong>Irving, Kyrie</strong>
-            </li>
-            <li>Nationality: British</li>
-            <li>Date of birth: 1 January 1988</li>
-            <li>Occupation: Director</li>
-            <li>Correspondence address: 2 Nets Way, Newcastle, NE2 3BB</li>
-            <li>Usual residential address: 2 Nets Way, Newcastle, NE2 3BB</li>
-          </ul>
-          <ul class="govuk-list govuk-list--bullet">
-            <li>
-              <strong>Irving, Kyrie</strong>
-            </li>
-            <li>Nationality: British</li>
-            <li>Date of birth: 1 January 1988</li>
-            <li>Occupation: Director</li>
-            <li>Correspondence address: 2 Nets Way, Newcastle, NE2 3BB</li>
-            <li>Usual residential address: 2 Nets Way, Newcastle, NE2 3BB</li>
-          </ul>
-          <ul class="govuk-list govuk-list--bullet">
-            <li>
-              <strong>Irving, Kyrie</strong>
-            </li>
-            <li>Nationality: British</li>
-            <li>Date of birth: 1 January 1988</li>
-            <li>Occupation: Director</li>
-            <li>Correspondence address: 2 Nets Way, Newcastle, NE2 3BB</li>
-            <li>Usual residential address: 2 Nets Way, Newcastle, NE2 3BB</li>
-          </ul>
-        {% endif %}
+        {% set memberHTML %}
+        {% include "includes/confirmation-statement-details/members.html" %}
         {% endset %}
 
         {{ govukTable({

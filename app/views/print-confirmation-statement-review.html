@@ -16,7 +16,27 @@
       <h1 class="govuk-heading-l">Preview the Confirmation Statement for
         <strong>{{scenario.company.name}}</strong>
       </h1>
-
+      {% set sicHTML %}
+      {% include "includes/confirmation-statement-details/sic.html" %}
+      {% endset %}
+      {% set statementHTML %}
+      {% include "includes/confirmation-statement-details/statement-of-capital.html" %}
+      {% endset %}
+      {% set officerHTML %}
+      {% include "includes/confirmation-statement-details/officers.html" %}
+      {% endset %}
+      {% set memberHTML %}
+      {% include "includes/confirmation-statement-details/members.html" %}
+      {% endset %}
+      {% set pscsHTML %}
+      {% include "includes/confirmation-statement-details/pscs.html" %}
+      {% endset %}
+      {% set roaHTML %}
+      {% include "includes/confirmation-statement-details/roa.html" %}
+      {% endset %}
+      {% set registerHTML %}
+      {% include "includes/confirmation-statement-details/registers.html" %}
+      {% endset %}
       {{ govukTable({
 
 firstCellIsHeader: true,
@@ -67,198 +87,151 @@ html: scenario.company.address | nl2br
 
       {% if scenario.company.type === 'LTD' %}
 
-        <ol class="app-task-list">
-          <li>
-            <h2 class="app-task-list__section">
+        <h2 class="govuk-heading-m">
 
-              Nature of business
-            </h2>
-            <ul class="app-task-list__items">
-              <li class="app-task-list__item">
-                <span class="app-task-list__task-name">
-                  <a href="/confirmation-statement/sic" aria-describedby="contact-details-status">
-                    SIC codes
-                  </a>
-                </span>
-              </li>
-              <li class="app-task-list__item">
-                <span class="app-task-list__task-name">
-                  <a href="/confirmation-statement/shareholder-capital" aria-describedby="eligibility-status">
-                    Statement of capital
-                  </a>
-                </span>
+          Nature of business
+        </h2>
+        {{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "SIC codes"
+      },
+      value: {
+        html: sicHTML
+      }
+    },
+    {
+      key: {
+        text: "Statement of capital"
+      },
+      value: {
+        html: statementHTML
+      }
 
-              </li>
-            </ul>
-          </li>
+    }
+  ]
+}) }}
 
-          <li>
-            <h2 class="app-task-list__section">
+        <h2 class="app-task-list__section">
 
-              People
-            </h2>
-            <ul class="app-task-list__items">
-              <li class="app-task-list__item">
-                <span class="app-task-list__task-name">
-                  <a href="/confirmation-statement/active-directors" aria-describedby="eligibility-status">
-                    Officers
-                  </a>
-                </span>
+          People
+        </h2>
 
-              </li>
+        {{ govukSummaryList({
+           rows: [
+           {
+           key: {
+            text: "Officers"
+           },
+           value: {
+            html: officerHTML
+           }
+           },
+           {
+           key: {
+            text: "People with significant control (PSC)"
+           },
+           value: {
+            html: pscsHTML
+          }
+           },
+           {
+           key: {
+            text: "Shareholders"
+           },
+           value: {
+            html: shareholderHTML
+           }
+         }
+           ]
+           }) }}
 
-              <li class="app-task-list__item">
-                <span class="app-task-list__task-name">
-                  {% if trading === 'no' %}
-                    <a href="/confirmation-statement/active-pscs" aria-describedby="read-declaration-status">
-                      People with significant control (PSC)
-                    </a>
-                  </span>
+        <h2 class="app-task-list__section">
 
-                {% elseif trading === 'yes' %}
-                  <a href="/psc-exemption" aria-describedby="read-declaration-status">
-                    People with significant control (PSC)
-                  </a>
-                </span>
+          Addresses
+        </h2>
 
-              {% endif %}
+        {{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Registered office address"
+      },
+      value: {
+        html: roaHTML
+      }
+    },
+    {
+      key: {
+        text: "Register locations"
+      },
+      value: {
+        html: registerHTML
+      }
 
-            </li>
+    }
+  ]
+}) }}
 
-            <li class="app-task-list__item">
-              <span class="app-task-list__task-name">
-                <a href="/confirmation-statement/shareholders" aria-describedby="read-declaration-status">
-                  Shareholders
-                </a>
-              </span>
-
-            </li>
-
-          </ul>
-        </li>
-
-        <li>
-          <h2 class="app-task-list__section">
-
-            Addresses
-          </h2>
-          <ul class="app-task-list__items">
-            <li class="app-task-list__item">
-              <span class="app-task-list__task-name">
-                <a href="/confirmation-statement/ro" aria-describedby="company-information-status">
-                  Registered office address
-                </a>
-              </span>
-
-            </li>
-            <li class="app-task-list__item">
-              <span class="app-task-list__task-name">
-                <a href="/confirmation-statement/registers" aria-describedby="contact-details-status">
-                  Register locations
-                </a>
-              </span>
-
-            </li>
-
-          </ul>
-        </li>
-      </ol>
+      </div>
     </div>
-  </div>
 
-{% elseif scenario.company.type === 'LLP' %}
-
-  You have checked
-  {{result}}
-  of 5 sections</p>
-
-<ol class="app-task-list">
-
-  <li>
+  {% elseif scenario.company.type === 'LLP' %}
     <h2 class="app-task-list__section">
 
       People
     </h2>
-    <ul class="app-task-list__items">
-      <li class="app-task-list__item">
-        <span class="app-task-list__task-name">
-          <a href="/confirmation-statement/active-members" aria-describedby="eligibility-status">
-            Members
-          </a>
-        </span>
 
-      </li>
+    {{ govukSummaryList({
+     rows: [
+     {
+     key: {
+      text: "Members"
+     },
+     value: {
+      html: memberHTML
+     }
+     },
+     {
+     key: {
+      text: "People with significant control (PSC)"
+     },
+     value: {
+      html: pscsHTML
+    }
+     }
+     ]
+     }) }}
 
-      <li class="app-task-list__item">
-        <span class="app-task-list__task-name">
-          {% if trading === 'no' %}
-            <a href="/confirmation-statement/active-pscs" aria-describedby="read-declaration-status">
-              People with significant control (PSC)
-            </a>
-          </span>
+    <h2 class="app-task-list__section">
 
-        {% elseif trading === 'yes' %}
-          <a href="/psc-exemption" aria-describedby="read-declaration-status">
-            People with significant control (PSC)
-          </a>
-        </span>
+      Addresses
+    </h2>
 
-      {% endif %}
+    {{ govukSummaryList({
+rows: [
+{
+key: {
+  text: "Registered office address"
+},
+value: {
+  html: roaHTML
+}
+},
+{
+key: {
+  text: "Register locations"
+},
+value: {
+  html: registerHTML
+}
 
-    </li>
+}
+]
+}) }}
 
-  </ul>
-</li>
-
-<li>
-  <h2 class="app-task-list__section">
-
-    Addresses
-  </h2>
-  <ul class="app-task-list__items">
-    <li class="app-task-list__item">
-      <span class="app-task-list__task-name">
-        <a href="/confirmation-statement/ro" aria-describedby="company-information-status">
-          Registered office address
-        </a>
-      </span>
-
-    </li>
-    <li class="app-task-list__item">
-      <span class="app-task-list__task-name">
-        <a href="/confirmation-statement/registers" aria-describedby="contact-details-status">
-          Register locations
-        </a>
-      </span>
-
-    </li>
-
-  </ul>
-</li>
-
-<li>
-  <h2 class="app-task-list__section">
-    Confirm and submit
-  </h2>
-  <ul class="app-task-list__items">
-    <li class="app-task-list__item">
-      <span class="app-task-list__task-name">
-        {% if result === 4 %}
-          <a href="/confirmation-statement/review">Submit and pay</a>
-        </span>
-        <strong class="govuk-tag govuk-tag--grey app-task-list__tag" id="submit-pay-status">Not started</strong>
-      {% else %}
-        Review statement and pay
-      </span>
-      <strong class="govuk-tag govuk-tag--grey app-task-list__tag" id="submit-pay-status">Cannot start yet</strong>
-    {% endif %}
-
-  </li>
-</ul>
-</li>
-</ol>
-
-</div>
+  </div>
 </div>
 {% endif %}
 
