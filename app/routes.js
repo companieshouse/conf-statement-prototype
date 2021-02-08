@@ -6,20 +6,17 @@ const moment = require('moment')
 
 module.exports = router
 router.get('/', function (req, res) {
-  req.session.scenario = {}
   res.render('index')
 })
 // filter journey
 
 router.get('/start-2', function (req, res) {
-  req.session.scenario = {}
   res.render('start-2')
 })
 router.post('/start-2', function (req, res) {
   res.redirect('/limited-company')
 })
 router.get('/limited-company', function (req, res) {
-  req.session.scenario = {}
   res.render('limited-company')
 })
 router.post('/limited-company', function (req, res) {
@@ -35,7 +32,6 @@ router.post('/limited-company', function (req, res) {
   }
 })
 router.get('/more-than-5-officers', function (req, res) {
-  req.session.scenario = {}
   res.render('more-than-5-officers')
 })
 router.post('/more-than-5-officers', function (req, res) {
@@ -51,7 +47,6 @@ router.post('/more-than-5-officers', function (req, res) {
   }
 })
 router.get('/more-than-5-shareholders', function (req, res) {
-  req.session.scenario = {}
   res.render('more-than-5-shareholders')
 })
 router.post('/more-than-5-shareholders', function (req, res) {
@@ -70,14 +65,13 @@ router.post('/more-than-5-shareholders', function (req, res) {
 router.get('/your-filings', function (req, res) {
   var scenario = req.session.scenario
   var moment = require('moment') // require
-  req.session.scenario = {}
+
   res.render('your-filings', {
     scenario: scenario,
     moment: moment().format('DD MMMM yyy h:mm a')
   })
 })
 router.get('/start', function (req, res) {
-  req.session.scenario = {}
   res.render('start')
 })
 router.post('/start', function (req, res) {
@@ -92,7 +86,6 @@ router.post('/sign-in', function (req, res) {
   res.redirect('/company-number')
 })
 router.get('/company-number', function (req, res) {
-  req.session.scenario = {}
   res.render('company-number')
 })
 
@@ -713,7 +706,18 @@ router.get('/confirmation-statement/review', function (req, res) {
     email: email
   })
 })
+router.get('/print-confirmation-statement-review', function (req, res) {
+  var date = new Date()
+  var email = req.session.data['email']
+  var moment = require('moment') // require
 
+  res.render('print-confirmation-statement-review', {
+    scenario: req.session.scenario,
+    date: date,
+    moment: moment().format('DD MMMM yyy'),
+    email: email
+  })
+})
 router.get('/review-payment', function (req, res) {
   var moment = require('moment') // require
   var email = req.session.data['email']
