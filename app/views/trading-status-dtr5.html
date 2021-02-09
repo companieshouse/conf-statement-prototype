@@ -3,7 +3,7 @@
 {% block pageTitle %}
   Company trading details
 {% endblock %}
-
+{% block signOut %}{% endblock %}
 {% block backLink %}
   {{ govukBackLink({
     text: "Back",
@@ -29,7 +29,7 @@
           name: "trading-dtr5",
           fieldset: {
             legend: {
-              text: "Has the company been subject to a DTR5 throughout this confirmation period?",
+              text: "Has the company been subject to DTR5 throughout this confirmation period?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
