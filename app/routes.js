@@ -68,7 +68,7 @@ router.get('/your-filings', function (req, res) {
 
   res.render('your-filings', {
     scenario: scenario,
-    moment: moment().format('DD MMMM yyy h:mm a')
+    moment: moment().format('D MMMM yyy h:mm a')
   })
 })
 router.get('/start', function (req, res) {
@@ -176,7 +176,7 @@ router.get('/task-list', function (req, res) {
     completedTasks: completedTasks,
     email: email,
     exemption: exemption,
-    moment: moment().format('DD MMMM yyy'),
+    moment: moment().format('D MMMM yyy'),
     officers: officers,
     psc: psc,
     pscStatement: pscStatement,
@@ -701,7 +701,7 @@ router.get('/confirmation-statement/review', function (req, res) {
   res.render('confirmation-statement/review', {
     scenario: req.session.scenario,
     date: date,
-    moment: moment().format('DD MMMM yyy'),
+    moment: moment().format('D MMMM yyy'),
     exemption: exemption,
     email: email
   })
@@ -714,7 +714,7 @@ router.get('/print-confirmation-statement-review', function (req, res) {
   res.render('print-confirmation-statement-review', {
     scenario: req.session.scenario,
     date: date,
-    moment: moment().format('DD MMMM yyy'),
+    moment: moment().format('D MMMM yyy'),
     email: email
   })
 })
@@ -724,7 +724,7 @@ router.get('/review-payment', function (req, res) {
 
   res.render('review-payment', {
     scenario: req.session.scenario,
-    moment: moment().format('DD MMMM yyy'),
+    moment: moment().format('D MMMM yyy'),
     email: email
   })
 })
