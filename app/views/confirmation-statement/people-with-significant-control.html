@@ -19,15 +19,12 @@
     <div class="govuk-grid-column-three-quarters">
 
       <form action="" method="post">
-        <h1 class="govuk-heading-l">Check the people with significant control (PSC) details</h1>
+        <h1 class="govuk-heading-l">Check the PSC details</h1>
         {% if psc === 'no' %}
           {{ govukInsetText({
   html: "A filing to update these details has been received. You can continue filing this confirmation statement, even if the change is not yet reflected on this page." }) }}
         {% endif %}
-        {{ govukDetails({
-  summaryText: "More about PSCs",
-  html: pscDetails
-}) }}
+
         {% if scenario.company.pscs === '1' %}
           <h2 class="govuk-heading-m">1 individual person</h2>
         {% else %}
@@ -127,9 +124,6 @@
 text: "Continue"
 }) }}
       </form>
-      <p>
-        <a href="/sign-out">Save and sign out</a>
-      </p>
     </div>
   </div>
 {% endblock %}

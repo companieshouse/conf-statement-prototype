@@ -16,29 +16,40 @@
     <div class="govuk-grid-column-three-quarters">
 
       <form action="" method="post">
-        <h1 class="govuk-heading-l">Check the active member</h1>
+        <h1 class="govuk-heading-l">Check the active
+          {% if scenario.company.members === '1' %}member{% elseif scenario.company.members === '5' %}members{% endif %}
+        </h1>
         {% if activeMembers === 'no' %}
           {{ govukInsetText({
   html: "A filing to update these details has been received. You can continue filing this confirmation statement, even if the change is not yet reflected on this page." }) }}
         {% endif %}
 
-        <h2 class="govuk-heading-m">1 Member</h2>
-        {% set memberHTML %}
+        {% if scenario.company.members === '1' %}
+          <h2 class="govuk-heading-m">{{scenario.company.members}}
+            Member</h2>
+          {% set memberHTML %}
 
-        Irving, Kyrie
+          Irving, Kyrie
 
-    </ul>
-    {% endset %}
-    {% set member2HTML %}
-    <ul class="govuk-list govuk-list--bullet">
-      <li>Fran Francis</li>
-      <li>Appointed: 17 March 2012</li>
-      <li>Date of birth: May 1990</li>
-      <li>Correspondence address:<br>2 Nets Way<br>Newcastle<br>NE2 3BB</li>
-    </ul>
-    {% endset %}
+          {% endset %}
+        {% elseif scenario.company.members === '5' %}
+          <h2 class="govuk-heading-m">{{scenario.company.members}}
+            Members</h2>
+          {% set memberHTML %}
+          <ul class="govuk-list govuk-list--bullet">
+            <li>Irving, Kyrie</li>
+            <li>Durant, Kevin</li>
+            <li>Harris, Joe</li>
+            <li>Harden, James</li>
+            <li>Jordan, DeAndre</li>
+          </ul>
+          {% endset %}
+        {% endif %}
 
-    {{ govukTable({
+        {% set headingHTML %}
+        {% if scenario.company.members === '1' %}Is the member still active?{% elseif scenario.company.members === '5' %}Are the members still active?{% endif %}
+        {% endset %}
+        {{ govukTable({
 
   rows: [
     [
@@ -48,14 +59,14 @@
     ]
   ]
 }) }}
-    {% if activeMembers === 'yes' %}
-      {{ govukRadios({
+        {% if activeMembers === 'yes' %}
+          {{ govukRadios({
           classes: "govuk-radios--inline",
           idPrefix: "active-members",
           name: "active-members",
           fieldset: {
             legend: {
-              html: "Is the member still active?",
+              html: headingHTML,
               isPageHeading: false,
               classes: "govuk-fieldset__legend--l"
             }
@@ -72,14 +83,14 @@
             }
           ]
         }) }}
-    {% elseif activeMembers === 'no' %}
-      {{ govukRadios({
+        {% elseif activeMembers === 'no' %}
+          {{ govukRadios({
                   classes: "govuk-radios--inline",
                   idPrefix: "active-members",
                   name: "active-members",
                   fieldset: {
                     legend: {
-                      html: "Is the member still active?",
+                      html: headingHTML,
                       isPageHeading: false,
                       classes: "govuk-fieldset__legend--l"
                     }
@@ -96,14 +107,14 @@
                     }
                   ]
                 }) }}
-    {% else %}
-      {{ govukRadios({
+        {% else %}
+          {{ govukRadios({
                               classes: "govuk-radios--inline",
                               idPrefix: "active-members",
                               name: "active-members",
                               fieldset: {
                                 legend: {
-                                  html: "Is the member still active?",
+                                  html: headingHTML,
                                   isPageHeading: false,
                                   classes: "govuk-fieldset__legend--l"
                                 }
@@ -119,15 +130,15 @@
                                 }
                               ]
                             }) }}
-    {% endif %}
+        {% endif %}
 
-    {{ govukButton({
+        {{ govukButton({
 text: "Continue"
 }) }}
-  </form>
-  <p>
-    <a href="/sign-out">Save and sign out</a>
-  </p>
-</div>
-</div>
+      </form>
+      <p>
+        <a href="/sign-out">Save and sign out</a>
+      </p>
+    </div>
+  </div>
 {% endblock %}

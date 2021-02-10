@@ -16,29 +16,49 @@
     <div class="govuk-grid-column-three-quarters">
 
       <form action="" method="post">
-        <h1 class="govuk-heading-l">Check the active PSC</h1>
+        {% set pscDetails %}
+        <p>A person with significant control (PSC) is someone who owns or controls the company. For example, anyone with voting rights or more than 25% of the shares. For more information,
+          <a href="https://www.gov.uk/guidance/people-with-significant-control-pscs">read the guidance on PSCs</a>.</p>
+        {% endset %}
+        <h1 class="govuk-heading-l">Check the active
+          {% if scenario.company.pscs === '1' %}people with significant control{% elseif scenario.company.pscs === '5' %}people with significant control
+          {% endif %}
+        </h1>
+
         {% if activePsc === 'no' %}
           {{ govukInsetText({
   html: "A filing to update these details has been received. You can continue filing this confirmation statement, even if the change is not yet reflected on this page." }) }}
         {% endif %}
+        {{ govukDetails({
+        summaryText: "More about PSCs",
+        html: pscDetails
+        }) }}
+        {% if scenario.company.pscs === '1' %}
+          <h2 class="govuk-heading-m">{{scenario.company.pscs}}
+            PSC</h2>
+          {% set pscHTML %}
 
-        <h2 class="govuk-heading-m">1 PSC</h2>
-        {% set pscHTML %}
+          Irving, Kyrie
 
-        Irving, Kyrie
+          {% endset %}
+        {% elseif scenario.company.pscs === '5' %}
+          <h2 class="govuk-heading-m">{{scenario.company.pscs}}
+            PSCs</h2>
+          {% set pscHTML %}
+          <ul class="govuk-list govuk-list--bullet">
+            <li>Irving, Kyrie</li>
+            <li>Durant, Kevin</li>
+            <li>Harris, Joe</li>
+            <li>Harden, James</li>
+            <li>Jordan, DeAndre</li>
+          </ul>
+          {% endset %}
+        {% endif %}
 
-    </ul>
-    {% endset %}
-    {% set psc2HTML %}
-    <ul class="govuk-list govuk-list--bullet">
-      <li>Fran Francis</li>
-      <li>Appointed: 17 March 2012</li>
-      <li>Date of birth: May 1990</li>
-      <li>Correspondence address:<br>2 Nets Way<br>Newcastle<br>NE2 3BB</li>
-    </ul>
-    {% endset %}
-
-    {{ govukTable({
+        {% set headingHTML %}
+        {% if scenario.company.pscs === '1' %}Is the PSC still active?{% elseif scenario.company.pscs === '5' %}Are the PSCs still active?{% endif %}
+        {% endset %}
+        {{ govukTable({
 
   rows: [
     [
@@ -48,14 +68,14 @@
     ]
   ]
 }) }}
-    {% if activePscs === 'yes' %}
-      {{ govukRadios({
+        {% if activePscs === 'yes' %}
+          {{ govukRadios({
       classes: "govuk-radios--inline",
       idPrefix: "active-pscs",
       name: "active-pscs",
       fieldset: {
         legend: {
-          html: "Is the PSC still active?",
+          html: headingHTML,
           isPageHeading: false,
           classes: "govuk-fieldset__legend--l"
         }
@@ -72,14 +92,14 @@
         }
       ]
     }) }}
-    {% elseif activePscs === 'no' %}
-      {{ govukRadios({
+        {% elseif activePscs === 'no' %}
+          {{ govukRadios({
           classes: "govuk-radios--inline",
           idPrefix: "active-pscs",
           name: "active-pscs",
           fieldset: {
             legend: {
-              html: "Is the PSC still active?",
+              html: headingHTML,
               isPageHeading: false,
               classes: "govuk-fieldset__legend--l"
             }
@@ -96,14 +116,14 @@
             }
           ]
         }) }}
-    {% else %}
-      {{ govukRadios({
+        {% else %}
+          {{ govukRadios({
               classes: "govuk-radios--inline",
               idPrefix: "active-pscs",
               name: "active-pscs",
               fieldset: {
                 legend: {
-                  html: "Is the PSC still active?",
+                  html: headingHTML,
                   isPageHeading: false,
                   classes: "govuk-fieldset__legend--l"
                 }
@@ -119,15 +139,15 @@
                 }
               ]
             }) }}
-    {% endif %}
+        {% endif %}
 
-    {{ govukButton({
+        {{ govukButton({
 text: "Continue"
 }) }}
-  </form>
-  <p>
-    <a href="/sign-out">Save and sign out</a>
-  </p>
-</div>
-</div>
+      </form>
+      <p>
+        <a href="/sign-out">Save and sign out</a>
+      </p>
+    </div>
+  </div>
 {% endblock %}
