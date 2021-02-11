@@ -17,6 +17,7 @@ module.exports = {
     nextCsDue: '16 February 2022',
     directors: '1',
     pscs: '1',
-    register: 'ro'
+    register: 'ro',
+    shareholders: '1'
   }
 }
