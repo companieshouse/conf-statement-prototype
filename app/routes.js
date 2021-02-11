@@ -111,9 +111,15 @@ router.get('/authenticate', function (req, res) {
 })
 router.post('/authenticate', function (req, res) {
   var authCode = req.body.authCode
+  var scenario = req.session.scenario
 
   authCode = authCode.toUpperCase()
-  res.redirect('/trading-status')
+
+  if (scenario.company.type === 'LLP') {
+    res.redirect('/task-list')
+  } else {
+    res.redirect('/trading-status')
+  }
 })
 
 router.get('/trading-status', function (req, res) {
