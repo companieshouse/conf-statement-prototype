@@ -28,7 +28,7 @@
             {% set result = result + 1
  %}
           {% endif %}
-          {% if shareholderCapital === 'yes' %}
+          {% if statementOfCapital === 'yes' %}
             {% set result = result + 1
  %}
           {% endif %}
@@ -47,7 +47,7 @@
           {% if scenario.company.type === 'LTD' %}
             You have checked
             {{result}}
-            of 8 sections</p>
+            of 7 sections</p>
 
           <ol class="app-task-list">
             <li>
@@ -79,11 +79,11 @@
                       Statement of capital
                     </a>
                   </span>
-                  {% if shareholderCapital === 'yes' %}
+                  {% if statementOfCapital === 'yes' %}
                     <strong class="govuk-tag app-task-list__tag" id="eligibility-status">
                       Checked</strong>
 
-                  {% elseif shareholderCapital === 'no' %}
+                  {% elseif statementOfCapital === 'no' %}
                     <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="eligibility-status">In progress</strong>
 
                   {% else %}
@@ -109,7 +109,7 @@
                     <strong class="govuk-tag app-task-list__tag" id="eligibility-status">
                       Checked</strong>
 
-                  {% elseif additionalOfficers === 'yes' or officers === 'no' or activeDirectors === 'no' %}
+                  {% elseif additionalOfficers === 'yes' or officers === 'no' or activeOfficers === 'no' %}
                     <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="eligibility-status">In progress</strong>
 
                   {% else %}
@@ -245,7 +245,7 @@
 
   You have checked
   {{result}}
-  of 5 sections</p>
+  of 4 sections</p>
 
 <ol class="app-task-list">
 

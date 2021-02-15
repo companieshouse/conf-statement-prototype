@@ -151,7 +151,7 @@ router.get('/task-list', function (req, res) {
   var completedTasks = req.session.data['completed']
   var email = req.session.data['email']
   var exemption = req.session.data['exemption']
-  var activeDirectors = req.session.data['active-directors']
+  var activeOfficers = req.session.data['active-officers']
   var activePscs = req.session.data['active-pscs']
   var activeMembers = req.session.data['active-members']
   var additionalPscs = req.session.data['additional-pscs']
@@ -165,14 +165,14 @@ router.get('/task-list', function (req, res) {
   var register = req.session.data['registers']
   var result = 0
   var ro = req.session.data['registered-office-address']
-  var shareholderCapital = req.session.data['shareholder-capital']
+  var statementOfCapital = req.session.data['statement-of-capital']
   var shareholders = req.session.data['shareholders']
   var sic = req.session.data['sic']
   var trading = req.session.data['trading-status']
 
   res.render('task-list', {
     scenario: req.session.scenario,
-    activeDirectors: activeDirectors,
+    activeOfficers: activeOfficers,
     activePscs: activePscs,
     additionalPscs: additionalPscs,
     additionalOfficers: additionalOfficers,
@@ -189,7 +189,7 @@ router.get('/task-list', function (req, res) {
     register: register,
     result: result,
     ro: ro,
-    shareholderCapital: shareholderCapital,
+    statementOfCapital: statementOfCapital,
     shareholders: shareholders,
     sic: sic,
     trading: trading
@@ -237,20 +237,20 @@ router.post('/incorrect-information/wrong-ro', function (req, res) {
   res.redirect('/task-list')
 })
 // officers start //
-router.get('/confirmation-statement/active-directors', function (req, res) {
+router.get('/confirmation-statement/active-officers', function (req, res) {
   var email = req.session.data['email']
-  var activeDirectors = req.session.data['active-directors']
+  var activeOfficers = req.session.data['active-officers']
 
-  res.render('confirmation-statement/active-directors', {
+  res.render('confirmation-statement/active-officers', {
     scenario: req.session.scenario,
     email: email,
-    activeDirectors: activeDirectors
+    activeOfficers: activeOfficers
   })
 })
-router.post('/confirmation-statement/active-directors', function (req, res) {
-  var activeDirectors = req.session.data['active-directors']
+router.post('/confirmation-statement/active-officers', function (req, res) {
+  var activeOfficers = req.session.data['active-officers']
 
-  switch (activeDirectors) {
+  switch (activeOfficers) {
     case 'yes':
       res.redirect('/confirmation-statement/officers')
       break
@@ -470,18 +470,18 @@ router.get('/incorrect-information/wrong-sic', function (req, res) {
 router.post('/incorrect-information/wrong-sic', function (req, res) {
   res.redirect('/task-list')
 })
-router.get('/confirmation-statement/shareholder-capital', function (req, res) {
+router.get('/confirmation-statement/statement-of-capital', function (req, res) {
   var email = req.session.data['email']
-  res.render('confirmation-statement/shareholder-capital', {
+  res.render('confirmation-statement/statement-of-capital', {
     scenario: req.session.scenario,
     email: email
   })
 })
-router.post('/confirmation-statement/shareholder-capital', function (req, res) {
-  var shareholderCapital = req.session.data['shareholder-capital']
+router.post('/confirmation-statement/statement-of-capital', function (req, res) {
+  var statementOfCapital = req.session.data['statement-of-capital']
   var trading = req.session.data['trading']
 
-  switch (shareholderCapital) {
+  switch (statementOfCapital) {
     case 'yes':
       if (trading === 'yes') {
         res.redirect('/task-list')
@@ -490,18 +490,18 @@ router.post('/confirmation-statement/shareholder-capital', function (req, res) {
       }
       break
     case 'no':
-      res.redirect('/incorrect-information/wrong-shareholder-capital')
+      res.redirect('/incorrect-information/wrong-statement-of-capital')
       break
   }
 })
-router.get('/incorrect-information/wrong-shareholder-capital', function (req, res) {
+router.get('/incorrect-information/wrong-statement-of-capital', function (req, res) {
   var email = req.session.data['email']
-  res.render('incorrect-information/wrong-shareholder-capital', {
+  res.render('incorrect-information/wrong-statement-of-capital', {
     scenario: req.session.scenario,
     email: email
   })
 })
-router.post('/incorrect-information/wrong-shareholder-capital', function (req, res) {
+router.post('/incorrect-information/wrong-statement-of-capital', function (req, res) {
   res.redirect('/task-list')
 })
 router.get('/confirmation-statement/shareholders', function (req, res) {

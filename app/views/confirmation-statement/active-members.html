@@ -85,7 +85,7 @@
         }) }}
         {% elseif activeMembers === 'no' %}
           {{ govukRadios({
-                  classes: "govuk-radios--inline",
+                  classes: "govuk-radios",
                   idPrefix: "active-members",
                   name: "active-members",
                   fieldset: {
@@ -104,6 +104,10 @@
                       value: "no",
                       text: "No",
                       checked: true
+                    },
+                    {
+                      value: "yes",
+                      text: "No, but i've recently filed an update"
                     }
                   ]
                 }) }}
