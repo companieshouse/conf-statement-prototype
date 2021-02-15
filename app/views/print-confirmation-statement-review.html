@@ -94,88 +94,31 @@ html: scenario.company.address | nl2br
 
           Nature of business
         </h2>
-        {{ govukSummaryList({
-  rows: [
-    {
-      key: {
-        text: "SIC codes"
-      },
-      value: {
-        html: sicHTML
-      }
-    },
-    {
-      key: {
-        text: "Statement of capital"
-      },
-      value: {
-        html: statementHTML
-      }
 
-    }
-  ]
-}) }}
+        <h3 class="govuk-heading-s">SIC codes</h3>
+        {% include "includes/confirmation-statement-details/sic.html" %}
+        <h3 class="govuk-heading-s">Statement of capital</h3>
+        {% include "includes/confirmation-statement-details/statement-of-capital.html" %}
 
         <h2 class="app-task-list__section">
 
           People
         </h2>
-
-        {{ govukSummaryList({
-           rows: [
-           {
-           key: {
-            text: "Officers"
-           },
-           value: {
-            html: officerHTML
-           }
-           },
-           {
-           key: {
-            text: "People with significant control (PSC)"
-           },
-           value: {
-            html: pscsHTML
-          }
-           },
-           {
-           key: {
-            text: "Shareholders"
-           },
-           value: {
-            html: shareholderHTML
-           }
-         }
-           ]
-           }) }}
+        <h3 class="govuk-heading-s">Officers</h3>
+        {% include "includes/confirmation-statement-details/officers.html" %}
+        <h3 class="govuk-heading-s">People with significant control (PSCs)</h3>
+        {% include "includes/confirmation-statement-details/pscs.html" %}
+        <h3 class="govuk-heading-s">Shareholders</h3>
+        {% include "includes/confirmation-statement-details/shareholders.html" %}
 
         <h2 class="app-task-list__section">
 
           Addresses
         </h2>
-
-        {{ govukSummaryList({
-  rows: [
-    {
-      key: {
-        text: "Registered office address"
-      },
-      value: {
-        html: roaHTML
-      }
-    },
-    {
-      key: {
-        text: "Register locations"
-      },
-      value: {
-        html: registerHTML
-      }
-
-    }
-  ]
-}) }}
+        <h3 class="govuk-heading-s">Registered office address</h3>
+        {% include "includes/confirmation-statement-details/roa.html" %}
+        <h3 class="govuk-heading-s">Register locations</h3>
+        {% include "includes/confirmation-statement-details/registers.html" %}
 
       </div>
     </div>
@@ -185,54 +128,19 @@ html: scenario.company.address | nl2br
 
       People
     </h2>
-
-    {{ govukSummaryList({
-     rows: [
-     {
-     key: {
-      text: "Members"
-     },
-     value: {
-      html: memberHTML
-     }
-     },
-     {
-     key: {
-      text: "People with significant control (PSC)"
-     },
-     value: {
-      html: pscsHTML
-    }
-     }
-     ]
-     }) }}
+    <h3 class="govuk-heading-s">Members</h3>
+    {% include "includes/confirmation-statement-details/members.html" %}
+    <h3 class="govuk-heading-s">People with significant control (PSCs)</h3>
+    {% include "includes/confirmation-statement-details/pscs.html" %}
 
     <h2 class="app-task-list__section">
 
       Addresses
     </h2>
-
-    {{ govukSummaryList({
-rows: [
-{
-key: {
-  text: "Registered office address"
-},
-value: {
-  html: roaHTML
-}
-},
-{
-key: {
-  text: "Register locations"
-},
-value: {
-  html: registerHTML
-}
-
-}
-]
-}) }}
+    <h3 class="govuk-heading-s">Registered office address</h3>
+    {% include "includes/confirmation-statement-details/roa.html" %}
+    <h3 class="govuk-heading-s">Register locations</h3>
+    {% include "includes/confirmation-statement-details/registers.html" %}
 
   </div>
 </div>

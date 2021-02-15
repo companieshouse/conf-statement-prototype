@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Review the shareholder capital
+  Review the statement of capital
 {% endblock %}
 
 {% block backLink %}
@@ -22,8 +22,8 @@
         {% if shareholderCapital === 'yes' %}
           {{ govukRadios({
           classes: "govuk-radios--inline",
-          idPrefix: "shareholder-capital",
-          name: "shareholder-capital",
+          idPrefix: "statement-of-capital",
+          name: "statement-of-capital",
           fieldset: {
             legend: {
               html: "Is the statement of capital correct?",
@@ -46,8 +46,8 @@
         {% elseif shareholderCapital === 'no' %}
           {{ govukRadios({
           classes: "govuk-radios--inline",
-          idPrefix: "shareholder-capital",
-          name: "shareholder-capital",
+          idPrefix: "statement-of-capital",
+          name: "statement-of-capital",
           fieldset: {
             legend: {
               html: "Is the statement of capital correct?",
@@ -70,8 +70,8 @@
         {% else %}
           {{ govukRadios({
           classes: "govuk-radios--inline",
-          idPrefix: "shareholder-capital",
-          name: "shareholder-capital",
+          idPrefix: "statement-of-capital",
+          name: "statement-of-capital",
           fieldset: {
             legend: {
               html: "Is the statement of capital correct?",
