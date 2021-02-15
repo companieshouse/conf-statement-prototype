@@ -47,7 +47,7 @@
         {% endif %}
 
         {% set headingHTML %}
-        {% if scenario.company.members === '1' %}Is the member still active?{% elseif scenario.company.members === '5' %}Are the members still active?{% endif %}
+        {% if scenario.company.members === '1' %}Is the member still active?{% elseif scenario.company.members === '5' %}Are all the members still active?{% endif %}
         {% endset %}
         {{ govukTable({
 
@@ -107,7 +107,7 @@
                     },
                     {
                       value: "yes",
-                      text: "No, but i've recently filed an update"
+                      text: "No, but I've recently filed an update"
                     }
                   ]
                 }) }}
