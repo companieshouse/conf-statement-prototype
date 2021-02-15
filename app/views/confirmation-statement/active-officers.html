@@ -17,7 +17,7 @@
 
       <form action="" method="post">
         <h1 class="govuk-heading-l">Check the active director</h1>
-        {% if activeDirectors === 'no' %}
+        {% if activeOfficers === 'no' %}
           {{ govukInsetText({
   html: "A filing to update these details has been received. You can continue filing this confirmation statement, even if the change is not yet reflected on this page." }) }}
         {% endif %}
@@ -51,8 +51,8 @@
     {% if activeDirectors === 'yes' %}
       {{ govukRadios({
           classes: "govuk-radios--inline",
-          idPrefix: "active-directors",
-          name: "active-directors",
+          idPrefix: "active-officers",
+          name: "active-officers",
           fieldset: {
             legend: {
               html: "Is the director still active?",
@@ -75,8 +75,8 @@
     {% elseif activeDirectors === 'no' %}
       {{ govukRadios({
                   classes: "govuk-radios--inline",
-                  idPrefix: "active-directors",
-                  name: "active-directors",
+                  idPrefix: "active-officers",
+                  name: "active-officers",
                   fieldset: {
                     legend: {
                       html: "Is the director still active?",
@@ -99,8 +99,8 @@
     {% else %}
       {{ govukRadios({
                               classes: "govuk-radios--inline",
-                              idPrefix: "active-directors",
-                              name: "active-directors",
+                              idPrefix: "active-officers",
+                              name: "active-officers",
                               fieldset: {
                                 legend: {
                                   html: "Is the director still active?",
@@ -125,9 +125,6 @@
 text: "Continue"
 }) }}
   </form>
-  <p>
-    <a href="/sign-out">Save and sign out</a>
-  </p>
 </div>
 </div>
 {% endblock %}

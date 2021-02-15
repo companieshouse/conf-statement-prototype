@@ -3,7 +3,7 @@
 {% block pageTitle %}
   Confirm the company
 {% endblock %}
-
+{% block signOut %}{% endblock %}
 {% block backLink %}
   {{ govukBackLink({
     text: "Back",
@@ -18,7 +18,7 @@
       <h2 class="govuk-heading-l">{{scenario.company.name}}</h2>
       <form action="" method="post">
 
-        {% set warningHTML %}
+        {% set notDueWarningHTML %}
         <p>
           You are not due to file a confirmation statement. If you file a confirmation statement today, it will show the date as
           <b>7 January 2021</b>
@@ -29,6 +29,12 @@
           <a href="https://www.youtube.com/watch?v=dxN4djaAE3k">This video explains review periods and payment periods (opens in new tab).</a>
 
         </p>
+        {% endset %}
+        {% set coTypeWarningHTML %}
+        This company does not meet all the criteria, you will need to file a confirmation statement using our
+        <a href="https://ewf.companieshouse.gov.uk//seclogin?tc=1">WebFiling service</a>.<br><br>
+        This service can only be used to file confirmation statements for private limited companies of a certain size.
+
         {% endset %}
         {{ govukTable({
 
@@ -95,16 +101,29 @@
 }) }}
         {% if scenario.company.csDue === "notdue" %}
           {{ govukWarningText({
-  html: warningHTML,
+  html: notDueWarningHTML,
   iconFallbackText: "Warning"
 }) }}
         {% else %}
         {% endif %}
-
-        {{ govukButton({
+        {% if scenario.company.type === "PLC" %}
+          {{ govukWarningText({
+  html: coTypeWarningHTML,
+  iconFallbackText: "Warning"
+}) }}
+        {% else %}
+        {% endif %}
+        {% if scenario.company.type === 'PLC' %}
+          {{ govukButton({
+text: "Confirm and continue",
+href: "/use-webfiling"
+}) }}
+        {% else %}
+          {{ govukButton({
 text: "Confirm and continue",
 href: "/authenticate"
 }) }}
+        {% endif %}
         <p>
           <a href="/company-number">Choose a different company</a>
         </p>

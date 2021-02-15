@@ -7,7 +7,7 @@
 {% block backLink %}
   {{ govukBackLink({
     text: "Back",
-    href: "/confirmation-statement/active-directors"
+    href: "/confirmation-statement/active-officers"
   }) }}
 {% endblock %}
 
@@ -21,28 +21,15 @@
           {{ govukInsetText({
   html: "A filing to update these details has been received. You can continue filing this confirmation statement, even if the change is not yet reflected on this page." }) }}
         {% endif %}
+        {% if scenario.company.directors === '1' %}
+          <h2 class="govuk-heading-m">1 Director</h2>
+        {% else %}
+          <h2 class="govuk-heading-m">{{scenario.company.directors}}
+            Directors</h2>
+        {% endif %}
 
-        <h2 class="govuk-heading-m">1 Director</h2>
         {% set directorHTML %}
-        <ul class="govuk-list govuk-list--bullet">
-          <li>
-            <strong>Irving, Kyrie</strong>
-          </li>
-          <li>Nationality: British</li>
-          <li>Date of birth: 1 January 1988</li>
-          <li>Occupation: Director</li>
-          <li>Correspondence address: 2 Nets Way, Newcastle, NE2 3BB</li>
-          <li>Usual residential address: 2 Nets Way, Newcastle, NE2 3BB</li>
-
-        </ul>
-        {% endset %}
-        {% set director2HTML %}
-        <ul class="govuk-list govuk-list--bullet">
-          <li>Fran Francis</li>
-          <li>Appointed: 17 March 2012</li>
-          <li>Date of birth: May 1990</li>
-          <li>Correspondence address:<br>2 Nets Way<br>Newcastle<br>NE2 3BB</li>
-        </ul>
+        {% include "includes/confirmation-statement-details/officers.html" %}
         {% endset %}
 
         {{ govukTable({
@@ -141,9 +128,6 @@
 text: "Continue"
 }) }}
       </form>
-      <p>
-        <a href="/sign-out">Save and sign out</a>
-      </p>
     </div>
   </div>
 {% endblock %}

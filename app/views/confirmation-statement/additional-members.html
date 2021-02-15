@@ -1,44 +1,39 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Review the people with significant control statement
+  Review the members
 {% endblock %}
 
 {% block backLink %}
   {{ govukBackLink({
     text: "Back",
-    href: "/task-list"
+    href: "/confirmation-statement/members"
   }) }}
 {% endblock %}
 
 {% block content %}
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-three-quarters">
 
       <form action="" method="post">
-
-        {% set pscStatementHTML %}
-        {% if pscStatement === 'no' %}
+        {% if additionalMembers === 'yes' %}
           {{ govukInsetText({
   html: "A filing to update these details has been received. You can continue filing this confirmation statement, even if the change is not yet reflected on this page." }) }}
         {% endif %}
-        No additional statements relating to PSCs are currently held on the public register
-        {% endset %}
-
-        {% if pscStatement === 'yes' %}
+        {% if additionalMembers === 'yes' %}
           {{ govukRadios({
           classes: "govuk-radios--inline",
-          idPrefix: "psc-statement",
-          name: "psc-statement",
+          idPrefix: "additional-members",
+          name: "additional-members",
           fieldset: {
             legend: {
-              html: "Is the PSC statement correct?",
+              html: "Are there any members to appoint?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
           hint: {
-    html: pscStatementHTML
+    text: "This includes directors, corporate directors, secretaries and corporate secretaries."
   },
           items: [
             {
@@ -52,20 +47,20 @@
             }
           ]
         }) }}
-        {% elseif pscStatement === 'no' %}
+        {% elseif additionalMembers === 'no' %}
           {{ govukRadios({
           classes: "govuk-radios--inline",
-          idPrefix: "psc-statement",
-          name: "psc-statement",
+          idPrefix: "additional-members",
+          name: "additional-members",
           fieldset: {
             legend: {
-              html: "Is the PSC statement correct?",
+              html: "Are there any members to appoint?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
           hint: {
-    html: pscStatementHTML
+    text: "This includes all types of members."
   },
           items: [
             {
@@ -82,17 +77,17 @@
         {% else %}
           {{ govukRadios({
           classes: "govuk-radios--inline",
-          idPrefix: "psc-statement",
-          name: "psc-statement",
+          idPrefix: "additional-members",
+          name: "additional-members",
           fieldset: {
             legend: {
-              html: "Is the PSC statement correct?",
+              html: "Are there any members to appoint?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
           hint: {
-    html: pscStatementHTML
+    text: "This includes all types of members."
   },
           items: [
             {

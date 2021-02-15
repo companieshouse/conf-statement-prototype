@@ -1,12 +1,12 @@
 module.exports = {
   company: {
-    name: 'HAPPY HOUSE LTD',
-    number: '00222333',
+    name: 'PARTNERS IN TIME LLP',
+    number: '00888999',
     authCode: '222222',
-    type: 'LTD',
+    type: 'LLP',
     status: 'Active',
     incorporationDate: '1 April 2010',
-    companyType: 'Private Limited Company',
+    companyType: 'Limited liability partnership',
     address: '125 Feather Hedge\nSalisbury\nSP4 7DE',
     sailAddress: '2 Second Place\nPortsmouth\nPO2 2BB',
     actionCode: '5005',
@@ -15,9 +15,9 @@ module.exports = {
     csLast: '16 February 2020',
     csDue: 'due',
     nextCsDue: '16 February 2022',
-    directors: '1',
-    pscs: '1',
-    register: 'ro',
-    shareholders: '1'
+    directors: '0',
+    pscs: '5',
+    members: '5',
+    register: 'SAIL'
   }
 }

@@ -1,0 +1,145 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Review the members
+{% endblock %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/task-list"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-three-quarters">
+
+      <form action="" method="post">
+        <h1 class="govuk-heading-l">Check the active
+          {% if scenario.company.members === '1' %}member{% elseif scenario.company.members === '5' %}members{% endif %}
+        </h1>
+        {% if activeMembers === 'no' %}
+          {{ govukInsetText({
+  html: "A filing to update these details has been received. You can continue filing this confirmation statement, even if the change is not yet reflected on this page." }) }}
+        {% endif %}
+
+        {% if scenario.company.members === '1' %}
+          <h2 class="govuk-heading-m">{{scenario.company.members}}
+            Member</h2>
+          {% set memberHTML %}
+
+          Irving, Kyrie
+
+          {% endset %}
+        {% elseif scenario.company.members === '5' %}
+          <h2 class="govuk-heading-m">{{scenario.company.members}}
+            Members</h2>
+          {% set memberHTML %}
+          <ul class="govuk-list govuk-list--bullet">
+            <li>Irving, Kyrie</li>
+            <li>Durant, Kevin</li>
+            <li>Harris, Joe</li>
+            <li>Harden, James</li>
+            <li>Jordan, DeAndre</li>
+          </ul>
+          {% endset %}
+        {% endif %}
+
+        {% set headingHTML %}
+        {% if scenario.company.members === '1' %}Is the member still active?{% elseif scenario.company.members === '5' %}Are all the members still active?{% endif %}
+        {% endset %}
+        {{ govukTable({
+
+  rows: [
+    [
+      {
+        html: memberHTML
+      }
+    ]
+  ]
+}) }}
+        {% if activeMembers === 'yes' %}
+          {{ govukRadios({
+          classes: "govuk-radios--inline",
+          idPrefix: "active-members",
+          name: "active-members",
+          fieldset: {
+            legend: {
+              html: headingHTML,
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes",
+              checked: true
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+        {% elseif activeMembers === 'no' %}
+          {{ govukRadios({
+                  classes: "govuk-radios",
+                  idPrefix: "active-members",
+                  name: "active-members",
+                  fieldset: {
+                    legend: {
+                      html: headingHTML,
+                      isPageHeading: false,
+                      classes: "govuk-fieldset__legend--l"
+                    }
+                  },
+                  items: [
+                    {
+                      value: "yes",
+                      text: "Yes"
+                    },
+                    {
+                      value: "no",
+                      text: "No",
+                      checked: true
+                    },
+                    {
+                      value: "yes",
+                      text: "No, but I've recently filed an update"
+                    }
+                  ]
+                }) }}
+        {% else %}
+          {{ govukRadios({
+                              classes: "govuk-radios--inline",
+                              idPrefix: "active-members",
+                              name: "active-members",
+                              fieldset: {
+                                legend: {
+                                  html: headingHTML,
+                                  isPageHeading: false,
+                                  classes: "govuk-fieldset__legend--l"
+                                }
+                              },
+                              items: [
+                                {
+                                  value: "yes",
+                                  text: "Yes"
+                                },
+                                {
+                                  value: "no",
+                                  text: "No"
+                                }
+                              ]
+                            }) }}
+        {% endif %}
+
+        {{ govukButton({
+text: "Continue"
+}) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

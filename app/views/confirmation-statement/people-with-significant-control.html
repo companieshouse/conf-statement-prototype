@@ -19,34 +19,21 @@
     <div class="govuk-grid-column-three-quarters">
 
       <form action="" method="post">
-        <h1 class="govuk-heading-l">Check the people with significant control (PSC) details</h1>
+        <h1 class="govuk-heading-l">Check the PSC details</h1>
         {% if psc === 'no' %}
           {{ govukInsetText({
   html: "A filing to update these details has been received. You can continue filing this confirmation statement, even if the change is not yet reflected on this page." }) }}
         {% endif %}
-        {{ govukDetails({
-  summaryText: "More about PSCs",
-  html: pscDetails
-}) }}
-        <h2 class="govuk-heading-m">1 individual person</h2>
 
-        {% set directorHTML %}
-        <ul class="govuk-list govuk-list--bullet">
-          <li>
-            <strong>Irving, Kyrie</strong>
-          </li>
-          <li>Nationality: British</li>
-          <li>Date of birth: 1 January 1988</li>
+        {% if scenario.company.pscs === '1' %}
+          <h2 class="govuk-heading-m">1 individual person</h2>
+        {% else %}
+          <h2 class="govuk-heading-m">{{scenario.company.pscs}}
+            individual people</h2>
+        {% endif %}
 
-          <li>Correspondence address:<br>2 Nets Way<br>Newcastle<br>NE2 3BB</li>
-          <li>Country of residence: United Kingdom</li>
-          <li>Nature of control:
-            <ul class="govuk-list govuk-list">
-              <li>Ownership of voting rights - 75%</li>
-              <li>Ownership of shares - More than 50%</li>
-            </ul>
-          </li>
-        </ul>
+        {% set pscHTML %}
+        {% include "includes/confirmation-statement-details/pscs.html" %}
         {% endset %}
 
         {{ govukTable({
@@ -54,7 +41,7 @@
   rows: [
     [
       {
-        html: directorHTML
+        html: pscHTML
       }
     ]
   ]
@@ -72,9 +59,7 @@
               classes: "govuk-fieldset__legend--l"
             }
           },
-          hint: {
-    html: pscHTML
-  },
+
           items: [
             {
               value: "yes",
@@ -98,9 +83,6 @@
               classes: "govuk-fieldset__legend--l"
             }
           },
-          hint: {
-    html: pscHTML
-  },
           items: [
             {
               value: "yes",
@@ -125,9 +107,6 @@
               classes: "govuk-fieldset__legend--l"
             }
           },
-          hint: {
-        html: pscHTML
-        },
           items: [
             {
               value: "yes",
@@ -145,9 +124,6 @@
 text: "Continue"
 }) }}
       </form>
-      <p>
-        <a href="/sign-out">Save and sign out</a>
-      </p>
     </div>
   </div>
 {% endblock %}

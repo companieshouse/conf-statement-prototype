@@ -6,14 +6,14 @@ module.exports = {
     status: 'Active',
     type: 'PLC',
     incorporationDate: '1 April 2010',
-    companyType: 'Private Limited Company',
+    companyType: 'Public Limited Company',
     address: '126 Feather Hedge<br>Salisbury<br>SP4 7DE',
     sailAddress: '3 Second Place<br>Portsmouth<br>PO2 2BB',
     actionCode: '5005',
     csDate: '2 January 2021',
-    csDueDate: '16 January 2021',
-    csLast: '16 January 2020',
+    csDueDate: '16 February 2021',
+    csLast: '16 February 2020',
     csDue: 'due',
-    nextCsDue: '16 January 2022'
+    nextCsDue: '16 February 2022'
   }
 }

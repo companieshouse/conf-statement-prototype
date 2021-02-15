@@ -1,0 +1,151 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Review the Confirmation Statement
+{% endblock %}
+{% block signOut %}{% endblock %}
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/task-list"
+  }) }}
+{% endblock %}
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Review the Confirmation Statement for
+        <strong>{{scenario.company.name}}</strong>
+      </h1>
+      {% set sicHTML %}
+      {% include "includes/confirmation-statement-details/sic.html" %}
+      {% endset %}
+      {% set statementHTML %}
+      {% include "includes/confirmation-statement-details/statement-of-capital.html" %}
+      {% endset %}
+      {% set officerHTML %}
+      {% include "includes/confirmation-statement-details/officers.html" %}
+      {% endset %}
+      {% set memberHTML %}
+      {% include "includes/confirmation-statement-details/members.html" %}
+      {% endset %}
+      {% set pscsHTML %}
+      {% include "includes/confirmation-statement-details/pscs.html" %}
+      {% endset %}
+      {% set roaHTML %}
+      {% include "includes/confirmation-statement-details/roa.html" %}
+      {% endset %}
+      {% set registerHTML %}
+      {% include "includes/confirmation-statement-details/registers.html" %}
+      {% endset %}
+      {% set shareholderHTML %}
+      {% include "includes/confirmation-statement-details/shareholders.html" %}
+      {% endset %}
+      {{ govukTable({
+
+firstCellIsHeader: true,
+classes: "align-top",
+rows: [
+[
+{
+text: "Company number"
+},
+{
+text: scenario.company.number
+}
+],
+[
+{
+text: "Status"
+},
+{
+text: scenario.company.status
+}
+],
+[
+{
+text: "Incorporation date"
+},
+{
+text: scenario.company.incorporationDate
+}
+],
+[
+{
+text: "Company type"
+},
+{
+text: scenario.company.companyType
+}
+],
+[
+{
+text: "Registered office address"
+},
+{
+html: scenario.company.address | nl2br
+}
+]
+]
+}) }}
+
+      {% if scenario.company.type === 'LTD' %}
+
+        <h2 class="govuk-heading-m">
+
+          Nature of business
+        </h2>
+
+        <h3 class="govuk-heading-s">SIC codes</h3>
+        {% include "includes/confirmation-statement-details/sic.html" %}
+        <h3 class="govuk-heading-s">Statement of capital</h3>
+        {% include "includes/confirmation-statement-details/statement-of-capital.html" %}
+
+        <h2 class="app-task-list__section">
+
+          People
+        </h2>
+        <h3 class="govuk-heading-s">Officers</h3>
+        {% include "includes/confirmation-statement-details/officers.html" %}
+        <h3 class="govuk-heading-s">People with significant control (PSCs)</h3>
+        {% include "includes/confirmation-statement-details/pscs.html" %}
+        <h3 class="govuk-heading-s">Shareholders</h3>
+        {% include "includes/confirmation-statement-details/shareholders.html" %}
+
+        <h2 class="app-task-list__section">
+
+          Addresses
+        </h2>
+        <h3 class="govuk-heading-s">Registered office address</h3>
+        {% include "includes/confirmation-statement-details/roa.html" %}
+        <h3 class="govuk-heading-s">Register locations</h3>
+        {% include "includes/confirmation-statement-details/registers.html" %}
+
+      </div>
+    </div>
+
+  {% elseif scenario.company.type === 'LLP' %}
+    <h2 class="app-task-list__section">
+
+      People
+    </h2>
+    <h3 class="govuk-heading-s">Members</h3>
+    {% include "includes/confirmation-statement-details/members.html" %}
+    <h3 class="govuk-heading-s">People with significant control (PSCs)</h3>
+    {% include "includes/confirmation-statement-details/pscs.html" %}
+
+    <h2 class="app-task-list__section">
+
+      Addresses
+    </h2>
+    <h3 class="govuk-heading-s">Registered office address</h3>
+    {% include "includes/confirmation-statement-details/roa.html" %}
+    <h3 class="govuk-heading-s">Register locations</h3>
+    {% include "includes/confirmation-statement-details/registers.html" %}
+
+  </div>
+</div>
+{% endif %}
+
+</div>
+</div>
+{% endblock %}

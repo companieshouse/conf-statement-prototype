@@ -23,16 +23,11 @@
           <a href="http://resources.companieshouse.gov.uk/sic/">condensed SIC codes list</a>.</p>
         {% endset %}
         {% set sicHTML %}
+        {% include "includes/confirmation-statement-details/sic.html" %}
+        {% endset %}
 
-        <p>
-          <b>82990</b>
-          - Other business support service activities not elsewhere classified<br>
-          <b>82110</b>
-          - Combined office administrative service activities
-          {% endset %}
-
-          {% if sic === 'yes' %}
-            {{ govukRadios({
+        {% if sic === 'yes' %}
+          {{ govukRadios({
           classes: "govuk-radios--inline",
           idPrefix: "sic",
           name: "sic",
@@ -58,8 +53,8 @@
             }
           ]
         }) }}
-          {% elseif sic === 'no' %}
-            {{ govukRadios({
+        {% elseif sic === 'no' %}
+          {{ govukRadios({
         classes: "govuk-radios--inline",
         idPrefix: "sic",
         name: "sic",
@@ -85,8 +80,8 @@
           }
         ]
       }) }}
-          {% else %}
-            {{ govukRadios({
+        {% else %}
+          {{ govukRadios({
       classes: "govuk-radios--inline",
       idPrefix: "sic",
       name: "sic",
@@ -111,20 +106,17 @@ html: sicHTML
         }
       ]
     }) }}
-          {% endif %}
+        {% endif %}
 
-          {{ govukDetails({
+        {{ govukDetails({
   summaryText: "What is a SIC code?",
   html: sicDetails
 }) }}
 
-          {{ govukButton({
+        {{ govukButton({
 text: "Continue"
 }) }}
-        </form>
-        <p>
-          <a href="/sign-out">Save and sign out</a>
-        </p>
-      </div>
+      </form>
     </div>
-  {% endblock %}
+  </div>
+{% endblock %}

@@ -16,14 +16,14 @@
     <div class="govuk-grid-column-two-thirds">
 
       <form action="" method="post">
-
-        {% set roaHTML %}
         {% if ro === 'no' %}
           {{ govukInsetText({
   html: "A filing to update these details has been received. You can continue filing this confirmation statement, even if the change is not yet reflected on this page." }) }}
         {% endif %}
-        <p>125 Feather Hedge<br>Salisbury<br>SP4 7DE</p>
-
+        {% set roaHTML %}
+        <p>
+          {% include "includes/confirmation-statement-details/roa.html" %}
+        </p>
         {% endset %}
 
         {% if ro === 'yes' %}
@@ -112,9 +112,6 @@
 text: "Continue"
 }) }}
       </form>
-      <p>
-        <a href="/sign-out">Save and sign out</a>
-      </p>
     </div>
   </div>
 {% endblock %}

@@ -1,0 +1,68 @@
+{% set roaHTML %}
+{% include "includes/confirmation-statement-details/roa.html" %}
+{% endset %}
+{% set sailHTML %}
+2 Nets Way, Newcastle, NE2 3BB
+{% endset %}
+{% if scenario.company.register === 'ro' %}
+  {{ govukTable({
+
+  head: [
+    {
+      text: "Register"
+    },
+    {
+      text: "Address"
+    }
+  ],
+  rows: [
+    [
+      {
+        text: "All registers"
+      },
+      {
+        html: roaHTML
+      }
+    ]
+  ]
+}) }}
+{% elseif scenario.company.register === 'SAIL' %}
+  {{ govukTable({
+
+head: [
+  {
+    text: "Register"
+  },
+  {
+    text: "Address"
+  }
+],
+rows: [
+  [
+    {
+      text: "Register of members"
+    },
+    {
+      html: sailHTML
+    }
+
+],
+[
+    {
+      text: "Register of persons of significant control"
+    },
+    {
+      html: sailHTML
+    }
+  ],
+  [
+      {
+        text: "All other registers"
+      },
+      {
+        html: roaHTML
+      }
+    ]
+]
+}) }}
+{% endif %}

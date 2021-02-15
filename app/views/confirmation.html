@@ -3,7 +3,7 @@
 {% block pageTitle %}
   Confirmation
 {% endblock %}
-
+{% block signOut %}{% endblock %}
 {% block content %}
 
   <div class="govuk-grid-row">
@@ -19,8 +19,7 @@
 
       <p>
         We have sent a confirmation email to
-        <span class="govuk-!-font-weight-bold">{{ email }}</span>
-        which contains the confirmation statement.
+        <span class="govuk-!-font-weight-bold">{{ email }}</span>.
       </p>
 
       <h2 class="govuk-heading-m">What happens next</h2>

@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+{% from "govuk/components/panel/macro.njk" import govukPanel %}
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+​
+{% block pageTitle %}
+  Task list
+{% endblock %}
+​
+{% block content %}
+  ​
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <strong class="govuk-tag app-task-list__tag">Active</strong>
+      {{ govukPanel({
+      titleText: "Confirmation Statement for HAPPY HOUSE LTD",
+      html: "Incorporated on <strong>1 April 2010</strong> as <strong>Private Limited Company
+      <strong> at <br><strong>125 Feather Hedge, Salisbury, SP4 7DE</strong>"
+    }) }}
+      <div>
+        <h2 class="govuk-heading-m">SIC codes</h2>
+        <p>
+          <strong>82990</strong>
+          - Other business support service activities not elsewhere classified<br>
+          <strong>82110</strong>
+          - Combined office administrative service activities</p>
+        <h2 class="govuk-heading-m">Statement of capital (share capital)</h2>
+        <p>
+          100
+          <storng>Ordinary</strong>
+          (<strong>GBP</strong>) shares have been allotted with an aggregate nominal value of
+          <strong>1000</strong>.
+        </p>
+        {{ govukInsetText({
+        text: "Each share has full rights in the company with respect to voting, dividends and distributions."
+      }) }}
+        <p>
+          100
+          <storng>Ordinary</strong>
+          (<strong>GBP</strong>) shares have been allotted with an aggregate nominal value of
+          <strong>1000</strong>.
+        </p>
+        <h2 class="govuk-heading-m">Statement of capital (totals)</h2>
+        <p>
+          100
+          <storng>Ordinary</strong>
+          (<strong>GBP</strong>) shares have been allotted with an aggregate nominal value of
+          <strong>1000</strong>.
+        </p>
+        <h2 class="govuk-heading-m">People</h2>
+        <p>
+          <strong>Officers:
+          </strong>
+          <strong>Irving, Kyrie</strong>
+          a
+          <strong>British</strong>
+          citizen born
+          <strong>1 January 1988</strong>
+          residing in
+          <strong>United Kingdom</strong>
+          with the correspondence address
+          <strong>2 Nets Way, Newcastle, NE2 3BB</strong>
+          usually residing at
+          <strong>2 Nets Way, Newcastle, NE2 3BB</strong>.
+        </p>
+        <p>
+          <strong>People with significant control (PSC):
+          </strong>
+          <strong>Irving, Kyrie</strong>
+          a
+          <strong>British</strong>
+          citizen born
+          <strong>1 January 1988</strong>
+          residing in
+          <strong>United Kingdom</strong>
+          with the correspondence address
+          <strong>2 Nets Way, Newcastle, NE2 3BB</strong>
+          usually residing at
+          <strong>2 Nets Way, Newcastle, NE2 3BB</strong>.
+        </p>
+        <h2 class="govuk-heading-m">Registered office address</h2>
+        <p>
+          125 Feather Hedge, Salisbury, SP4 7DE
+          <br>All registers held at 125 Feather Hedge, Salisbury, SP4 7DE
+        </p>
+      </div>
+    </div>
+  </div>
+
+  ​
+{% endblock %}
