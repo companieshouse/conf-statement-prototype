@@ -94,7 +94,7 @@
     }) }}
         {% elseif activePscs === 'no' %}
           {{ govukRadios({
-          classes: "govuk-radios--inline",
+          classes: "govuk-radios",
           idPrefix: "active-pscs",
           name: "active-pscs",
           fieldset: {
@@ -113,6 +113,10 @@
               value: "no",
               text: "No",
               checked: true
+            },
+            {
+              value: "yes",
+              text: "No, but I've recently filed an update"
             }
           ]
         }) }}
