@@ -18,37 +18,42 @@
         <a href="https://www.gov.uk/government/publications/confirmation-statement-cs01">CS01 paper form</a>. It costs £40 and will take longer to process than if you file online.</p>
       {% endset %}
 
+      {% set insetHTML %}
+      <p>Your WebFiling details will not work with this service. You will need to <a href="https://identity.company-information.service.gov.uk/user/register?request=eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwidHlwIjoiSldFIn0..CqLAjmGq1VFW8Jm8gxMj_Q.paWnr2eJYpBc2a4Q5i1K2vOzQcQ-Tnsn2N8ffb_4fiAjlNWRnWnoKGUI6txYapz-vUn_3-0VxK5n5VIhq4avJbWB3CcB98YVBfAD2lVc_SoTcyf-t8QY2PtfUI4vO3Cws8JoPIqQaBP2GT5bABduaGHbMFotpRtne5sRIR-uP5XgWP4tTtB9z4sTYy6M6aIyw7qdQfQx7QLDxY--mj7ZIYUF5FBgTH4qLldqoZYKI0Xr-kgH05oMDVIDrs38VTCELe9KGr3zEi7ihqV1xj2EVed5mnWv7c_r8OqxILST6xihQdYO-carv25oprMJWm3MGyZvpWjzOsmcDLftvpOosEo_XZjHxXog0QjtBMXbnRyBbukExNlcaNoIfrQ5MCyAZTiDlzdK6kQ5bz5S65sJZ_mUL6CaQ4R0GmzTjb_TI-csPZI8TWhnsmVlxHjzzI9Gdr-8bTdJE0O7AMvfn1OfCZbLN6paRx-LnDxO0gARMD3AeVgW-d5J8UlBJbGo3oe2U15W2_dmnQxBhVU2_tue_3rJNJwGFTr685VSuas3ZOP-N_Hi7qCclNzFhdNKwfzYVe9c_I94S_eOBVNbzXvZsgXnarZsVS-BIAB7oZZ4Z2gpi00ZdZ4XljxzJNvEZUOS9GOxwm2wvaeqpCyfBPb2jSURIPsEEm8OUjXflzZcS4CLRwFX1VarjFA-tvqlaz1NjFNQZbRrrqcJ_4CS8o5To-Ik8Y6VbSk6orpFUJWkfwwg3UsEdf5_PJ2QlT6hJUbDdhVPE-pNQsBSHjKHdxIi8FaDGLkZyXTC8WJGl2EOpRywnhOvYe0Z3ETWDKDj3XsEecOpGDJGOzwldqwbzUFHU6_pauu74cCjk3hf9HqBFEU6itAWV8MHVwT8SnPA0EyH6X8FnMKSPUtMwx4Qlecr-EfPRUKAoqlNgmsgUS6lix0UfwPH25VOUMhmzuZ8A33klDOtbeNfMyfCz34_8DMBRHu81BSj-QCFaxOjmbg9DybwNU0A8VYHyWm06ehgGXEajjsrYrjTH4hXJGVNjYnQJXZAJfvdF2rSfVu6BwVpfpCRE-6Wcj6VfR7t1M0Z5OpEjDNEvx6YbN9SUhNwawZ-7g.qisSdgkYDilrsIt09td5jQ">register a Companies House account</a> if you do not already have one.</p>
+      {% endset %}
+
       <h1 class="govuk-heading-xl">
         {% if serviceName %}
           {{ serviceName }}
         {% endif %}
       </h1>
 
-      <p class="govuk-body-l">Use this service to confirm that company information is up to date, and to submit a confirmation statement (previously known as an annual return) to Companies House.</p>
-      <p>You can only file a confirmation statement in this service if the company:</p>
+      <p class="govuk-body-l">This service allows private limited companies to confirm that company information is correct and file a confirmation statement (previously known as an annual return).</p>
+      <p class="govuk-body govuk-!-font-weight-bold">You can only use this service if the company:</p>
       <ul class="govuk-list govuk-list--bullet">
         <li>is a private limited company</li>
         <li>has 5 officers or fewer</li>
         <li>has 5 shareholders or fewer</li>
       </ul>
-      <p>If the company does not meet all the criteria, you will need to file a confirmation statement using our
+      <p>If the company does not meet these criteria, you will need to file a confirmation statement using our
         <a href="https://ewf.companieshouse.gov.uk//seclogin?tc=1">WebFiling service</a>.</p>
 
-      <p>Before filing a confirmation statement, you should
+      <p>You cannot use this service to make any changes to company information. You should
         <a href="https://find-and-update.company-information.service.gov.uk/?_ga=2.234418846.1677422186.1609766992-866947589.1602497498">check the company's details</a>
-        and update any information that is incorrect or out of date.
-        <p>
-          <a href="https://www.gov.uk/guidance/confirmation-statement-guidance">Read the guidance on filing a confirmation statement</a>, including how to make changes to your company information. You cannot use this service to make changes to company information.</p>
+        and update any information that is incorrect or out of date before filing the confirmation statement.
 
-        <p>Filing a confirmation statement costs £13, and you'll need:</p>
+        <p class="govuk-body govuk-!-font-weight-bold">To file a confirmation statement, you'll need:</p>
         <ul class="govuk-list govuk-list--bullet">
-          <li>to sign in to or create a Companies House account, which is different from a WebFiling account</li>
-          <li>your company number</li>
-          <li>your company authentication code</li>
-          <li>to pay using a credit or debit card, or Companies House account</li>
+          <li>a Companies House account, which is different from a WebFiling account</li>
+          <li>the company number</li>
+          <li>the company authentication code</li>
+          <li>to pay the £13 annual fee using a credit or debit card, or Companies House account</li>
         </ul>
 
-        <p>Your filed confirmation statement will appear on the public record and online.</p>
+        {{ govukInsetText({
+          html: insetHTML
+        }) }}
+
         {{ govukWarningText({
           text: "You can be fined up to £5,000 and your company may be struck off if you do not send your confirmation statement.",
           iconFallbackText: "Warning"
@@ -62,6 +67,9 @@
         </a>
 
         <h2 class="govuk-heading-m">Before you start</h2>
+
+        <p>
+          <a href="https://www.gov.uk/guidance/confirmation-statement-guidance">Read the guidance on filing a confirmation statement</a>, including how to make changes to your company information.</p>
 
         {{ govukDetails({
         summaryText: "Other ways to file a confirmation statement",
