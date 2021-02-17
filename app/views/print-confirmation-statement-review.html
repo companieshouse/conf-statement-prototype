@@ -1,7 +1,8 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Review the Confirmation Statement
+  Review company information for
+  {{scenario.company.name}}
 {% endblock %}
 {% block signOut %}{% endblock %}
 {% block backLink %}
@@ -13,9 +14,12 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">Review the Confirmation Statement for
+      <h1 class="govuk-heading-l">Review company information for
         <strong>{{scenario.company.name}}</strong>
       </h1>
+      <p>You have confirmed that this company information is correct as of
+        {{moment}}.</p>
+      <p>The information here might not reflect recently filed updates. As long as any updates to company details have been submitted, you can still file the confirmation statement.</p>
       {% set sicHTML %}
       {% include "includes/confirmation-statement-details/sic.html" %}
       {% endset %}
