@@ -472,9 +472,11 @@ router.post('/incorrect-information/wrong-sic', function (req, res) {
 })
 router.get('/confirmation-statement/statement-of-capital', function (req, res) {
   var email = req.session.data['email']
+  var statementOfCapital = req.session.data['statement-of-capital']
   res.render('confirmation-statement/statement-of-capital', {
     scenario: req.session.scenario,
-    email: email
+    email: email,
+    statementOfCapital: statementOfCapital
   })
 })
 router.post('/confirmation-statement/statement-of-capital', function (req, res) {
