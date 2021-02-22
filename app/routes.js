@@ -624,7 +624,7 @@ router.post('/confirmation-statement/additional-pscs', function (req, res) {
       res.redirect('/confirmation-statement/psc-statement')
       break
     case 'yes':
-      res.redirect('/incorrect-information/wrong-psc')
+      res.redirect('/incorrect-information/wrong-appoint-psc')
       break
   }
 })
