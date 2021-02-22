@@ -582,7 +582,7 @@ router.post('/confirmation-statement/active-pscs', function (req, res) {
       res.redirect('/confirmation-statement/people-with-significant-control')
       break
     case 'no':
-      res.redirect('/incorrect-information/wrong-psc')
+      res.redirect('/incorrect-information/wrong-active-psc')
       break
   }
 })
