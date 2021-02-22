@@ -255,7 +255,7 @@ router.post('/confirmation-statement/active-officers', function (req, res) {
       res.redirect('/confirmation-statement/officers')
       break
     case 'no':
-      res.redirect('/incorrect-information/wrong-officers')
+      res.redirect('/incorrect-information/wrong-active-officers')
       break
   }
 })
@@ -296,7 +296,7 @@ router.post('/confirmation-statement/additional-officers', function (req, res) {
 
   switch (additionalOfficers) {
     case 'yes':
-      res.redirect('/incorrect-information/wrong-officers')
+      res.redirect('/incorrect-information/wrong-appoint-officers')
       break
     case 'no':
       res.redirect('/task-list')
