@@ -120,7 +120,7 @@
 
                 <li class="app-task-list__item">
                   <span class="app-task-list__task-name">
-                    {% if trading === 'no' %}
+                    {% if scenario.company.tradingStatus === '1' %}
                       <a href="/confirmation-statement/active-pscs" aria-describedby="read-declaration-status">
                         People with significant control (PSC)
                       </a>
@@ -133,7 +133,7 @@
                     {% else %}
                       <strong class="govuk-tag govuk-tag--grey app-task-list__tag" id="medical-information-status">Not checked</strong>
                     {% endif %}
-                  {% elseif trading === 'yes' %}
+                  {% elseif trading === '2' %}
                     <a href="/psc-exemption" aria-describedby="read-declaration-status">
                       People with significant control (PSC)
                     </a>

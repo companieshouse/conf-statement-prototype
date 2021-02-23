@@ -17,10 +17,7 @@
 
       <form action="" method="post">
         <h1 class="govuk-heading-l">Check the member details</h1>
-        {% if members === 'no' %}
-          {{ govukInsetText({
-  html: "A filing to update these details has been received. You can continue filing this confirmation statement, even if the change is not yet reflected on this page." }) }}
-        {% endif %}
+
         {% if scenario.company.members === '1' %}
           <h2 class="govuk-heading-m">1 Member</h2>
         {% else %}

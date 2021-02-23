@@ -16,10 +16,7 @@
     <div class="govuk-grid-column-two-thirds">
 
       <form action="" method="post">
-        {% if ro === 'no' %}
-          {{ govukInsetText({
-  html: "A filing to update these details has been received. You can continue filing this confirmation statement, even if the change is not yet reflected on this page." }) }}
-        {% endif %}
+
         {% set roaHTML %}
         <p>
           {% include "includes/confirmation-statement-details/roa.html" %}
@@ -28,7 +25,7 @@
 
         {% if ro === 'yes' %}
           {{ govukRadios({
-          classes: "govuk-radios--inline",
+          classes: "govuk-radios",
           idPrefix: "registered-office-address",
           name: "registered-office-address",
           fieldset: {
@@ -50,12 +47,16 @@
             {
               value: "no",
               text: "No"
+            },
+            {
+              value: "yes",
+              text: "No, but I've recently filed an update"
             }
           ]
         }) }}
         {% elseif ro === 'no' %}
           {{ govukRadios({
-          classes: "govuk-radios--inline",
+          classes: "govuk-radios",
           idPrefix: "registered-office-address",
           name: "registered-office-address",
           fieldset: {
@@ -77,12 +78,16 @@
               value: "no",
               text: "No",
               checked: true
+            },
+            {
+              value: "yes",
+              text: "No, but I've recently filed an update"
             }
           ]
         }) }}
         {% else %}
           {{ govukRadios({
-          classes: "govuk-radios--inline",
+          classes: "govuk-radios",
           idPrefix: "registered-office-address",
           name: "registered-office-address",
           fieldset: {
@@ -103,6 +108,10 @@
             {
               value: "no",
               text: "No"
+            },
+            {
+              value: "yes",
+              text: "No, but I've recently filed an update"
             }
           ]
         }) }}

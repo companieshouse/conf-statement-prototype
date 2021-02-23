@@ -26,10 +26,7 @@
         {% endset %}
 
         {% set pscStatementHTML %}
-        {% if pscStatement === 'no' %}
-          {{ govukInsetText({
-  html: "A filing to update these details has been received. You can continue filing this confirmation statement, even if the change is not yet reflected on this page." }) }}
-        {% endif %}
+
         <p>No additional statements relating to PSCs are currently held on the public register.</p>
         {{ govukDetails({
           summaryText: "What are PSC statements?",
@@ -39,7 +36,7 @@
 
         {% if pscStatement === 'yes' %}
           {{ govukRadios({
-          classes: "govuk-radios--inline",
+          classes: "govuk-radios",
           idPrefix: "psc-statement",
           name: "psc-statement",
           fieldset: {
@@ -61,12 +58,16 @@
             {
               value: "no",
               text: "No"
+            },
+            {
+              value: "yes",
+              text: "No, but I've recently filed an update"
             }
           ]
         }) }}
         {% elseif pscStatement === 'no' %}
           {{ govukRadios({
-          classes: "govuk-radios--inline",
+          classes: "govuk-radios",
           idPrefix: "psc-statement",
           name: "psc-statement",
           fieldset: {
@@ -88,12 +89,16 @@
               value: "no",
               text: "No",
               checked: true
+            },
+            {
+              value: "yes",
+              text: "No, but I've recently filed an update"
             }
           ]
         }) }}
         {% else %}
           {{ govukRadios({
-          classes: "govuk-radios--inline",
+          classes: "govuk-radios",
           idPrefix: "psc-statement",
           name: "psc-statement",
           fieldset: {
@@ -114,6 +119,10 @@
             {
               value: "no",
               text: "No"
+            },
+            {
+              value: "yes",
+              text: "No, but I've recently filed an update"
             }
           ]
         }) }}
