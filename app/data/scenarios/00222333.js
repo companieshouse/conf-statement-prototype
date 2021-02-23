@@ -18,6 +18,7 @@ module.exports = {
     directors: '1',
     pscs: '1',
     register: 'ro',
-    shareholders: '1'
+    shareholders: '1',
+    tradingStatus: '1'
   }
 }

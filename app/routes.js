@@ -118,10 +118,28 @@ router.post('/authenticate', function (req, res) {
   if (scenario.company.type === 'LLP') {
     res.redirect('/task-list')
   } else {
-    res.redirect('/trading-status')
+    res.redirect('/check-trading-status')
   }
 })
+router.get('/check-trading-status', function (req, res) {
+  var scenario = req.session.scenario
 
+  res.render('check-trading-status', {
+    scenario: scenario
+  })
+})
+router.post('/check-trading-status', function (req, res) {
+  var tradingStatus = req.session.data['trading-status']
+
+  switch (tradingStatus) {
+    case 'yes':
+      res.redirect('/task-list')
+      break
+    case 'no':
+      res.redirect('/trading-stop')
+      break
+  }
+})
 router.get('/trading-status', function (req, res) {
   res.render('trading-status', {
     scenario: req.session.scenario

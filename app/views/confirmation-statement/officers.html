@@ -17,10 +17,7 @@
 
       <form action="" method="post">
         <h1 class="govuk-heading-l">Check the director details</h1>
-        {% if officers === 'no' %}
-          {{ govukInsetText({
-  html: "A filing to update these details has been received. You can continue filing this confirmation statement, even if the change is not yet reflected on this page." }) }}
-        {% endif %}
+
         {% if scenario.company.directors === '1' %}
           <h2 class="govuk-heading-m">1 Director</h2>
         {% else %}
@@ -44,7 +41,7 @@
 }) }}
         {% if officers === 'yes' %}
           {{ govukRadios({
-          classes: "govuk-radios--inline",
+          classes: "govuk-radios",
           idPrefix: "officers",
           name: "officers",
           fieldset: {
@@ -66,12 +63,16 @@
             {
               value: "no",
               text: "No"
+            },
+            {
+              value: "yes",
+              text: "No, but I've recently filed an update"
             }
           ]
         }) }}
         {% elseif officers === 'no' %}
           {{ govukRadios({
-          classes: "govuk-radios--inline",
+          classes: "govuk-radios",
           idPrefix: "officers",
           name: "officers",
           fieldset: {
@@ -93,12 +94,16 @@
               value: "no",
               text: "No",
               checked: true
+            },
+            {
+              value: "yes",
+              text: "No, but I've recently filed an update"
             }
           ]
         }) }}
         {% else %}
           {{ govukRadios({
-          classes: "govuk-radios--inline",
+          classes: "govuk-radios",
           idPrefix: "officers",
           name: "officers",
           fieldset: {
@@ -119,6 +124,10 @@
             {
               value: "no",
               text: "No"
+            },
+            {
+              value: "yes",
+              text: "No, but I've recently filed an update"
             }
           ]
         }) }}
