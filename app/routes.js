@@ -14,7 +14,7 @@ router.get('/start-2', function (req, res) {
   res.render('start-2')
 })
 router.post('/start-2', function (req, res) {
-  res.redirect('/limited-company')
+  res.redirect('/sign-in')
 })
 router.get('/limited-company', function (req, res) {
   res.render('limited-company')
@@ -322,6 +322,16 @@ router.post('/confirmation-statement/officers-2', function (req, res) {
       break
   }
 })
+router.get('/incorrect-information/wrong-active-officers', function (req, res) {
+  var email = req.session.data['email']
+  res.render('incorrect-information/wrong-active-officers', {
+    scenario: req.session.scenario,
+    email: email
+  })
+})
+router.post('/incorrect-information/wrong-active-officers', function (req, res) {
+  res.redirect('/task-list')
+})
 router.get('/incorrect-information/wrong-officers', function (req, res) {
   var email = req.session.data['email']
   res.render('incorrect-information/wrong-officers', {
@@ -330,6 +340,16 @@ router.get('/incorrect-information/wrong-officers', function (req, res) {
   })
 })
 router.post('/incorrect-information/wrong-officers', function (req, res) {
+  res.redirect('/task-list')
+})
+router.get('/incorrect-information/wrong-appoint-officers', function (req, res) {
+  var email = req.session.data['email']
+  res.render('incorrect-information/wrong-appoint-officers', {
+    scenario: req.session.scenario,
+    email: email
+  })
+})
+router.post('/incorrect-information/wrong-appoint-officers', function (req, res) {
   res.redirect('/task-list')
 })
 // members start //
@@ -586,6 +606,16 @@ router.post('/confirmation-statement/active-pscs', function (req, res) {
       break
   }
 })
+router.get('/incorrect-information/wrong-active-psc', function (req, res) {
+  var email = req.session.data['email']
+  res.render('incorrect-information/wrong-active-psc', {
+    scenario: req.session.scenario,
+    email: email
+  })
+})
+router.post('/incorrect-information/wrong-active-psc', function (req, res) {
+  res.redirect('/task-list')
+})
 router.get('/confirmation-statement/people-with-significant-control', function (req, res) {
   var psc = req.session.data['psc']
   var email = req.session.data['email']
@@ -627,6 +657,16 @@ router.post('/confirmation-statement/additional-pscs', function (req, res) {
       res.redirect('/incorrect-information/wrong-appoint-psc')
       break
   }
+})
+router.get('/incorrect-information/wrong-appoint-psc', function (req, res) {
+  var email = req.session.data['email']
+  res.render('incorrect-information/wrong-appoint-psc', {
+    scenario: req.session.scenario,
+    email: email
+  })
+})
+router.post('/incorrect-information/wrong-appoint-psc', function (req, res) {
+  res.redirect('/task-list')
 })
 router.get('/incorrect-information/wrong-psc', function (req, res) {
   var email = req.session.data['email']
