@@ -827,9 +827,11 @@ router.post('/pay-by-account', function (req, res) {
 })
 router.get('/confirmation', function (req, res) {
   var email = req.session.data.email
+  var paymentOptions = req.session.data['payment-options']
 
   res.render('confirmation', {
     scenario: req.session.scenario,
-    email: email
+    email: email,
+    paymentOptions: paymentOptions
   })
 })
