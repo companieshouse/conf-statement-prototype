@@ -16,14 +16,25 @@
     <div class="govuk-grid-column-three-quarters">
 
       <form action="" method="post">
-        {% if additionalPscs === 'yes' %}
-          {{ govukInsetText({
-  html: "A filing to update these details has been received. You can continue filing this confirmation statement, even if the change is not yet reflected on this page." }) }}
-        {% endif %}
+
+        {% set pscTypesHTML %}
+        <p>An individual person with significant control is someone who owns or controls the company. For example, anyone with more than 25% of voting rights or shares.</p>
+        <p>A relevant legal entity is a corporate body which, if it were a person, would qualify as a PSC.</p>
+        <p>An other registrable person (ORP) is a non-corporate entity or office that can legally act as a PSC. An ORP can be a government or government department, a corporation sole, a local authority, or an international organisation whose members include
+          two or more countries, territories or their governments.</p>
+        {% endset %}
+
+        {% set hintHTML %}
+        <p class="govuk-colour-grey">This includes individual people, relevant legal entitities and other registrable people.</p>
+        {{ govukDetails({
+          summaryText: "More about different types of PSC",
+          html: pscTypesHTML
+        }) }}
+        {% endset %}
 
         {% if additionalPscs === 'yes' %}
           {{ govukRadios({
-          classes: "govuk-radios--inline",
+          classes: "govuk-radios",
           idPrefix: "additional-pscs",
           name: "additional-pscs",
           fieldset: {
@@ -34,7 +45,7 @@
             }
           },
           hint: {
-            text: "This includes individual people, relevant legal entitities and other registrable people."
+            html: hintHTML
           },
           items: [
             {
@@ -45,12 +56,16 @@
             {
               value: "no",
               text: "No"
+            },
+            {
+              value: "no",
+              text: "Yes, but I've recently filed an update"
             }
           ]
         }) }}
         {% elseif additionalPscs === 'no' %}
           {{ govukRadios({
-          classes: "govuk-radios--inline",
+          classes: "govuk-radios",
           idPrefix: "additional-pscs",
           name: "additional-pscs",
           fieldset: {
@@ -61,7 +76,7 @@
             }
           },
           hint: {
-            text: "This includes individual people, relevant legal entitities and other registrable people"
+            html: hintHTML
           },
           items: [
             {
@@ -72,12 +87,16 @@
               value: "no",
               text: "No",
               checked: true
+            },
+            {
+              value: "no",
+              text: "Yes, but I've recently filed an update"
             }
           ]
         }) }}
         {% else %}
           {{ govukRadios({
-          classes: "govuk-radios--inline",
+          classes: "govuk-radios",
           idPrefix: "additional-pscs",
           name: "additional-pscs",
           fieldset: {
@@ -88,7 +107,7 @@
             }
           },
           hint: {
-            text: "This includes individual people, relevant legal entitities and other registrable people"
+            html: hintHTML
           },
           items: [
             {
@@ -98,6 +117,10 @@
             {
               value: "no",
               text: "No"
+            },
+            {
+              value: "no",
+              text: "Yes, but I've recently filed an update"
             }
           ]
         }) }}

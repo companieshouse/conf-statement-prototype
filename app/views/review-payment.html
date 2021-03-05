@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Review the payment
+  Review payment
 {% endblock %}
 
 {% block backLink %}
@@ -15,8 +15,7 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-xl">Confirmation statement fee for
-        {{ scenario.company.name }}</h1>
+      <h1 class="govuk-heading-xl">Review payment</h1>
 
       {{ govukTable({
   caption: feeHTML,
@@ -35,7 +34,7 @@
   rows: [
     [
       {
-        text: "Confirmation statement fee"
+        text: "Annual confirmation statement fee"
       },
       {
         html: moment

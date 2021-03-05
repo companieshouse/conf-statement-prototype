@@ -11,13 +11,20 @@
         <h1 class="govuk-heading-xl">
           You need to update the company details
         </h1>
-        <p>You will need to update the officer details before you can file a confirmation statement. You can do this by submitting the relevant form online using
-          <a href="https://ewf.companieshouse.gov.uk//seclogin?tc=1">our WebFiling service</a>.</p>
-        <p>Updates to the officer details can take some time to process, and will not be reflected immediately in the information displayed on this service. As long as the update has been submitted, you can still file the confirmation statement.</p>
-        <p>You can return to this confirmation statement by selecting Your Filings in your Companies House account.</p>
+        <p>You will need to update the director details before you can file a confirmation statement.</p>
+        <p>You can update this information online. Use
+          <a target="_blank" href="https://ewf.companieshouse.gov.uk//seclogin?tc=1">our WebFiling service (opens in a new tab)</a>
+          to file the form
+          <strong>Change of director's details - CH01</strong>
+        </p>
 
+        {{ govukInsetText({
+                text: "Updates can take some time to process, and will not be reflected immediately in the information displayed on this service. As long as the update has been submitted, you can still file the confirmation statement."
+              }) }}
+
+        <p>You can return to this confirmation statement by selecting Your Filings in your Companies House account.</p>
         {{ govukButton({
-    text: "Return to task list"
+    text: "Return to confirmation statement"
   }) }}
       </form>
     </div>

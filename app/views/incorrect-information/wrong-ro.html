@@ -14,12 +14,14 @@
         <p>You will need to
           <a href="/chs-profile">update the registered office address</a>
           before you can file a confirmation statement.</p>
-        <p>An update to the registered office address can take some time to process, so it may not be reflected immediately in the information displayed on this service. As long as the update has been submitted, you can still file the confirmation statement.
-        </p>
+
+        {{ govukInsetText({
+            text: "An update to the registered office address can take some time to process, so it may not be reflected immediately in the information displayed on this service. As long as the update has been submitted, you can still file the confirmation statement."
+          }) }}
         <p>You can return to this confirmation statement by selecting Your Filings in your Companies House account.</p>
 
         {{ govukButton({
-    text: "Return to task list"
+    text: "Return to confirmation statement"
   }) }}
       </form>
     </div>
