@@ -96,8 +96,10 @@ router.post('/company-number', function (req, res) {
 })
 router.get('/confirm-company', function (req, res) {
   var scenario = req.session.scenario
+  var moment = require('moment')
   res.render('confirm-company', {
-    scenario: scenario
+    scenario: scenario,
+    moment: moment().format('D MMMM yyy')
   })
 })
 
