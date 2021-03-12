@@ -811,7 +811,7 @@ router.post('/payment-options', function (req, res) {
 
   switch (paymentOptions) {
     case 'card':
-      res.redirect('https://products.payments.service.gov.uk/pay/f90761a2258f4b60baa29f045cd78ca2')
+      res.redirect('https://products.payments.service.gov.uk/pay/69142d73b5ca49ada70b1698fbefe7e6')
       break
     case 'account':
       res.redirect('/pay-by-account')
