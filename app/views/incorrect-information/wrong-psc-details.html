@@ -3,7 +3,12 @@
 {% block pageTitle %}
   Incorrect people with significant control - File a confirmation statement
 {% endblock %}
-
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/confirmation-statement/people-with-significant-control"
+  }) }}
+{% endblock %}
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">

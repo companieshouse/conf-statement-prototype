@@ -3,6 +3,12 @@
 {% block pageTitle %}
   Task list
 {% endblock %}
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/trading-status"
+  }) }}
+{% endblock %}
 
 {% block content %}
 
