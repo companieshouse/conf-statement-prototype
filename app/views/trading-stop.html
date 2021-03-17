@@ -4,6 +4,12 @@
   Trading status not supported
 {% endblock %}
 {% block signOut %}{% endblock %}
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/trading-status"
+  }) }}
+{% endblock %}
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -11,7 +17,7 @@
         You cannot use this service
       </h1>
       <p class="govuk-body-m">The company’s trading status can only be changed by filing a confirmation statement through our
-        <a href="https://ewf.companieshouse.gov.uk//seclogin?tc=1">WebFiling service</a>. You will need to sign in to or create a WebFiling account to do this.</p>
+        <a href="https://ewf.companieshouse.gov.uk//seclogin?tc=1" target="_blank">WebFiling service (opens in a new tab)</a>. You will need to sign in to or create a WebFiling account to do this.</p>
 
     </div>
   </div>
