@@ -3,7 +3,12 @@
 {% block pageTitle %}
   Incorrect registered office address - File a confirmation statement
 {% endblock %}
-
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/confirmation-statement/ro"
+  }) }}
+{% endblock %}
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -12,13 +17,13 @@
           You need to update the company details
         </h1>
         <p>You will need to
-          <a href="/chs-profile">update the registered office address</a>
+          <a href="/chs-profile" target="_blank">update the registered office address (opens in a new tab)</a>
           before you can file a confirmation statement.</p>
 
         {{ govukInsetText({
             text: "An update to the registered office address can take some time to process, so it may not be reflected immediately in the information displayed on this service. As long as the update has been submitted, you can still file the confirmation statement."
           }) }}
-        <p>You can return to this confirmation statement by selecting Your Filings in your Companies House account.</p>
+        <p>You can return to this confirmation statement by selecting <a href="/your-filings">Your Filings</a> in your Companies House account.</p>
 
         {{ govukButton({
     text: "Return to confirmation statement"

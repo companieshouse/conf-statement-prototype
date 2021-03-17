@@ -18,6 +18,11 @@ $govuk-assets-path: '/govuk/assets/';
 @import "components/cookie-banner";
 
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
+
+.govuk-link__print {
+   display: none;
+ }
+ 
 .govuk-input--company-number {
   max-width: 13ex;
 }

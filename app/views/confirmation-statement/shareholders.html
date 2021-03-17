@@ -17,14 +17,15 @@
 
       <form action="" method="post">
 
+
+
+        {% set shareholdersHTML %}
         {% if scenario.company.shareholders === '1' %}
           <h2 class="govuk-heading-m">1 Shareholder</h2>
         {% else %}
           <h2 class="govuk-heading-m">{{scenario.company.shareholders}}
             Shareholders</h2>
         {% endif %}
-
-        {% set shareholdersHTML %}
         {% include "includes/confirmation-statement-details/shareholders.html" %}
         {% endset %}
 

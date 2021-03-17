@@ -3,7 +3,12 @@
 {% block pageTitle %}
   Update members - File a confirmation statement
 {% endblock %}
-
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/confirmation-statement/members"
+  }) }}
+{% endblock %}
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -14,7 +19,7 @@
         <p>You will need to update the member details before you can file a confirmation statement. You can do this by submitting the relevant form online using
           <a target="_blank" href="https://ewf.companieshouse.gov.uk//seclogin?tc=1">our WebFiling service (opens in a new tab)</a>.</p>
         <p>Updates to the member details can take some time to process, and will not be reflected immediately in the information displayed on this service. As long as the update has been submitted, you can still file the confirmation statement.</p>
-        <p>You can return to this confirmation statement by selecting Your Filings in your Companies House account.</p>
+        <p>You can return to this confirmation statement by selecting <a href="/your-filings">Your Filings</a> in your Companies House account.</p>
 
         {{ govukButton({
     text: "Return to confirmation statement"
