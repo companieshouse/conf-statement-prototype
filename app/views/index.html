@@ -8,10 +8,16 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
+
       <h1 class="govuk-heading-xl">
+        File a confirmation statement service
+
+      <span class="govuk-caption-l">Version 7</span>
+      </h1>
+      <h2 class="govuk-heading-l">
         The GOV.UK Prototype Kit
-        <span class="govuk-caption-xl">{{releaseVersion}}</span>
-      </h1>{{releaseVersion | log }}
+        <span class="govuk-caption-l">{{releaseVersion}}</span>
+      </h2>{{releaseVersion | log }}
 
       <div class="govuk-tabs" data-module="govuk-tabs">
         <h2 class="govuk-tabs__title">
@@ -98,6 +104,10 @@
                 <a href="/sign-out">Sign out</a>
                 Sign out</li>
               <li>
+                <li>
+                  <a href="/recognised-user">Existing user with ongoing CS logs into service</a>
+                  Continue with confirmation statement</li>
+                <li>
                 <a href="/confirmation-statement/review">Review confirmation statement</a>
                 Review confirmation statement
               </li>
@@ -297,7 +307,12 @@
               </li>
             </ul>
             <h2 class="govuk-heading-l">Emails</h2>
-
+            <ul class="govuk-list govuk-list--bullet">
+              <li>
+                <a href="/email/user-email">Email for users</a>
+                Confirmation statement submitted for COMPANY
+              </li>
+            </ul>
             <h2 class="govuk-heading-l">Resources</h2>
             <ul class="govuk-list  govuk-list--bullet">
               <li>
@@ -429,6 +444,21 @@
                             </li>
                             <li>
                               <a class="govuk-link" href="https://conf-statement-ideal-v7.herokuapp.com/start">Warning message removed</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v7.herokuapp.com/task-list">Recent filing notification banner added</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v7.herokuapp.com/confirmation-statement/additional-officers">changed radio order of any officers to appoint</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v7.herokuapp.com/confirmation-statement/additional-pscs">changed radio order of any pscs to appoint</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v7.herokuapp.com/recognised-user">resume existing application screen</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v7.herokuapp.com/task-list">updated radios to display if a filing had recently been received</a>
                             </li>
                           </ul>
                         </div>

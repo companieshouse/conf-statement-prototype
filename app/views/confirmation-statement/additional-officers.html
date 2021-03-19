@@ -16,7 +16,101 @@
     <div class="govuk-grid-column-three-quarters">
 
       <form action="" method="post">
-
+{% if scenario.company.recentFiling === 'yes' %}
+        {% if additionalOfficers === 'yes' %}
+          {{ govukRadios({
+          classes: "govuk-radios",
+          idPrefix: "additional-officers",
+          name: "additional-officers",
+          fieldset: {
+            legend: {
+              html: "Are there any officers to appoint?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+    text: "This includes directors, corporate directors, secretaries and corporate secretaries."
+  },
+          items: [
+            {
+              value: "no",
+              text: "No",
+              checked: true
+            },
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "Yes, but I've recently filed an update"
+            }
+          ]
+        }) }}
+        {% elseif additionalOfficers === 'no' %}
+          {{ govukRadios({
+          classes: "govuk-radios",
+          idPrefix: "additional-officers",
+          name: "additional-officers",
+          fieldset: {
+            legend: {
+              html: "Are there any officers to appoint?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+    text: "This includes directors, corporate directors, secretaries and corporate secretaries."
+  },
+          items: [
+            {
+              value: "no",
+              text: "No"
+            },
+            {
+              value: "yes",
+              text: "Yes",
+              checked: true
+            },
+            {
+              value: "no",
+              text: "Yes, but I've recently filed an update"
+            }
+          ]
+        }) }}
+        {% else %}
+          {{ govukRadios({
+          classes: "govuk-radios",
+          idPrefix: "additional-officers",
+          name: "additional-officers",
+          fieldset: {
+            legend: {
+              html: "Are there any officers to appoint?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+    text: "This includes directors, corporate directors, secretaries and corporate secretaries."
+  },
+          items: [
+            {
+              value: "no",
+              text: "No"
+            },
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "Yes, but I've recently filed an update"
+            }
+          ]
+        }) }}
+        {% endif %}
+        {% else %}
         {% if additionalOfficers === 'yes' %}
           {{ govukRadios({
           classes: "govuk-radios",
@@ -41,10 +135,6 @@
             {
               value: "no",
               text: "No"
-            },
-            {
-              value: "no",
-              text: "Yes, but I've recently filed an update"
             }
           ]
         }) }}
@@ -72,10 +162,6 @@
               value: "no",
               text: "No",
               checked: true
-            },
-            {
-              value: "no",
-              text: "Yes, but I've recently filed an update"
             }
           ]
         }) }}
@@ -102,13 +188,10 @@
             {
               value: "no",
               text: "No"
-            },
-            {
-              value: "no",
-              text: "Yes, but I've recently filed an update"
             }
           ]
         }) }}
+        {% endif %}
         {% endif %}
 
         {{ govukButton({
