@@ -23,6 +23,7 @@
         </p>
         {% endset %}
 
+{% if scenario.company.recentFiling === 'yes' %}
         {% if ro === 'yes' %}
           {{ govukRadios({
           classes: "govuk-radios",
@@ -116,7 +117,89 @@
           ]
         }) }}
         {% endif %}
-
+{% else %}
+{% if ro === 'yes' %}
+  {{ govukRadios({
+  classes: "govuk-radios",
+  idPrefix: "registered-office-address",
+  name: "registered-office-address",
+  fieldset: {
+    legend: {
+      html: "Is the registered office address correct?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  hint: {
+html: roaHTML
+},
+  items: [
+    {
+      value: "yes",
+      text: "Yes",
+      checked: true
+    },
+    {
+      value: "no",
+      text: "No"
+    }
+  ]
+}) }}
+{% elseif ro === 'no' %}
+  {{ govukRadios({
+  classes: "govuk-radios",
+  idPrefix: "registered-office-address",
+  name: "registered-office-address",
+  fieldset: {
+    legend: {
+      html: "Is the registered office address correct?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  hint: {
+html: roaHTML
+},
+  items: [
+    {
+      value: "yes",
+      text: "Yes"
+    },
+    {
+      value: "no",
+      text: "No",
+      checked: true
+    }
+  ]
+}) }}
+{% else %}
+  {{ govukRadios({
+  classes: "govuk-radios",
+  idPrefix: "registered-office-address",
+  name: "registered-office-address",
+  fieldset: {
+    legend: {
+      html: "Is the registered office address correct?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  hint: {
+html: roaHTML
+},
+  items: [
+    {
+      value: "yes",
+      text: "Yes"
+    },
+    {
+      value: "no",
+      text: "No"
+    }
+  ]
+}) }}
+{% endif %}
+{% endif %}
         {{ govukButton({
 text: "Continue"
 }) }}

@@ -39,6 +39,7 @@
     ]
   ]
 }) }}
+{% if scenario.company.recentFiling === 'yes' %}
         {% if officers === 'yes' %}
           {{ govukRadios({
           classes: "govuk-radios",
@@ -132,7 +133,89 @@
           ]
         }) }}
         {% endif %}
-
+{% else %}
+{% if officers === 'yes' %}
+  {{ govukRadios({
+  classes: "govuk-radios",
+  idPrefix: "officers",
+  name: "officers",
+  fieldset: {
+    legend: {
+      html: "Are the director details correct?",
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  hint: {
+html: officerHTML
+},
+  items: [
+    {
+      value: "yes",
+      text: "Yes",
+      checked: true
+    },
+    {
+      value: "no",
+      text: "No"
+    }
+  ]
+}) }}
+{% elseif officers === 'no' %}
+  {{ govukRadios({
+  classes: "govuk-radios",
+  idPrefix: "officers",
+  name: "officers",
+  fieldset: {
+    legend: {
+      html: "Are the director details correct?",
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  hint: {
+html: officerHTML
+},
+  items: [
+    {
+      value: "yes",
+      text: "Yes"
+    },
+    {
+      value: "no",
+      text: "No",
+      checked: true
+    }
+  ]
+}) }}
+{% else %}
+  {{ govukRadios({
+  classes: "govuk-radios",
+  idPrefix: "officers",
+  name: "officers",
+  fieldset: {
+    legend: {
+      html: "Are the director details correct?",
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  hint: {
+html: officerHTML
+},
+  items: [
+    {
+      value: "yes",
+      text: "Yes"
+    },
+    {
+      value: "no",
+      text: "No"
+    }
+  ]
+}) }}
+{% endif %}
+{% endif %}
         {{ govukButton({
 text: "Continue"
 }) }}

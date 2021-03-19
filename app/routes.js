@@ -62,6 +62,15 @@ router.post('/more-than-5-shareholders', function (req, res) {
   }
 })
 // standard journey
+router.get('/recognised-user', function (req, res) {
+  var scenario = req.session.scenario
+  var moment = require('moment') // require
+
+  res.render('recognised-user', {
+    scenario: scenario,
+    moment: moment().format('D MMMM yyy')
+  })
+})
 router.get('/your-filings', function (req, res) {
   var scenario = req.session.scenario
   var moment = require('moment') // require
