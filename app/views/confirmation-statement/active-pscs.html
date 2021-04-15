@@ -31,7 +31,7 @@
         }) }}
         {% if scenario.company.pscs === '1' %}
           <h2 class="govuk-heading-m">{{scenario.company.pscs}}
-            PSC</h2>
+            individual PSC</h2>
           {% set pscHTML %}
 
           Irving, Kyrie
@@ -39,7 +39,7 @@
           {% endset %}
         {% elseif scenario.company.pscs === '5' %}
           <h2 class="govuk-heading-m">{{scenario.company.pscs}}
-            PSCs</h2>
+            individual PSCs</h2>
           {% set pscHTML %}
           <ul class="govuk-list govuk-list--bullet">
             <li>Irving, Kyrie</li>
@@ -64,6 +64,7 @@
     ]
   ]
 }) }}
+{% if scenario.company.recentFiling === 'yes' %}
         {% if activePscs === 'yes' %}
           {{ govukRadios({
       classes: "govuk-radios",
@@ -148,7 +149,80 @@
               ]
             }) }}
         {% endif %}
-
+{% else %}
+{% if activePscs === 'yes' %}
+  {{ govukRadios({
+classes: "govuk-radios",
+idPrefix: "active-pscs",
+name: "active-pscs",
+fieldset: {
+legend: {
+  html: headingHTML,
+  isPageHeading: false,
+  classes: "govuk-fieldset__legend--l"
+}
+},
+items: [
+{
+  value: "yes",
+  text: "Yes",
+  checked: true
+},
+{
+  value: "no",
+  text: "No"
+}
+]
+}) }}
+{% elseif activePscs === 'no' %}
+  {{ govukRadios({
+  classes: "govuk-radios",
+  idPrefix: "active-pscs",
+  name: "active-pscs",
+  fieldset: {
+    legend: {
+      html: headingHTML,
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  items: [
+    {
+      value: "yes",
+      text: "Yes"
+    },
+    {
+      value: "no",
+      text: "No",
+      checked: true
+    }
+  ]
+}) }}
+{% else %}
+  {{ govukRadios({
+      classes: "govuk-radios",
+      idPrefix: "active-pscs",
+      name: "active-pscs",
+      fieldset: {
+        legend: {
+          html: headingHTML,
+          isPageHeading: false,
+          classes: "govuk-fieldset__legend--l"
+        }
+      },
+      items: [
+        {
+          value: "yes",
+          text: "Yes"
+        },
+        {
+          value: "no",
+          text: "No"
+        }
+      ]
+    }) }}
+{% endif %}
+{% endif %}
         {{ govukButton({
 text: "Continue"
 }) }}

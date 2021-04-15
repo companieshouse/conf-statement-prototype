@@ -8,7 +8,7 @@
 {% block backLink %}
   {{ govukBackLink({
     text: "Back",
-    href: "/task-list"
+    href: "/confirmation-statement/review"
   }) }}
 {% endblock %}
 {% block content %}
@@ -146,6 +146,9 @@ html: scenario.company.address | nl2br
     <h3 class="govuk-heading-s">Register locations</h3>
     {% include "includes/confirmation-statement-details/registers.html" %}
 
+    <p class="govuk-body">
+            <a href="javascript:if(window.print)window.print()">Print a copy of these details</a>
+          </p>
   </div>
 </div>
 {% endif %}

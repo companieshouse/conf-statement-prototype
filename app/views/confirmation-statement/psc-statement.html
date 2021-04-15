@@ -33,7 +33,7 @@
           html: pscStatementTypesHTML
         }) }}
         {% endset %}
-
+{% if scenario.company.recentFiling === 'yes' %}
         {% if pscStatement === 'yes' %}
           {{ govukRadios({
           classes: "govuk-radios",
@@ -127,7 +127,89 @@
           ]
         }) }}
         {% endif %}
-
+{% else %}
+{% if pscStatement === 'yes' %}
+  {{ govukRadios({
+  classes: "govuk-radios",
+  idPrefix: "psc-statement",
+  name: "psc-statement",
+  fieldset: {
+    legend: {
+      html: "Is the PSC statement correct?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  hint: {
+html: pscStatementHTML
+},
+  items: [
+    {
+      value: "yes",
+      text: "Yes",
+      checked: true
+    },
+    {
+      value: "no",
+      text: "No"
+    }
+  ]
+}) }}
+{% elseif pscStatement === 'no' %}
+  {{ govukRadios({
+  classes: "govuk-radios",
+  idPrefix: "psc-statement",
+  name: "psc-statement",
+  fieldset: {
+    legend: {
+      html: "Is the PSC statement correct?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  hint: {
+html: pscStatementHTML
+},
+  items: [
+    {
+      value: "yes",
+      text: "Yes"
+    },
+    {
+      value: "no",
+      text: "No",
+      checked: true
+    }
+  ]
+}) }}
+{% else %}
+  {{ govukRadios({
+  classes: "govuk-radios",
+  idPrefix: "psc-statement",
+  name: "psc-statement",
+  fieldset: {
+    legend: {
+      html: "Is the PSC statement correct?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  hint: {
+html: pscStatementHTML
+},
+  items: [
+    {
+      value: "yes",
+      text: "Yes"
+    },
+    {
+      value: "no",
+      text: "No"
+    }
+  ]
+}) }}
+{% endif %}
+{% endif %}
         {{ govukButton({
 text: "Continue"
 }) }}

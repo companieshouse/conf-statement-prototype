@@ -23,7 +23,6 @@
 
         Irving, Kyrie
 
-    </ul>
     {% endset %}
     {% set director2HTML %}
     <ul class="govuk-list govuk-list--bullet">
@@ -44,6 +43,7 @@
     ]
   ]
 }) }}
+{% if scenario.company.recentFiling === 'yes' %}
     {% if activeDirectors === 'yes' %}
       {{ govukRadios({
           classes: "govuk-radios",
@@ -127,6 +127,80 @@
                                 }
                               ]
                             }) }}
+    {% endif %}
+    {% else %}
+    {% if activeDirectors === 'yes' %}
+      {{ govukRadios({
+          classes: "govuk-radios",
+          idPrefix: "active-officers",
+          name: "active-officers",
+          fieldset: {
+            legend: {
+              html: "Is the director still active?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes",
+              checked: true
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+    {% elseif activeDirectors === 'no' %}
+      {{ govukRadios({
+                  classes: "govuk-radios",
+                  idPrefix: "active-officers",
+                  name: "active-officers",
+                  fieldset: {
+                    legend: {
+                      html: "Is the director still active?",
+                      isPageHeading: false,
+                      classes: "govuk-fieldset__legend--l"
+                    }
+                  },
+                  items: [
+                    {
+                      value: "yes",
+                      text: "Yes"
+                    },
+                    {
+                      value: "no",
+                      text: "No",
+                      checked: true
+                    }
+                  ]
+                }) }}
+    {% else %}
+      {{ govukRadios({
+                              classes: "govuk-radios",
+                              idPrefix: "active-officers",
+                              name: "active-officers",
+                              fieldset: {
+                                legend: {
+                                  html: "Is the director still active?",
+                                  isPageHeading: false,
+                                  classes: "govuk-fieldset__legend--l"
+                                }
+                              },
+                              items: [
+                                {
+                                  value: "yes",
+                                  text: "Yes"
+                                },
+                                {
+                                  value: "no",
+                                  text: "No"
+                                }
+                              ]
+                            }) }}
+                            {% endif %}
     {% endif %}
 
     {{ govukButton({
