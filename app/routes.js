@@ -265,6 +265,26 @@ router.get('/incorrect-information/wrong-ro', function (req, res) {
 router.post('/incorrect-information/wrong-ro', function (req, res) {
   res.redirect('/task-list')
 })
+router.get('/change-data/change-address', function (req, res) {
+  var scenario = req.session.scenario
+  var moment = require('moment') // require
+
+  res.render('change-data/change-address', {
+    scenario: scenario,
+    moment: moment().format('D MMMM yyy h:mm a')
+  })
+})
+router.get('/change-data/change-address-confirmation', function (req, res) {
+var email = req.session.data['email']
+  var scenario = req.session.scenario
+  var moment = require('moment') // require
+
+  res.render('change-data/change-address-confirmation', {
+    email: email,
+    scenario: scenario,
+    moment: moment().format('D MMMM yyy h:mm a')
+  })
+})
 // officers start //
 router.get('/confirmation-statement/active-officers', function (req, res) {
   var email = req.session.data['email']

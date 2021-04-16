@@ -1,0 +1,86 @@
+{% extends "layout.html" %}
+{% block pageTitle %}
+  Change of registered office address?
+{% endblock %}
+{% block backLink %}
+  {{ govukBackLink({
+  href: "/incorrect-information/wrong-ro",
+  text: "Back"
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <p>Filing for <a href="/chs-profile">{{ scenario.company.name }} ({{scenario.company.number}})</a></p>
+      <form method="post">
+<h1 class="govuk-heading-xl">Change of registered office address</h1>
+<br>
+<p>Current address</p>
+<p>125 Feather Hedge, Salisbury, SP4 7DE</p>
+
+
+        {% call govukFieldset({
+          legend: {
+            text: "What is the new address of the company?",
+            classes: "govuk-fieldset__legend--m",
+            isPageHeading: false
+          }
+        }) %}
+
+          {{ govukInput({
+            label: {
+              html: 'Building and street <span class="govuk-visually-hidden">line 1 of 2</span>'
+            },
+            id: "address-line-1",
+            name: "address-line-1",
+            autocomplete: "address-line1"
+          }) }}
+
+          {{ govukInput({
+            label: {
+              html: '<span class="govuk-visually-hidden">Building and street line 2 of 2</span>'
+            },
+            id: "address-line-2",
+            name: "address-line-2",
+            autocomplete: "address-line2"
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: "Town or city"
+            },
+            classes: "govuk-!-width-two-thirds",
+            id: "address-town",
+            name: "address-town",
+            autocomplete: "address-level2"
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: "County"
+            },
+            classes: "govuk-!-width-two-thirds",
+            id: "address-county",
+            name: "address-county"
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: "Postcode"
+            },
+            classes: "govuk-input--width-10",
+            id: "address-postcode",
+            name: "address-postcode",
+            autocomplete: "postal-code"
+          }) }}
+
+        {% endcall %}
+        {{ govukButton({
+          text: "Submit changes",
+          href: "/change-data/change-address-confirmation"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}
