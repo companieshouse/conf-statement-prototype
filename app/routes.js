@@ -77,6 +77,22 @@ router.get('/co-not-active-use-webfiling', function (req, res) {
     moment: moment().format('D MMMM yyy')
   })
 })
+router.get('/no-filing-required', function (req, res) {
+  var scenario = req.session.scenario
+  var moment = require('moment')
+  res.render('no-filing-required', {
+    scenario: scenario,
+    moment: moment().format('D MMMM yyy')
+  })
+})
+router.get('/paper-filing', function (req, res) {
+  var scenario = req.session.scenario
+  var moment = require('moment')
+  res.render('paper-filing', {
+    scenario: scenario,
+    moment: moment().format('D MMMM yyy')
+  })
+})
 // standard journey
 router.get('/recognised-user', function (req, res) {
   var scenario = req.session.scenario
