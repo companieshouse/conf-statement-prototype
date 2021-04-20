@@ -176,7 +176,7 @@ router.get('/trading-status-dtr5', function (req, res) {
 router.post('/trading-status-dtr5', function (req, res) {
   res.redirect('/task-list')
 })
-router.get('/task-list', function (req, res) {
+router.get('/task-list-external', function (req, res) {
   var completedTasks = req.session.data['completed']
   var email = req.session.data['email']
   var exemption = req.session.data['exemption']
@@ -199,7 +199,7 @@ router.get('/task-list', function (req, res) {
   var sic = req.session.data['sic']
   var trading = req.session.data['trading-status']
 
-  res.render('task-list', {
+  res.render('task-list-external', {
     scenario: req.session.scenario,
     activeOfficers: activeOfficers,
     activePscs: activePscs,
@@ -224,7 +224,7 @@ router.get('/task-list', function (req, res) {
     trading: trading
   })
 })
-router.post('/task-list', function (req, res) {
+router.post('/task-list-external', function (req, res) {
   res.redirect('/confirmation-statement/ro')
 })
 router.get('/confirmation-statement/ro', function (req, res, nl2br) {
