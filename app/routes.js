@@ -61,6 +61,22 @@ router.post('/more-than-5-shareholders', function (req, res) {
       break
   }
 })
+router.get('/co-not-supported-use-webfiling', function (req, res) {
+  var scenario = req.session.scenario
+  var moment = require('moment')
+  res.render('co-not-supported-use-webfiling', {
+    scenario: scenario,
+    moment: moment().format('D MMMM yyy')
+  })
+})
+router.get('/co-not-active-use-webfiling', function (req, res) {
+  var scenario = req.session.scenario
+  var moment = require('moment')
+  res.render('co-not-active-use-webfiling', {
+    scenario: scenario,
+    moment: moment().format('D MMMM yyy')
+  })
+})
 // standard journey
 router.get('/recognised-user', function (req, res) {
   var scenario = req.session.scenario
