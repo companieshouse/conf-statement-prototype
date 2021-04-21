@@ -134,17 +134,24 @@ router.post('/authenticate', function (req, res) {
 })
 router.get('/check-trading-status', function (req, res) {
   var scenario = req.session.scenario
+  var tradingStatus = req.session.data['trading-status']
 
   res.render('check-trading-status', {
-    scenario: scenario
+    scenario: scenario,
+    tradingStatus: tradingStatus
   })
 })
 router.post('/check-trading-status', function (req, res) {
+  var scenario = req.session.scenario
   var tradingStatus = req.session.data['trading-status']
 
   switch (tradingStatus) {
     case 'yes':
+    if (scenario.company.pscExempt === '0') {
       res.redirect('/task-list')
+    } else {
+      res.redirect('/psc-exempt-options')
+    }
       break
     case 'no':
       res.redirect('/trading-stop')
@@ -152,7 +159,10 @@ router.post('/check-trading-status', function (req, res) {
   }
 })
 router.get('/trading-status', function (req, res) {
+  var tradingStatus = req.session.data['trading-status']
+
   res.render('trading-status', {
+    tradingStatus: tradingStatus,
     scenario: req.session.scenario
   })
 })
@@ -225,6 +235,57 @@ router.get('/task-list-external', function (req, res) {
   })
 })
 router.post('/task-list-external', function (req, res) {
+  res.redirect('/confirmation-statement/ro')
+})
+router.get('/task-list', function (req, res) {
+  var completedTasks = req.session.data['completed']
+  var email = req.session.data['email']
+  var exemption = req.session.data['exemption']
+  var activeOfficers = req.session.data['active-officers']
+  var activePscs = req.session.data['active-pscs']
+  var activeMembers = req.session.data['active-members']
+  var additionalPscs = req.session.data['additional-pscs']
+  var additionalOfficers = req.session.data['additional-officers']
+  var additionalMembers = req.session.data['additional-members']
+  var members = req.session.data['members']
+  var moment = require('moment') // require
+  var officers = req.session.data['officers']
+  var psc = req.session.data['psc']
+  var pscStatement = req.session.data['psc-statement']
+  var register = req.session.data['registers']
+  var result = 0
+  var ro = req.session.data['registered-office-address']
+  var statementOfCapital = req.session.data['statement-of-capital']
+  var shareholders = req.session.data['shareholders']
+  var sic = req.session.data['sic']
+  var trading = req.session.data['trading-status']
+
+  res.render('task-list', {
+    scenario: req.session.scenario,
+    activeOfficers: activeOfficers,
+    activePscs: activePscs,
+    additionalPscs: additionalPscs,
+    additionalOfficers: additionalOfficers,
+    activeMembers: activeMembers,
+    additionalMembers: additionalMembers,
+    members: members,
+    completedTasks: completedTasks,
+    email: email,
+    exemption: exemption,
+    moment: moment().format('D MMMM yyy'),
+    officers: officers,
+    psc: psc,
+    pscStatement: pscStatement,
+    register: register,
+    result: result,
+    ro: ro,
+    statementOfCapital: statementOfCapital,
+    shareholders: shareholders,
+    sic: sic,
+    trading: trading
+  })
+})
+router.post('/task-list', function (req, res) {
   res.redirect('/confirmation-statement/ro')
 })
 router.get('/confirmation-statement/ro', function (req, res, nl2br) {

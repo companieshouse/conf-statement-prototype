@@ -20,6 +20,7 @@ module.exports = {
     register: 'ro',
     shareholders: '1',
     tradingStatus: '1',
-    recentFiling: 'yes'
+    recentFiling: 'yes',
+    pscExempt: '0'
   }
 }
