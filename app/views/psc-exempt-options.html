@@ -16,33 +16,39 @@
     <div class="govuk-grid-column-two-thirds">
 
       <form action="" method="post">
+<h1 class="govuk-heading-l">Check the people with significant control (PSC) exemption status</h1>
 
-        {{ govukRadios({
-          idPrefix: "exempt",
-  name: "exempt",
+{% if scenario.company.pscExempt === '1' %}
+<p>The company is exempt from the requirement to obtain information and keep a register of its PSC because the company has voting shares admitted to trading on a regulated market in an EEA State other than the United Kingdom</p>
+{% elseif scenario.company.pscExempt === '2' %}
+<p>The company is exempt from the requirement to obtain information and keep a register of its PSC because the company has voting shares admitted to trading on a traded market listed in Schedule 1 of the Register of the People with Significant Control Regulations 2016</p>
+{% elseif scenario.company.pscExempt === '3' %}
+<p>The company is exempt from the requirement to obtain information and keep a register of its PSC because the company has voting shares admitted to trading on a UK regulated market</p>
+{% elseif scenario.company.pscExempt === '0' %}
+<p>The company is not exempt from the requirement to obtain information and keep a register of its PSC</p>
+{% endif %}
+{{ govukRadios({
+  classes: "govuk-radios--inline",
+  idPrefix: "trading-status",
+  name: "trading-status",
   fieldset: {
     legend: {
-      text: "What is the nature of the exemption",
-      isPageHeading: true,
+      text: "Is the PSC exemption status correct?",
+      isPageHeading: false,
       classes: "govuk-fieldset__legend--l"
     }
   },
-
-          items: [
-            {
-              value: "option1",
-              text: "The company is exempt from the requirement to obtain information and keep a register of its PSC because the company has voting shares admitted to trading on a regulated market in an EEA State other than the United Kingdom"
-            },
-            {
-              value: "option2",
-              text: "The company is exempt from the requirement to obtain information and keep a register of its PSC because the company has voting shares admitted to trading on a traded market listed in Schedule 1 of the Register of the People with Significant Control Regulations 2016"
-            },
-            {
-              value: "option3",
-              text: "The company is exempt from the requirement to obtain information and keep a register of its PSC because the company has voting shares admitted to trading on a UK regulated market"
-            }
-          ]
-        }) }}
+  items: [
+    {
+      value: "yes",
+      text: "Yes"
+    },
+    {
+      value: "no",
+      text: "No"
+    }
+  ]
+}) }}
 
         {{ govukButton({
 text: "Continue"

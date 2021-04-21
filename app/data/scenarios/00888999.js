@@ -19,6 +19,7 @@ module.exports = {
     pscs: '5',
     members: '5',
     register: 'SAIL',
-    tradingStatus: '2'
+    tradingStatus: '2',
+    pscExempt: '2'
   }
 }
