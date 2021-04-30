@@ -36,69 +36,95 @@
         This service can only be used to file confirmation statements for private limited companies of a certain size.
 
         {% endset %}
-        {{ govukTable({
+        <dl class="govuk-summary-list">
 
-  firstCellIsHeader: true,
-  classes: "align-top",
-  rows: [
-    [
-      {
-        text: "Company number"
-      },
-      {
-        text: scenario.company.number
-      }
-    ],
-    [
-      {
-        text: "Status"
-      },
-      {
-        text: scenario.company.status
-      }
-    ],
-    [
-      {
-        text: "Incorporation date"
-      },
-      {
-        text: scenario.company.incorporationDate
-      }
-    ],
-    [
-      {
-        text: "Company type"
-      },
-      {
-        text: scenario.company.companyType
-      }
-    ],
-    [
-      {
-        text: "Registered office address"
-      },
-      {
-        html: scenario.company.address | nl2br
-      }
-    ],
-    [
-      {
-        text: "Date of next confirmation statement"
-      },
-      {
-        html: scenario.company.csDate
-      }
-    ],
-    [
-      {
-        text: "To be filed by"
-      },
-      {
-        html: scenario.company.csDueDate
-      }
-    ]
-  ]
-}) }}
+
+              <div class="govuk-summary-list__row govuk-!-width-full">
+                <dt class="govuk-summary-list__key govuk-!-width-full">
+                  Company number
+                </dt>
+                <dd class="govuk-summary-list__value">
+              {{scenario.company.number}}
+                </dd>
+
+              </div>
+
+
+
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Status
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{scenario.company.status}}
+                </dd>
+
+              </div>
+
+
+
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Incorporation date
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{scenario.company.incorporationDate}}
+                </dd>
+
+              </div>
+
+
+
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Company type
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{scenario.company.companyType}}
+                </dd>
+
+              </div>
+
+
+
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Registered office address
+                </dt>
+                <dd class="govuk-summary-list__value">
+                {{scenario.company.address}}
+                </dd>
+
+              </div>
+
+
+
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Date of next confirmation statement
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{scenario.company.csDate}}
+                </dd>
+
+              </div>
+
+
+
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  To be filed by
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{scenario.company.csDueDate}}
+                </dd>
+
+              </div>
+
+
+        </dl>
+
+
         {% if scenario.company.csDue === "notdue" %}
           {{ govukWarningText({
   html: notDueWarningHTML,
