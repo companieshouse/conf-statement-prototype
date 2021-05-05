@@ -144,6 +144,28 @@ router.get('/check-trading-status', function (req, res) {
 router.post('/check-trading-status', function (req, res) {
   var scenario = req.session.scenario
   var tradingStatus = req.session.data['trading-status']
+  var errorFlag = false
+  var tradingStatusError = {}
+  var errorList = []
+
+  if (typeof tradingStatus === 'undefined') {
+    tradingStatusError.type = 'blank'
+    tradingStatusError.text = 'Select yes if the company trading status is correct'
+    tradingStatusError.href = '#trading-status'
+    tradingStatusError.flag = true
+  }
+  if (tradingStatusError.flag) {
+    errorList.push(tradingStatusError)
+    errorFlag = true
+  }
+  if (errorFlag === true) {
+    res.render('check-trading-status', {
+      scenario: scenario,
+      tradingStatus: tradingStatus,
+      errorList: errorList,
+      tradingStatusError: tradingStatusError
+    })
+    } else {
 
   switch (tradingStatus) {
     case 'yes':
@@ -156,7 +178,7 @@ router.post('/check-trading-status', function (req, res) {
     case 'no':
       res.redirect('/trading-stop')
       break
-  }
+  }}
 })
 router.get('/trading-status', function (req, res) {
   var tradingStatus = req.session.data['trading-status']
