@@ -371,25 +371,48 @@ var email = req.session.data['email']
 // officers start //
 router.get('/confirmation-statement/active-officers', function (req, res) {
   var email = req.session.data['email']
-  var activeOfficers = req.session.data['active-officers']
+  var activeDirectors = req.session.data['active-directors']
 
   res.render('confirmation-statement/active-officers', {
     scenario: req.session.scenario,
     email: email,
-    activeOfficers: activeOfficers
+    activeDirectors: activeDirectors
   })
 })
 router.post('/confirmation-statement/active-officers', function (req, res) {
-  var activeOfficers = req.session.data['active-officers']
+  var activeDirectors = req.session.data['active-directors']
+  var errorFlag = false
+  var activeDirectorsError = {}
+  var errorList = []
 
-  switch (activeOfficers) {
+  if (typeof activeDirectors === 'undefined') {
+    activeDirectorsError.type = 'blank'
+    activeDirectorsError.text = 'Select yes if the active directors are correct'
+    activeDirectorsError.href = '#active-directors'
+    activeDirectorsError.flag = true
+  }
+  if (activeDirectorsError.flag) {
+    errorList.push(activeDirectorsError)
+    errorFlag = true
+  }
+  if (errorFlag === true) {
+    res.render('confirmation-statement/active-officers', {
+      scenario: req.session.scenario,
+      activeDirectors: activeDirectors,
+      errorList: errorList,
+      activeDirectorsError: activeDirectorsError
+    })
+    } else {
+
+
+  switch (activeDirectors) {
     case 'yes':
       res.redirect('/confirmation-statement/officers')
       break
     case 'no':
       res.redirect('/incorrect-information/wrong-active-officers')
       break
-  }
+  }}
 })
 router.get('/confirmation-statement/officers', function (req, res) {
   var email = req.session.data['email']
@@ -403,6 +426,29 @@ router.get('/confirmation-statement/officers', function (req, res) {
 })
 router.post('/confirmation-statement/officers', function (req, res) {
   var officers = req.session.data['officers']
+  var errorFlag = false
+  var directorDetailsError = {}
+  var errorList = []
+
+  if (typeof directorDetails === 'undefined') {
+    directorDetailsError.type = 'blank'
+    directorDetailsError.text = 'Select yes if the active directors are correct'
+    directorDetailsError.href = '#officers'
+    directorDetailsError.flag = true
+  }
+  if (directorDetailsError.flag) {
+    errorList.push(directorDetailsError)
+    errorFlag = true
+  }
+  if (errorFlag === true) {
+    res.render('confirmation-statement/officers', {
+      scenario: req.session.scenario,
+      officers: officers,
+      errorList: errorList,
+      directorDetailsError: directorDetailsError
+    })
+    } else {
+
 
   switch (officers) {
     case 'yes':
@@ -411,7 +457,7 @@ router.post('/confirmation-statement/officers', function (req, res) {
     case 'no':
       res.redirect('/incorrect-information/wrong-officers')
       break
-  }
+  }}
 })
 router.get('/confirmation-statement/additional-officers', function (req, res) {
   var email = req.session.data['email']
@@ -595,13 +641,37 @@ router.post('/incorrect-information/wrong-registers', function (req, res) {
 })
 router.get('/confirmation-statement/sic', function (req, res) {
   var email = req.session.data['email']
+  var sic = req.session.data['sic']
   res.render('confirmation-statement/sic', {
     scenario: req.session.scenario,
+    sic: sic,
     email: email
   })
 })
 router.post('/confirmation-statement/sic', function (req, res) {
   var sic = req.session.data['sic']
+  var errorFlag = false
+  var sicError = {}
+  var errorList = []
+
+  if (typeof sic === 'undefined') {
+    sicError.type = 'blank'
+    sicError.text = 'Select yes if the SIC codes are correct'
+    sicError.href = '#sic'
+    sicError.flag = true
+  }
+  if (sicError.flag) {
+    errorList.push(sicError)
+    errorFlag = true
+  }
+  if (errorFlag === true) {
+    res.render('confirmation-statement/sic', {
+      scenario: req.session.scenario,
+      sic: sic,
+      errorList: errorList,
+      sicError: sicError
+    })
+    } else {
 
   switch (sic) {
     case 'yes':
@@ -610,7 +680,7 @@ router.post('/confirmation-statement/sic', function (req, res) {
     case 'no':
       res.redirect('/incorrect-information/wrong-sic')
       break
-  }
+  }}
 })
 router.get('/incorrect-information/wrong-sic', function (req, res) {
   var email = req.session.data['email']
@@ -634,7 +704,28 @@ router.get('/confirmation-statement/statement-of-capital', function (req, res) {
 router.post('/confirmation-statement/statement-of-capital', function (req, res) {
   var statementOfCapital = req.session.data['statement-of-capital']
   var trading = req.session.data['trading']
+  var errorFlag = false
+  var statementOfCapitalError = {}
+  var errorList = []
 
+  if (typeof statementOfCapital === 'undefined') {
+    statementOfCapitalError.type = 'blank'
+    statementOfCapitalError.text = 'Select yes if the statement of capital is correct'
+    statementOfCapitalError.href = '#statement-of-capital'
+    statementOfCapitalError.flag = true
+  }
+  if (statementOfCapitalError.flag) {
+    errorList.push(statementOfCapitalError)
+    errorFlag = true
+  }
+  if (errorFlag === true) {
+    res.render('confirmation-statement/statement-of-capital', {
+      scenario: req.session.scenario,
+      statementOfCapital: statementOfCapital,
+      errorList: errorList,
+      statementOfCapitalError: statementOfCapitalError
+    })
+    } else {
   switch (statementOfCapital) {
     case 'yes':
       if (trading === 'yes') {
@@ -646,7 +737,7 @@ router.post('/confirmation-statement/statement-of-capital', function (req, res) 
     case 'no':
       res.redirect('/incorrect-information/wrong-statement-of-capital')
       break
-  }
+  }}
 })
 router.get('/incorrect-information/wrong-statement-of-capital', function (req, res) {
   var email = req.session.data['email']
