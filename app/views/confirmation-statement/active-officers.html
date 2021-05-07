@@ -1,7 +1,9 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Review the directors
+{% if errorList.length > 0 %}
+  Error:
+{% endif %}  Review the directors
 {% endblock %}
 
 {% block backLink %}
@@ -16,6 +18,20 @@
     <div class="govuk-grid-column-three-quarters">
 
       <form action="" method="post">
+
+      {% if errorList.length > 0 %}
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "Select yes if the director is still active",
+            href: "#trading-status"
+          }
+        ]
+      }) }}
+      {% endif %}
+
+
         <h1 class="govuk-heading-l">Check the active director</h1>
 
         <h2 class="govuk-heading-m">1 Director</h2>
@@ -47,8 +63,9 @@
     {% if activeDirectors === 'yes' %}
       {{ govukRadios({
           classes: "govuk-radios",
-          idPrefix: "active-officers",
-          name: "active-officers",
+          idPrefix: "active-directors",
+          name: "active-directors",
+          errorMessage: activeDirectorsError,
           fieldset: {
             legend: {
               html: "Is the director still active?",
@@ -75,8 +92,9 @@
     {% elseif activeDirectors === 'no' %}
       {{ govukRadios({
                   classes: "govuk-radios",
-                  idPrefix: "active-officers",
-                  name: "active-officers",
+                  idPrefix: "active-directors",
+                  name: "active-directors",
+                  errorMessage: activeDirectorsError,
                   fieldset: {
                     legend: {
                       html: "Is the director still active?",
@@ -103,8 +121,9 @@
     {% else %}
       {{ govukRadios({
                               classes: "govuk-radios",
-                              idPrefix: "active-officers",
-                              name: "active-officers",
+                              idPrefix: "active-directors",
+                              name: "active-directors",
+                              errorMessage: activeDirectorsError,
                               fieldset: {
                                 legend: {
                                   html: "Is the director still active?",
@@ -132,8 +151,9 @@
     {% if activeDirectors === 'yes' %}
       {{ govukRadios({
           classes: "govuk-radios",
-          idPrefix: "active-officers",
-          name: "active-officers",
+          idPrefix: "active-directors",
+          name: "active-directors",
+          errorMessage: activeDirectorsError,
           fieldset: {
             legend: {
               html: "Is the director still active?",
@@ -156,8 +176,9 @@
     {% elseif activeDirectors === 'no' %}
       {{ govukRadios({
                   classes: "govuk-radios",
-                  idPrefix: "active-officers",
-                  name: "active-officers",
+                  idPrefix: "active-directors",
+                  name: "active-directors",
+                  errorMessage: activeDirectorsError,
                   fieldset: {
                     legend: {
                       html: "Is the director still active?",
@@ -180,8 +201,9 @@
     {% else %}
       {{ govukRadios({
                               classes: "govuk-radios",
-                              idPrefix: "active-officers",
-                              name: "active-officers",
+                              idPrefix: "active-directors",
+                              name: "active-directors",
+                              errorMessage: activeDirectorsError,
                               fieldset: {
                                 legend: {
                                   html: "Is the director still active?",
