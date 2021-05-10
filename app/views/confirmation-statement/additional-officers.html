@@ -32,7 +32,7 @@
         {% endif %}
 
 {% if scenario.company.recentFiling === 'yes' %}
-        {% if additionalOfficers === 'yes' %}
+        {% if additionalDirectors === 'yes' %}
           {{ govukRadios({
           classes: "govuk-radios",
           idPrefix: "additional-directors",
@@ -64,7 +64,7 @@
             }
           ]
         }) }}
-        {% elseif additionalOfficers === 'no' %}
+        {% elseif additionalDirectors === 'no' %}
           {{ govukRadios({
           classes: "govuk-radios",
           idPrefix: "additional-directors",
@@ -129,7 +129,7 @@
         }) }}
         {% endif %}
         {% else %}
-        {% if additionalOfficers === 'yes' %}
+        {% if additionalDirectors === 'yes' %}
           {{ govukRadios({
           classes: "govuk-radios",
           idPrefix: "additional-directors",
@@ -157,7 +157,7 @@
             }
           ]
         }) }}
-        {% elseif additionalOfficers === 'no' %}
+        {% elseif additionalDirectors === 'no' %}
           {{ govukRadios({
           classes: "govuk-radios",
           idPrefix: "additional-directors",

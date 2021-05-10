@@ -263,11 +263,11 @@ router.get('/task-list', function (req, res) {
   var completedTasks = req.session.data['completed']
   var email = req.session.data['email']
   var exemption = req.session.data['exemption']
-  var activeOfficers = req.session.data['active-officers']
+  var activeDirectors = req.session.data['active-directors']
   var activePscs = req.session.data['active-pscs']
   var activeMembers = req.session.data['active-members']
   var additionalPscs = req.session.data['additional-pscs']
-  var additionalOfficers = req.session.data['additional-officers']
+  var additionalDirectors = req.session.data['additional-directors']
   var additionalMembers = req.session.data['additional-members']
   var members = req.session.data['members']
   var moment = require('moment') // require
@@ -284,10 +284,10 @@ router.get('/task-list', function (req, res) {
 
   res.render('task-list', {
     scenario: req.session.scenario,
-    activeOfficers: activeOfficers,
+    activeDirectors: activeDirectors,
     activePscs: activePscs,
     additionalPscs: additionalPscs,
-    additionalOfficers: additionalOfficers,
+    additionalDirectors: additionalDirectors,
     activeMembers: activeMembers,
     additionalMembers: additionalMembers,
     members: members,
@@ -461,12 +461,12 @@ router.post('/confirmation-statement/officers', function (req, res) {
 })
 router.get('/confirmation-statement/additional-officers', function (req, res) {
   var email = req.session.data['email']
-  var additionalOfficers = req.session.data['additional-officers']
+  var additionalDirectors = req.session.data['additional-directors']
 
   res.render('confirmation-statement/additional-officers', {
     email: email,
     scenario: req.session.scenario,
-    additionalOfficers: additionalOfficers
+    additionalDirectors: additionalDirectors
   })
 })
 router.post('/confirmation-statement/additional-officers', function (req, res) {

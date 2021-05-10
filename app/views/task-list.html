@@ -126,11 +126,11 @@
                       Officers
                     </a>
                   </span>
-                  {% if additionalOfficers === 'no' %}
+                  {% if additionalDirectors === 'no' %}
                     <strong class="govuk-tag app-task-list__tag" id="eligibility-status">
                       Checked</strong>
 
-                  {% elseif additionalOfficers === 'yes' or officers === 'no' or activeOfficers === 'no' %}
+                  {% elseif additionalDirectors === 'yes' or officers === 'no' or activeDirectors === 'no' %}
                     <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="eligibility-status">In progress</strong>
 
                   {% else %}
