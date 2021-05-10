@@ -24,14 +24,14 @@
   titleText: "There is a problem",
   errorList: [
     {
-      text: "Select yes if the company trading status is correct",
+      text: "Select yes if the trading status of shares is correct",
       href: "#trading-status"
     }
   ]
 }) }}
 {% endif %}
 
-        <h1 class="govuk-heading-xl">Check the trading status</h1>
+        <h1 class="govuk-heading-xl">Check the trading status of shares</h1>
 
 
         {% if scenario.company.tradingStatus === '1' %}
@@ -62,7 +62,7 @@
           errorMessage: tradingStatusError,
           fieldset: {
             legend: {
-              text: "Is the company trading status correct?",
+              text: "Is the trading status of shares correct?",
               isPageHeading: false,
               classes: "govuk-fieldset__legend--l"
             }

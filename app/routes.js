@@ -430,9 +430,9 @@ router.post('/confirmation-statement/officers', function (req, res) {
   var directorDetailsError = {}
   var errorList = []
 
-  if (typeof directorDetails === 'undefined') {
+  if (typeof officers === 'undefined') {
     directorDetailsError.type = 'blank'
-    directorDetailsError.text = 'Select yes if the active directors are correct'
+    directorDetailsError.text = 'Select yes if the director details are correct'
     directorDetailsError.href = '#officers'
     directorDetailsError.flag = true
   }
@@ -470,16 +470,39 @@ router.get('/confirmation-statement/additional-officers', function (req, res) {
   })
 })
 router.post('/confirmation-statement/additional-officers', function (req, res) {
-  var additionalOfficers = req.session.data['additional-officers']
+  var additionalDirectors = req.session.data['additional-directors']
+  var errorFlag = false
+  var additionalDirectorsError = {}
+  var errorList = []
 
-  switch (additionalOfficers) {
+  if (typeof additionalDirectors === 'undefined') {
+    additionalDirectorsError.type = 'blank'
+    additionalDirectorsError.text = 'Select yes if there are directors to appoint'
+    additionalDirectorsError.href = '#additional-directors'
+    additionalDirectorsError.flag = true
+  }
+  if (additionalDirectorsError.flag) {
+    errorList.push(additionalDirectorsError)
+    errorFlag = true
+  }
+  if (errorFlag === true) {
+    res.render('confirmation-statement/additional-officers', {
+      scenario: req.session.scenario,
+      additionalDirectors: additionalDirectors,
+      errorList: errorList,
+      additionalDirectorsError: additionalDirectorsError
+    })
+    } else {
+
+
+  switch (additionalDirectors) {
     case 'yes':
       res.redirect('/incorrect-information/wrong-appoint-officers')
       break
     case 'no':
       res.redirect('/task-list')
       break
-  }
+  }}
 })
 router.get('/confirmation-statement/officers-2', function (req, res) {
   var email = req.session.data['email']
