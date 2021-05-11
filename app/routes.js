@@ -263,7 +263,7 @@ router.get('/task-list', function (req, res) {
   var completedTasks = req.session.data['completed']
   var email = req.session.data['email']
   var exemption = req.session.data['exemption']
-  var activeDirectors = req.session.data['active-directors']
+  var activeDirectors = req.session.data['active-director']
   var activePscs = req.session.data['active-pscs']
   var activeMembers = req.session.data['active-members']
   var additionalPscs = req.session.data['additional-pscs']
@@ -477,7 +477,7 @@ router.post('/confirmation-statement/additional-officers', function (req, res) {
 
   if (typeof additionalDirectors === 'undefined') {
     additionalDirectorsError.type = 'blank'
-    additionalDirectorsError.text = 'Select yes if there are directors to appoint'
+    additionalDirectorsError.text = 'Select no if there are no directors to appoint'
     additionalDirectorsError.href = '#additional-directors'
     additionalDirectorsError.flag = true
   }
