@@ -1,7 +1,9 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Review the PSCs
+{% if errorList.length > 0 %}
+  Error:
+{% endif %}  Review the PSCs
 {% endblock %}
 
 {% block backLink %}
@@ -14,6 +16,17 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-three-quarters">
+      {% if errorList.length > 0 %}
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "Select yes if the active PSCs are correct",
+            href: "#active-pscs"
+          }
+        ]
+      }) }}
+      {% endif %}
 
       <form action="" method="post">
         {% set pscDetails %}
@@ -70,6 +83,7 @@
       classes: "govuk-radios",
       idPrefix: "active-pscs",
       name: "active-pscs",
+      errorMessage: activePscsError,
       fieldset: {
         legend: {
           html: headingHTML,
@@ -98,6 +112,7 @@
           classes: "govuk-radios",
           idPrefix: "active-pscs",
           name: "active-pscs",
+          errorMessage: activePscsError,
           fieldset: {
             legend: {
               html: headingHTML,
@@ -126,6 +141,7 @@
               classes: "govuk-radios",
               idPrefix: "active-pscs",
               name: "active-pscs",
+              errorMessage: activePscsError,
               fieldset: {
                 legend: {
                   html: headingHTML,
@@ -155,6 +171,7 @@
 classes: "govuk-radios",
 idPrefix: "active-pscs",
 name: "active-pscs",
+errorMessage: activePscsError,
 fieldset: {
 legend: {
   html: headingHTML,
@@ -179,6 +196,7 @@ items: [
   classes: "govuk-radios",
   idPrefix: "active-pscs",
   name: "active-pscs",
+  errorMessage: activePscsError,
   fieldset: {
     legend: {
       html: headingHTML,
@@ -203,6 +221,7 @@ items: [
       classes: "govuk-radios",
       idPrefix: "active-pscs",
       name: "active-pscs",
+      errorMessage: activePscsError,
       fieldset: {
         legend: {
           html: headingHTML,

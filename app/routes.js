@@ -842,6 +842,29 @@ router.get('/confirmation-statement/active-pscs', function (req, res) {
 })
 router.post('/confirmation-statement/active-pscs', function (req, res) {
   var activePscs = req.session.data['active-pscs']
+  var errorFlag = false
+  var activePscsError = {}
+  var errorList = []
+
+  if (typeof activePscs === 'undefined') {
+    activePscsError.type = 'blank'
+    activePscsError.text = 'Select yes if the active PSCs are correct'
+    activePscsError.href = '#active-pscs'
+    activePscsError.flag = true
+  }
+  if (activePscsError.flag) {
+    errorList.push(activePscsError)
+    errorFlag = true
+  }
+  if (errorFlag === true) {
+    res.render('confirmation-statement/active-pscs', {
+      scenario: req.session.scenario,
+      activePscs: activePscs,
+      errorList: errorList,
+      activePscsError: activePscsError
+    })
+    } else {
+
 
   switch (activePscs) {
     case 'yes':
@@ -850,7 +873,7 @@ router.post('/confirmation-statement/active-pscs', function (req, res) {
     case 'no':
       res.redirect('/incorrect-information/wrong-active-psc')
       break
-  }
+  }}
 })
 router.get('/incorrect-information/wrong-active-psc', function (req, res) {
   var email = req.session.data['email']
@@ -873,6 +896,29 @@ router.get('/confirmation-statement/people-with-significant-control', function (
 })
 router.post('/confirmation-statement/people-with-significant-control', function (req, res) {
   var psc = req.session.data['psc']
+  var errorFlag = false
+  var pscDetailsError = {}
+  var errorList = []
+
+  if (typeof psc === 'undefined') {
+    pscDetailsError.type = 'blank'
+    pscDetailsError.text = 'Select yes if the psc details are correct'
+    pscDetailsError.href = '#officers'
+    pscDetailsError.flag = true
+  }
+  if (pscDetailsError.flag) {
+    errorList.push(pscDetailsError)
+    errorFlag = true
+  }
+  if (errorFlag === true) {
+    res.render('confirmation-statement/people-with-significant-control', {
+      scenario: req.session.scenario,
+      psc: psc,
+      errorList: errorList,
+      pscDetailsError: pscDetailsError
+    })
+    } else {
+
 
   switch (psc) {
     case 'yes':
@@ -881,7 +927,7 @@ router.post('/confirmation-statement/people-with-significant-control', function 
     case 'no':
       res.redirect('/incorrect-information/wrong-psc-details')
       break
-  }
+  }}
 })
 router.get('/confirmation-statement/additional-pscs', function (req, res) {
   var email = req.session.data['email']
