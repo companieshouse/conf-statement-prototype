@@ -131,3 +131,14 @@ $govuk-assets-path: '/govuk/assets/';
   background-repeat: no-repeat;
   background-position: -12.5% 50%;
 }
+.govuk-summary-list__row:last-child {
+  .govuk-summary-list__key {
+    border-bottom: 1px solid transparent;
+  }
+  .govuk-summary-list__value {
+    border-bottom: 1px solid transparent;
+  }
+  .govuk-summary-list__actions {
+    border-bottom: 1px solid transparent;
+  }
+}
