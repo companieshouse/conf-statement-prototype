@@ -1,55 +1,70 @@
 {% if scenario.company.shareholders === '1' %}
+<div class="govuk-summary-card govuk-!-margin-bottom-4">
+  <div class="govuk-summary-card_heading govuk-!-padding-top-4 govuk-!-padding-bottom-4 govuk-!-padding-right-3 govuk-!-padding-left-3" style="display: flex; justify-content: space-between; align-items: center">
+    <p class="govuk-!-font-weight-bold govuk-!-margin-0">IRVING, Kyrie</p>
+      
+  </div>
+  <div style="display: flex" class="govuk-!-padding-1">
+    <dl style="display: block" class="govuk-summary-list govuk-!-margin-3">
 
-  <ul class="govuk-list govuk-list--bullet">
-    <li>
-      <strong>Irving, Kyrie</strong>
-    </li>
-    <li>Correspondence address: 2 Nets Way, Newcastle, NE2 3BB</li>
-    <li>100 Ordinary shares held</li>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Correspondence address</dt>
+        <dd class="govuk-summary-list__value">
+          <p>2 Nets Way, Newcastle, NE2 3BB</p>
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Shares</dt>
+        <dd class="govuk-summary-list__value">
+          <p>100 Ordinary shares held</p>
+        </dd>
+      </div>
+    </dl>
+  </div>
 
-  </ul>
+
 {% elseif scenario.company.shareholders === '5' %}
-  <ul class="govuk-list govuk-list--bullet">
-    <li>
-      <strong>Irving, Kyrie</strong>
-    </li>
-    <li>Nationality: British</li>
-    <li>Date of birth: 1 January 1988</li>
-    <li>Occupation: Director</li>
-    <li>Correspondence address: 2 Nets Way, Newcastle, NE2 3BB</li>
-    <li>Usual residential address: 2 Nets Way, Newcastle, NE2 3BB</li>
-    <li>
-      <strong>Durant, Kevin</strong>
-    </li>
-    <li>Nationality: American</li>
-    <li>Date of birth: 1 January 1978</li>
-    <li>Occupation: Director</li>
-    <li>Correspondence address: 2 Nets Way, Newcastle, NE2 3BB</li>
-    <li>Usual residential address: 3 Nets Way, Newcastle, NE2 3BB</li>
-    <li>
-      <strong>Harris, Joe</strong>
-    </li>
-    <li>Nationality: British</li>
-    <li>Date of birth: 5 January 1988</li>
-    <li>Occupation: Director</li>
-    <li>Correspondence address: 2 Nets Way, Newcastle, NE2 3BB</li>
-    <li>Usual residential address: 2 Paint Lane, Newcastle, NE2 3BB</li>
-    <li>
-      <strong>Harden, James</strong>
-    </li>
-    <li>Nationality: German</li>
-    <li>Date of birth: 1 September 1992</li>
-    <li>Occupation: Director</li>
-    <li>Correspondence address: 2 Nets Way, Newcastle, NE2 3BB</li>
-    <li>Usual residential address: 6 Hoop Strasse, Berlin, Germany</li>
-    <li>
-      <strong>Jordan, DeAndre</strong>
-    </li>
-    <li>Nationality: American</li>
-    <li>Date of birth: 1 January 1985</li>
-    <li>Occupation: Director</li>
-    <li>Correspondence address: 2 Nets Way, Newcastle, NE2 3BB</li>
-    <li>Usual residential address: 2 Nets Way, Newcastle, NE2 3BB</li>
+<ul class="govuk-list govuk-list--bullet">
 
-  </ul>
+  <strong>Irving, Kyrie</strong>
+
+  <li>Nationality: British</li>
+  <li>Date of birth: 1 January 1988</li>
+  <li>Occupation: Director</li>
+  <li>Correspondence address: 2 Nets Way, Newcastle, NE2 3BB</li>
+  <li>Usual residential address: 2 Nets Way, Newcastle, NE2 3BB</li>
+
+  <strong>Durant, Kevin</strong>
+
+  <li>Nationality: American</li>
+  <li>Date of birth: 1 January 1978</li>
+  <li>Occupation: Director</li>
+  <li>Correspondence address: 2 Nets Way, Newcastle, NE2 3BB</li>
+  <li>Usual residential address: 3 Nets Way, Newcastle, NE2 3BB</li>
+
+  <strong>Harris, Joe</strong>
+
+  <li>Nationality: British</li>
+  <li>Date of birth: 5 January 1988</li>
+  <li>Occupation: Director</li>
+  <li>Correspondence address: 2 Nets Way, Newcastle, NE2 3BB</li>
+  <li>Usual residential address: 2 Paint Lane, Newcastle, NE2 3BB</li>
+
+  <strong>Harden, James</strong>
+
+  <li>Nationality: German</li>
+  <li>Date of birth: 1 September 1992</li>
+  <li>Occupation: Director</li>
+  <li>Correspondence address: 2 Nets Way, Newcastle, NE2 3BB</li>
+  <li>Usual residential address: 6 Hoop Strasse, Berlin, Germany</li>
+
+  <strong>Jordan, DeAndre</strong>
+
+  <li>Nationality: American</li>
+  <li>Date of birth: 1 January 1985</li>
+  <li>Occupation: Director</li>
+  <li>Correspondence address: 2 Nets Way, Newcastle, NE2 3BB</li>
+  <li>Usual residential address: 2 Nets Way, Newcastle, NE2 3BB</li>
+
+</ul>
 {% endif %}
