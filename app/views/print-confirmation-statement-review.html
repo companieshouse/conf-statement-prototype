@@ -98,42 +98,49 @@ html: scenario.company.address | nl2br
 
           Nature of business
         </h2>
-
+<div class="govuk-grid-column-full">
         <h3 class="govuk-heading-s">SIC codes</h3>
         {% include "includes/confirmation-statement-details/sic.html" %}
+</div>
+<div class="govuk-grid-column-full">
         <h3 class="govuk-heading-s">Statement of capital</h3>
         {% include "includes/confirmation-statement-details/statement-of-capital.html" %}
-
+</div>
         <h2 class="app-task-list__section">
 
           People
         </h2>
-        <div>
+        <div class="govuk-grid-column-full">
           <h3 class="govuk-heading-s">Officers</h3>
         {% include "includes/confirmation-statement-details/officers.html" %}
 
         </div>
-        <div>
+        <div class="govuk-grid-column-full">
           <h3 class="govuk-heading-s">People with significant control (PSCs)</h3>
         {% include "includes/confirmation-statement-details/pscs.html" %}
 </div>
-</br>
+<div class="govuk-grid-column-full">
         <h3 class="govuk-heading-s">Shareholders</h3>
         {% include "includes/confirmation-statement-details/shareholders.html" %}
-
+</div>
         <h2 class="app-task-list__section">
 
           Addresses
         </h2>
+        <div>
         <h3 class="govuk-heading-s">Registered office address</h3>
         {% include "includes/confirmation-statement-details/roa.html" %}
-        </br>
+        </div>
+        <div>
         <h3 class="govuk-heading-s">Register locations</h3>
         {% include "includes/confirmation-statement-details/registers.html" %}
-
+</div>
       </div>
     </div>
 
+        <p class="govuk-body">
+                <a href="javascript:if(window.print)window.print()">Print a copy of these details</a>
+              </p>
   {% elseif scenario.company.type === 'LLP' %}
     <h2 class="app-task-list__section">
 
