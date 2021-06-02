@@ -516,11 +516,28 @@
                       Scenario: company number 00222335. Auth code 222222 (5 directors, 5 shareholders, 5 PSCs)
                     </li>
                     <li>
-                      <a class="govuk-link" href="https://conf-statement-ideal-v8.herokuapp.com/confirmation-statement/people-with-significant-control">card layout for PSCs</a>
+                      <a class="govuk-link" href="https://conf-statement-ideal-v8.herokuapp.com/confirmation-statement/people-with-significant-control">card layout for PSCs </a>
+                      {{govukTag({
+                                text: "Tested",
+                                classes: "govuk-tag--green"
+                              })}}
                   </li>
                   <li>
-                    <a class="govuk-link" href="https://conf-statement-ideal-v8.herokuapp.com/confirmation-statement/shareholders">card layout for shareholders</a>
+                    <a class="govuk-link" href="https://conf-statement-ideal-v8.herokuapp.com/confirmation-statement/shareholders">card layout for shareholders </a>
+                    {{govukTag({
+                              text: "Tested",
+                              classes: "govuk-tag--green"
+                            })}}
                 </li>
+                <li>
+                  <a class="govuk-link" href="https://conf-statement-ideal-v8.herokuapp.com/confirmation-statement/shareholders">removed address for shareholders </a>
+                  {{govukTag({
+                      text: "Tested",
+                      classes: "govuk-tag--green"
+                    })}}
+              </li><li>
+                <a class="govuk-link" href="https://conf-statement-ideal-v8.herokuapp.com/trading-status-dtr5">changed layout to DTR5 question</a>
+            </li>
                           </ul>
                         </div>
                       </details>

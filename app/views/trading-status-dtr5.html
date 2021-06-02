@@ -22,14 +22,19 @@
       {% endset %}
 
       <form action="" method="post">
-
+        <h1 class="govuk-heading-l">Check the DTR5 status</h1>
+                {{ govukDetails({
+                  summaryText: "What is DTR5?",
+                  html: dtrDetails
+                }) }}
+                <p>The company has not been subject to DTR5 throughout this confirmation period</p>
         {{ govukRadios({
           classes: "govuk-radios--inline",
           idPrefix: "trading-dtr5",
           name: "trading-dtr5",
           fieldset: {
             legend: {
-              text: "Has the company been subject to DTR5 throughout this confirmation period?",
+              text: "Is the DTR5 status correct?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
@@ -47,10 +52,6 @@
           ]
         }) }}
 
-        {{ govukDetails({
-          summaryText: "What is DTR5?",
-          html: dtrDetails
-        }) }}
 
         {{ govukButton({
 text: "Continue"
