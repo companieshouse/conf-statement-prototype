@@ -71,7 +71,7 @@
             of 7 sections</p>
 
           <ol class="app-task-list">
-
+            <li>
               <h2 class="app-task-list__section">
 
                 Nature of business
@@ -79,40 +79,40 @@
               <ul class="app-task-list__items">
                 <li class="app-task-list__item">
                   <span class="app-task-list__task-name">
-                    <a href="/confirmation-statement/sic" aria-describedby="contact-details-status">
+                    <a href="/confirmation-statement/sic">
                       SIC codes
                     </a>
                   </span>
                   {% if sic === 'yes' %}
-                    <strong class="govuk-tag app-task-list__tag" id="eligibility-status">
+                    <strong class="govuk-tag app-task-list__tag">
                       Checked</strong>
 
                   {% elseif sic === 'no' %}
-                    <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="eligibility-status">In progress</strong>
+                    <strong class="govuk-tag govuk-tag--blue app-task-list__tag">In progress</strong>
 
                   {% else %}
-                    <strong class="govuk-tag govuk-tag--grey app-task-list__tag" id="medical-information-status">Not checked</strong>
+                    <strong class="govuk-tag govuk-tag--grey app-task-list__tag">Not checked</strong>
                   {% endif %}
                 </li>
                 <li class="app-task-list__item">
                   <span class="app-task-list__task-name">
-                    <a href="/confirmation-statement/statement-of-capital" aria-describedby="eligibility-status">
+                    <a href="/confirmation-statement/statement-of-capital">
                       Statement of capital
                     </a>
                   </span>
                   {% if statementOfCapital === 'yes' %}
-                    <strong class="govuk-tag app-task-list__tag" id="eligibility-status">
+                    <strong class="govuk-tag app-task-list__tag">
                       Checked</strong>
 
                   {% elseif statementOfCapital === 'no' %}
-                    <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="eligibility-status">In progress</strong>
+                    <strong class="govuk-tag govuk-tag--blue app-task-list__tag">In progress</strong>
 
                   {% else %}
-                    <strong class="govuk-tag govuk-tag--grey app-task-list__tag" id="medical-information-status">Not checked</strong>
+                    <strong class="govuk-tag govuk-tag--grey app-task-list__tag">Not checked</strong>
                   {% endif %}
                 </li>
               </ul>
-            
+            </li>
 
             <li>
               <h2 class="app-task-list__section">
@@ -122,52 +122,52 @@
               <ul class="app-task-list__items">
                 <li class="app-task-list__item">
                   <span class="app-task-list__task-name">
-                    <a href="/confirmation-statement/active-officers" aria-describedby="eligibility-status">
+                    <a href="/confirmation-statement/active-officers">
                       Officers
                     </a>
                   </span>
                   {% if additionalDirectors === 'no' %}
-                    <strong class="govuk-tag app-task-list__tag" id="eligibility-status">
+                    <strong class="govuk-tag app-task-list__tag">
                       Checked</strong>
 
                   {% elseif additionalDirectors === 'yes' or officers === 'no' or activeDirectors === 'no' %}
-                    <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="eligibility-status">In progress</strong>
+                    <strong class="govuk-tag govuk-tag--blue app-task-list__tag">In progress</strong>
 
                   {% else %}
-                    <strong class="govuk-tag govuk-tag--grey app-task-list__tag" id="medical-information-status">Not checked</strong>
+                    <strong class="govuk-tag govuk-tag--grey app-task-list__tag">Not checked</strong>
                   {% endif %}
                 </li>
 
                 <li class="app-task-list__item">
                   <span class="app-task-list__task-name">
                     {% if scenario.company.tradingStatus === '1' %}
-                      <a href="/confirmation-statement/active-pscs" aria-describedby="read-declaration-status">
+                      <a href="/confirmation-statement/active-pscs">
                         People with significant control (PSC)
                       </a>
                     </span>
                     {% if pscStatement === 'yes' %}
-                      <strong class="govuk-tag app-task-list__tag" id="eligibility-status">
+                      <strong class="govuk-tag app-task-list__tag">
                         Checked</strong>
                     {% elseif additionalPscs === 'yes' or pscs === 'no' or activePscs === 'no' %}
-                      <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="eligibility-status">In progress</strong>
+                      <strong class="govuk-tag govuk-tag--blue app-task-list__tag">In progress</strong>
                     {% else %}
-                      <strong class="govuk-tag govuk-tag--grey app-task-list__tag" id="medical-information-status">Not checked</strong>
+                      <strong class="govuk-tag govuk-tag--grey app-task-list__tag">Not checked</strong>
                     {% endif %}
                   {% elseif trading === '2' %}
-                    <a href="/psc-exemption" aria-describedby="read-declaration-status">
+                    <a href="/psc-exemption">
                       People with significant control (PSC)
                     </a>
                   </span>
                   {% if exemption === 'no' and psc === 'yes' %}
-                    <strong class="govuk-tag app-task-list__tag" id="eligibility-status">
+                    <strong class="govuk-tag app-task-list__tag">
                       Checked</strong>
                   {% elseif exemption === 'no' and additionalPscs === 'yes' or pscs === 'no' or activePSCs === 'no' %}
-                    <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="eligibility-status">In progress</strong>
+                    <strong class="govuk-tag govuk-tag--blue app-task-list__tag">In progress</strong>
                   {% elseif exemption === 'yes' %}
-                    <strong class="govuk-tag app-task-list__tag" id="eligibility-status">
+                    <strong class="govuk-tag app-task-list__tag">
                       Checked</strong>
                   {% else %}
-                    <strong class="govuk-tag govuk-tag--grey app-task-list__tag" id="medical-information-status">Not checked</strong>
+                    <strong class="govuk-tag govuk-tag--grey app-task-list__tag">Not checked</strong>
                   {% endif %}
                 {% endif %}
 
@@ -175,19 +175,19 @@
 
               <li class="app-task-list__item">
                 <span class="app-task-list__task-name">
-                  <a href="/confirmation-statement/shareholders" aria-describedby="read-declaration-status">
+                  <a href="/confirmation-statement/shareholders">
                     Shareholders
                   </a>
                 </span>
                 {% if shareholders === 'yes' %}
-                  <strong class="govuk-tag app-task-list__tag" id="eligibility-status">
+                  <strong class="govuk-tag app-task-list__tag">
                     Checked</strong>
 
                 {% elseif shareholders === 'no' %}
-                  <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="eligibility-status">In progress</strong>
+                  <strong class="govuk-tag govuk-tag--blue app-task-list__tag">In progress</strong>
 
                 {% else %}
-                  <strong class="govuk-tag govuk-tag--grey app-task-list__tag" id="medical-information-status">Not checked</strong>
+                  <strong class="govuk-tag govuk-tag--grey app-task-list__tag">Not checked</strong>
                 {% endif %}
               </li>
 
@@ -207,31 +207,31 @@
                   </a>
                 </span>
                 {% if ro === 'yes' %}
-                  <strong class="govuk-tag app-task-list__tag" id="eligibility-status">
+                  <strong class="govuk-tag app-task-list__tag">
                     Checked</strong>
 
                 {% elseif ro === 'no' %}
-                  <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="eligibility-status">In progress</strong>
+                  <strong class="govuk-tag govuk-tag--blue app-task-list__tag">In progress</strong>
 
                 {% else %}
-                  <strong class="govuk-tag govuk-tag--grey app-task-list__tag" id="medical-information-status">Not checked</strong>
+                  <strong class="govuk-tag govuk-tag--grey app-task-list__tag">Not checked</strong>
                 {% endif %}
               </li>
               <li class="app-task-list__item">
                 <span class="app-task-list__task-name">
-                  <a href="/confirmation-statement/registers" aria-describedby="contact-details-status">
+                  <a href="/confirmation-statement/registers">
                     Register locations
                   </a>
                 </span>
                 {% if register === 'yes' %}
-                  <strong class="govuk-tag app-task-list__tag" id="eligibility-status">
+                  <strong class="govuk-tag app-task-list__tag">
                     Checked</strong>
 
                 {% elseif register === 'no' %}
-                  <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="eligibility-status">In progress</strong>
+                  <strong class="govuk-tag govuk-tag--blue app-task-list__tag">In progress</strong>
 
                 {% else %}
-                  <strong class="govuk-tag govuk-tag--grey app-task-list__tag" id="medical-information-status">Not checked</strong>
+                  <strong class="govuk-tag govuk-tag--grey app-task-list__tag">Not checked</strong>
                 {% endif %}
               </li>
 
@@ -282,35 +282,35 @@
     <ul class="app-task-list__items">
       <li class="app-task-list__item">
         <span class="app-task-list__task-name">
-          <a href="/confirmation-statement/active-members" aria-describedby="eligibility-status">
+          <a href="/confirmation-statement/active-members">
             Members
           </a>
         </span>
         {% if additionalMembers === 'no' %}
-          <strong class="govuk-tag app-task-list__tag" id="eligibility-status">
+          <strong class="govuk-tag app-task-list__tag">
             Checked</strong>
 
         {% elseif additionalMembers === 'yes' or members === 'no' or activeMembers === 'no' %}
-          <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="eligibility-status">In progress</strong>
+          <strong class="govuk-tag govuk-tag--blue app-task-list__tag">In progress</strong>
 
         {% else %}
-          <strong class="govuk-tag govuk-tag--grey app-task-list__tag" id="medical-information-status">Not checked</strong>
+          <strong class="govuk-tag govuk-tag--grey app-task-list__tag">Not checked</strong>
         {% endif %}
       </li>
 
       <li class="app-task-list__item">
         <span class="app-task-list__task-name">
-          <a href="/confirmation-statement/active-pscs" aria-describedby="read-declaration-status">
+          <a href="/confirmation-statement/active-pscs">
             People with significant control (PSC)
           </a>
         </span>
         {% if pscStatement === 'yes' %}
-          <strong class="govuk-tag app-task-list__tag" id="eligibility-status">
+          <strong class="govuk-tag app-task-list__tag">
             Checked</strong>
         {% elseif additionalPscs === 'yes' or pscs === 'no' or activePscs === 'no' %}
-          <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="eligibility-status">In progress</strong>
+          <strong class="govuk-tag govuk-tag--blue app-task-list__tag">In progress</strong>
         {% else %}
-          <strong class="govuk-tag govuk-tag--grey app-task-list__tag" id="medical-information-status">Not checked</strong>
+          <strong class="govuk-tag govuk-tag--grey app-task-list__tag">Not checked</strong>
         {% endif %}
 
       </li>
@@ -331,31 +331,31 @@
           </a>
         </span>
         {% if ro === 'yes' %}
-          <strong class="govuk-tag app-task-list__tag" id="eligibility-status">
+          <strong class="govuk-tag app-task-list__tag">
             Checked</strong>
 
         {% elseif ro === 'no' %}
-          <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="eligibility-status">In progress</strong>
+          <strong class="govuk-tag govuk-tag--blue app-task-list__tag">In progress</strong>
 
         {% else %}
-          <strong class="govuk-tag govuk-tag--grey app-task-list__tag" id="medical-information-status">Not checked</strong>
+          <strong class="govuk-tag govuk-tag--grey app-task-list__tag">Not checked</strong>
         {% endif %}
       </li>
       <li class="app-task-list__item">
         <span class="app-task-list__task-name">
-          <a href="/confirmation-statement/registers" aria-describedby="contact-details-status">
+          <a href="/confirmation-statement/registers">
             Register locations
           </a>
         </span>
         {% if register === 'yes' %}
-          <strong class="govuk-tag app-task-list__tag" id="eligibility-status">
+          <strong class="govuk-tag app-task-list__tag">
             Checked</strong>
 
         {% elseif register === 'no' %}
-          <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="eligibility-status">In progress</strong>
+          <strong class="govuk-tag govuk-tag--blue app-task-list__tag">In progress</strong>
 
         {% else %}
-          <strong class="govuk-tag govuk-tag--grey app-task-list__tag" id="medical-information-status">Not checked</strong>
+          <strong class="govuk-tag govuk-tag--grey app-task-list__tag">Not checked</strong>
         {% endif %}
       </li>
 
