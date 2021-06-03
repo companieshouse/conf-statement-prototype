@@ -143,8 +143,5 @@ $govuk-assets-path: '/govuk/assets/';
   }
 }
 .app-task-list__items {
-  left: 0;
-}
-.app-task-list__task-name {
-  left: 0;
+    padding-left: 0px;
 }
