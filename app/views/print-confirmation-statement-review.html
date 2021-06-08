@@ -138,9 +138,6 @@ html: scenario.company.address | nl2br
       </div>
     </div>
 
-        <p class="govuk-body">
-                <a href="javascript:if(window.print)window.print()">Print a copy of these details</a>
-              </p>
   {% elseif scenario.company.type === 'LLP' %}
     <h2 class="app-task-list__section">
 
@@ -160,13 +157,19 @@ html: scenario.company.address | nl2br
     <h3 class="govuk-heading-s">Register locations</h3>
     {% include "includes/confirmation-statement-details/registers.html" %}
 
-    <p class="govuk-body">
-            <a href="javascript:if(window.print)window.print()">Print a copy of these details</a>
-          </p>
+
   </div>
 </div>
 {% endif %}
 
+    <p class="govuk-body">
+            <a href="javascript:if(window.print)window.print()">Print a copy of these details</a>
+          </p>
+
+          {{ govukButton({
+text: "Return to review",
+href: "/confirmation-statement/review"
+}) }}
 </div>
 </div>
 {% endblock %}

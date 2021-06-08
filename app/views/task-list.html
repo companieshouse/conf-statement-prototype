@@ -15,7 +15,8 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       {% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
-{% if scenario.company.recentFiling === 'yes' %}
+<!--
+  {% if scenario.company.recentFiling === 'yes' %}
               {% set recentFilingHTML %}
                 <h3 class="govuk-notification-banner__heading">
                   A filing to update company details has been received
@@ -28,6 +29,21 @@
                 html: recentFilingHTML
               }) }}
               {% endif %}
+-->
+{% if ro === 'no' %}
+            {% set recentFilingHTML %}
+              <h3 class="govuk-notification-banner__heading">
+                A filing to update company details has been received
+              </h3>
+              <p class="govuk-body">You can continue filing this confirmation statement, even if the change is not yet reflected in this service.
+              </p>
+            {% endset %}
+
+            {{ govukNotificationBanner({
+              html: recentFilingHTML
+            }) }}
+            {% endif %}
+
       <h1 class="govuk-heading-l">
         {{ serviceName }}
       </h1>
