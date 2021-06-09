@@ -17,9 +17,8 @@
 
       <form action="" method="post">
 
+<h1 class="govuk-heading-xl">Check the shareholder details</h1>
 
-
-        {% set shareholdersHTML %}
         {% if scenario.company.shareholders === '1' %}
           <h2 class="govuk-heading-m">1 Shareholder</h2>
         {% else %}
@@ -27,7 +26,7 @@
             Shareholders</h2>
         {% endif %}
         {% include "includes/confirmation-statement-details/shareholders.html" %}
-        {% endset %}
+
 
         {% if shareholders === 'yes' %}
           {{ govukRadios({
@@ -41,9 +40,6 @@
               classes: "govuk-fieldset__legend--l"
             }
           },
-          hint: {
-    html: shareholdersHTML
-  },
           items: [
             {
               value: "yes",
@@ -68,9 +64,6 @@
               classes: "govuk-fieldset__legend--l"
             }
           },
-          hint: {
-    html: shareholdersHTML
-  },
           items: [
             {
               value: "yes",
@@ -95,9 +88,6 @@
               classes: "govuk-fieldset__legend--l"
             }
           },
-          hint: {
-    html: shareholdersHTML
-  },
           items: [
             {
               value: "yes",

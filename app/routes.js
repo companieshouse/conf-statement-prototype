@@ -263,11 +263,11 @@ router.get('/task-list', function (req, res) {
   var completedTasks = req.session.data['completed']
   var email = req.session.data['email']
   var exemption = req.session.data['exemption']
-  var activeOfficers = req.session.data['active-officers']
+  var activeDirectors = req.session.data['active-director']
   var activePscs = req.session.data['active-pscs']
   var activeMembers = req.session.data['active-members']
   var additionalPscs = req.session.data['additional-pscs']
-  var additionalOfficers = req.session.data['additional-officers']
+  var additionalDirectors = req.session.data['additional-directors']
   var additionalMembers = req.session.data['additional-members']
   var members = req.session.data['members']
   var moment = require('moment') // require
@@ -284,10 +284,10 @@ router.get('/task-list', function (req, res) {
 
   res.render('task-list', {
     scenario: req.session.scenario,
-    activeOfficers: activeOfficers,
+    activeDirectors: activeDirectors,
     activePscs: activePscs,
     additionalPscs: additionalPscs,
-    additionalOfficers: additionalOfficers,
+    additionalDirectors: additionalDirectors,
     activeMembers: activeMembers,
     additionalMembers: additionalMembers,
     members: members,
@@ -430,9 +430,9 @@ router.post('/confirmation-statement/officers', function (req, res) {
   var directorDetailsError = {}
   var errorList = []
 
-  if (typeof directorDetails === 'undefined') {
+  if (typeof officers === 'undefined') {
     directorDetailsError.type = 'blank'
-    directorDetailsError.text = 'Select yes if the active directors are correct'
+    directorDetailsError.text = 'Select yes if the director details are correct'
     directorDetailsError.href = '#officers'
     directorDetailsError.flag = true
   }
@@ -461,25 +461,48 @@ router.post('/confirmation-statement/officers', function (req, res) {
 })
 router.get('/confirmation-statement/additional-officers', function (req, res) {
   var email = req.session.data['email']
-  var additionalOfficers = req.session.data['additional-officers']
+  var additionalDirectors = req.session.data['additional-directors']
 
   res.render('confirmation-statement/additional-officers', {
     email: email,
     scenario: req.session.scenario,
-    additionalOfficers: additionalOfficers
+    additionalDirectors: additionalDirectors
   })
 })
 router.post('/confirmation-statement/additional-officers', function (req, res) {
-  var additionalOfficers = req.session.data['additional-officers']
+  var additionalDirectors = req.session.data['additional-directors']
+  var errorFlag = false
+  var additionalDirectorsError = {}
+  var errorList = []
 
-  switch (additionalOfficers) {
+  if (typeof additionalDirectors === 'undefined') {
+    additionalDirectorsError.type = 'blank'
+    additionalDirectorsError.text = 'Select no if there are no directors to appoint'
+    additionalDirectorsError.href = '#additional-directors'
+    additionalDirectorsError.flag = true
+  }
+  if (additionalDirectorsError.flag) {
+    errorList.push(additionalDirectorsError)
+    errorFlag = true
+  }
+  if (errorFlag === true) {
+    res.render('confirmation-statement/additional-officers', {
+      scenario: req.session.scenario,
+      additionalDirectors: additionalDirectors,
+      errorList: errorList,
+      additionalDirectorsError: additionalDirectorsError
+    })
+    } else {
+
+
+  switch (additionalDirectors) {
     case 'yes':
       res.redirect('/incorrect-information/wrong-appoint-officers')
       break
     case 'no':
       res.redirect('/task-list')
       break
-  }
+  }}
 })
 router.get('/confirmation-statement/officers-2', function (req, res) {
   var email = req.session.data['email']
@@ -819,6 +842,29 @@ router.get('/confirmation-statement/active-pscs', function (req, res) {
 })
 router.post('/confirmation-statement/active-pscs', function (req, res) {
   var activePscs = req.session.data['active-pscs']
+  var errorFlag = false
+  var activePscsError = {}
+  var errorList = []
+
+  if (typeof activePscs === 'undefined') {
+    activePscsError.type = 'blank'
+    activePscsError.text = 'Select yes if the active PSCs are correct'
+    activePscsError.href = '#active-pscs'
+    activePscsError.flag = true
+  }
+  if (activePscsError.flag) {
+    errorList.push(activePscsError)
+    errorFlag = true
+  }
+  if (errorFlag === true) {
+    res.render('confirmation-statement/active-pscs', {
+      scenario: req.session.scenario,
+      activePscs: activePscs,
+      errorList: errorList,
+      activePscsError: activePscsError
+    })
+    } else {
+
 
   switch (activePscs) {
     case 'yes':
@@ -827,7 +873,7 @@ router.post('/confirmation-statement/active-pscs', function (req, res) {
     case 'no':
       res.redirect('/incorrect-information/wrong-active-psc')
       break
-  }
+  }}
 })
 router.get('/incorrect-information/wrong-active-psc', function (req, res) {
   var email = req.session.data['email']
@@ -850,6 +896,29 @@ router.get('/confirmation-statement/people-with-significant-control', function (
 })
 router.post('/confirmation-statement/people-with-significant-control', function (req, res) {
   var psc = req.session.data['psc']
+  var errorFlag = false
+  var pscDetailsError = {}
+  var errorList = []
+
+  if (typeof psc === 'undefined') {
+    pscDetailsError.type = 'blank'
+    pscDetailsError.text = 'Select yes if the psc details are correct'
+    pscDetailsError.href = '#officers'
+    pscDetailsError.flag = true
+  }
+  if (pscDetailsError.flag) {
+    errorList.push(pscDetailsError)
+    errorFlag = true
+  }
+  if (errorFlag === true) {
+    res.render('confirmation-statement/people-with-significant-control', {
+      scenario: req.session.scenario,
+      psc: psc,
+      errorList: errorList,
+      pscDetailsError: pscDetailsError
+    })
+    } else {
+
 
   switch (psc) {
     case 'yes':
@@ -858,7 +927,7 @@ router.post('/confirmation-statement/people-with-significant-control', function 
     case 'no':
       res.redirect('/incorrect-information/wrong-psc-details')
       break
-  }
+  }}
 })
 router.get('/confirmation-statement/additional-pscs', function (req, res) {
   var email = req.session.data['email']

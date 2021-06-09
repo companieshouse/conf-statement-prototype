@@ -1,7 +1,9 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Review the people with significant control
+{% if errorList.length > 0 %}
+  Error:
+{% endif %}  Review the people with significant control
 {% endblock %}
 
 {% block backLink %}
@@ -17,7 +19,17 @@
   {% endset %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-three-quarters">
-
+      {% if errorList.length > 0 %}
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "Select yes if the PSC details are correct",
+            href: "#psc"
+          }
+        ]
+      }) }}
+      {% endif %}
       <form action="" method="post">
         <h1 class="govuk-heading-l">Check the PSC details</h1>
 
@@ -48,6 +60,7 @@
           classes: "govuk-radios",
           idPrefix: "psc",
           name: "psc",
+          errorMessage: pscDetailsError,
           fieldset: {
             legend: {
               html: "Are the PSC details correct?",
@@ -76,6 +89,7 @@
           classes: "govuk-radios",
           idPrefix: "psc",
           name: "psc",
+          errorMessage: pscDetailsError,
           fieldset: {
             legend: {
               html: "Are the PSC details correct?",
@@ -104,6 +118,7 @@
           classes: "govuk-radios",
           idPrefix: "psc",
           name: "psc",
+          errorMessage: pscDetailsError,
           fieldset: {
             legend: {
               html: "Are the PSC details correct?",
@@ -133,6 +148,7 @@
   classes: "govuk-radios",
   idPrefix: "psc",
   name: "psc",
+  errorMessage: pscDetailsError,
   fieldset: {
     legend: {
       html: "Are the PSC details correct?",
@@ -157,6 +173,7 @@
   classes: "govuk-radios",
   idPrefix: "psc",
   name: "psc",
+  errorMessage: pscDetailsError,
   fieldset: {
     legend: {
       html: "Are the PSC details correct?",
@@ -181,6 +198,7 @@
   classes: "govuk-radios",
   idPrefix: "psc",
   name: "psc",
+  errorMessage: pscDetailsError,
   fieldset: {
     legend: {
       html: "Are the PSC details correct?",

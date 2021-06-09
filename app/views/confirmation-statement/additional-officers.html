@@ -1,7 +1,9 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Review the officers
+{% if errorList.length > 0 %}
+  Error:
+{% endif %}  Review the directors
 {% endblock %}
 
 {% block backLink %}
@@ -16,15 +18,29 @@
     <div class="govuk-grid-column-three-quarters">
 
       <form action="" method="post">
+
+        {% if errorList.length > 0 %}
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: [
+            {
+              text: "Select no if there are no directors to appoint",
+              href: "#additional-directors"
+            }
+          ]
+        }) }}
+        {% endif %}
+
 {% if scenario.company.recentFiling === 'yes' %}
-        {% if additionalOfficers === 'yes' %}
+        {% if additionalDirectors === 'yes' %}
           {{ govukRadios({
           classes: "govuk-radios",
-          idPrefix: "additional-officers",
-          name: "additional-officers",
+          idPrefix: "additional-directors",
+          name: "additional-directors",
+          errorMessage: additionalDirectorsError,
           fieldset: {
             legend: {
-              html: "Are there any officers to appoint?",
+              html: "Are there any directors to appoint?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
@@ -48,14 +64,15 @@
             }
           ]
         }) }}
-        {% elseif additionalOfficers === 'no' %}
+        {% elseif additionalDirectors === 'no' %}
           {{ govukRadios({
           classes: "govuk-radios",
-          idPrefix: "additional-officers",
-          name: "additional-officers",
+          idPrefix: "additional-directors",
+          name: "additional-directors",
+          errorMessage: additionalDirectorsError,
           fieldset: {
             legend: {
-              html: "Are there any officers to appoint?",
+              html: "Are there any directors to appoint?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
@@ -82,11 +99,12 @@
         {% else %}
           {{ govukRadios({
           classes: "govuk-radios",
-          idPrefix: "additional-officers",
-          name: "additional-officers",
+          idPrefix: "additional-directors",
+          name: "additional-directors",
+          errorMessage: additionalDirectorsError,
           fieldset: {
             legend: {
-              html: "Are there any officers to appoint?",
+              html: "Are there any directors to appoint?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
@@ -111,14 +129,15 @@
         }) }}
         {% endif %}
         {% else %}
-        {% if additionalOfficers === 'yes' %}
+        {% if additionalDirectors === 'yes' %}
           {{ govukRadios({
           classes: "govuk-radios",
-          idPrefix: "additional-officers",
-          name: "additional-officers",
+          idPrefix: "additional-directors",
+          name: "additional-directors",
+          errorMessage: additionalDirectorsError,
           fieldset: {
             legend: {
-              html: "Are there any officers to appoint?",
+              html: "Are there any directors to appoint?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
@@ -138,14 +157,15 @@
             }
           ]
         }) }}
-        {% elseif additionalOfficers === 'no' %}
+        {% elseif additionalDirectors === 'no' %}
           {{ govukRadios({
           classes: "govuk-radios",
-          idPrefix: "additional-officers",
-          name: "additional-officers",
+          idPrefix: "additional-directors",
+          name: "additional-directors",
+          errorMessage: additionalDirectorsError,
           fieldset: {
             legend: {
-              html: "Are there any officers to appoint?",
+              html: "Are there any directors to appoint?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
@@ -168,11 +188,12 @@
         {% else %}
           {{ govukRadios({
           classes: "govuk-radios",
-          idPrefix: "additional-officers",
-          name: "additional-officers",
+          idPrefix: "additional-directors",
+          name: "additional-directors",
+          errorMessage: additionalDirectorsError,
           fieldset: {
             legend: {
-              html: "Are there any officers to appoint?",
+              html: "Are there any directors to appoint?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
