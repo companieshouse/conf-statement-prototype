@@ -16,12 +16,11 @@
     <div class="govuk-grid-column-two-thirds">
 
       <form action="" method="post">
+<h1 class="govuk-heading-xl">Check the registered office address</h1>
 
-        {% set roaHTML %}
         <p>
           {% include "includes/confirmation-statement-details/roa.html" %}
         </p>
-        {% endset %}
 
 {% if scenario.company.recentFiling === 'yes' %}
         {% if ro === 'yes' %}
@@ -36,9 +35,6 @@
               classes: "govuk-fieldset__legend--l"
             }
           },
-          hint: {
-    html: roaHTML
-  },
           items: [
             {
               value: "yes",
@@ -67,9 +63,6 @@
               classes: "govuk-fieldset__legend--l"
             }
           },
-          hint: {
-    html: roaHTML
-  },
           items: [
             {
               value: "yes",
@@ -98,9 +91,6 @@
               classes: "govuk-fieldset__legend--l"
             }
           },
-          hint: {
-    html: roaHTML
-  },
           items: [
             {
               value: "yes",
