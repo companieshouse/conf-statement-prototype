@@ -1,4 +1,14 @@
 {% extends "layout.html" %}
+{% block header %}
+  {% include "includes/cookie-banner.html" %}
+  {# Set serviceName in config.js. #}
+  {{ govukHeader({
+    homepageUrl: "/",
+    serviceName: "",
+    serviceUrl: "/",
+    containerClasses: "govuk-width-container"
+  }) }}
+{% endblock %}
 {% block pageTitle %}
   Change of registered office address?
 {% endblock %}
