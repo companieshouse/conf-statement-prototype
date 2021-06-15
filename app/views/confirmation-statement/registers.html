@@ -102,10 +102,19 @@ html: registerHTML
   ]
 }) }}
         {% endif %}
+        {% from "govuk/components/button/macro.njk" import govukButton %}
 
-        {{ govukButton({
-text: "Continue"
-}) }}
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+
+        <!--  {{ govukButton({
+            text: "Save and return to confirmation statement",
+            classes: "govuk-button--secondary"
+          }) }}
+          -->
+        </div>
       </form>
     </div>
   </div>
