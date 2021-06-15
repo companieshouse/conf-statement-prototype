@@ -106,14 +106,16 @@ html: registerHTML
 
         <div class="govuk-button-group">
           {{ govukButton({
-            text: "Continue"
+            text: "Continue",
+            href: "/task-list"
           }) }}
 
-        <!--  {{ govukButton({
+        {{ govukButton({
             text: "Save and return to confirmation statement",
-            classes: "govuk-button--secondary"
+            classes: "govuk-button--secondary",
+            href: "/task-list"
           }) }}
-          -->
+
         </div>
       </form>
     </div>
