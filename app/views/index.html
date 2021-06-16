@@ -299,6 +299,16 @@
                 <a href="/incorrect-information/wrong-psc-statement">Wrong PSC statement</a>
                 Incorrect people with significant control statement
               </li>
+              <li>
+                <a href="/paper-filing">Cannot use service - paper filing</a>
+                Cannot use service - paper filing
+              </li>
+              <a href="/paper-filing-SLP">Cannot use service - SLP paper filing</a>
+              Cannot use service - SLP paper filing
+            </li>
+            <a href="/paper-filing-SQP">Cannot use service - SQP paper filing</a>
+            Cannot use service - paper filing
+          </li>
             </ul>
             <h2 class="govuk-heading-l">Change journeys</h2>
             <ul class="govuk-list  govuk-list--bullet">
@@ -448,8 +458,38 @@
               <tbody class="govuk-table__body">
                 <tr class="govuk-table__row">
                   <th scope="row" class="govuk-table__header">
+                    <a href="https://conf-statement-ideal-v3.herokuapp.com/">Ideal - Version 9</th>
+                    <td class="govuk-table__cell">TBD</td>
+                    <td class="govuk-table__cell">
+                      <details class="govuk-details" data-module="govuk-details">
+                        <summary class="govuk-details__summary">
+                          <span class="govuk-details__summary-text">
+                            Changes included in ideal version 9
+                          </span>
+                        </summary>
+                        <div class="govuk-details__text">
+                          <ul class="govuk-list--bulletlist">
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/confirmation-statement/registers">Added continue/return buttons to registers</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/task-list">Changed label of "in progress" status tag to "ready to continue"</a>
+                            </li>
+
+                          </ul>
+                        </div>
+                      </details>
+                    </td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--grey">
+                        In progress
+                      </strong>
+                    </tr>
+
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header">
                     <a href="https://conf-statement-ideal-v8.herokuapp.com/">Ideal - Version 8</th>
-                    <td class="govuk-table__cell">29 Apr 2021</td>
+                    <td class="govuk-table__cell">10 June 2021</td>
                     <td class="govuk-table__cell">
                       <details class="govuk-details" data-module="govuk-details">
                         <summary class="govuk-details__summary">
@@ -461,6 +501,10 @@
                           <ul class="govuk-list--bulletlist">
                             <li>
                               <a class="govuk-link" href="https://conf-statement-ideal-v8.herokuapp.com/service-offline-mid-journey">Mid journey service offline stop screen</a>
+                              {{govukTag({
+                                  text: "Tested",
+                                  classes: "govuk-tag--green"
+                                })}}
                             </li>
                             <li>
                               <a class="govuk-link" href="https://conf-statement-ideal-v8.herokuapp.com/task-list-external">Task list for testing in other services</a>
@@ -479,11 +523,23 @@
                                 })}}
                             </li>
                             <li><a class="govuk-link" href="https://conf-statement-ideal-v8.herokuapp.com/confirm-company">Changes made to dates on confirm company screen</a>
+                              {{govukTag({
+                                  text: "Tested",
+                                  classes: "govuk-tag--green"
+                                })}}
                               <li>
                                 <a class="govuk-link" href="https://conf-statement-ideal-v8.herokuapp.com/check-trading-status">Trading status title font size increased and full stop added</a>
+                                {{govukTag({
+                                    text: "Tested",
+                                    classes: "govuk-tag--green"
+                                  })}}
                               </li>
                               <li>
                                 <a class="govuk-link" href="https://conf-statement-ideal-v8.herokuapp.com/email/user-email">Email example added</a>
+                                {{govukTag({
+                                    text: "Tested",
+                                    classes: "govuk-tag--green"
+                                  })}}
                               </li>
                               <li>
                                 <a class="govuk-link" href="https://conf-statement-ideal-v8.herokuapp.com/confirm-company">Updated table to summary list</a>  {{govukTag({
@@ -493,6 +549,10 @@
                               </li>
                               <li>
                                 <a class="govuk-link" href="https://conf-statement-ideal-v8.herokuapp.com/service-offline">Content change on service offline screen</a>
+                                {{govukTag({
+                                    text: "Tested",
+                                    classes: "govuk-tag--green"
+                                  })}}
                             </li>
                             <li>
                               <a class="govuk-link" href="https://conf-statement-ideal-v8.herokuapp.com/check-trading-status-error">check trading status error messaging</a>  {{govukTag({
@@ -502,6 +562,10 @@
                           </li>
                           <li>
                             <a class="govuk-link" href="https://conf-statement-ideal-v8.herokuapp.com/email/user-email">added payment reference to email</a>
+                            {{govukTag({
+                                text: "Tested",
+                                classes: "govuk-tag--green"
+                              })}}
                         </li>
                         <li>
                           <a class="govuk-link" href="https://conf-statement-ideal-v8.herokuapp.com/confirmation-statement/officers">changed officer layout to match directors project</a>  {{govukTag({
@@ -511,6 +575,10 @@
                       </li>
                       <li>
                         <a class="govuk-link" href="https://conf-statement-ideal-v8.herokuapp.com/co-not-supported-use-webfiling">added trading status to MVP stop page</a>
+                        {{govukTag({
+                            text: "Tested",
+                            classes: "govuk-tag--green"
+                          })}}
                     </li>
                     <li>
                       Scenario: company number 00222335. Auth code 222222 (5 directors, 5 shareholders, 5 PSCs)
@@ -544,30 +612,47 @@
                   })}}
             </li>
             <li>
-                <a class="govuk-link" href="https://conf-statement-ideal-v8.herokuapp.com/trading-status-dtr5">changed layout to DTR5 question</a>
-            </li>
-            <li>
               <a class="govuk-link" href="https://conf-statement-ideal-v8.herokuapp.com/print-confirmation-statement-review">Added print link and return button to review statement screen</a>
+              {{govukTag({
+                  text: "Tested",
+                  classes: "govuk-tag--green"
+                })}}
             </li>
             <li>
               <a class="govuk-link" href="https://conf-statement-ideal-v8.herokuapp.com/confirmation-statement/review">Removed opens in new tab to link on summary screen</a>
+              {{govukTag({
+                  text: "Tested",
+                  classes: "govuk-tag--green"
+                })}}
             </li>
             <li>
               <a class="govuk-link" href="https://conf-statement-ideal-v8.herokuapp.com/confirmation-statement/ro">Changed format of ROA question</a>
+              {{govukTag({
+                  text: "Tested",
+                  classes: "govuk-tag--green"
+                })}}
             </li>
             <li>
               <a class="govuk-link" href="https://conf-statement-ideal-v8.herokuapp.com/confirmation-statement/registers">Changed format of registers question</a>
+              {{govukTag({
+                  text: "Tested",
+                  classes: "govuk-tag--green"
+                })}}
             </li>
             <li>
               <a class="govuk-link" href="https://conf-statement-ideal-v8.herokuapp.com/confirmation-statement/shareholders">Changed format of shareholders question</a>
+              {{govukTag({
+                  text: "Tested",
+                  classes: "govuk-tag--green"
+                })}}
             </li>
                           </ul>
                         </div>
                       </details>
                     </td>
                     <td class="govuk-table__cell">
-                      <strong class="govuk-tag govuk-tag--grey">
-                        In progress
+                      <strong class="govuk-tag govuk-tag--green">
+                        Tested
                       </strong>
                     </tr>
                 <tr class="govuk-table__row">
