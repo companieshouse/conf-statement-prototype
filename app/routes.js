@@ -331,6 +331,28 @@ router.post('/confirmation-statement/ro', function (req, res) {
   var email = req.session.data['email']
   var ro = req.session.data['registered-office-address']
   var checked = {}
+  var errorFlag = false
+  var roError = {}
+  var errorList = []
+
+  if (typeof ro === 'undefined') {
+    roError.type = 'blank'
+    roError.text = 'Select yes if the registered office address is correct'
+    roError.href = '#officers'
+    roError.flag = true
+  }
+  if (roError.flag) {
+    errorList.push(roError)
+    errorFlag = true
+  }
+  if (errorFlag === true) {
+    res.render('confirmation-statement/ro', {
+      scenario: req.session.scenario,
+      ro: ro,
+      errorList: errorList,
+      roError: roError
+    })
+    } else {
 
   switch (ro) {
     case 'yes':
@@ -341,7 +363,7 @@ router.post('/confirmation-statement/ro', function (req, res) {
       checked.yes = true
       res.redirect('/incorrect-information/wrong-ro')
       break
-  }
+  }}
 })
 router.get('/incorrect-information/wrong-ro', function (req, res) {
   var email = req.session.data['email']
