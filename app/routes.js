@@ -115,6 +115,11 @@ router.get('/confirm-company', function (req, res) {
 router.post('/confirm-company', function (req, res) {
   res.redirect('/authenticate')
 })
+router.get('/paper-filing', function (req, res) {
+  res.render('paper-filing', {
+    scenario: req.session.scenario
+  })
+})
 router.get('/authenticate', function (req, res) {
   res.render('authenticate', {
     scenario: req.session.scenario
