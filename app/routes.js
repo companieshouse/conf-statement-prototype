@@ -318,11 +318,13 @@ router.post('/task-list', function (req, res) {
 router.get('/confirmation-statement/ro', function (req, res, nl2br) {
   var email = req.session.data['email']
   var ro = req.session.data['registered-office-address']
+  var taskList = req.session.data['taskList']
   var checked = {}
 
   res.render('confirmation-statement/ro', {
     email: email,
     scenario: req.session.scenario,
+    taskList: taskList,
     checked: checked,
     ro: ro
   })
@@ -334,6 +336,8 @@ router.post('/confirmation-statement/ro', function (req, res) {
   var errorFlag = false
   var roError = {}
   var errorList = []
+  var taskList = req.session.data['taskList']
+  var govukButton = req.session.data['govukButton']
 
   if (typeof ro === 'undefined') {
     roError.type = 'blank'
@@ -349,20 +353,26 @@ router.post('/confirmation-statement/ro', function (req, res) {
     res.render('confirmation-statement/ro', {
       scenario: req.session.scenario,
       ro: ro,
+      taskList: taskList,
       errorList: errorList,
       roError: roError
     })
     } else {
 
+if ('taskList' == true) {
+  checked.yes = true
+  res.redirect('/task-list')
+} else {
   switch (ro) {
     case 'yes':
       checked.yes = true
-      res.redirect('/task-list')
+      res.redirect('/confirmation-statement/registers')
       break
     case 'no':
       checked.yes = true
       res.redirect('/incorrect-information/wrong-ro')
       break
+    }
   }}
 })
 router.get('/incorrect-information/wrong-ro', function (req, res) {
@@ -669,7 +679,9 @@ router.get('/confirmation-statement/registers', function (req, res) {
 })
 router.post('/confirmation-statement/registers', function (req, res) {
   var registers = req.session.data['registers']
+  var next = req.session.data['next']
 
+if (next === true) {
   switch (registers) {
     case 'yes':
       res.redirect('/task-list')
@@ -677,6 +689,16 @@ router.post('/confirmation-statement/registers', function (req, res) {
     case 'no':
       res.redirect('/incorrect-information/wrong-registers')
       break
+    }
+    } else {
+      switch (registers) {
+        case 'yes':
+          res.redirect('/task-list')
+          break
+        case 'no':
+          res.redirect('/incorrect-information/wrong-registers')
+          break
+        }
   }
 })
 router.get('/incorrect-information/wrong-registers', function (req, res) {
