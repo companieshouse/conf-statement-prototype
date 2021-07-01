@@ -4,65 +4,66 @@
 {% set sailHTML %}
 2 Nets Way, Newcastle, NE2 3BB
 {% endset %}
-{% if scenario.company.register === 'ro' %}
-  {{ govukTable({
+{% set registersHTML %}
+<ul class="govuk-list govuk-list--bullet">
+    <li>Register of persons of significant control</li>
+    <li>
+{% endset %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 
-  head: [
+{{ govukSummaryList({
+  rows: [
     {
-      text: "Register"
+      key: {
+        text: "Address type"
+      },
+      value: {
+        text: "SAIL"
+      }
     },
     {
-      text: "Address"
-    }
-  ],
-  rows: [
-    [
-      {
-        text: "All registers"
+      key: {
+        text: "Address"
       },
-      {
-        html: roaHTML
+      value: {
+        html: sailHTML
       }
-    ]
+    },
+    {
+      key: {
+        text: "Registers"
+      },
+      value: {
+        html: registersHTML
+      }
+    }
   ]
 }) }}
-{% elseif scenario.company.register === 'SAIL' %}
-  {{ govukTable({
-
-head: [
-  {
-    text: "Register"
-  },
-  {
-    text: "Address"
-  }
-],
-rows: [
-  [
+{{ govukSummaryList({
+  rows: [
     {
-      text: "Register of members"
-    },
-    {
-      html: sailHTML
-    }
-
-],
-[
-    {
-      text: "Register of persons of significant control"
-    },
-    {
-      html: sailHTML
-    }
-  ],
-  [
-      {
-        text: "All other registers"
+      key: {
+        text: "Address type"
       },
-      {
-        html: roaHTML
+      value: {
+        text: "Public register"
       }
-    ]
-]
+    },
+    {
+      key: {
+        text: "Address"
+      },
+      value: {
+        text: "Companies House"
+      }
+    },
+    {
+      key: {
+        text: "Registers"
+      },
+      value: {
+        html: registersHTML
+      }
+    }
+  ]
 }) }}
-{% endif %}

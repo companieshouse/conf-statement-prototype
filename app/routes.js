@@ -971,7 +971,7 @@ router.post('/confirmation-statement/people-with-significant-control', function 
 
   switch (psc) {
     case 'yes':
-      res.redirect('/confirmation-statement/additional-pscs')
+      res.redirect('/confirmation-statement/psc-statement')
       break
     case 'no':
       res.redirect('/incorrect-information/wrong-psc-details')
