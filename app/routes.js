@@ -1046,7 +1046,7 @@ router.post('/confirmation-statement/psc-statement', function (req, res) {
       res.redirect('/task-list')
       break
     case 'no':
-      res.redirect('/incorrect-information/wrong-psc-statement')
+      res.redirect('/incorrect-information/wrong-psc-details')
       break
   }
 })
