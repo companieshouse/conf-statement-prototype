@@ -36,7 +36,7 @@
                 A filing to update company details has been received
               </h3>
               <p class="govuk-body">You can continue filing this confirmation statement, even if the change is not yet reflected in this service.
-              </p>
+              </p><p>Return to any section marked <strong class="govuk-tag govuk-tag--blue">Ready to continue</strong> to confirm that an update has been filed.</p>
             {% endset %}
 
             {{ govukNotificationBanner({
@@ -81,7 +81,8 @@
             {% set result = result + 1
  %}
           {% endif %}
-          {% if scenario.company.type === 'LTD' %}
+
+{% if scenario.company.type === 'LTD' %}
             You have checked
             {{result}}
             of 7 sections</p>
@@ -156,15 +157,15 @@
 
                 <li class="app-task-list__item">
                   <span class="app-task-list__task-name">
-                    {% if scenario.company.tradingStatus === '1' %}
-                      <a href="/confirmation-statement/active-pscs">
+                  {% if scenario.company.tradingStatus === '1' %}
+                      <a href="/confirmation-statement/people-with-significant-control">
                         People with significant control (PSC)
                       </a>
                     </span>
                     {% if pscStatement === 'yes' %}
                       <strong class="govuk-tag app-task-list__tag">
                         Checked</strong>
-                    {% elseif additionalPscs === 'yes' or pscs === 'no' or activePscs === 'no' %}
+                    {% elseif psc === 'no' or pscStatement === 'no' %}
                       <strong class="govuk-tag govuk-tag--blue app-task-list__tag">Ready to continue</strong>
                     {% else %}
                       <strong class="govuk-tag govuk-tag--grey app-task-list__tag">Not checked</strong>
@@ -174,19 +175,18 @@
                       People with significant control (PSC)
                     </a>
                   </span>
-                  {% if exemption === 'no' and psc === 'yes' %}
+                    {% if exemption === 'no' and psc === 'yes' %}
                     <strong class="govuk-tag app-task-list__tag">
                       Checked</strong>
-                  {% elseif exemption === 'no' and additionalPscs === 'yes' or pscs === 'no' or activePSCs === 'no' %}
+                    {% elseif exemption === 'no' and additionalPscs === 'yes' or psc === 'no' or activePSCs === 'no' %}
                     <strong class="govuk-tag govuk-tag--blue app-task-list__tag">Ready to continue</strong>
-                  {% elseif exemption === 'yes' %}
+                    {% elseif exemption === 'yes' %}
                     <strong class="govuk-tag app-task-list__tag">
                       Checked</strong>
-                  {% else %}
+                    {% else %}
                     <strong class="govuk-tag govuk-tag--grey app-task-list__tag">Not checked</strong>
-                  {% endif %}
+                    {% endif %}
                 {% endif %}
-
               </li>
 
               <li class="app-task-list__item">

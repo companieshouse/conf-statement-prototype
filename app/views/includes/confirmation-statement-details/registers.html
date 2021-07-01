@@ -1,68 +1,87 @@
-{% set roaHTML %}
-{% include "includes/confirmation-statement-details/roa.html" %}
-{% endset %}
-{% set sailHTML %}
-2 Nets Way, Newcastle, NE2 3BB
-{% endset %}
-{% if scenario.company.register === 'ro' %}
-  {{ govukTable({
 
-  head: [
-    {
-      text: "Register"
-    },
-    {
-      text: "Address"
-    }
-  ],
-  rows: [
-    [
-      {
-        text: "All registers"
-      },
-      {
-        html: roaHTML
-      }
-    ]
-  ]
-}) }}
-{% elseif scenario.company.register === 'SAIL' %}
-  {{ govukTable({
 
-head: [
-  {
-    text: "Register"
-  },
-  {
-    text: "Address"
-  }
-],
-rows: [
-  [
-    {
-      text: "Register of members"
-    },
-    {
-      html: sailHTML
-    }
+<div class="govuk-summary-card govuk-!-margin-bottom-4">
+  <div class="govuk-summary-card_heading govuk-!-padding-top-4 govuk-!-padding-bottom-4 govuk-!-padding-right-3 govuk-!-padding-left-3" style="display: flex; justify-content: space-between; align-items: center">
+    <p class="govuk-!-font-weight-bold govuk-!-margin-0">SAIL
+    </p>
 
-],
-[
-    {
-      text: "Register of persons of significant control"
-    },
-    {
-      html: sailHTML
-    }
-  ],
-  [
-      {
-        text: "All other registers"
-      },
-      {
-        html: roaHTML
-      }
-    ]
-]
-}) }}
-{% endif %}
+  </div>
+  <div style="display: flex" class="govuk-!-padding-1">
+    <dl style="display: block" class="govuk-summary-list govuk-!-margin-3">
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Address
+        </dt>
+        <dd class="govuk-summary-list__value">
+          2 Nets Way, Newcastle, NE2 3BB
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Registers
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <ul class="govuk-list govuk-list--bullet">
+              <li>Register of persons of significant control</li>
+
+        </dd>
+      </div>
+    </dl>
+  </div>
+</div>
+
+<div class="govuk-summary-card govuk-!-margin-bottom-4">
+  <div class="govuk-summary-card_heading govuk-!-padding-top-4 govuk-!-padding-bottom-4 govuk-!-padding-right-3 govuk-!-padding-left-3" style="display: flex; justify-content: space-between; align-items: center">
+    <p class="govuk-!-font-weight-bold govuk-!-margin-0">Registered office
+    </p>
+
+  </div>
+  <div style="display: flex" class="govuk-!-padding-1">
+    <dl style="display: block" class="govuk-summary-list govuk-!-margin-3">
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Address
+        </dt>
+        <dd class="govuk-summary-list__value">
+          1 Happy Lane, Cardiff, CF55 5CF
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Registers
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <ul class="govuk-list govuk-list--bullet">
+              <li>Register of persons of significant control</li>
+
+        </dd>
+      </div>
+    </dl>
+  </div>
+</div>
+<div class="govuk-summary-card govuk-!-margin-bottom-4">
+  <div class="govuk-summary-card_heading govuk-!-padding-top-4 govuk-!-padding-bottom-4 govuk-!-padding-right-3 govuk-!-padding-left-3" style="display: flex; justify-content: space-between; align-items: center">
+    <p class="govuk-!-font-weight-bold govuk-!-margin-0">Public record
+    </p>
+
+  </div>
+  <div style="display: flex" class="govuk-!-padding-1">
+    <dl style="display: block" class="govuk-summary-list govuk-!-margin-3">
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Address
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Companies House
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Registers
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <ul class="govuk-list govuk-list--bullet">
+              <li>Register of persons of significant control</li>
+
+        </dd>
+      </div>
+    </dl>
+  </div>
+</div>

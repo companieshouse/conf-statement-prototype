@@ -35,7 +35,7 @@
 
         {% if statementOfCapital === 'yes' %}
           {{ govukRadios({
-          classes: "govuk-radios--inline",
+          classes: "govuk-radios",
           idPrefix: "statement-of-capital",
           name: "statement-of-capital",
           errorMessage: statementOfCapitalError,
@@ -55,12 +55,16 @@
             {
               value: "no",
               text: "No"
+            },
+            {
+              value: "yes",
+              text: "No, but I've recently filed an update"
             }
           ]
         }) }}
         {% elseif statementOfCapital === 'no' %}
           {{ govukRadios({
-          classes: "govuk-radios--inline",
+          classes: "govuk-radios",
           idPrefix: "statement-of-capital",
           name: "statement-of-capital",
           errorMessage: statementOfCapitalError,
@@ -80,12 +84,16 @@
               value: "no",
               text: "No",
               checked: true
+            },
+            {
+              value: "yes",
+              text: "No, but I've recently filed an update"
             }
           ]
         }) }}
         {% else %}
           {{ govukRadios({
-          classes: "govuk-radios--inline",
+          classes: "govuk-radios",
           idPrefix: "statement-of-capital",
           name: "statement-of-capital",
           errorMessage: statementOfCapitalError,
@@ -104,6 +112,10 @@
             {
               value: "no",
               text: "No"
+            },
+            {
+              value: "yes",
+              text: "No, but I've recently filed an update"
             }
           ]
         }) }}
