@@ -1,4 +1,14 @@
 {% extends "layout.html" %}
+{% block header %}
+  {% include "includes/cookie-banner.html" %}
+  {# Set serviceName in config.js. #}
+  {{ govukHeader({
+    homepageUrl: "/",
+    serviceName: "",
+    serviceUrl: "/",
+    containerClasses: "govuk-width-container"
+  }) }}
+{% endblock %}
 {% block pageTitle %}
   Change of registered office address?
 {% endblock %}
@@ -78,7 +88,7 @@
         {% endcall %}
         {{ govukButton({
           text: "Submit changes",
-          href: "/change-data/change-address-confirmation"
+          href: "/change-data/change-address-confirmation-a"
         }) }}
       </form>
     </div>

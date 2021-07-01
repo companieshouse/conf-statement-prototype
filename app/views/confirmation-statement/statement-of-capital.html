@@ -1,7 +1,9 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Review the statement of capital
+{% if errorList.length > 0 %}
+  Error:
+{% endif %}  Review the statement of capital
 {% endblock %}
 
 {% block backLink %}
@@ -16,14 +18,27 @@
     <div class="govuk-grid-column-two-thirds">
 
       <form action="" method="post">
+
+        {% if errorList.length > 0 %}
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: [
+            {
+              text: "Select yes if the statement of capital is correct",
+              href: "#trading-status"
+            }
+          ]
+        }) }}
+        {% endif %}
         <h1 class="govuk-heading-l">Check the statement of capital</h1>
         {% include "includes/confirmation-statement-details/statement-of-capital.html" %}
 
-        {% if shareholderCapital === 'yes' %}
+        {% if statementOfCapital === 'yes' %}
           {{ govukRadios({
-          classes: "govuk-radios--inline",
+          classes: "govuk-radios",
           idPrefix: "statement-of-capital",
           name: "statement-of-capital",
+          errorMessage: statementOfCapitalError,
           fieldset: {
             legend: {
               html: "Is the statement of capital correct?",
@@ -40,14 +55,19 @@
             {
               value: "no",
               text: "No"
+            },
+            {
+              value: "yes",
+              text: "No, but I've recently filed an update"
             }
           ]
         }) }}
-        {% elseif shareholderCapital === 'no' %}
+        {% elseif statementOfCapital === 'no' %}
           {{ govukRadios({
-          classes: "govuk-radios--inline",
+          classes: "govuk-radios",
           idPrefix: "statement-of-capital",
           name: "statement-of-capital",
+          errorMessage: statementOfCapitalError,
           fieldset: {
             legend: {
               html: "Is the statement of capital correct?",
@@ -64,14 +84,19 @@
               value: "no",
               text: "No",
               checked: true
+            },
+            {
+              value: "yes",
+              text: "No, but I've recently filed an update"
             }
           ]
         }) }}
         {% else %}
           {{ govukRadios({
-          classes: "govuk-radios--inline",
+          classes: "govuk-radios",
           idPrefix: "statement-of-capital",
           name: "statement-of-capital",
+          errorMessage: statementOfCapitalError,
           fieldset: {
             legend: {
               html: "Is the statement of capital correct?",
@@ -87,6 +112,10 @@
             {
               value: "no",
               text: "No"
+            },
+            {
+              value: "yes",
+              text: "No, but I've recently filed an update"
             }
           ]
         }) }}

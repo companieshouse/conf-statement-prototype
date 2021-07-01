@@ -1,5 +1,14 @@
 {% extends "layout.html" %}
-
+{% block header %}
+  {% include "includes/cookie-banner.html" %}
+  {# Set serviceName in config.js. #}
+  {{ govukHeader({
+    homepageUrl: "/",
+    serviceName: "",
+    serviceUrl: "/",
+    containerClasses: "govuk-width-container"
+  }) }}
+{% endblock %}
 {% block pageTitle %}
   Confirmation
 {% endblock %}
@@ -34,7 +43,7 @@
             <p>
               <a href="https://www.research.net/">What did you think of this service?</a>
               (takes 2 minutes)</p>
-
+<p> <a href="/change-data/change-address-confirmation-a">Version A</a></p>
           </div>
         </div>
 

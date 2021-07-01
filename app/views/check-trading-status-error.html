@@ -1,9 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-{% if errorList.length > 0 %}
-  Error:
-{% endif %}  Company trading status
+  Error: Company trading status
 {% endblock %}
 {% block signOut %}{% endblock %}
 {% block backLink %}
@@ -19,27 +17,24 @@
 
       <form action="" method="post">
 
-{% if errorList.length > 0 %}
-{{ govukErrorSummary({
-  titleText: "There is a problem",
-  errorList: [
-    {
-      text: "Select yes if the company trading status is correct",
-      href: "#trading-status"
-    }
-  ]
-}) }}
-{% endif %}
-
-        <h1 class="govuk-heading-xl">Check the trading status of shares</h1>
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: [
+            {
+              text: "Select yes if the company trading status is correct",
+              href: "#trading-status"
+            }
+          ]
+        }) }}
+        <h1 class="govuk-heading-xl">Check the trading status</h1>
 
 
         {% if scenario.company.tradingStatus === '1' %}
-          <p>No company shares were traded on a market during this confirmation period.</p>
+          <p>No company shares were traded on a market during this confirmation period</p>
         {% elseif scenario.company.tradingStatus === '2' %}
-          <p>Company shares were traded on a market, and the company has not been subject to DTR5, during this confirmation statement period.</p>
+          <p>Company shares were traded on a market, and the company has not been subject to DTR5, during this confirmation statement period</p>
                   {% elseif scenario.company.tradingStatus === '3' %}
-                    <p>Company shares were traded on a market, and the company has been subject to DTR5, during this confirmation statement period.</p>
+                    <p>Company shares were traded on a market, and the company has been subject to DTR5, during this confirmation statement period</p>
 {% endif %}
 
         {% set dtrDetails %}
@@ -59,14 +54,16 @@
           classes: "govuk-radios--inline",
           idPrefix: "trading-status",
           name: "trading-status",
-          errorMessage: tradingStatusError,
           fieldset: {
             legend: {
-              text: "Is the trading status of shares correct?",
+              text: "Is the company trading status correct?",
               isPageHeading: false,
               classes: "govuk-fieldset__legend--l"
             }
           },
+          errorMessage: {
+    text: "Select yes if the company trading status is correct"
+  },
           items: [
             {
               value: "yes",

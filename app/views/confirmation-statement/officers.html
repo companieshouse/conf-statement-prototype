@@ -1,7 +1,9 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Review the officers
+{% if errorList.length > 0 %}
+  Error:
+{% endif %}  Review the officers
 {% endblock %}
 
 {% block backLink %}
@@ -14,7 +16,17 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-three-quarters">
-
+      {% if errorList.length > 0 %}
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "Select yes if the director details are correct",
+            href: "#officers"
+          }
+        ]
+      }) }}
+      {% endif %}
       <form action="" method="post">
         <h1 class="govuk-heading-l">Check the director details</h1>
 
@@ -45,6 +57,7 @@
           classes: "govuk-radios",
           idPrefix: "officers",
           name: "officers",
+          errorMessage: directorDetailsError,
           fieldset: {
             legend: {
               html: "Are the director details correct?",
@@ -76,6 +89,7 @@
           classes: "govuk-radios",
           idPrefix: "officers",
           name: "officers",
+          errorMessage: directorDetailsError,
           fieldset: {
             legend: {
               html: "Are the director details correct?",
@@ -107,6 +121,7 @@
           classes: "govuk-radios",
           idPrefix: "officers",
           name: "officers",
+          errorMessage: directorDetailsError,
           fieldset: {
             legend: {
               html: "Are the director details correct?",
@@ -139,6 +154,7 @@
   classes: "govuk-radios",
   idPrefix: "officers",
   name: "officers",
+  errorMessage: directorDetailsError,
   fieldset: {
     legend: {
       html: "Are the director details correct?",
@@ -166,6 +182,7 @@ html: officerHTML
   classes: "govuk-radios",
   idPrefix: "officers",
   name: "officers",
+  errorMessage: directorDetailsError,
   fieldset: {
     legend: {
       html: "Are the director details correct?",
@@ -193,6 +210,7 @@ html: officerHTML
   classes: "govuk-radios",
   idPrefix: "officers",
   name: "officers",
+  errorMessage: directorDetailsError,
   fieldset: {
     legend: {
       html: "Are the director details correct?",

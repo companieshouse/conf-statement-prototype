@@ -115,6 +115,11 @@ router.get('/confirm-company', function (req, res) {
 router.post('/confirm-company', function (req, res) {
   res.redirect('/authenticate')
 })
+router.get('/paper-filing', function (req, res) {
+  res.render('paper-filing', {
+    scenario: req.session.scenario
+  })
+})
 router.get('/authenticate', function (req, res) {
   res.render('authenticate', {
     scenario: req.session.scenario
@@ -134,25 +139,57 @@ router.post('/authenticate', function (req, res) {
 })
 router.get('/check-trading-status', function (req, res) {
   var scenario = req.session.scenario
+  var tradingStatus = req.session.data['trading-status']
 
   res.render('check-trading-status', {
-    scenario: scenario
+    scenario: scenario,
+    tradingStatus: tradingStatus
   })
 })
 router.post('/check-trading-status', function (req, res) {
+  var scenario = req.session.scenario
   var tradingStatus = req.session.data['trading-status']
+  var errorFlag = false
+  var tradingStatusError = {}
+  var errorList = []
+
+  if (typeof tradingStatus === 'undefined') {
+    tradingStatusError.type = 'blank'
+    tradingStatusError.text = 'Select yes if the company trading status is correct'
+    tradingStatusError.href = '#trading-status'
+    tradingStatusError.flag = true
+  }
+  if (tradingStatusError.flag) {
+    errorList.push(tradingStatusError)
+    errorFlag = true
+  }
+  if (errorFlag === true) {
+    res.render('check-trading-status', {
+      scenario: scenario,
+      tradingStatus: tradingStatus,
+      errorList: errorList,
+      tradingStatusError: tradingStatusError
+    })
+    } else {
 
   switch (tradingStatus) {
     case 'yes':
+    if (scenario.company.pscExempt === '0') {
       res.redirect('/task-list')
+    } else {
+      res.redirect('/psc-exempt-options')
+    }
       break
     case 'no':
       res.redirect('/trading-stop')
       break
-  }
+  }}
 })
 router.get('/trading-status', function (req, res) {
+  var tradingStatus = req.session.data['trading-status']
+
   res.render('trading-status', {
+    tradingStatus: tradingStatus,
     scenario: req.session.scenario
   })
 })
@@ -176,7 +213,7 @@ router.get('/trading-status-dtr5', function (req, res) {
 router.post('/trading-status-dtr5', function (req, res) {
   res.redirect('/task-list')
 })
-router.get('/task-list', function (req, res) {
+router.get('/task-list-external', function (req, res) {
   var completedTasks = req.session.data['completed']
   var email = req.session.data['email']
   var exemption = req.session.data['exemption']
@@ -199,12 +236,63 @@ router.get('/task-list', function (req, res) {
   var sic = req.session.data['sic']
   var trading = req.session.data['trading-status']
 
-  res.render('task-list', {
+  res.render('task-list-external', {
     scenario: req.session.scenario,
     activeOfficers: activeOfficers,
     activePscs: activePscs,
     additionalPscs: additionalPscs,
     additionalOfficers: additionalOfficers,
+    activeMembers: activeMembers,
+    additionalMembers: additionalMembers,
+    members: members,
+    completedTasks: completedTasks,
+    email: email,
+    exemption: exemption,
+    moment: moment().format('D MMMM yyy'),
+    officers: officers,
+    psc: psc,
+    pscStatement: pscStatement,
+    register: register,
+    result: result,
+    ro: ro,
+    statementOfCapital: statementOfCapital,
+    shareholders: shareholders,
+    sic: sic,
+    trading: trading
+  })
+})
+router.post('/task-list-external', function (req, res) {
+  res.redirect('/confirmation-statement/ro')
+})
+router.get('/task-list', function (req, res) {
+  var completedTasks = req.session.data['completed']
+  var email = req.session.data['email']
+  var exemption = req.session.data['exemption']
+  var activeDirectors = req.session.data['active-director']
+  var activePscs = req.session.data['active-pscs']
+  var activeMembers = req.session.data['active-members']
+  var additionalPscs = req.session.data['additional-pscs']
+  var additionalDirectors = req.session.data['additional-directors']
+  var additionalMembers = req.session.data['additional-members']
+  var members = req.session.data['members']
+  var moment = require('moment') // require
+  var officers = req.session.data['officers']
+  var psc = req.session.data['psc']
+  var pscStatement = req.session.data['psc-statement']
+  var register = req.session.data['registers']
+  var result = 0
+  var ro = req.session.data['registered-office-address']
+  var statementOfCapital = req.session.data['statement-of-capital']
+  var shareholders = req.session.data['shareholders']
+  var sic = req.session.data['sic']
+  var trading = req.session.data['trading-status']
+
+  res.render('task-list', {
+    scenario: req.session.scenario,
+    activeDirectors: activeDirectors,
+    activePscs: activePscs,
+    additionalPscs: additionalPscs,
+    additionalDirectors: additionalDirectors,
     activeMembers: activeMembers,
     additionalMembers: additionalMembers,
     members: members,
@@ -230,11 +318,13 @@ router.post('/task-list', function (req, res) {
 router.get('/confirmation-statement/ro', function (req, res, nl2br) {
   var email = req.session.data['email']
   var ro = req.session.data['registered-office-address']
+  var taskList = req.session.data['taskList']
   var checked = {}
 
   res.render('confirmation-statement/ro', {
     email: email,
     scenario: req.session.scenario,
+    taskList: taskList,
     checked: checked,
     ro: ro
   })
@@ -243,17 +333,47 @@ router.post('/confirmation-statement/ro', function (req, res) {
   var email = req.session.data['email']
   var ro = req.session.data['registered-office-address']
   var checked = {}
+  var errorFlag = false
+  var roError = {}
+  var errorList = []
+  var taskList = req.session.data['taskList']
+  var govukButton = req.session.data['govukButton']
 
+  if (typeof ro === 'undefined') {
+    roError.type = 'blank'
+    roError.text = 'Select yes if the registered office address is correct'
+    roError.href = '#officers'
+    roError.flag = true
+  }
+  if (roError.flag) {
+    errorList.push(roError)
+    errorFlag = true
+  }
+  if (errorFlag === true) {
+    res.render('confirmation-statement/ro', {
+      scenario: req.session.scenario,
+      ro: ro,
+      taskList: taskList,
+      errorList: errorList,
+      roError: roError
+    })
+    } else {
+
+if ('taskList' == true) {
+  checked.yes = true
+  res.redirect('/task-list')
+} else {
   switch (ro) {
     case 'yes':
       checked.yes = true
-      res.redirect('/task-list')
+      res.redirect('/confirmation-statement/registers')
       break
     case 'no':
       checked.yes = true
       res.redirect('/incorrect-information/wrong-ro')
       break
-  }
+    }
+  }}
 })
 router.get('/incorrect-information/wrong-ro', function (req, res) {
   var email = req.session.data['email']
@@ -288,25 +408,48 @@ var email = req.session.data['email']
 // officers start //
 router.get('/confirmation-statement/active-officers', function (req, res) {
   var email = req.session.data['email']
-  var activeOfficers = req.session.data['active-officers']
+  var activeDirectors = req.session.data['active-directors']
 
   res.render('confirmation-statement/active-officers', {
     scenario: req.session.scenario,
     email: email,
-    activeOfficers: activeOfficers
+    activeDirectors: activeDirectors
   })
 })
 router.post('/confirmation-statement/active-officers', function (req, res) {
-  var activeOfficers = req.session.data['active-officers']
+  var activeDirectors = req.session.data['active-directors']
+  var errorFlag = false
+  var activeDirectorsError = {}
+  var errorList = []
 
-  switch (activeOfficers) {
+  if (typeof activeDirectors === 'undefined') {
+    activeDirectorsError.type = 'blank'
+    activeDirectorsError.text = 'Select yes if the active directors are correct'
+    activeDirectorsError.href = '#active-directors'
+    activeDirectorsError.flag = true
+  }
+  if (activeDirectorsError.flag) {
+    errorList.push(activeDirectorsError)
+    errorFlag = true
+  }
+  if (errorFlag === true) {
+    res.render('confirmation-statement/active-officers', {
+      scenario: req.session.scenario,
+      activeDirectors: activeDirectors,
+      errorList: errorList,
+      activeDirectorsError: activeDirectorsError
+    })
+    } else {
+
+
+  switch (activeDirectors) {
     case 'yes':
       res.redirect('/confirmation-statement/officers')
       break
     case 'no':
       res.redirect('/incorrect-information/wrong-active-officers')
       break
-  }
+  }}
 })
 router.get('/confirmation-statement/officers', function (req, res) {
   var email = req.session.data['email']
@@ -320,6 +463,29 @@ router.get('/confirmation-statement/officers', function (req, res) {
 })
 router.post('/confirmation-statement/officers', function (req, res) {
   var officers = req.session.data['officers']
+  var errorFlag = false
+  var directorDetailsError = {}
+  var errorList = []
+
+  if (typeof officers === 'undefined') {
+    directorDetailsError.type = 'blank'
+    directorDetailsError.text = 'Select yes if the director details are correct'
+    directorDetailsError.href = '#officers'
+    directorDetailsError.flag = true
+  }
+  if (directorDetailsError.flag) {
+    errorList.push(directorDetailsError)
+    errorFlag = true
+  }
+  if (errorFlag === true) {
+    res.render('confirmation-statement/officers', {
+      scenario: req.session.scenario,
+      officers: officers,
+      errorList: errorList,
+      directorDetailsError: directorDetailsError
+    })
+    } else {
+
 
   switch (officers) {
     case 'yes':
@@ -328,29 +494,52 @@ router.post('/confirmation-statement/officers', function (req, res) {
     case 'no':
       res.redirect('/incorrect-information/wrong-officers')
       break
-  }
+  }}
 })
 router.get('/confirmation-statement/additional-officers', function (req, res) {
   var email = req.session.data['email']
-  var additionalOfficers = req.session.data['additional-officers']
+  var additionalDirectors = req.session.data['additional-directors']
 
   res.render('confirmation-statement/additional-officers', {
     email: email,
     scenario: req.session.scenario,
-    additionalOfficers: additionalOfficers
+    additionalDirectors: additionalDirectors
   })
 })
 router.post('/confirmation-statement/additional-officers', function (req, res) {
-  var additionalOfficers = req.session.data['additional-officers']
+  var additionalDirectors = req.session.data['additional-directors']
+  var errorFlag = false
+  var additionalDirectorsError = {}
+  var errorList = []
 
-  switch (additionalOfficers) {
+  if (typeof additionalDirectors === 'undefined') {
+    additionalDirectorsError.type = 'blank'
+    additionalDirectorsError.text = 'Select no if there are no directors to appoint'
+    additionalDirectorsError.href = '#additional-directors'
+    additionalDirectorsError.flag = true
+  }
+  if (additionalDirectorsError.flag) {
+    errorList.push(additionalDirectorsError)
+    errorFlag = true
+  }
+  if (errorFlag === true) {
+    res.render('confirmation-statement/additional-officers', {
+      scenario: req.session.scenario,
+      additionalDirectors: additionalDirectors,
+      errorList: errorList,
+      additionalDirectorsError: additionalDirectorsError
+    })
+    } else {
+
+
+  switch (additionalDirectors) {
     case 'yes':
       res.redirect('/incorrect-information/wrong-appoint-officers')
       break
     case 'no':
       res.redirect('/task-list')
       break
-  }
+  }}
 })
 router.get('/confirmation-statement/officers-2', function (req, res) {
   var email = req.session.data['email']
@@ -490,7 +679,9 @@ router.get('/confirmation-statement/registers', function (req, res) {
 })
 router.post('/confirmation-statement/registers', function (req, res) {
   var registers = req.session.data['registers']
+  var next = req.session.data['next']
 
+if (next === true) {
   switch (registers) {
     case 'yes':
       res.redirect('/task-list')
@@ -498,6 +689,16 @@ router.post('/confirmation-statement/registers', function (req, res) {
     case 'no':
       res.redirect('/incorrect-information/wrong-registers')
       break
+    }
+    } else {
+      switch (registers) {
+        case 'yes':
+          res.redirect('/task-list')
+          break
+        case 'no':
+          res.redirect('/incorrect-information/wrong-registers')
+          break
+        }
   }
 })
 router.get('/incorrect-information/wrong-registers', function (req, res) {
@@ -512,13 +713,37 @@ router.post('/incorrect-information/wrong-registers', function (req, res) {
 })
 router.get('/confirmation-statement/sic', function (req, res) {
   var email = req.session.data['email']
+  var sic = req.session.data['sic']
   res.render('confirmation-statement/sic', {
     scenario: req.session.scenario,
+    sic: sic,
     email: email
   })
 })
 router.post('/confirmation-statement/sic', function (req, res) {
   var sic = req.session.data['sic']
+  var errorFlag = false
+  var sicError = {}
+  var errorList = []
+
+  if (typeof sic === 'undefined') {
+    sicError.type = 'blank'
+    sicError.text = 'Select yes if the SIC codes are correct'
+    sicError.href = '#sic'
+    sicError.flag = true
+  }
+  if (sicError.flag) {
+    errorList.push(sicError)
+    errorFlag = true
+  }
+  if (errorFlag === true) {
+    res.render('confirmation-statement/sic', {
+      scenario: req.session.scenario,
+      sic: sic,
+      errorList: errorList,
+      sicError: sicError
+    })
+    } else {
 
   switch (sic) {
     case 'yes':
@@ -527,7 +752,7 @@ router.post('/confirmation-statement/sic', function (req, res) {
     case 'no':
       res.redirect('/incorrect-information/wrong-sic')
       break
-  }
+  }}
 })
 router.get('/incorrect-information/wrong-sic', function (req, res) {
   var email = req.session.data['email']
@@ -551,7 +776,28 @@ router.get('/confirmation-statement/statement-of-capital', function (req, res) {
 router.post('/confirmation-statement/statement-of-capital', function (req, res) {
   var statementOfCapital = req.session.data['statement-of-capital']
   var trading = req.session.data['trading']
+  var errorFlag = false
+  var statementOfCapitalError = {}
+  var errorList = []
 
+  if (typeof statementOfCapital === 'undefined') {
+    statementOfCapitalError.type = 'blank'
+    statementOfCapitalError.text = 'Select yes if the statement of capital is correct'
+    statementOfCapitalError.href = '#statement-of-capital'
+    statementOfCapitalError.flag = true
+  }
+  if (statementOfCapitalError.flag) {
+    errorList.push(statementOfCapitalError)
+    errorFlag = true
+  }
+  if (errorFlag === true) {
+    res.render('confirmation-statement/statement-of-capital', {
+      scenario: req.session.scenario,
+      statementOfCapital: statementOfCapital,
+      errorList: errorList,
+      statementOfCapitalError: statementOfCapitalError
+    })
+    } else {
   switch (statementOfCapital) {
     case 'yes':
       if (trading === 'yes') {
@@ -563,7 +809,7 @@ router.post('/confirmation-statement/statement-of-capital', function (req, res) 
     case 'no':
       res.redirect('/incorrect-information/wrong-statement-of-capital')
       break
-  }
+  }}
 })
 router.get('/incorrect-information/wrong-statement-of-capital', function (req, res) {
   var email = req.session.data['email']
@@ -645,6 +891,29 @@ router.get('/confirmation-statement/active-pscs', function (req, res) {
 })
 router.post('/confirmation-statement/active-pscs', function (req, res) {
   var activePscs = req.session.data['active-pscs']
+  var errorFlag = false
+  var activePscsError = {}
+  var errorList = []
+
+  if (typeof activePscs === 'undefined') {
+    activePscsError.type = 'blank'
+    activePscsError.text = 'Select yes if the active PSCs are correct'
+    activePscsError.href = '#active-pscs'
+    activePscsError.flag = true
+  }
+  if (activePscsError.flag) {
+    errorList.push(activePscsError)
+    errorFlag = true
+  }
+  if (errorFlag === true) {
+    res.render('confirmation-statement/active-pscs', {
+      scenario: req.session.scenario,
+      activePscs: activePscs,
+      errorList: errorList,
+      activePscsError: activePscsError
+    })
+    } else {
+
 
   switch (activePscs) {
     case 'yes':
@@ -653,7 +922,7 @@ router.post('/confirmation-statement/active-pscs', function (req, res) {
     case 'no':
       res.redirect('/incorrect-information/wrong-active-psc')
       break
-  }
+  }}
 })
 router.get('/incorrect-information/wrong-active-psc', function (req, res) {
   var email = req.session.data['email']
@@ -676,15 +945,38 @@ router.get('/confirmation-statement/people-with-significant-control', function (
 })
 router.post('/confirmation-statement/people-with-significant-control', function (req, res) {
   var psc = req.session.data['psc']
+  var errorFlag = false
+  var pscDetailsError = {}
+  var errorList = []
+
+  if (typeof psc === 'undefined') {
+    pscDetailsError.type = 'blank'
+    pscDetailsError.text = 'Select yes if the psc details are correct'
+    pscDetailsError.href = '#officers'
+    pscDetailsError.flag = true
+  }
+  if (pscDetailsError.flag) {
+    errorList.push(pscDetailsError)
+    errorFlag = true
+  }
+  if (errorFlag === true) {
+    res.render('confirmation-statement/people-with-significant-control', {
+      scenario: req.session.scenario,
+      psc: psc,
+      errorList: errorList,
+      pscDetailsError: pscDetailsError
+    })
+    } else {
+
 
   switch (psc) {
     case 'yes':
-      res.redirect('/confirmation-statement/additional-pscs')
+      res.redirect('/confirmation-statement/psc-statement')
       break
     case 'no':
       res.redirect('/incorrect-information/wrong-psc-details')
       break
-  }
+  }}
 })
 router.get('/confirmation-statement/additional-pscs', function (req, res) {
   var email = req.session.data['email']

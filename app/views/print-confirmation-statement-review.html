@@ -98,32 +98,43 @@ html: scenario.company.address | nl2br
 
           Nature of business
         </h2>
-
+<div>
         <h3 class="govuk-heading-s">SIC codes</h3>
         {% include "includes/confirmation-statement-details/sic.html" %}
+</div>
+<div>
         <h3 class="govuk-heading-s">Statement of capital</h3>
         {% include "includes/confirmation-statement-details/statement-of-capital.html" %}
-
+</div>
         <h2 class="app-task-list__section">
 
           People
         </h2>
-        <h3 class="govuk-heading-s">Officers</h3>
+        <div>
+          <h3 class="govuk-heading-s">Officers</h3>
         {% include "includes/confirmation-statement-details/officers.html" %}
-        <h3 class="govuk-heading-s">People with significant control (PSCs)</h3>
+
+        </div>
+        <div>
+          <h3 class="govuk-heading-s">People with significant control (PSCs)</h3>
         {% include "includes/confirmation-statement-details/pscs.html" %}
+</div>
+<div>
         <h3 class="govuk-heading-s">Shareholders</h3>
         {% include "includes/confirmation-statement-details/shareholders.html" %}
-
+</div>
         <h2 class="app-task-list__section">
 
           Addresses
         </h2>
+        <div>
         <h3 class="govuk-heading-s">Registered office address</h3>
         {% include "includes/confirmation-statement-details/roa.html" %}
+        </div>
+        <div>
         <h3 class="govuk-heading-s">Register locations</h3>
         {% include "includes/confirmation-statement-details/registers.html" %}
-
+</div>
       </div>
     </div>
 
@@ -146,13 +157,19 @@ html: scenario.company.address | nl2br
     <h3 class="govuk-heading-s">Register locations</h3>
     {% include "includes/confirmation-statement-details/registers.html" %}
 
-    <p class="govuk-body">
-            <a href="javascript:if(window.print)window.print()">Print a copy of these details</a>
-          </p>
+
   </div>
 </div>
 {% endif %}
 
+    <p class="govuk-body">
+            <a href="javascript:if(window.print)window.print()">Print a copy of these details</a>
+          </p>
+
+          {{ govukButton({
+text: "Return to review",
+href: "/confirmation-statement/review"
+}) }}
 </div>
 </div>
 {% endblock %}
