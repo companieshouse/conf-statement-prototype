@@ -265,12 +265,12 @@
                     {% if scenario.company.csDue === 'notdue' %}
                       <a href="/confirmation-statement/review">Submit</a>
                     {% else %}
-                      <a href="/confirmation-statement/review">Submit and pay</a>
+                      <a href="/confirmation-statement/review">Submit</a>
                     {% endif %}
                   </span>
                   <strong class="govuk-tag govuk-tag--grey app-task-list__tag" id="submit-pay-status">Not started</strong>
                 {% else %}
-                  Review statement and pay
+                  Submit
                 </span>
                 <strong class="govuk-tag govuk-tag--grey app-task-list__tag" id="submit-pay-status">Cannot start yet</strong>
               {% endif %}
