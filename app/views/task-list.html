@@ -51,7 +51,7 @@
       <p>You will need to check and confirm that the company information we have on record is correct as of
         {{ scenario.company.csDate }}.
         <p class="govuk-body govuk-!-margin-bottom-7">
-          {% if additionalDirectors === 'no' %}
+          {% if officers === 'yes' %}
             {% set result = result + 1
  %}
           {% endif %}
@@ -139,11 +139,11 @@
               <ul class="app-task-list__items">
                 <li class="app-task-list__item">
                   <span class="app-task-list__task-name">
-                    <a href="/confirmation-statement/active-officers">
+                    <a href="/confirmation-statement/officers">
                       Officers
                     </a>
                   </span>
-                  {% if additionalDirectors === 'no' %}
+                  {% if officers === 'yes' %}
                     <strong class="govuk-tag app-task-list__tag">
                       Checked</strong>
 

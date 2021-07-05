@@ -489,7 +489,7 @@ router.post('/confirmation-statement/officers', function (req, res) {
 
   switch (officers) {
     case 'yes':
-      res.redirect('/confirmation-statement/additional-officers')
+      res.redirect('/task-list')
       break
     case 'no':
       res.redirect('/incorrect-information/wrong-officers')
