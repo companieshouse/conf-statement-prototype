@@ -28,7 +28,11 @@
       }) }}
       {% endif %}
       <form action="" method="post">
-        <h1 class="govuk-heading-l">Check the director details</h1>
+        <h1 class="govuk-heading-l">Check the {% if scenario.company.directors === '1' %}
+          director
+        {% else %}
+            directors
+        {% endif %}</h1>
 
         {% if scenario.company.directors === '1' %}
           <h2 class="govuk-heading-m">1 Director</h2>
