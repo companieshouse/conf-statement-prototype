@@ -198,6 +198,10 @@
       value: "no",
       text: "No",
       checked: true
+    },
+    {
+      value: "yes",
+      text: "No, but I've recently filed an update"
     }
   ]
 }) }}
@@ -222,11 +226,17 @@
     {
       value: "no",
       text: "No"
+    },
+    {
+      value: "yes",
+      text: "No, but I've recently filed an update"
     }
   ]
 }) }}
+
 {% endif %}
 {% endif %}
+
         {{ govukButton({
 text: "Continue"
 }) }}

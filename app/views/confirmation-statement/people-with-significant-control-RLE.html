@@ -88,7 +88,10 @@
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">Nature of control</dt>
                 <dd class="govuk-summary-list__value">
-                  <p>Ownership of voting rights - more than 75%</p>
+                  <ul class="govuk-bullet__list">
+                    <li>
+                  <p>Ownership of voting rights - more than 75%</p></li>
+                  </ul>
                 </dd>
               </div>
             </dl>
@@ -243,6 +246,10 @@
       value: "no",
       text: "No",
       checked: true
+    },
+    {
+      value: "yes",
+      text: "No, but I've recently filed an update"
     }
   ]
 }) }}
@@ -267,6 +274,38 @@
     {
       value: "no",
       text: "No"
+    },
+    {
+      value: "yes",
+      text: "No, but I've recently filed an update"
+    }
+  ]
+}) }}
+{% else %}
+  {{ govukRadios({
+  classes: "govuk-radios",
+  idPrefix: "psc",
+  name: "psc",
+  errorMessage: pscDetailsError,
+  fieldset: {
+    legend: {
+      html: "Are the PSC details correct?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  items: [
+    {
+      value: "yes",
+      text: "Yes"
+    },
+    {
+      value: "no",
+      text: "No"
+    },
+    {
+      value: "yes",
+      text: "No, but I've recently filed an update"
     }
   ]
 }) }}
