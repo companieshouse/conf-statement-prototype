@@ -281,34 +281,6 @@
     }
   ]
 }) }}
-{% else %}
-  {{ govukRadios({
-  classes: "govuk-radios",
-  idPrefix: "psc",
-  name: "psc",
-  errorMessage: pscDetailsError,
-  fieldset: {
-    legend: {
-      html: "Are the PSC details correct?",
-      isPageHeading: true,
-      classes: "govuk-fieldset__legend--l"
-    }
-  },
-  items: [
-    {
-      value: "yes",
-      text: "Yes"
-    },
-    {
-      value: "no",
-      text: "No"
-    },
-    {
-      value: "yes",
-      text: "No, but I've recently filed an update"
-    }
-  ]
-}) }}
 {% endif %}
 {% endif %}
         {{ govukButton({
