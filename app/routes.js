@@ -366,7 +366,7 @@ if ('taskList' == true) {
   switch (ro) {
     case 'yes':
       checked.yes = true
-      res.redirect('/confirmation-statement/registers')
+      res.redirect('/confirmation-statement/task-list')
       break
     case 'no':
       checked.yes = true
