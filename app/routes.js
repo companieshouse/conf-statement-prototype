@@ -366,7 +366,7 @@ if ('taskList' == true) {
   switch (ro) {
     case 'yes':
       checked.yes = true
-      res.redirect('/confirmation-statement/registers')
+      res.redirect('/confirmation-statement/task-list')
       break
     case 'no':
       checked.yes = true
@@ -489,7 +489,7 @@ router.post('/confirmation-statement/officers', function (req, res) {
 
   switch (officers) {
     case 'yes':
-      res.redirect('/confirmation-statement/additional-officers')
+      res.redirect('/task-list')
       break
     case 'no':
       res.redirect('/incorrect-information/wrong-officers')
@@ -1046,7 +1046,7 @@ router.post('/confirmation-statement/psc-statement', function (req, res) {
       res.redirect('/task-list')
       break
     case 'no':
-      res.redirect('/incorrect-information/wrong-psc-statement')
+      res.redirect('/incorrect-information/wrong-psc-details')
       break
   }
 })

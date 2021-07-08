@@ -186,7 +186,11 @@
                 Review active pscs
               </li>
               <li>
-                <a href="/confirmation-statement/people-with-significant-control">Review people with significant control</a>
+                <a href="/confirmation-statement/people-with-significant-control">Review people with significant control - individual</a>
+                Review people with significant control
+              </li>
+              <li>
+                <a href="/confirmation-statement/people-with-significant-control-RLE">Review people with significant control - RLE</a>
                 Review people with significant control
               </li>
               <li>
@@ -284,21 +288,10 @@
                 Incorrect shareholders
               </li>
               <li>
-                <a href="/incorrect-information/wrong-active-psc">Wrong PSC</a>
-                Incorrect people with significant control
-              </li>
-              <li>
                 <a href="/incorrect-information/wrong-psc-details">Wrong PSC details</a>
                 Incorrect psc details
               </li>
-              <li>
-                <a href="/incorrect-information/wrong-appoint-psc">Appoint PSCs - all types</a>
-                Incorrect psc details
-              </li>
-              <li>
-                <a href="/incorrect-information/wrong-psc-statement">Wrong PSC statement</a>
-                Incorrect people with significant control statement
-              </li>
+
               <li>
                 <a href="/paper-filing">Cannot use service - paper filing</a>
                 Cannot use service - paper filing
@@ -473,30 +466,60 @@
                           <ul class="govuk-list--bulletlist">
                             <li>
                               <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/confirmation-statement/registers">Added continue/return buttons to registers</a>
-                            </li>
+                              {{govukTag({
+                                  text: "Removed",
+                                  classes: "govuk-tag--red"
+                                })}}
+                              </li>
                             <li>
                               <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/task-list">Changed label of "in progress" status tag to "ready to continue"</a>
+                              {{govukTag({
+                                  text: "Tested",
+                                  classes: "govuk-tag--green"
+                                })}}
                             </li>
                             <li>
                               <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/task-list">Added content to notification banner</a>
+                              {{govukTag({
+                                  text: "Tested",
+                                  classes: "govuk-tag--green"
+                                })}}
                             </li>
                             <li>
                               <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/incorrect-information/roa">Made a step by step guide for updating info</a>
+                              {{govukTag({
+                                  text: "Tested",
+                                  classes: "govuk-tag--green"
+                                })}}
                             </li>
                             <li>
                               <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/confirmation-statement/statement-of-capital">changed format and added recently filed radio</a>
-                            </li>
-                            <li>
-                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/confirmation-statement/statement-of-capital">added recently filed radio</a>
+                              {{govukTag({
+                                  text: "Tested",
+                                  classes: "govuk-tag--green"
+                                })}}
                             </li>
                             <li>
                               <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/confirmation-statement/registers">changed format of registers page</a>
+
                             </li>
                             <li>
-                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/confirmation-statement/people-with-significant-control">changed PSC details page</a>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/confirmation-statement/people-with-significant-control">changed PSC details page, added status and URA</a>
                             </li>
                             <li>
                               <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/incorrect-information/wrong-psc-details">changed wrong psc details stop screen</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/incorrect-information/wrong-officers">changed wrong officers stop screen</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/confirmation-statement/people-with-significant-control-rle">added extra radio and bullet points to nature of control psc RLE</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/confirmation-statement/people-with-significant-control">added extra radio and bullet points to nature of control psc individual</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/confirmation-statement/statement-of-capital">Updated SoC table to align with SoC project</a>
                             </li>
                           </ul>
                         </div>
