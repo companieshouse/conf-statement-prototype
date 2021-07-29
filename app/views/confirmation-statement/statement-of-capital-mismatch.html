@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+{% if errorList.length > 0 %}
+  Error:
+{% endif %}  Review the statement of capital
+{% endblock %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/task-list"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="" method="post">
+
+        <h1 class="govuk-heading-l">Check the statement of capital</h1>
+
+{% set warningHTML %}
+<p><strong>You cannot continue to file a confirmation statement in this service.</strong>
+</p>
+<p>
+<strong>The company's share capital does not match the shares allocated to its shareholders.</strong>
+</p>
+<p>
+<strong>You must update this information by filing a confirmation statement through our <a href="https://ewf.companieshouse.gov.uk//seclogin?tc=1">WebFiling service</a>.</strong>
+</p>{% endset %}
+
+        {{ govukWarningText({
+          html: warningHTML,
+          iconFallbackText: "Warning"
+        }) }}
+
+        {% include "includes/confirmation-statement-details/statement-of-capital.html" %}
+
+        {{ govukButton({
+text: "Continue",
+href: "/incorrect-information/wrong-statement-of-capital"
+}) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}
