@@ -1,9 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-{% if errorList.length > 0 %}
-  Error:
-{% endif %}  Review the statement of capital
+  Review the shareholders
 {% endblock %}
 
 {% block backLink %}
@@ -19,13 +17,14 @@
 
       <form action="" method="post">
 
-        <h1 class="govuk-heading-l">Check the statement of capital</h1>
+<h1 class="govuk-heading-xl">Check the shareholder details</h1>
+
 
 {% set warningHTML %}
 <p><strong>You cannot continue to file a confirmation statement in this service.</strong>
 </p>
 <p>
-<strong>The company's share capital does not match the number of shares held by its shareholders.</strong>
+<strong>The number of shares held by shareholders does not match the company's share capital.</strong>
 </p>
 <p>
 <strong>You must update this information by filing a confirmation statement through our <a href="https://ewf.companieshouse.gov.uk//seclogin?tc=1">WebFiling service</a>.</strong>
@@ -36,11 +35,17 @@
           iconFallbackText: "Warning"
         }) }}
 
-        {% include "includes/confirmation-statement-details/statement-of-capital.html" %}
+        {% if scenario.company.shareholders === '1' %}
+          <h2 class="govuk-heading-m">1 Shareholder</h2>
+        {% else %}
+          <h2 class="govuk-heading-m">{{scenario.company.shareholders}}
+            Shareholders</h2>
+        {% endif %}
+        {% include "includes/confirmation-statement-details/shareholders.html" %}
 
         {{ govukButton({
 text: "Continue",
-href: "/incorrect-information/mismatch-statement-of-capital"
+href: "/incorrect-information/mismatch-shareholders"
 }) }}
       </form>
     </div>
