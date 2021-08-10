@@ -145,3 +145,10 @@ $govuk-assets-path: '/govuk/assets/';
 .app-task-list__items {
     padding-left: 0px;
 }
+
+.govuk-panel {
+  .govuk-panel--rejection {
+    color: #ffffff;
+    background: #d4351c;
+  }
+}
