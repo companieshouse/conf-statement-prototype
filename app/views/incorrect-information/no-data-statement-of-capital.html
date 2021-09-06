@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  You cannot use this service - File a confirmation statement
+{% endblock %}
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/confirmation-statement/statement-of-capital-mismatch"
+  }) }}
+{% endblock %}
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form action="" method="post">
+        <h1 class="govuk-heading-xl">
+          You cannot use this service
+        </h1>
+        <p>The total amount unpaid for all shares is missing on this company’s statement of capital. </p>
+        <p>You must update this information by filing a confirmation statement through
+          <a href="https://ewf.companieshouse.gov.uk//seclogin?tc=1">our WebFiling service</a>. You will need to sign in to or create a WebFiling account to do this.
+        </p>
+        <p>
+            <a href="https://www.smartsurvey.co.uk/s/fileconfstmnt-wrongsharecap/">What did you think of this service?</a>
+            (takes 2 minutes)</p>
+      </form>
+    </div>
+  </div>
+{% endblock %}
