@@ -18,6 +18,9 @@ $govuk-assets-path: '/govuk/assets/';
 @import "components/cookie-banner";
 
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
+.flex {
+  display: flex;
+}
 .govuk-summary-card {
   border: 1px solid #b1b4b6;
 }
