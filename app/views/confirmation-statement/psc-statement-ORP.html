@@ -1,86 +1,59 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-{% if errorList.length > 0 %}
-  Error:
-{% endif %}  Review the people with significant control
+  Review the people with significant control statement
 {% endblock %}
 
 {% block backLink %}
   {{ govukBackLink({
     text: "Back",
-    href: "/task-list"
+    href: "/confirmation-statement/people-with-significant-control"
   }) }}
 {% endblock %}
+
 {% block content %}
-  {% set pscDetails %}
-  <p>A person with significant control (PSC) is someone who owns or controls the company. For example, anyone with voting rights or more than 25% of the shares. For more information,
-    <a href="https://www.gov.uk/guidance/people-with-significant-control-pscs">read the guidance on PSCs</a>.</p>
-  {% endset %}
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-three-quarters">
-      {% if errorList.length > 0 %}
-      {{ govukErrorSummary({
-        titleText: "There is a problem",
-        errorList: [
-          {
-            text: "Select yes if the PSC details are correct",
-            href: "#psc"
-          }
-        ]
-      }) }}
-      {% endif %}
+    <div class="govuk-grid-column-two-thirds">
+
       <form action="" method="post">
-        <h1 class="govuk-heading-l">Check the people with significant control (PSC) details</h1>
-        {% set pscDetails %}
-        <p>A person with significant control (PSC) is someone who owns or controls the company. For example, anyone with voting rights or more than 25% of the shares. For more information,
-          <a href="https://www.gov.uk/guidance/people-with-significant-control-pscs">read the guidance on PSCs</a>.</p>
+
+        {% set pscStatementTypesHTML %}
+        <p>If a company has no PSCs, or is currently investigating who its PSCs are, it needs to file a statement to explain why its full PSC information is not yet on the public register. For example, if there is a PSC that has not yet been identified, or
+          if a PSC has been identified but their details have not yet been confirmed.</p>
+        <p>
+          <a href="https://ewf.companieshouse.gov.uk/help/en/stdwf/faqHelp.html#psc">Read the guidance for a full list of PSC statements.</a>
+        </p>
         {% endset %}
 
+        {% set pscStatementHTML %}
+
+        <p>The company knows or has reasonable cause to believe that there is a registrable person in relation to the company, but it has not identified the registrable person.</p>
         {{ govukDetails({
-        summaryText: "More about people with significant control",
-        html: pscDetails
+          summaryText: "What are PSC statements?",
+          html: pscStatementTypesHTML
         }) }}
-        {% if scenario.company.pscs === '1' %}
-          <h2 class="govuk-heading-m">1 individual person</h2>
-        {% else %}
-          <h2 class="govuk-heading-m">{{scenario.company.pscs}}
-            individual people</h2>
-        {% endif %}
-
-        {% set pscHTML %}
-        {% include "includes/confirmation-statement-details/pscs.html" %}
         {% endset %}
-
-        {{ govukTable({
-  rows:
-  [
-    [
-      {
-        html: pscHTML
-      }
-    ]
-  ]
-}) }}
 {% if scenario.company.recentFiling === 'yes' %}
-        {% if psc === 'yes' %}
+        {% if pscStatement === 'yes' %}
           {{ govukRadios({
           classes: "govuk-radios",
-          idPrefix: "psc",
-          name: "psc",
-          errorMessage: pscDetailsError,
+          idPrefix: "psc-statement",
+          name: "psc-statement",
           fieldset: {
             legend: {
-              html: "Are the PSC details correct?",
+              html: "Is the PSC statement correct?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
-
+          hint: {
+    html: pscStatementHTML
+  },
           items: [
             {
               value: "yes",
-              text: "Yes"
+              text: "Yes",
+              checked: true
             },
             {
               value: "no",
@@ -92,19 +65,21 @@
             }
           ]
         }) }}
-        {% elseif psc === 'no' %}
+        {% elseif pscStatement === 'no' %}
           {{ govukRadios({
           classes: "govuk-radios",
-          idPrefix: "psc",
-          name: "psc",
-          errorMessage: pscDetailsError,
+          idPrefix: "psc-statement",
+          name: "psc-statement",
           fieldset: {
             legend: {
-              html: "Are the PSC details correct?",
+              html: "Is the PSC statement correct?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
+          hint: {
+    html: pscStatementHTML
+  },
           items: [
             {
               value: "yes",
@@ -124,16 +99,18 @@
         {% else %}
           {{ govukRadios({
           classes: "govuk-radios",
-          idPrefix: "psc",
-          name: "psc",
-          errorMessage: pscDetailsError,
+          idPrefix: "psc-statement",
+          name: "psc-statement",
           fieldset: {
             legend: {
-              html: "Are the PSC details correct?",
+              html: "Is the PSC statement correct?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
+          hint: {
+    html: pscStatementHTML
+  },
           items: [
             {
               value: "yes",
@@ -151,24 +128,26 @@
         }) }}
         {% endif %}
 {% else %}
-{% if psc === 'yes' %}
+{% if pscStatement === 'yes' %}
   {{ govukRadios({
   classes: "govuk-radios",
-  idPrefix: "psc",
-  name: "psc",
-  errorMessage: pscDetailsError,
+  idPrefix: "psc-statement",
+  name: "psc-statement",
   fieldset: {
     legend: {
-      html: "Are the PSC details correct?",
+      html: "Is the PSC statement correct?",
       isPageHeading: true,
       classes: "govuk-fieldset__legend--l"
     }
   },
-
+  hint: {
+html: pscStatementHTML
+},
   items: [
     {
       value: "yes",
-      text: "Yes"
+      text: "Yes",
+      checked: true
     },
     {
       value: "no",
@@ -176,19 +155,21 @@
     }
   ]
 }) }}
-{% elseif psc === 'no' %}
+{% elseif pscStatement === 'no' %}
   {{ govukRadios({
   classes: "govuk-radios",
-  idPrefix: "psc",
-  name: "psc",
-  errorMessage: pscDetailsError,
+  idPrefix: "psc-statement",
+  name: "psc-statement",
   fieldset: {
     legend: {
-      html: "Are the PSC details correct?",
+      html: "Is the PSC statement correct?",
       isPageHeading: true,
       classes: "govuk-fieldset__legend--l"
     }
   },
+  hint: {
+html: pscStatementHTML
+},
   items: [
     {
       value: "yes",
@@ -198,26 +179,24 @@
       value: "no",
       text: "No",
       checked: true
-    },
-    {
-      value: "yes",
-      text: "No, but I've recently filed an update"
     }
   ]
 }) }}
 {% else %}
   {{ govukRadios({
   classes: "govuk-radios",
-  idPrefix: "psc",
-  name: "psc",
-  errorMessage: pscDetailsError,
+  idPrefix: "psc-statement",
+  name: "psc-statement",
   fieldset: {
     legend: {
-      html: "Are the PSC details correct?",
+      html: "Is the PSC statement correct?",
       isPageHeading: true,
       classes: "govuk-fieldset__legend--l"
     }
   },
+  hint: {
+html: pscStatementHTML
+},
   items: [
     {
       value: "yes",
@@ -226,17 +205,11 @@
     {
       value: "no",
       text: "No"
-    },
-    {
-      value: "yes",
-      text: "No, but I've recently filed an update"
     }
   ]
 }) }}
-
 {% endif %}
 {% endif %}
-
         {{ govukButton({
 text: "Continue"
 }) }}

@@ -811,6 +811,15 @@ router.post('/confirmation-statement/statement-of-capital', function (req, res) 
       break
   }}
 })
+router.get('/confirmation-statement/statement-of-capital-mismatch', function (req, res) {
+  var email = req.session.data['email']
+  var statementOfCapital = req.session.data['statement-of-capital']
+  res.render('confirmation-statement/statement-of-capital-mismatch', {
+    scenario: req.session.scenario,
+    email: email,
+    statementOfCapital: statementOfCapital
+  })
+})
 router.get('/incorrect-information/wrong-statement-of-capital', function (req, res) {
   var email = req.session.data['email']
   res.render('incorrect-information/wrong-statement-of-capital', {
@@ -840,6 +849,13 @@ router.post('/confirmation-statement/shareholders', function (req, res) {
       res.redirect('/incorrect-information/wrong-shareholders')
       break
   }
+})
+router.get('/confirmation-statement/shareholders-mismatch', function (req, res) {
+  var email = req.session.data['email']
+  res.render('confirmation-statement/shareholders-mismatch', {
+    scenario: req.session.scenario,
+    email: email
+  })
 })
 router.get('/incorrect-information/wrong-shareholders', function (req, res) {
   var email = req.session.data['email']

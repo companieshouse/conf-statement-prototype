@@ -142,6 +142,10 @@
                 Review directors
               </li>
               <li>
+                <a href="/confirmation-statement/secretaries">Review secretaries</a>
+                Review secretaries
+              </li>
+              <li>
                 <a href="/confirmation-statement/additional-officers">Do you have a new officer to appoint?</a>
                 Review active officers
               </li>
@@ -162,6 +166,10 @@
                 Review registers
               </li>
               <li>
+                <a href="/confirmation-statement/registers-no-sail">Review registers (NO SAIL address registered and no Registers held at SAIL)</a>
+                Review registers
+              </li>
+              <li>
                 <a href="/confirmation-statement/sic">Review SIC</a>
                 Review standard industrial classification
               </li>
@@ -170,7 +178,19 @@
                 Review statement of capital
               </li>
               <li>
+                <a href="/confirmation-statement/statement-of-capital-mismatch">Review statement of capital (with mismatch warning)</a>
+                Review statement of capital
+              </li>
+              <li>
+                <a href="/confirmation-statement/statement-of-capital-no-data">Review statement of capital (with no data for unpaid shares warning)</a>
+                Review statement of capital
+              </li>
+              <li>
                 <a href="/confirmation-statement/shareholders">Review shareholders</a>
+                Review shareholders
+              </li>
+              <li>
+                <a href="/confirmation-statement/shareholders-mismatch">Review shareholders (with mismatch warning)</a>
                 Review shareholders
               </li>
               <li>
@@ -194,6 +214,10 @@
                 Review people with significant control
               </li>
               <li>
+                <a href="/confirmation-statement/people-with-significant-control-ORP">Review people with significant control - ORP</a>
+                Review people with significant control
+              </li>
+              <li>
                 <a href="/confirmation-statement/additional-pscs">Do you have a new PSC to appoint?</a>
                 Review active pscs
               </li>
@@ -202,6 +226,11 @@
                 <a href="/confirmation-statement/psc-statement">Review people with significant control statement</a>
                 Review people with significant control statement
               </li>
+              <li>
+                <a href="/confirmation-statement/psc-statement-multiple">Review people with significant control multiple statements</a>
+                Review people with significant control statement
+              </li>
+
             </ul>
             <br>
             <h2 class="govuk-heading-m">Payment</h2>
@@ -280,11 +309,23 @@
                 Incorrect standard industrial classification
               </li>
               <li>
-                <a href="/incorrect-information/wrong-shareholder-capital">Wrong shareholder capital</a>
-                Incorrect shareholder capital
+                <a href="/incorrect-information/wrong-statement-of-capital">Wrong statement of capital</a>
+                Incorrect statement of capital
               </li>
               <li>
-                <a href="/incorrect-information/wrong-members-register">Wrong shareholders</a>
+                <a href="/incorrect-information/mismatch-statement-of-capital">Mismatched data statement of capital (added sentence)</a>
+                Incorrect statement of capital
+              </li>
+              <li>
+                <a href="/incorrect-information/no-data-statement-of-capital">No unpaid shares data statement of capital (added sentence)</a>
+                Incorrect statement of capital
+              </li>
+              <li>
+                <a href="/incorrect-information/wrong-shareholders">Wrong shareholders</a>
+                Incorrect shareholders
+              </li>
+              <li>
+                <a href="/incorrect-information/mismatch-shareholders">Mismatched data shareholders</a>
                 Incorrect shareholders
               </li>
               <li>
@@ -340,6 +381,14 @@
                 <a href="/email/user-email">Email for users</a>
                 Confirmation statement submitted for COMPANY
               </li>
+              <li>
+                <a href="/email/accepted-email">Acceptance email for users</a>
+                Confirmation statement accepted for for COMPANY NAME
+              </li>
+            <li>
+              <a href="/email/rejected-email">Rejection email for users</a>
+              Confirmation statement rejected for COMPANY NAME
+            </li>
             </ul>
             <h2 class="govuk-heading-l">Resources</h2>
             <ul class="govuk-list  govuk-list--bullet">
@@ -453,8 +502,89 @@
               <tbody class="govuk-table__body">
                 <tr class="govuk-table__row">
                   <th scope="row" class="govuk-table__header">
+                    <a href="https://conf-statement-ideal-v11.herokuapp.com/">Ideal - Version 11</th>
+                    <td class="govuk-table__cell">18 October 2021</td>
+                    <td class="govuk-table__cell">
+                      <details class="govuk-details" data-module="govuk-details">
+                        <summary class="govuk-details__summary">
+                          <span class="govuk-details__summary-text">
+                            Changes included in ideal version 11
+                          </span>
+                        </summary>
+                        <div class="govuk-details__text">
+                          <ul class="govuk-list--bulletlist">
+
+                          </ul>
+                        </div>
+                      </details>
+                    </td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--red">
+                        Not tested
+                      </strong>
+                    </tr>
+
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header">
+                    <a href="https://conf-statement-ideal-v10.herokuapp.com/">Ideal - Version 10</th>
+                    <td class="govuk-table__cell">13 September 2021</td>
+                    <td class="govuk-table__cell">
+                      <details class="govuk-details" data-module="govuk-details">
+                        <summary class="govuk-details__summary">
+                          <span class="govuk-details__summary-text">
+                            Changes included in ideal version 10
+                          </span>
+                        </summary>
+                        <div class="govuk-details__text">
+                          <ul class="govuk-list--bulletlist">
+                            <li>Multiple people scenario number: 00222335</li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v10.herokuapp.com/confirmation-statement/officers">5 directors</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v10.herokuapp.com/confirmation-statement/people-with-significant-control">5 PSCs</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v10.herokuapp.com/confirmation-statement/shareholders">5 shareholders</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v10.herokuapp.com/confirmation-statement/statement-of-capital">formatting on statement of capital page</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v10.herokuapp.com/confirmation-statement/people-with-significant-control-ORP">PSC ORP screen</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v10.herokuapp.com/confirmation-statement/secretaries">check secretary</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v10.herokuapp.com/confirmation-statement/people-with-significant-control-RLE">PSC RLE added field (notification date)</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v10.herokuapp.com/confirmation-statement/people-with-significant-control">PSC added field (notification date)</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v10.herokuapp.com/confirmation-statement/officers">director added fields (appointment date and country of residence)</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v10.herokuapp.com/start">content on start screen (has only 1 shareholder)</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v10.herokuapp.com/co-not-supported-use-webfiling">content on stop screen (has only 1 shareholder)</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </details>
+                    </td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--green">
+                        Tested
+                      </strong>
+                    </tr>
+
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header">
                     <a href="https://conf-statement-ideal-v9.herokuapp.com/">Ideal - Version 9</th>
-                    <td class="govuk-table__cell">TBD</td>
+                    <td class="govuk-table__cell">7 July 2021</td>
                     <td class="govuk-table__cell">
                       <details class="govuk-details" data-module="govuk-details">
                         <summary class="govuk-details__summary">
@@ -521,13 +651,58 @@
                             <li>
                               <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/confirmation-statement/statement-of-capital">Updated SoC table to align with SoC project</a>
                             </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/confirmation-statement/statement-of-capital-mismatch">Added SoC page with mismatch warning</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/confirmation-statement/shareholders-mismatch">Added shareholders page with mismatch warning</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/incorrect-information/mismatch-statement-of-capital">Added mismatch sentence to incorrect SoC screen</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/incorrect-information/mismatch-shareholders">Added mismatch sentence to incorrect shareholders screen</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/incorrect-information/statement-of-capital">Updated content of first paragraph on incorrect SoC screen</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/incorrect-information/shareholders">Updated content of first paragraph on incorrect shareholders screen</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/confirmation-statement/registers-no-sail">Registers screen with no sail address</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/confirmation-statement/registers">Registers screen layout update</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/emails/accepted-email">Acceptance email</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/emails/rejected-email">rejected email</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/confirmation-statement/psc-statement-multiple">added more than 1 psc statement</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/start">added timeout message and removed CH payment account info from start screen</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/review-payment">Changed labels on review payment screen</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/incorrect-information/no-data-statement-of-capital">Added no data for unpaid shares sentence to incorrect SoC screen</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/confirmation-statement/statement-of-capital-no-data">Added SoC page with no data for unpaid shares warning</a>
+                            </li>
                           </ul>
                         </div>
                       </details>
                     </td>
                     <td class="govuk-table__cell">
-                      <strong class="govuk-tag govuk-tag--grey">
-                        In progress
+                      <strong class="govuk-tag govuk-tag--blue">
+                        In dev
                       </strong>
                     </tr>
 
@@ -696,8 +871,8 @@
                       </details>
                     </td>
                     <td class="govuk-table__cell">
-                      <strong class="govuk-tag govuk-tag--green">
-                        Tested
+                      <strong class="govuk-tag govuk-tag--blue">
+                        In dev
                       </strong>
                     </tr>
                 <tr class="govuk-table__row">
