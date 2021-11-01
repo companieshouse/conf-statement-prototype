@@ -3,7 +3,7 @@
 {% block pageTitle %}
 {% if errorList.length > 0 %}
   Error:
-{% endif %}  Review the officers
+{% endif %}  Review the corporate director
 {% endblock %}
 
 {% block backLink %}
@@ -21,21 +21,21 @@
         titleText: "There is a problem",
         errorList: [
           {
-            text: "Select yes if the corporate officer details are correct",
+            text: "Select yes if the corporate director details are correct",
             href: "#officers"
           }
         ]
       }) }}
       {% endif %}
       <form action="" method="post">
-        <h1 class="govuk-heading-l">Check the corporate officer's details</h1>
+        <h1 class="govuk-heading-l">Check the corporate director's details</h1>
 
 
-          <h2 class="govuk-heading-m">1 corporate officer</h2>
+          <h2 class="govuk-heading-m">1 corporate director</h2>
 
 
         {% set directorHTML %}
-        {% include "includes/confirmation-statement-details/officers-corporation.html" %}
+        {% include "includes/confirmation-statement-details/officers-corporate-D.html" %}
         {% endset %}
 
         {{ govukTable({
@@ -57,7 +57,7 @@
           errorMessage: directorDetailsError,
           fieldset: {
             legend: {
-              html: "Are the corporate officer details correct?",
+              html: "Are the corporate director details correct?",
               isPageHeading: false,
               classes: "govuk-fieldset__legend--l"
             }
