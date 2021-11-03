@@ -105,7 +105,7 @@
                       Checked</strong>
 
                   {% elseif sic === 'no' %}
-                    <strong class="govuk-tag govuk-tag--blue app-task-list__tag">Ready to continue</strong>
+                    <strong class="govuk-tag govuk-tag--blue app-task-list__tag"><a href="/confirmation-statement/sic" class="govuk-link govuk-link--no-underline">Ready to continue</a></strong>
 
                   {% else %}
                     <strong class="govuk-tag govuk-tag--grey app-task-list__tag">Not checked</strong>
@@ -122,7 +122,7 @@
                       Checked</strong>
 
                   {% elseif statementOfCapital === 'no' %}
-                    <strong class="govuk-tag govuk-tag--blue app-task-list__tag">Ready to continue</strong>
+                    <strong class="govuk-tag govuk-tag--blue app-task-list__tag"><a href="/confirmation-statement/statement-of-capital" class="govuk-link govuk-link--no-underline">Ready to continue</a></strong>
 
                   {% else %}
                     <strong class="govuk-tag govuk-tag--grey app-task-list__tag">Not checked</strong>
@@ -148,7 +148,7 @@
                       Checked</strong>
 
                   {% elseif additionalDirectors === 'yes' or officers === 'no' or activeDirectors === 'no' %}
-                    <strong class="govuk-tag govuk-tag--blue app-task-list__tag">Ready to continue</strong>
+                    <strong class="govuk-tag govuk-tag--blue app-task-list__tag"><a href="/confirmation-statement/officers" class="govuk-link govuk-link--no-underline">Ready to continue</a></strong>
 
                   {% else %}
                     <strong class="govuk-tag govuk-tag--grey app-task-list__tag">Not checked</strong>
@@ -166,7 +166,7 @@
                       <strong class="govuk-tag app-task-list__tag">
                         Checked</strong>
                     {% elseif psc === 'no' or pscStatement === 'no' %}
-                      <strong class="govuk-tag govuk-tag--blue app-task-list__tag">Ready to continue</strong>
+                      <strong class="govuk-tag govuk-tag--blue app-task-list__tag"><a href="/confirmation-statement/people-with-significant-control" class="govuk-link govuk-link--no-underline">Ready to continue</a></strong>
                     {% else %}
                       <strong class="govuk-tag govuk-tag--grey app-task-list__tag">Not checked</strong>
                     {% endif %}
@@ -179,7 +179,7 @@
                     <strong class="govuk-tag app-task-list__tag">
                       Checked</strong>
                     {% elseif exemption === 'no' and additionalPscs === 'yes' or psc === 'no' or activePSCs === 'no' %}
-                    <strong class="govuk-tag govuk-tag--blue app-task-list__tag">Ready to continue</strong>
+                    <strong class="govuk-tag govuk-tag--blue app-task-list__tag"><a href="/confirmation-statement/people-with-significant-control" class="govuk-link govuk-link--no-underline">Ready to continue</a></strong>
                     {% elseif exemption === 'yes' %}
                     <strong class="govuk-tag app-task-list__tag">
                       Checked</strong>
@@ -200,7 +200,7 @@
                     Checked</strong>
 
                 {% elseif shareholders === 'no' %}
-                  <strong class="govuk-tag govuk-tag--blue app-task-list__tag">Ready to continue</strong>
+                  <strong class="govuk-tag govuk-tag--blue app-task-list__tag"><a href="/confirmation-statement/shareholders" class="govuk-link govuk-link--no-underline">Ready to continue</a></strong>
 
                 {% else %}
                   <strong class="govuk-tag govuk-tag--grey app-task-list__tag">Not checked</strong>
@@ -244,7 +244,7 @@
                     Checked</strong>
 
                 {% elseif register === 'no' %}
-                  <strong class="govuk-tag govuk-tag--blue app-task-list__tag">Ready to continue</strong>
+                  <strong class="govuk-tag govuk-tag--blue app-task-list__tag"><a href="/confirmation-statement/registers" class="govuk-link govuk-link--no-underline">Ready to continue</a></strong>
 
                 {% else %}
                   <strong class="govuk-tag govuk-tag--grey app-task-list__tag">Not checked</strong>
