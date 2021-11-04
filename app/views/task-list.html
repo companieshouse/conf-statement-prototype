@@ -33,9 +33,9 @@
 {% if ro === 'no' %}
             {% set recentFilingHTML %}
               <h3 class="govuk-notification-banner__heading">
-                A filing to update company details has been received
+                We have received a filing to update company details
               </h3>
-              <p class="govuk-body">You can continue filing this confirmation statement, even if the change is not yet reflected in this service.
+              <p class="govuk-body">You can continue filing this confirmation statement, even if the updated information is not yet displayed in this service.
               </p><p>Return to any section marked <strong class="govuk-tag govuk-tag--blue">Ready to continue</strong> to confirm that an update has been filed.</p>
             {% endset %}
 
@@ -159,7 +159,7 @@
                   <span class="app-task-list__task-name">
                   {% if scenario.company.tradingStatus === '1' %}
                       <a href="/confirmation-statement/people-with-significant-control">
-                        People with significant control (PSC)
+                        People with significant control (PSCs)
                       </a>
                     </span>
                     {% if pscStatement === 'yes' %}
