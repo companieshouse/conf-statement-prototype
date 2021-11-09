@@ -16,6 +16,14 @@
     <div class="govuk-grid-column-two-thirds">
 
       <form action="" method="post">
+<h1 class="govuk-heading-l">Check the PSC statements</h1>
+<br>
+            <p><b>The company has no PSC</b></p>
+<p>The company knows or has reasonable cause to believe that there is no registrable person or registrable relevant legal entity in relation to the company.</p>
+
+            <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+            <p><b>The company does not yet know if it has a PSC</b></p>
+<p>The company has not yet completed taking reasonable steps to find out if there is anyone who is a registrable person or a registrable relevant legal entity in relation to the company.</p>
 
         {% set pscStatementTypesHTML %}
         <p>If a company has no PSCs, or is currently investigating who its PSCs are, it needs to file a statement to explain why its full PSC information is not yet on the public register. For example, if there is a PSC that has not yet been identified, or
@@ -26,22 +34,14 @@
         </p>
         {% endset %}
 
-        {% set pscStatementHTML %}
 
-<br>
-            <p><b>The company has no PSC</b></p>
-<p>The company knows or has reasonable cause to believe that there is no registrable person or registrable relevant legal entity in relation to the company.</p>
-
-            <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-            <p><b>The company does not yet know if it has a PSC</b></p>
-<p>The company has not yet completed taking reasonable steps to find out if there is anyone who is a registrable person or a registrable relevant legal entity in relation to the company.</p>
 
 
         {{ govukDetails({
           summaryText: "What are PSC statements?",
           html: pscStatementTypesHTML
         }) }}
-        {% endset %}
+
 
         {% if pscStatement === 'yes' %}
           {{ govukRadios({

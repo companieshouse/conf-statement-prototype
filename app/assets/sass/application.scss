@@ -158,3 +158,8 @@ $govuk-assets-path: '/govuk/assets/';
 .govuk-tag--dark-grey {
   background-color: 	#505a5f;
 }
+.rejected {
+  background: transparent;
+  border: 6px solid #d4351c;
+  color: #d4351c;
+}

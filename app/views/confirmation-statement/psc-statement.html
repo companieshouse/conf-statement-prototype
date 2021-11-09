@@ -16,6 +16,7 @@
     <div class="govuk-grid-column-two-thirds">
 
       <form action="" method="post">
+        <h1 class="govuk-heading-l">Check the PSC statement</h1>
 
         {% set pscStatementTypesHTML %}
         <p>If a company has no people with significant control (PSCs), or is currently investigating who its PSCs are, it needs to file a statement to explain why its full PSC information is not yet on the public register. For example, if there is a PSC that has not yet been identified, or
@@ -24,15 +25,14 @@
           <a href="https://ewf.companieshouse.gov.uk/help/en/stdwf/faqHelp.html#psc">Read the guidance for a full list of PSC statements.</a>
         </p>
         {% endset %}
-
-        {% set pscStatementHTML %}
-
-        <p>No additional statements relating to PSCs are currently held on the public register.</p>
+<p>No additional statements relating to PSCs are currently held on the public register.</p>
         {{ govukDetails({
           summaryText: "What is a PSC statement?",
           html: pscStatementTypesHTML
         }) }}
-        {% endset %}
+
+
+
 {% if scenario.company.recentFiling === 'yes' %}
         {% if pscStatement === 'yes' %}
           {{ govukRadios({
