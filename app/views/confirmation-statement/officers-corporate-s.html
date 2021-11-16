@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+{% if errorList.length > 0 %}
+  Error:
+{% endif %}  Review the corporate secretary
+{% endblock %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/confirmation-statement/officers"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-three-quarters">
+      {% if errorList.length > 0 %}
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "Select yes if the corporate secretary details are correct",
+            href: "#officers"
+          }
+        ]
+      }) }}
+      {% endif %}
+      <form action="" method="post">
+        <h1 class="govuk-heading-l">Check the corporate secretary's details</h1>
+
+
+          <h2 class="govuk-heading-m">1 corporate secretary</h2>
+
+
+        {% set directorHTML %}
+        {% include "includes/confirmation-statement-details/officers-corporate-s.html" %}
+        {% endset %}
+
+        {{ govukTable({
+
+  rows: [
+    [
+      {
+        html: directorHTML
+      }
+    ]
+  ]
+}) }}
+
+
+          {{ govukRadios({
+          classes: "govuk-radios",
+          idPrefix: "officers",
+          name: "officers",
+          errorMessage: directorDetailsError,
+          fieldset: {
+            legend: {
+              html: "Are the corporate secretary details correct?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+    html: officerHTML
+  },
+          items: [
+            {
+              value: "yes",
+              text: "Yes",
+              checked: true
+            },
+            {
+              value: "no",
+              text: "No"
+            },
+            {
+              value: "yes",
+              text: "No, but an update has been submitted"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+text: "Continue"
+}) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}
