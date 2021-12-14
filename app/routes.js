@@ -115,6 +115,14 @@ router.get('/confirm-company', function (req, res) {
 router.post('/confirm-company', function (req, res) {
   res.redirect('/authenticate')
 })
+
+router.get('/co-not-supported-use-webfiling', function (req, res) {
+  var scenario = req.session.scenario
+  res.render('co-not-supported-use-webfiling', {
+    scenario: scenario
+  })
+})
+
 router.get('/paper-filing', function (req, res) {
   res.render('paper-filing', {
     scenario: req.session.scenario
