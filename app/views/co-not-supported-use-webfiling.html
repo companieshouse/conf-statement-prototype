@@ -10,12 +10,12 @@
       <h1 class="govuk-heading-xl">
         You cannot use this service
       </h1>
-      <p>You cannot file a confirmation statement on this service because {{ scenario.company.name }}:</p>
+      <p>You cannot file a confirmation statement for {{ scenario.company.name }} on this service for one of the following reasons. The company:</p>
 <ul class="govuk-list govuk-list--bullet">
   <li>is not a private limited company</li>
   <li>has more than one shareholder</li>
-  <li>has between 1 and 5 officers</li>
-  <li>has more than one person with significant control (PSC)</li>
+  <li>does not have between 1 and 5 officers</li>
+  <li>has more than 5 people with significant control (PSC)</li>
   <li>has traded shares on a market</li>
   </ul>
       <p>You will need to use
