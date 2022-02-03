@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Incorrect registered office address - File a confirmation statement
+{% endblock %}
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/confirmation-statement/ro"
+  }) }}
+{% endblock %}
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form action="" method="post">
+        <main class="govuk-main-wrapper govuk-main-wrapper--auto-spacing" id="main-content" role="main">
+
+            <h1 class="govuk-heading-l">
+              You need to update the company details
+            </h1>
+            <ol class="app-task-list">
+                    <li>
+                      <h2 class="app-task-list__section">
+                        Update your registered office address
+                      </h2>
+                      <ul class="app-task-list__items">
+                        <li class="app-task-list__item">
+                          <span class="app-task-list__task-name">
+                            <a href="#" aria-describedby="eligibility-status">
+                                <a href="/change-data/change-address" target="_blank">Update the registered office address (opens in a new tab)</a>
+                            </a>
+                          </span>
+                          <strong class="govuk-tag app-task-list__tag" id="eligibility-status">Completed</strong>
+                        </li>
+                      </ul>
+                    </li>
+            </ol>
+
+            {{ govukRadios({
+                idPrefix: "have-you-completed-this-section",
+                name: "have-you-completed-this-section",
+                fieldset: {
+                  legend: {
+                    text: "Have you updated your registered office address?",
+                    isPageHeading: false,
+                    classes: "govuk-fieldset__legend--m"
+                  }
+                },
+                items: [
+                  {
+                    value: "yes",
+                    text: "Yes"
+                  },
+                  {
+                    value: "no",
+                    text: "No, I don't need to update the registered office address"
+                  }
+                ]
+              }) }}
+
+        {{ govukButton({
+    text: "Return to confirmation statement"
+  }) }}
+  <p><a href="https://www.smartsurvey.co.uk/s/fileconfstmnt-wrongro/">What did you think of this service?</a>
+      (takes 2 minutes)</p>
+      </main>
+      </form>
+    </div>
+  </div>
+{% endblock %}
