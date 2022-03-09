@@ -25,14 +25,16 @@
           <a href="https://ewf.companieshouse.gov.uk/help/en/stdwf/faqHelp.html#psc">Read the guidance for a full list of PSC statements.</a>
         </p>
         {% endset %}
-        
 <p>No additional statements relating to PSCs are currently held on the public register.</p>
         {{ govukDetails({
           summaryText: "What is a PSC statement?",
           html: pscStatementTypesHTML
         }) }}
 
-
+        {{ govukWarningText({
+          text: "This PSC statement has been in use since 2019. You need to update the statement, or withdraw it and add any people with significant control (PSCs) to the public register.",
+          iconFallbackText: "Warning"
+        }) }}
 
 {% if scenario.company.recentFiling === 'yes' %}
         {% if pscStatement === 'yes' %}
