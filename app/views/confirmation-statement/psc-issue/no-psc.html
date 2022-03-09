@@ -1,0 +1,255 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+{% if errorList.length > 0 %}
+  Error:
+{% endif %}  Review the people with significant control
+{% endblock %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/task-list"
+  }) }}
+{% endblock %}
+{% block content %}
+  {% set pscDetails %}
+  <p>A person with significant control (PSC) is anyone who:
+    <ul>
+      <li>has more than 25% of the company's shares or voting rights</li>
+      <li>can appoint or remove a majority of the directors</li>
+      <li>can influence or control the company</li>
+    </ul>
+    For more information,
+    <a href="https://www.gov.uk/guidance/people-with-significant-control-pscs">read the guidance on PSCs</a>.</p>
+  {% endset %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-three-quarters">
+      {% if errorList.length > 0 %}
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "Select yes if the PSC details are correct",
+            href: "#psc"
+          }
+        ]
+      }) }}
+      {% endif %}
+      <form action="" method="post">
+        <h1 class="govuk-heading-l">Check the people with significant control (PSCs) details</h1>
+        {% set pscDetails %}
+        <p>A person with significant control (PSC) is anyone who:
+          <ul>
+            <li>has more than 25% of the company's shares or voting rights</li>
+            <li>can appoint or remove a majority of the directors</li>
+            <li>can influence or control the company</li>
+          </ul>
+          For more information,
+          <a href="https://www.gov.uk/guidance/people-with-significant-control-pscs">read the guidance on PSCs</a>.</p>
+        {% endset %}
+
+        {{ govukDetails({
+        summaryText: "More about people with significant control",
+        html: pscDetails
+        }) }}
+
+          <h2 class="govuk-heading-m">0 active PSCs</h2>
+
+
+        {% set pscHTML %}
+        <p>This company does not have any active PSCs.</p>
+        {% endset %}
+
+        {{ govukTable({
+  rows:
+  [
+    [
+      {
+        html: pscHTML
+      }
+    ]
+  ]
+}) }}
+{% if scenario.company.recentFiling === 'yes' %}
+        {% if psc === 'yes' %}
+          {{ govukRadios({
+          classes: "govuk-radios",
+          idPrefix: "psc",
+          name: "psc",
+          errorMessage: pscDetailsError,
+          fieldset: {
+            legend: {
+              html: "Are the PSC details correct?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No"
+            },
+            {
+              value: "yes",
+              text: "No, but an update has been submitted"
+            }
+          ]
+        }) }}
+        {% elseif psc === 'no' %}
+          {{ govukRadios({
+          classes: "govuk-radios",
+          idPrefix: "psc",
+          name: "psc",
+          errorMessage: pscDetailsError,
+          fieldset: {
+            legend: {
+              html: "Are the PSC details correct?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No",
+              checked: true
+            },
+            {
+              value: "yes",
+              text: "No, but an update has been submitted"
+            }
+          ]
+        }) }}
+        {% else %}
+          {{ govukRadios({
+          classes: "govuk-radios",
+          idPrefix: "psc",
+          name: "psc",
+          errorMessage: pscDetailsError,
+          fieldset: {
+            legend: {
+              html: "Are the PSC details correct?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No"
+            },
+            {
+              value: "yes",
+              text: "No, but an update has been submitted"
+            }
+          ]
+        }) }}
+        {% endif %}
+{% else %}
+{% if psc === 'yes' %}
+  {{ govukRadios({
+  classes: "govuk-radios",
+  idPrefix: "psc",
+  name: "psc",
+  errorMessage: pscDetailsError,
+  fieldset: {
+    legend: {
+      html: "Are the PSC details correct?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+
+  items: [
+    {
+      value: "yes",
+      text: "Yes"
+    },
+    {
+      value: "no",
+      text: "No"
+    }
+  ]
+}) }}
+{% elseif psc === 'no' %}
+  {{ govukRadios({
+  classes: "govuk-radios",
+  idPrefix: "psc",
+  name: "psc",
+  errorMessage: pscDetailsError,
+  fieldset: {
+    legend: {
+      html: "Are the PSC details correct?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  items: [
+    {
+      value: "yes",
+      text: "Yes"
+    },
+    {
+      value: "no",
+      text: "No",
+      checked: true
+    },
+    {
+      value: "yes",
+      text: "No, but an update has been submitted"
+    }
+  ]
+}) }}
+{% else %}
+  {{ govukRadios({
+  classes: "govuk-radios",
+  idPrefix: "psc",
+  name: "psc",
+  errorMessage: pscDetailsError,
+  fieldset: {
+    legend: {
+      html: "Are the PSC details correct?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  items: [
+    {
+      value: "yes",
+      text: "Yes"
+    },
+    {
+      value: "no",
+      text: "No"
+    },
+    {
+      value: "yes",
+      text: "No, but an update has been submitted"
+    }
+  ]
+}) }}
+
+{% endif %}
+{% endif %}
+
+        {{ govukButton({
+text: "Continue"
+}) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

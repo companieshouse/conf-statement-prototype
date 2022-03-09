@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Incorrect registered office address - File a confirmation statement
+{% endblock %}
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/confirmation-statement/ro"
+  }) }}
+{% endblock %}
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form action="" method="post">
+        <main class="govuk-main-wrapper govuk-main-wrapper--auto-spacing" id="main-content" role="main">
+
+            <h1 class="govuk-heading-l">
+              You need to update the company details
+            </h1>
+
+              <ol class="govuk-list govuk-list--number">
+                          <b><li></b>
+                            <h2 class="govuk-heading-m">Update your registered office address</h2>
+                            <p>You will need to
+                              <a href="/change-data/change-address" target="_blank">update the registered office address (opens in a new tab)</a>
+                              before you can file a confirmation statement.</p>
+                          </li>
+                      <li>
+                        <h2 class="govuk-heading-m">Return to this service</h2>
+                        <p>Once you have updated the registered office address, you will need to close that tab to return to this screen.</p>
+                      </li>
+                    <li>
+                      <h2 class="govuk-heading-m">Complete your confirmation statement</h2>
+                    <p>Return to the <a href="/confirmation-statement/ro">Registered office address</a> section and confirm that an update has been submitted.</p>
+</li>
+</ol>
+
+        {{ govukButton({
+    text: "Return to confirmation statement"
+  }) }}
+  <p><a href="https://www.smartsurvey.co.uk/s/fileconfstmnt-wrongro/">What did you think of this service?</a>
+      (takes 2 minutes)</p>
+      </main>
+      </form>
+    </div>
+  </div>
+{% endblock %}

@@ -20,10 +20,10 @@
 <h1 class="govuk-heading-xl">Check the shareholder details</h1>
 
         {% if scenario.company.shareholders === '1' %}
-          <h2 class="govuk-heading-m">1 Shareholder</h2>
+          <h2 class="govuk-heading-m">1 shareholder</h2>
         {% else %}
           <h2 class="govuk-heading-m">{{scenario.company.shareholders}}
-            Shareholders</h2>
+            shareholders</h2>
         {% endif %}
         {% include "includes/confirmation-statement-details/shareholders.html" %}
 

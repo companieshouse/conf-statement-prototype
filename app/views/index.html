@@ -12,7 +12,7 @@
       <h1 class="govuk-heading-xl">
         File a confirmation statement service
 
-      <span class="govuk-caption-l">Version 7</span>
+      <span class="govuk-caption-l">Version 11</span>
       </h1>
       <h2 class="govuk-heading-l">
         The GOV.UK Prototype Kit
@@ -134,12 +134,28 @@
                 Review registered office address
               </li>
               <li>
+                <a href="/confirmation-statement/all-officers-error">Review all officers - multi journey with error</a>
+                Error: Review officer details
+              </li>
+              <li>
                 <a href="/confirmation-statement/active-officers">Review active officers</a>
                 Review active officers
               </li>
               <li>
                 <a href="/confirmation-statement/officers">Review directors</a>
                 Review directors
+              </li>
+              <li>
+                <a href="/confirmation-statement/officers-corporate-d">Review corporate directors</a>
+                Review corporate directors
+              </li>
+              <li>
+                <a href="/confirmation-statement/officers-corporate-s">Review corporate secretary</a>
+                Review corporate secretary
+              </li>
+              <li>
+                <a href="/confirmation-statement/secretaries">Review secretaries</a>
+                Review secretaries
               </li>
               <li>
                 <a href="/confirmation-statement/additional-officers">Do you have a new officer to appoint?</a>
@@ -162,6 +178,10 @@
                 Review registers
               </li>
               <li>
+                <a href="/confirmation-statement/registers-no-sail">Review registers (NO SAIL address registered and no Registers held at SAIL)</a>
+                Review registers
+              </li>
+              <li>
                 <a href="/confirmation-statement/sic">Review SIC</a>
                 Review standard industrial classification
               </li>
@@ -170,7 +190,19 @@
                 Review statement of capital
               </li>
               <li>
+                <a href="/confirmation-statement/statement-of-capital-mismatch">Review statement of capital (with mismatch warning)</a>
+                Review statement of capital
+              </li>
+              <li>
+                <a href="/confirmation-statement/statement-of-capital-no-data">Review statement of capital (with no data for unpaid shares warning)</a>
+                Review statement of capital
+              </li>
+              <li>
                 <a href="/confirmation-statement/shareholders">Review shareholders</a>
+                Review shareholders
+              </li>
+              <li>
+                <a href="/confirmation-statement/shareholders-mismatch">Review shareholders (with mismatch warning)</a>
                 Review shareholders
               </li>
               <li>
@@ -182,11 +214,27 @@
                 Exemption from keeping a PSC register options
               </li>
               <li>
+                <a href="/confirmation-statement/psc-all-error">Review PSCs - multi journey with error</a>
+                Error: Review PSC details
+              </li>
+              <li>
                 <a href="/confirmation-statement/active-pscs">Review active pscs</a>
                 Review active pscs
               </li>
               <li>
-                <a href="/confirmation-statement/people-with-significant-control">Review people with significant control</a>
+                <a href="/confirmation-statement/people-with-significant-control">Review all people with significant control - one screen</a>
+                Review people with significant control
+              </li>
+              <li>
+                <a href="/confirmation-statement/people-with-significant-control">Review people with significant control - individual</a>
+                Review people with significant control
+              </li>
+              <li>
+                <a href="/confirmation-statement/people-with-significant-control-RLE">Review people with significant control - RLE</a>
+                Review people with significant control
+              </li>
+              <li>
+                <a href="/confirmation-statement/people-with-significant-control-ORP">Review people with significant control - ORP</a>
                 Review people with significant control
               </li>
               <li>
@@ -198,6 +246,11 @@
                 <a href="/confirmation-statement/psc-statement">Review people with significant control statement</a>
                 Review people with significant control statement
               </li>
+              <li>
+                <a href="/confirmation-statement/psc-statement-multiple">Review people with significant control multiple statements</a>
+                Review people with significant control statement
+              </li>
+
             </ul>
             <br>
             <h2 class="govuk-heading-m">Payment</h2>
@@ -219,6 +272,38 @@
                 <a href="/https://products.payments.service.gov.uk/pay/f90761a2258f4b60baa29f045cd78ca2">Pay</a>
                 Pay
               </li>
+            </ul>
+            <br>
+            <h2 class="govuk-heading-l">Multi officer journey</h2>
+            <ul class="govuk-list govuk-list--bullet">
+              <li><a href="/confirmation-statement/all-officers">All officers</a>
+              All officers
+            </li>
+              <li><a href="/multi-officer-journey/secretaries">Review secretaries</a>
+              Review secretaries
+            </li>
+            <li><a href="/multi-officer-journey/officers-corporate-s">Review corporate secretaries</a>
+            Review corporate secretaries
+          </li>
+          <li><a href="/multi-officer-journey/officers">Review directors</a>
+          Review directors
+        </li>
+        <li><a href="/multi-officer-journey/officers-corporate-d">Review corporate directors</a>
+        Review corporate directors
+      </li>
+            </ul>
+            <br>
+            <h2 class="govuk-heading-l" id="psc-issue">PSC issues journey</h2>
+            <ul class="govuk-list govuk-list--bullet">
+              <li><a href="/confirmation-statement/psc-issue/no-psc">No PSC</a>
+              People with significant control
+            </li>
+              <li><a href="/confirmation-statement/psc-issue/no-psc-no-statement">No PSCs and no statement</a>
+              People with significant control
+            </li>
+            <li><a href="/confirmation-statement/psc-issue/expired-psc-statement">expired statement</a>
+            PSC statement
+          </li>
             </ul>
             <br>
             <h2 class="govuk-heading-l">Filter journey</h2>
@@ -248,6 +333,10 @@
                 You cannot use this service
               </li>
               <li>
+                <a href="/co-not-supported-use-webfiling">Ineligible company Use webfiling</a>
+                You cannot use this service
+              </li>
+              <li>
                 <a href="/incorrect-information/wrong-ro">Wrong ro</a>
                 Incorrect registered office address
               </li>
@@ -267,6 +356,7 @@
                 <a href="/incorrect-information/wrong-officers">Wrong officers</a>
                 Incorrect officers
               </li>
+
               <li>
                 <a href="/incorrect-information/wrong-registers">Wrong registers</a>
                 Incorrect registers
@@ -276,29 +366,30 @@
                 Incorrect standard industrial classification
               </li>
               <li>
-                <a href="/incorrect-information/wrong-shareholder-capital">Wrong shareholder capital</a>
-                Incorrect shareholder capital
+                <a href="/incorrect-information/wrong-statement-of-capital">Wrong statement of capital</a>
+                Incorrect statement of capital
               </li>
               <li>
-                <a href="/incorrect-information/wrong-members-register">Wrong shareholders</a>
+                <a href="/incorrect-information/mismatch-statement-of-capital">Mismatched data statement of capital (added sentence)</a>
+                Incorrect statement of capital
+              </li>
+              <li>
+                <a href="/incorrect-information/no-data-statement-of-capital">No unpaid shares data statement of capital (added sentence)</a>
+                Incorrect statement of capital
+              </li>
+              <li>
+                <a href="/incorrect-information/wrong-shareholders">Wrong shareholders</a>
                 Incorrect shareholders
               </li>
               <li>
-                <a href="/incorrect-information/wrong-active-psc">Wrong PSC</a>
-                Incorrect people with significant control
+                <a href="/incorrect-information/mismatch-shareholders">Mismatched data shareholders</a>
+                Incorrect shareholders
               </li>
               <li>
                 <a href="/incorrect-information/wrong-psc-details">Wrong PSC details</a>
                 Incorrect psc details
               </li>
-              <li>
-                <a href="/incorrect-information/wrong-appoint-psc">Appoint PSCs - all types</a>
-                Incorrect psc details
-              </li>
-              <li>
-                <a href="/incorrect-information/wrong-psc-statement">Wrong PSC statement</a>
-                Incorrect people with significant control statement
-              </li>
+
               <li>
                 <a href="/paper-filing">Cannot use service - paper filing</a>
                 Cannot use service - paper filing
@@ -347,6 +438,14 @@
                 <a href="/email/user-email">Email for users</a>
                 Confirmation statement submitted for COMPANY
               </li>
+              <li>
+                <a href="/email/accepted-email">Acceptance email for users</a>
+                Confirmation statement accepted for for COMPANY NAME
+              </li>
+            <li>
+              <a href="/email/rejected-email">Rejection email for users</a>
+              Confirmation statement rejected for COMPANY NAME
+            </li>
             </ul>
             <h2 class="govuk-heading-l">Resources</h2>
             <ul class="govuk-list  govuk-list--bullet">
@@ -460,8 +559,160 @@
               <tbody class="govuk-table__body">
                 <tr class="govuk-table__row">
                   <th scope="row" class="govuk-table__header">
-                    <a href="https://conf-statement-ideal-v3.herokuapp.com/">Ideal - Version 9</th>
-                    <td class="govuk-table__cell">TBD</td>
+                    <a href="https://conf-statement-ideal-v12.herokuapp.com/">Ideal - Version 12</th>
+                    <td class="govuk-table__cell">TBC</td>
+                    <td class="govuk-table__cell">
+                      <details class="govuk-details" data-module="govuk-details">
+                        <summary class="govuk-details__summary">
+                          <span class="govuk-details__summary-text">
+                            Changes included in ideal version 12
+                          </span>
+                        </summary>
+                        <div class="govuk-details__text">
+                          <ul class="govuk-list--bulletlist">
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v12.herokuapp.com/confirmation-statement/all-officers">all officers fields update</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v12.herokuapp.com/start">start page content - officer eligibility</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v12.herokuapp.com/co-not-supported-use-webfiling">eligibility stop page content - officer eligibility</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </details>
+                    </td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--red">
+                        Not tested
+                      </strong>
+                    </tr>
+
+              <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header">
+                    <a href="https://conf-statement-ideal-v11.herokuapp.com/">Ideal - Version 11</th>
+                    <td class="govuk-table__cell">18 October 2021</td>
+                    <td class="govuk-table__cell">
+                      <details class="govuk-details" data-module="govuk-details">
+                        <summary class="govuk-details__summary">
+                          <span class="govuk-details__summary-text">
+                            Changes included in ideal version 11
+                          </span>
+                        </summary>
+                        <div class="govuk-details__text">
+                          <ul class="govuk-list--bulletlist">
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v11.herokuapp.com/confirmation-statement/psc-statement-multiple">multiple psc statements</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v11.herokuapp.com/confirmation-statement/officers-corporate-d">corporate director page</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v11.herokuapp.com/incorrect-information/wrong-officers">officer stop page content (change from director to officer)</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v11.herokuapp.com/trading-stop">content change to trading status of shares</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v11.herokuapp.com/confirmation-statement/officers-corporate-s">corporate secretary page</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v11.herokuapp.com/confirm-company">removed registered office address from confirm company screen</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v11.herokuapp.com/start">changed wording of PSC requirement on start page</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v11.herokuapp.com/index">changed wording of "no, but i've recently filed an update" to "No, but an update has been submitted"</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v11.herokuapp.com/confirmation-statement/psc-statement">added title and changed layout of psc statement</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v11.herokuapp.com/confirmation-statement/psc-statement-multiple">added title and changed layout of psc multiple statements</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://companieshouse-my.sharepoint.com/:w:/g/personal/spatel_companieshouse_gov_uk/EccFf7FgQyRPsvcD07ZF6moBtQUDELJImiL0_3vXX-UtSg?e=0Wffdf">changes made to content throughout service from content review</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v11.herokuapp.com/email/rejected-email">rejected email panel colour change (for consistency with other CH services)</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v11.herokuapp.com/confirmation">added line about users receiving a confirmation email</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </details>
+                    </td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--green">
+                        Tested
+                      </strong>
+                    </tr>
+
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header">
+                    <a href="https://conf-statement-ideal-v10.herokuapp.com/">Ideal - Version 10</th>
+                    <td class="govuk-table__cell">13 September 2021</td>
+                    <td class="govuk-table__cell">
+                      <details class="govuk-details" data-module="govuk-details">
+                        <summary class="govuk-details__summary">
+                          <span class="govuk-details__summary-text">
+                            Changes included in ideal version 10
+                          </span>
+                        </summary>
+                        <div class="govuk-details__text">
+                          <ul class="govuk-list--bulletlist">
+                            <li>Multiple people scenario number: 00222335</li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v10.herokuapp.com/confirmation-statement/officers">5 directors</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v10.herokuapp.com/confirmation-statement/people-with-significant-control">5 PSCs</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v10.herokuapp.com/confirmation-statement/shareholders">5 shareholders</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v10.herokuapp.com/confirmation-statement/statement-of-capital">formatting on statement of capital page</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v10.herokuapp.com/confirmation-statement/people-with-significant-control-ORP">PSC ORP screen</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v10.herokuapp.com/confirmation-statement/secretaries">check secretary</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v10.herokuapp.com/confirmation-statement/people-with-significant-control-RLE">PSC RLE added field (notification date)</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v10.herokuapp.com/confirmation-statement/people-with-significant-control">PSC added field (notification date)</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v10.herokuapp.com/confirmation-statement/officers">director added fields (appointment date and country of residence)</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v10.herokuapp.com/start">content on start screen (has only 1 shareholder)</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v10.herokuapp.com/co-not-supported-use-webfiling">content on stop screen (has only 1 shareholder)</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </details>
+                    </td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--green">
+                        Tested
+                      </strong>
+                    </tr>
+
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header">
+                    <a href="https://conf-statement-ideal-v9.herokuapp.com/">Ideal - Version 9</th>
+                    <td class="govuk-table__cell">7 July 2021</td>
                     <td class="govuk-table__cell">
                       <details class="govuk-details" data-module="govuk-details">
                         <summary class="govuk-details__summary">
@@ -473,26 +724,113 @@
                           <ul class="govuk-list--bulletlist">
                             <li>
                               <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/confirmation-statement/registers">Added continue/return buttons to registers</a>
-                            </li>
+                              {{govukTag({
+                                  text: "Removed",
+                                  classes: "govuk-tag--red"
+                                })}}
+                              </li>
                             <li>
                               <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/task-list">Changed label of "in progress" status tag to "ready to continue"</a>
+                              {{govukTag({
+                                  text: "Tested",
+                                  classes: "govuk-tag--green"
+                                })}}
                             </li>
                             <li>
                               <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/task-list">Added content to notification banner</a>
+                              {{govukTag({
+                                  text: "Tested",
+                                  classes: "govuk-tag--green"
+                                })}}
                             </li>
                             <li>
                               <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/incorrect-information/roa">Made a step by step guide for updating info</a>
+                              {{govukTag({
+                                  text: "Tested",
+                                  classes: "govuk-tag--green"
+                                })}}
                             </li>
                             <li>
-                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/confirmation-statement/statement-of-capital">added recently filed radio</a>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/confirmation-statement/statement-of-capital">changed format and added recently filed radio</a>
+                              {{govukTag({
+                                  text: "Tested",
+                                  classes: "govuk-tag--green"
+                                })}}
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/confirmation-statement/registers">changed format of registers page</a>
+
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/confirmation-statement/people-with-significant-control">changed PSC details page, added status and URA</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/incorrect-information/wrong-psc-details">changed wrong psc details stop screen</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/incorrect-information/wrong-officers">changed wrong officers stop screen</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/confirmation-statement/people-with-significant-control-rle">added extra radio and bullet points to nature of control psc RLE</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/confirmation-statement/people-with-significant-control">added extra radio and bullet points to nature of control psc individual</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/confirmation-statement/statement-of-capital">Updated SoC table to align with SoC project</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/confirmation-statement/statement-of-capital-mismatch">Added SoC page with mismatch warning</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/confirmation-statement/shareholders-mismatch">Added shareholders page with mismatch warning</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/incorrect-information/mismatch-statement-of-capital">Added mismatch sentence to incorrect SoC screen</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/incorrect-information/mismatch-shareholders">Added mismatch sentence to incorrect shareholders screen</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/incorrect-information/statement-of-capital">Updated content of first paragraph on incorrect SoC screen</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/incorrect-information/shareholders">Updated content of first paragraph on incorrect shareholders screen</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/confirmation-statement/registers-no-sail">Registers screen with no sail address</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/confirmation-statement/registers">Registers screen layout update</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/emails/accepted-email">Acceptance email</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/emails/rejected-email">rejected email</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/confirmation-statement/psc-statement-multiple">added more than 1 psc statement</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/start">added timeout message and removed CH payment account info from start screen</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/review-payment">Changed labels on review payment screen</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/incorrect-information/no-data-statement-of-capital">Added no data for unpaid shares sentence to incorrect SoC screen</a>
+                            </li>
+                            <li>
+                              <a class="govuk-link" href="https://conf-statement-ideal-v9.herokuapp.com/confirmation-statement/statement-of-capital-no-data">Added SoC page with no data for unpaid shares warning</a>
                             </li>
                           </ul>
                         </div>
                       </details>
                     </td>
                     <td class="govuk-table__cell">
-                      <strong class="govuk-tag govuk-tag--grey">
-                        In progress
+                      <strong class="govuk-tag govuk-tag--blue">
+                        In dev
                       </strong>
                     </tr>
 
@@ -661,8 +999,8 @@
                       </details>
                     </td>
                     <td class="govuk-table__cell">
-                      <strong class="govuk-tag govuk-tag--green">
-                        Tested
+                      <strong class="govuk-tag govuk-tag--blue">
+                        In dev
                       </strong>
                     </tr>
                 <tr class="govuk-table__row">

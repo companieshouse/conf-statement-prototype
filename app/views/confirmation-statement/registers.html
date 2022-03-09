@@ -29,7 +29,7 @@
 
         {% if registers === 'yes' %}
           {{ govukRadios({
-          classes: "govuk-radios--inline",
+          classes: "govuk-radios",
           idPrefix: "registers",
           name: "registers",
           fieldset: {
@@ -48,12 +48,16 @@
             {
               value: "no",
               text: "No"
+            },
+            {
+              value: "yes",
+              text: "No, but an update has been submitted"
             }
           ]
         }) }}
         {% elseif registers === 'no' %}
           {{ govukRadios({
-          classes: "govuk-radios--inline",
+          classes: "govuk-radios",
           idPrefix: "registers",
           name: "registers",
           fieldset: {
@@ -72,12 +76,16 @@
               value: "no",
               text: "No",
               checked: true
+            },
+            {
+              value: "yes",
+              text: "No, but an update has been submitted"
             }
           ]
         }) }}
         {% else %}
           {{ govukRadios({
-  classes: "govuk-radios--inline",
+  classes: "govuk-radios",
   idPrefix: "registers",
   name: "registers",
   fieldset: {
@@ -98,6 +106,10 @@ html: registerHTML
     {
       value: "no",
       text: "No"
+    },
+    {
+      value: "yes",
+      text: "No, but an update has been submitted"
     }
   ]
 }) }}
@@ -108,7 +120,7 @@ html: registerHTML
             text: "Continue"
           }) }}
 
-        
+
       </form>
     </div>
   </div>

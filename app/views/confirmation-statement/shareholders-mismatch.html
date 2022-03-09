@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Review the shareholders
+{% endblock %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/task-list"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="" method="post">
+
+<h1 class="govuk-heading-xl">You cannot continue to use this service</h1>
+
+
+{% set warningHTML %}
+<p><strong>The number of shares held by shareholders does not match the company's share capital.</strong>
+</p>
+<p>
+<strong>You must update this information by filing a confirmation statement through our <a href="https://ewf.companieshouse.gov.uk//seclogin?tc=1">WebFiling service</a>.</strong>
+</p>{% endset %}
+
+        {{ govukWarningText({
+          html: warningHTML,
+          iconFallbackText: "Warning"
+        }) }}
+
+        {% if scenario.company.shareholders === '1' %}
+          <h2 class="govuk-heading-m">1 Shareholder</h2>
+        {% else %}
+          <h2 class="govuk-heading-m">{{scenario.company.shareholders}}
+            Shareholders</h2>
+        {% endif %}
+        {% include "includes/confirmation-statement-details/shareholders.html" %}
+
+        {{ govukButton({
+text: "Continue",
+href: "/incorrect-information/mismatch-shareholders"
+}) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

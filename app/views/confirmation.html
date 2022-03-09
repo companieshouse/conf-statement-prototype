@@ -11,23 +11,19 @@
       <div class="govuk-panel govuk-panel--confirmation">
         <h1 class="govuk-panel__title">Confirmation statement submitted</h1>
         <div class="govuk-panel__body">
-          Your reference number is your company number<br>
-          <strong>{{ scenario.company.number }}</strong>
+          Your reference number<br>
+          <strong>HDJ2123F</strong>
         </div>
       </div>
-
       <p>
         We have sent a confirmation email to
         <span class="govuk-!-font-weight-bold">{{ email }}</span>.
       </p>
-
       <h2 class="govuk-heading-m">What happens next</h2>
-      <p>We will email you within 48 hours to let you know if your confirmation statement has been accepted.</p>
-      <p>Your confirmation statement will then be posted on the
+      <p>We will email you within 2 days to let you know if your confirmation statement has been accepted or rejected.</p>
+      <p>Your confirmation statement will then be added to the company's filing history on the
         <a href="https://find-and-update.company-information.service.gov.uk/">Companies House register</a>.</p>
       <p>
-        <p>Your next confirmation statement is due
-          <b>{{ scenario.company.nextCsDue }}</b>.<p>
             {% if csDue === 'notDue' %}
               You will need to pay a £13 fee for your next payment period when you file a confirmation statement after
               <b>{{scenario.company.nextCsDue}}</b>.
@@ -43,7 +39,7 @@
               and we will email you when your company accounts and confirmation statement are due for filing. Companies that have switched to email reminders are more likely to file on time and avoid late filing penalties.</p>
 
             <p>
-              <a href="https://www.research.net/">What did you think of this service?</a>
+              <a href="https://www.smartsurvey.co.uk/s/fileconfstmnt-feedback/">What did you think of this service?</a>
               (takes 2 minutes)</p>
 
           </div>

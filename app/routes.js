@@ -115,6 +115,14 @@ router.get('/confirm-company', function (req, res) {
 router.post('/confirm-company', function (req, res) {
   res.redirect('/authenticate')
 })
+
+router.get('/co-not-supported-use-webfiling', function (req, res) {
+  var scenario = req.session.scenario
+  res.render('co-not-supported-use-webfiling', {
+    scenario: scenario
+  })
+})
+
 router.get('/paper-filing', function (req, res) {
   res.render('paper-filing', {
     scenario: req.session.scenario
@@ -366,7 +374,7 @@ if ('taskList' == true) {
   switch (ro) {
     case 'yes':
       checked.yes = true
-      res.redirect('/confirmation-statement/registers')
+      res.redirect('/task-list')
       break
     case 'no':
       checked.yes = true
@@ -489,7 +497,7 @@ router.post('/confirmation-statement/officers', function (req, res) {
 
   switch (officers) {
     case 'yes':
-      res.redirect('/confirmation-statement/additional-officers')
+      res.redirect('/task-list')
       break
     case 'no':
       res.redirect('/incorrect-information/wrong-officers')
@@ -811,6 +819,15 @@ router.post('/confirmation-statement/statement-of-capital', function (req, res) 
       break
   }}
 })
+router.get('/confirmation-statement/statement-of-capital-mismatch', function (req, res) {
+  var email = req.session.data['email']
+  var statementOfCapital = req.session.data['statement-of-capital']
+  res.render('confirmation-statement/statement-of-capital-mismatch', {
+    scenario: req.session.scenario,
+    email: email,
+    statementOfCapital: statementOfCapital
+  })
+})
 router.get('/incorrect-information/wrong-statement-of-capital', function (req, res) {
   var email = req.session.data['email']
   res.render('incorrect-information/wrong-statement-of-capital', {
@@ -840,6 +857,13 @@ router.post('/confirmation-statement/shareholders', function (req, res) {
       res.redirect('/incorrect-information/wrong-shareholders')
       break
   }
+})
+router.get('/confirmation-statement/shareholders-mismatch', function (req, res) {
+  var email = req.session.data['email']
+  res.render('confirmation-statement/shareholders-mismatch', {
+    scenario: req.session.scenario,
+    email: email
+  })
 })
 router.get('/incorrect-information/wrong-shareholders', function (req, res) {
   var email = req.session.data['email']
@@ -1046,7 +1070,7 @@ router.post('/confirmation-statement/psc-statement', function (req, res) {
       res.redirect('/task-list')
       break
     case 'no':
-      res.redirect('/incorrect-information/wrong-psc-statement')
+      res.redirect('/incorrect-information/wrong-psc-details')
       break
   }
 })

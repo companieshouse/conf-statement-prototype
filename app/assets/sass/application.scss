@@ -1,5 +1,6 @@
 // global styles for <a> and <p> tags
 $govuk-global-styles: true;
+$govuk-new-link-styles: true;
 
 // We can't mount GOV.UK Frontend's assets at root as it's done automatically by the extensions framework.
 $govuk-assets-path: '/govuk/assets/';
@@ -14,10 +15,10 @@ $govuk-assets-path: '/govuk/assets/';
 @import "patterns/task-list";
 @import "patterns/related-items";
 
-// Components that aren't in Frontend
-@import "components/cookie-banner";
-
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
+.flex {
+  display: flex;
+}
 .govuk-summary-card {
   border: 1px solid #b1b4b6;
 }
@@ -144,4 +145,19 @@ $govuk-assets-path: '/govuk/assets/';
 }
 .app-task-list__items {
     padding-left: 0px;
+}
+
+.govuk-panel {
+  .govuk-panel--rejection {
+    color: #ffffff;
+    background: #d4351c;
+  }
+}
+.govuk-tag--dark-grey {
+  background-color: 	#505a5f;
+}
+.rejected {
+  background: transparent;
+  border: 6px solid #d4351c;
+  color: #d4351c;
 }

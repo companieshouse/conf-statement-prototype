@@ -28,13 +28,17 @@
       }) }}
       {% endif %}
       <form action="" method="post">
-        <h1 class="govuk-heading-l">Check the director details</h1>
+        <h1 class="govuk-heading-l">Check the {% if scenario.company.directors === '1' %}
+          director's
+        {% else %}
+            directors'
+        {% endif %} details</h1>
 
         {% if scenario.company.directors === '1' %}
-          <h2 class="govuk-heading-m">1 Director</h2>
+          <h2 class="govuk-heading-m">1 director</h2>
         {% else %}
           <h2 class="govuk-heading-m">{{scenario.company.directors}}
-            Directors</h2>
+            directors</h2>
         {% endif %}
 
         {% set directorHTML %}
@@ -80,7 +84,7 @@
             },
             {
               value: "yes",
-              text: "No, but I've recently filed an update"
+              text: "No, but an update has been submitted"
             }
           ]
         }) }}
@@ -112,7 +116,7 @@
             },
             {
               value: "yes",
-              text: "No, but I've recently filed an update"
+              text: "No, but an update has been submitted"
             }
           ]
         }) }}
@@ -143,7 +147,7 @@
             },
             {
               value: "yes",
-              text: "No, but I've recently filed an update"
+              text: "No, but an update has been submitted"
             }
           ]
         }) }}
