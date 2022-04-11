@@ -13,25 +13,42 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <form action="" method="post">
-        <h1 class="govuk-heading-xl">
+        <h1 class="govuk-heading-l">
           You need to update the company details
         </h1>
-        <p>You will need to update the people of significant control (PSC) details before you can file a confirmation statement.</p>
-        <p>You can update this information online. Use
-          <a target="_blank" href="https://ewf.companieshouse.gov.uk//seclogin?tc=1">our WebFiling service (opens in a new tab)</a>
-          to file the form
-          <strong>Change of person with significant control (PSC) details - PSC04</strong>
-        </p>
 
-        {{ govukInsetText({
-                text: "Updates can take some time to process, and will not be reflected immediately in the information displayed on this service. As long as the update has been submitted, you can still file the confirmation statement."
-              }) }}
+                    <p>You will need to update the PSC details on
+                      <a href="https://ewf.companieshouse.gov.uk//seclogin?tc=1" target="_blank"> our WebFiling service (opens in a new tab)</a>
+                      before you can file a confirmation statement.</p>
+                      <p>Return to this window after you have made the update.
+                  </p>
 
-        <p>You can return to this confirmation statement by selecting <a href="/your-filings">Your Filings</a> in your Companies House account.</p>
 
-        {{ govukButton({
-    text: "Return to confirmation statement"
-  }) }}
+        {{ govukRadios({
+            idPrefix: "have-you-completed-this-section",
+            name: "have-you-completed-this-section",
+            fieldset: {
+              legend: {
+                text: "Have you updated the PSC details?",
+                isPageHeading: false,
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            items: [
+              {
+                value: "yes",
+                text: "Yes"
+              },
+              {
+                value: "no",
+                text: "No, I do not need to update the PSC details"
+              }
+            ]
+          }) }}
+
+    {{ govukButton({
+text: "Return to confirmation statement"
+}) }}
   <p>
       <a href="https://www.smartsurvey.co.uk/s/fileconfstmnt-wrongpscdetails/">What did you think of this service?</a>
       (takes 2 minutes)</p>
