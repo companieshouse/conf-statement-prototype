@@ -1,35 +1,43 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Update people with significant control - File a confirmation statement
+  Error: Update register - File a confirmation statement
 {% endblock %}
 {% block backLink %}
   {{ govukBackLink({
     text: "Back",
-    href: "/confirmation-statement/people-with-significant-control"
+    href: "/confirmation-statement/registers"
   }) }}
 {% endblock %}
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <form action="" method="post">
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: [
+            {
+              text: "Select yes if you have updated where the company records are kept",
+              href: "#register-update"
+            }
+          ]
+        }) }}
         <h1 class="govuk-heading-l">
           You need to update the company details
         </h1>
-
-                    <p>You will need to update the PSC details on
-                      <a href="https://ewf.companieshouse.gov.uk//seclogin?tc=1" target="_blank"> our WebFiling service (opens in a new tab)</a>
+                    <p>You will need to update where the company records are kept on our
+                      <a href="https://ewf.companieshouse.gov.uk//seclogin?tc=1" target="_blank"> WebFiling service (opens in a new tab)</a>
                       before you can file a confirmation statement.</p>
                       <p>Return to this window after you have made the update.
                   </p>
 
 
         {{ govukRadios({
-            idPrefix: "have-you-completed-this-section",
-            name: "have-you-completed-this-section",
+            idPrefix: "register-update",
+            name: "register-update",
             fieldset: {
               legend: {
-                text: "Have you updated the PSC details?",
+                text: "Have you updated where the company records are kept?",
                 isPageHeading: false,
                 classes: "govuk-fieldset__legend--m"
               }
@@ -41,16 +49,19 @@
               },
               {
                 value: "no",
-                text: "No, I do not need to update the PSC details"
+                text: "No, I do not need to update where the company records are kept"
               }
-            ]
+            ],
+            errorMessage: {
+  text: "Select yes if you have updated where the company records are kept"
+}
           }) }}
 
     {{ govukButton({
 text: "Return to confirmation statement"
 }) }}
   <p>
-      <a href="https://www.smartsurvey.co.uk/s/fileconfstmnt-wrongpscdetails/">What did you think of this service?</a>
+      <a href="https://www.smartsurvey.co.uk/s/fileconfstmnt-wrongreg/">What did you think of this service?</a>
       (takes 2 minutes)</p>
       </form>
     </div>

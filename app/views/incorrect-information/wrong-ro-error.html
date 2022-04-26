@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Update registered office address - File a confirmation statement
+  Error: Update registered office address - File a confirmation statement
 {% endblock %}
 {% block backLink %}
   {{ govukBackLink({
@@ -14,7 +14,15 @@
     <div class="govuk-grid-column-two-thirds">
       <form action="" method="post">
         <main class="govuk-main-wrapper govuk-main-wrapper--auto-spacing" id="main-content" role="main">
-
+          {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "Select yes if you have updated the registered office address",
+                href: "#ro-update"
+              }
+            ]
+          }) }}
             <h1 class="govuk-heading-l">
               You need to update the company details
             </h1>
@@ -27,8 +35,8 @@
 
 
             {{ govukRadios({
-                idPrefix: "have-you-completed-this-section",
-                name: "have-you-completed-this-section",
+                idPrefix: "ro-update",
+                name: "ro-update",
                 fieldset: {
                   legend: {
                     text: "Have you updated the registered office address?",
@@ -45,7 +53,10 @@
                     value: "no",
                     text: "No, I do not need to update the registered office address"
                   }
-                ]
+                ],
+                errorMessage: {
+      text: "Select yes if you have updated the registered office address"
+    }
               }) }}
 
         {{ govukButton({

@@ -1,12 +1,12 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Update people with significant control - File a confirmation statement
+  Error: Update officers - File a confirmation statement
 {% endblock %}
 {% block backLink %}
   {{ govukBackLink({
     text: "Back",
-    href: "/confirmation-statement/people-with-significant-control"
+    href: "/confirmation-statement/officers"
   }) }}
 {% endblock %}
 {% block content %}
@@ -15,11 +15,21 @@
       <form action="" method="post">
         <main class="govuk-main-wrapper govuk-main-wrapper--auto-spacing" id="main-content" role="main">
 
+          {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "Select yes if you have updated the officer details",
+                href: "#officer-update"
+              }
+            ]
+          }) }}
+
           <h1 class="govuk-heading-l">
             You need to update the company details
           </h1>
 
-                      <p>You will need to update the people with significant control (PSC) details on our
+                      <p>You will need to update the officer details on our
                         <a href="https://ewf.companieshouse.gov.uk//seclogin?tc=1" target="_blank"> WebFiling service (opens in a new tab)</a>
                         before you can file a confirmation statement.</p>
                         <p>Return to this window after you have made the update.
@@ -27,11 +37,11 @@
 
 
           {{ govukRadios({
-              idPrefix: "have-you-completed-this-section",
-              name: "have-you-completed-this-section",
+              idPrefix: "officer-update",
+              name: "officer-update",
               fieldset: {
                 legend: {
-                  text: "Have you updated the PSC details?",
+                  text: "Have you updated the officer details?",
                   isPageHeading: false,
                   classes: "govuk-fieldset__legend--m"
                 }
@@ -43,16 +53,20 @@
                 },
                 {
                   value: "no",
-                  text: "No, I do not need to update the PSC details"
+                  text: "No, I do not need to update the officer details"
                 }
-              ]
+              ],
+              errorMessage: {
+    text: "Select yes if you have updated the officer details"
+  }
             }) }}
 
       {{ govukButton({
   text: "Return to confirmation statement"
 }) }}
+
   <p>
-      <a href="https://www.smartsurvey.co.uk/s/fileconfstmnt-wrongpsc/">What did you think of this service?</a>
+      <a href="https://www.smartsurvey.co.uk/s/fileconfstmnt-wrongoff/">What did you think of this service?</a>
       (takes 2 minutes)</p>
       </form>
     </div>
