@@ -1,20 +1,62 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  You have signed out
+Are you sure you want to sign out? - File a confirmation statement - GOV.UK
 {% endblock %}
-{% block signOut %}{% endblock %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/confirmation-statement/officers"
+  }) }}
+{% endblock %}
+
+
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <form action="" method="post">
-        <h1 class="govuk-heading-xl">
+
+        {{ govukRadios({
+          classes: "govuk-radios--inline",
+          idPrefix: "signOut",
+          name: "signOut",
+          fieldset: {
+            legend: {
+              text: "Are you sure you want to sign out?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "Your answers will not be saved. You will need to start again if you want to file a confirmation statement."
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+
+
+
+      <!--  <h1 class="govuk-heading-xl">
           You have signed out
         </h1>
         <p>Your answers have been saved.</p>
         <p>You can return to this confirmation statement by signing in to
           <a href="/your-filings">your Companies House account</a>
-          and selecting Your Filings.</p>
+          and selecting Your Filings.</p>-->
       </form>
     </div>
   </div>
