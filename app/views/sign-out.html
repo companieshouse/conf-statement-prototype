@@ -3,11 +3,13 @@
 {% block pageTitle %}
 Are you sure you want to sign out? - File a confirmation statement - GOV.UK
 {% endblock %}
+{% block signOut %}
 
+{% endblock %}
 {% block backLink %}
   {{ govukBackLink({
     text: "Back",
-    href: "/confirmation-statement/officers"
+    href: "javascript:window.history.back()"
   }) }}
 {% endblock %}
 
