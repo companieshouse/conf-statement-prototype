@@ -58,7 +58,7 @@
   {% block signOut %}
     <ul class="js-signout" id="navigation">
       <li class="content-email" id="signed-in-user">
-      <!--  {{email}}--> user@examplecompany.co.uk</li>
+       {{ data['email'] }}</li>
       <li class="content">
         <a href="/sign-out" id="user-signout">Sign out</a>
       </li>

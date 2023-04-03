@@ -30,7 +30,21 @@
               }) }}
               {% endif %}
 -->
-{% if ro === 'no' %}
+            {% if ro === 'no' %}
+            {% set recentFilingHTML %}
+              <h3 class="govuk-notification-banner__heading">
+                We have received a filing to update company details
+              </h3>
+              <p class="govuk-body">You can continue filing this confirmation statement, even if the updated information is not yet displayed in this service.
+              </p><p>Return to any section marked <strong class="govuk-tag govuk-tag--blue">Ready to continue</strong> to confirm that an update has been filed.</p>
+            {% endset %}
+
+            {{ govukNotificationBanner({
+              html: recentFilingHTML
+            }) }}
+            {% endif %}
+
+            {% if rea === 'no' %}
             {% set recentFilingHTML %}
               <h3 class="govuk-notification-banner__heading">
                 We have received a filing to update company details
@@ -62,8 +76,10 @@
             {% set result = result + 1 %}
           {% endif %}
           {% if ro === 'yes' %}
-            {% set result = result + 1
- %}
+            {% set result = result + 1 %}
+          {% endif %}
+            {% if rea === 'yes' %}
+            {% set result = result + 1 %}
           {% endif %}
           {% if statementOfCapital === 'yes' %}
             {% set result = result + 1
@@ -85,7 +101,7 @@
 {% if scenario.company.type === 'LTD' %}
             You have checked
             {{result}}
-            of 7 sections</p>
+            of 8 sections</p>
 
           <ol class="app-task-list">
             <li>
@@ -218,6 +234,23 @@
             <ul class="app-task-list__items">
               <li class="app-task-list__item">
                 <span class="app-task-list__task-name">
+                  <a href="/confirmation-statement/rea" aria-describedby="company-information-status">
+                    Registered email address
+                  </a>
+                </span>
+                {% if rea === 'yes' %}
+                  <strong class="govuk-tag app-task-list__tag">
+                    Checked</strong>
+
+                {% elseif rea === 'no' %}
+                  <strong class="govuk-tag govuk-tag--blue app-task-list__tag">  <a href="/confirmation-statement/rea" class="govuk-link govuk-link--no-underline">Ready to continue</a></strong>
+
+                {% else %}
+                  <strong class="govuk-tag govuk-tag--grey app-task-list__tag">Not checked</strong>
+                {% endif %}
+              </li>
+               <li class="app-task-list__item">
+                <span class="app-task-list__task-name">
                   <a href="/confirmation-statement/ro" aria-describedby="company-information-status">
                     Registered office address
                   </a>
@@ -340,6 +373,25 @@
       Addresses
     </h2>
     <ul class="app-task-list__items">
+      <li class="app-task-list__item">
+        <span class="app-task-list__task-name">
+          <a href="/confirmation-statement/ro" aria-describedby="company-information-status">
+            Registered office address
+          </a>
+        </span>
+        {% if rea === 'yes' %}
+          <strong class="govuk-tag app-task-list__tag">
+            Checked</strong>
+
+        {% elseif rea === 'no' %}
+          <strong class="govuk-tag govuk-tag--blue app-task-list__tag">
+            <a href="/confirmation-statement/ro" class="govuk-link govuk-link--no-underline">Ready 2 continue</a>
+          </strong>
+
+        {% else %}
+          <strong class="govuk-tag govuk-tag--grey app-task-list__tag">Not checked</strong>
+        {% endif %}
+      </li>
       <li class="app-task-list__item">
         <span class="app-task-list__task-name">
           <a href="/confirmation-statement/ro" aria-describedby="company-information-status">

@@ -1,0 +1,90 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  What's the company's registered email address? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+{% set serviceName %}
+     File a confirmation statement
+{% endset%}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/task-list"
+  }) }}
+{% endblock %}
+
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+            <form class="form" method="post">
+
+  {{govukTag({
+          text: "Content not final",
+          classes: "govuk-tag--red"
+        })}}
+
+
+        <div class="govuk-form-group">
+          <h1 class="govuk-heading-xl">
+          What's the company's registered email address?
+          </h1>
+          <p class="govuk-body">In future, we may use this email address to send important information and notices to this company.</p>
+          <p class="govuk-body">This email address will not be available on the Companies House online register.</p>
+
+
+
+{% set differentHtml %}
+{{ govukInput({
+  id: "different-email",
+  name: "different-email",
+  type: "email",
+  autocomplete: "email",
+  spellcheck: false,
+  classes: "govuk-!-width-one-half",
+  label: {
+    text: "Enter the email address"
+  }
+}) }}
+{% endset -%}
+
+          {{ govukRadios({
+              name: "registered-email",
+              fieldset: {
+                legend: {
+                  text: "What's the company's registered email address?",
+                  isPageHeading: true,
+                  classes: "govuk-visually-hidden"
+                }
+              },
+              items: [
+                  {
+                   value: data['email'],
+                  text: " {{ data['first-name'] }}"
+
+                },
+                {
+                  value: "text",
+                  text: "A different email address",
+                  conditional: {
+                    html: differentHtml
+                  }
+                }
+              ]
+            }) }}
+
+        </div>
+
+
+      
+{{ govukButton({
+  text: "Continue"
+}) }}
+
+</form>
+    </div>
+  </div>
+{% endblock %}

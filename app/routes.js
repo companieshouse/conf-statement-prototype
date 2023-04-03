@@ -238,6 +238,7 @@ router.get('/task-list-external', function (req, res) {
   var pscStatement = req.session.data['psc-statement']
   var register = req.session.data['registers']
   var result = 0
+  var rea = req.session.data['registered-email-address']
   var ro = req.session.data['registered-office-address']
   var statementOfCapital = req.session.data['statement-of-capital']
   var shareholders = req.session.data['shareholders']
@@ -262,6 +263,7 @@ router.get('/task-list-external', function (req, res) {
     pscStatement: pscStatement,
     register: register,
     result: result,
+    rea: rea,
     ro: ro,
     statementOfCapital: statementOfCapital,
     shareholders: shareholders,
@@ -289,6 +291,7 @@ router.get('/task-list', function (req, res) {
   var pscStatement = req.session.data['psc-statement']
   var register = req.session.data['registers']
   var result = 0
+  var rea = req.session.data['registered-email-address']
   var ro = req.session.data['registered-office-address']
   var statementOfCapital = req.session.data['statement-of-capital']
   var shareholders = req.session.data['shareholders']
@@ -313,6 +316,7 @@ router.get('/task-list', function (req, res) {
     pscStatement: pscStatement,
     register: register,
     result: result,
+    rea: rea,
     ro: ro,
     statementOfCapital: statementOfCapital,
     shareholders: shareholders,
@@ -320,6 +324,114 @@ router.get('/task-list', function (req, res) {
     trading: trading
   })
 })
+
+
+// rea start //
+
+router.post('/task-list', function (req, res) {
+  res.redirect('/confirmation-statement/rea')
+})
+router.get('/confirmation-statement/rea', function (req, res, nl2br) {
+  var email = req.session.data['email']
+  var rea = req.session.data['registered-email-address']
+  var taskList = req.session.data['taskList']
+  var checked = {}
+
+  res.render('confirmation-statement/rea', {
+    email: email,
+    scenario: req.session.scenario,
+    taskList: taskList,
+    checked: checked,
+    rea: rea
+  })
+})
+router.post('/confirmation-statement/rea', function (req, res) {
+  var email = req.session.data['email']
+  var rea = req.session.data['registered-email-address']
+  var checked = {}
+  var errorFlag = false
+  var reaError = {}
+  var errorList = []
+  var taskList = req.session.data['taskList']
+  var govukButton = req.session.data['govukButton']
+
+  if (typeof rea === 'undefined') {
+    reaError.type = 'blank'
+    reaError.text = 'Select yes if the registered email address is correct'
+    reaError.href = '#officers'
+    reaError.flag = true
+  }
+  if (reaError.flag) {
+    errorList.push(reaError)
+    errorFlag = true
+  }
+  if (errorFlag === true) {
+    res.render('confirmation-statement/rea', {
+      scenario: req.session.scenario,
+      rea: rea,
+      taskList: taskList,
+      errorList: errorList,
+      reaError: reaError
+    })
+    } else {
+
+      if ('taskList' == true) {
+        checked.yes = true
+        res.redirect('/task-list')
+      } else {
+        switch (rea) {
+          case 'yes':
+            checked.yes = true
+            res.redirect('/task-list')
+            break
+          case 'no':
+            checked.yes = true
+            res.redirect('/confirmation-statement/provide-email-address')
+            break
+          }
+        }}
+      })
+      router.get('/incorrect-information/wrong-rea', function (req, res) {
+        var email = req.session.data['email']
+        res.render('incorrect-information/wrong-rea', {
+          scenario: req.session.scenario,
+          email: email
+        })
+      })
+      router.post('/incorrect-information/wrong-rea', function (req, res) {
+        res.redirect('/task-list')
+      })
+      router.get('/change-data/change-rea', function (req, res) {
+        var scenario = req.session.scenario
+        var moment = require('moment') // require
+      
+        res.render('change-data/change-rea', {
+          scenario: scenario,
+          moment: moment().format('D MMMM yyy h:mm a')
+        })
+      })
+      router.get('/change-data/change-rea-confirmation', function (req, res) {
+      var email = req.session.data['email']
+        var scenario = req.session.scenario
+        var moment = require('moment') // require
+      
+        res.render('change-data/change-rea-confirmation', {
+          email: email,
+          scenario: scenario,
+          moment: moment().format('D MMMM yyy h:mm a')
+        })
+      })
+
+
+
+
+
+
+
+
+// ro start //
+
+
 router.post('/task-list', function (req, res) {
   res.redirect('/confirmation-statement/ro')
 })
@@ -413,6 +525,15 @@ var email = req.session.data['email']
     moment: moment().format('D MMMM yyy h:mm a')
   })
 })
+
+
+
+
+
+
+
+
+
 // officers start //
 router.get('/confirmation-statement/active-officers', function (req, res) {
   var email = req.session.data['email']
@@ -1091,6 +1212,7 @@ router.get('/task-list-complete', function (req, res) {
   var psc = req.session.data['psc']
   var register = req.session.data['register']
   var ro = req.session.data['registered-office-address']
+  var rea = req.session.data['registered-email-address']
 
   res.render('task-list-complete', {
     scenario: req.session.scenario,
@@ -1099,7 +1221,8 @@ router.get('/task-list-complete', function (req, res) {
     officers: officers,
     psc: psc,
     register: register,
-    ro: ro
+    ro: ro,
+    rea: rea
   })
 })
 router.post('/task-list-complete', function (req, res) {
