@@ -22,10 +22,6 @@
 
             <form class="form" method="post">
 
-  {{govukTag({
-          text: "Content not final",
-          classes: "govuk-tag--red"
-        })}}
 
 
         <div class="govuk-form-group">
@@ -63,8 +59,7 @@
               items: [
                   {
                    value: data['email'],
-                  text: " {{ data['first-name'] }}"
-
+                   text: data['email']
                 },
                 {
                   value: "text",
