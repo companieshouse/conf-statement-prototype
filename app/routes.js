@@ -401,6 +401,9 @@ router.post('/confirmation-statement/rea', function (req, res) {
       router.post('/incorrect-information/wrong-rea', function (req, res) {
         res.redirect('/task-list')
       })
+      router.post('/confirmation-statement/provide-email-address', function (req, res) {
+        res.redirect('/task-list')
+      })
       router.get('/change-data/change-rea', function (req, res) {
         var scenario = req.session.scenario
         var moment = require('moment') // require
