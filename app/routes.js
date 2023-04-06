@@ -330,7 +330,27 @@ router.get('/task-list', function (req, res) {
 
 router.post('/task-list', function (req, res) {
   res.redirect('/confirmation-statement/rea')
-})
+ })
+
+// router.post('/task-list', function (req, res) {
+
+//   // Make a variable and give it the value from 'scenario' (/confirmation-statement/rea-test-scenario.html)
+//   var scenario = req.session.data['scenario']
+
+//   // If 'No current registered email address'
+//   if (scenario == "noRea"){
+//     // Send user to the page asking them to check and potentially provide an updated REA
+//     res.redirect('/confirmation-statement/provide-email-address')
+//   } else {
+//     // Send user to the page asking them to add an REA
+//     res.redirect('/confirmation-statement/rea')
+//   }
+
+// })
+
+
+
+
 router.get('/confirmation-statement/rea', function (req, res, nl2br) {
   var email = req.session.data['email']
   var rea = req.session.data['registered-email-address']
