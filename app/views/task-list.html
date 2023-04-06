@@ -44,7 +44,7 @@
             }) }}
             {% endif %}
 
-            {% if rea === 'no' %}
+            {# {% if rea === 'no' %}
             {% set recentFilingHTML %}
               <h3 class="govuk-notification-banner__heading">
                 We have received a filing to update company details
@@ -56,7 +56,7 @@
             {{ govukNotificationBanner({
               html: recentFilingHTML
             }) }}
-            {% endif %}
+            {% endif %} #}
 
       <h1 class="govuk-heading-l">
         {{ serviceName }}
@@ -243,8 +243,9 @@
                     Checked</strong>
 
                 {% elseif rea === 'no' %}
-                  <strong class="govuk-tag govuk-tag--blue app-task-list__tag">  <a href="/confirmation-statement/rea" class="govuk-link govuk-link--no-underline">Ready to continue</a></strong>
-
+                  {# <strong class="govuk-tag govuk-tag--blue app-task-list__tag">  <a href="/confirmation-statement/rea" class="govuk-link govuk-link--no-underline">Ready to continue</a></strong> #}
+  <strong class="govuk-tag app-task-list__tag">
+                    Checked</strong>
                 {% else %}
                   <strong class="govuk-tag govuk-tag--grey app-task-list__tag">Not checked</strong>
                 {% endif %}
@@ -260,8 +261,9 @@
                     Checked</strong>
 
                 {% elseif ro === 'no' %}
-                  <strong class="govuk-tag govuk-tag--blue app-task-list__tag">  <a href="/confirmation-statement/ro" class="govuk-link govuk-link--no-underline">Ready to continue</a></strong>
-
+                 <!-- <strong class="govuk-tag govuk-tag--blue app-task-list__tag">  <a href="/confirmation-statement/ro" class="govuk-link govuk-link--no-underline">Ready to continue</a></strong>-->
+                  <strong class="govuk-tag app-task-list__tag">
+                    Checked</strong>
                 {% else %}
                   <strong class="govuk-tag govuk-tag--grey app-task-list__tag">Not checked</strong>
                 {% endif %}
@@ -368,15 +370,15 @@
   </li>
 
   <li>
-    <h2 class="app-task-list__section">
+   <!-- <h2 class="app-task-list__section">
 
       Addresses
     </h2>
     <ul class="app-task-list__items">
       <li class="app-task-list__item">
         <span class="app-task-list__task-name">
-          <a href="/confirmation-statement/ro" aria-describedby="company-information-status">
-            Registered office address
+          <a href="/confirmation-statement/rea" aria-describedby="company-information-status">
+            Registered email address
           </a>
         </span>
         {% if rea === 'yes' %}
@@ -385,7 +387,7 @@
 
         {% elseif rea === 'no' %}
           <strong class="govuk-tag govuk-tag--blue app-task-list__tag">
-            <a href="/confirmation-statement/ro" class="govuk-link govuk-link--no-underline">Ready 2 continue</a>
+            <a href="/confirmation-statement/rea" class="govuk-link govuk-link--no-underline">Ready 2 continue</a>
           </strong>
 
         {% else %}
@@ -430,7 +432,7 @@
       </li>
 
     </ul>
-  </li>
+  </li>-->
 
   <li>
     <h2 class="app-task-list__section">

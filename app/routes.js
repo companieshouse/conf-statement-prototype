@@ -386,20 +386,20 @@ router.post('/confirmation-statement/rea', function (req, res) {
             break
           case 'no':
             checked.yes = true
-            res.redirect('/confirmation-statement/provide-email-address')
+            res.redirect('/change-data/change-rea')
             break
           }
         }}
       })
-      router.get('/incorrect-information/wrong-rea', function (req, res) {
+      router.get('/change-data/change-rea', function (req, res) {
         var email = req.session.data['email']
-        res.render('incorrect-information/wrong-rea', {
+        res.render('change-data/change-rea', {
           scenario: req.session.scenario,
           email: email
         })
       })
-      router.post('/incorrect-information/wrong-rea', function (req, res) {
-        res.redirect('/task-list')
+      router.post('/change-data/change-rea', function (req, res) {
+        res.redirect('/change-data/change-rea-confirmation')
       })
       router.post('/confirmation-statement/provide-email-address', function (req, res) {
         res.redirect('/task-list')
@@ -413,17 +413,21 @@ router.post('/confirmation-statement/rea', function (req, res) {
           moment: moment().format('D MMMM yyy h:mm a')
         })
       })
-      router.get('/change-data/change-rea-confirmation', function (req, res) {
-      var email = req.session.data['email']
-        var scenario = req.session.scenario
-        var moment = require('moment') // require
-      
-        res.render('change-data/change-rea-confirmation', {
-          email: email,
-          scenario: scenario,
-          moment: moment().format('D MMMM yyy h:mm a')
-        })
+
+      router.post('/change-data/change-rea-confirmation', function (req, res) {
+        res.redirect('/task-list')
       })
+     // router.get('/change-data/change-rea-confirmation', function (req, res) {
+     // var email = req.session.data['email']
+     //   var scenario = req.session.scenario
+     //   var moment = require('moment') // require
+      
+     //   res.render('change-data/change-rea-confirmation', {
+     //     email: email,
+     //     scenario: scenario,
+     //     moment: moment().format('D MMMM yyy h:mm a')
+     //   })
+    //})
 
 
 

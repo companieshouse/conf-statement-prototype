@@ -58,13 +58,15 @@
             {
               value: "no",
               text: "No"
-            },
-            {
-              value: "yes",
-              text: "No, but an update has been submitted"
             }
           ]
         }) }}
+        {# I have removed a third radio button because I don't think we need it for REA as all done in same session
+# ,
+            {
+              value: "yes",
+              text: "No, but an update has been submitted"
+            } # #}
         {% elseif rea === 'no' %}
           {{ govukRadios({
           classes: "govuk-radios",
@@ -87,10 +89,6 @@
               value: "no",
               text: "No",
               checked: true
-            },
-            {
-              value: "yes",
-              text: "No, but an update has been submitted"
             }
           ]
         }) }}
@@ -115,15 +113,20 @@
             {
               value: "no",
               text: "No"
-            },
-            {
-              value: "yes",
-              text: "No, but an update has been submitted"
             }
           ]
         }) }}
         {% endif %}
 {% else %}
+{# I have removed a third radio button because I don't think we need it for REA as all done in same session
+# ,
+            {
+              value: "yes",
+              text: "No, but an update has been submitted"
+            } # #}
+
+
+
 {% if rea === 'yes' %}
   {{ govukRadios({
   classes: "govuk-radios",
