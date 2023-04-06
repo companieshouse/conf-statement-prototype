@@ -337,12 +337,11 @@ router.post('/task-list', function (req, res) {
 //   // Make a variable and give it the value from 'scenario' (/confirmation-statement/rea-test-scenario.html)
 //   var scenario = req.session.data['scenario']
 
-//   // If 'No current registered email address'
 //   if (scenario == "noRea"){
-//     // Send user to the page asking them to check and potentially provide an updated REA
+//   // If 'No current registered email address' exists, send user to the page asking them to add an REA
 //     res.redirect('/confirmation-statement/provide-email-address')
 //   } else {
-//     // Send user to the page asking them to add an REA
+  //   // That is there IS a 'Current registered email address', send user to the page asking them to check and potentially provide an updated REA
 //     res.redirect('/confirmation-statement/rea')
 //   }
 
