@@ -237,16 +237,19 @@
             <ul class="app-task-list__items">
               <li class="app-task-list__item">
                 <span class="app-task-list__task-name">
-                 {% if reaScenario === 'noRea' %}
-                  <a href="/confirmation-statement/provide-email-address" aria-describedby="company-information-status">
-                    Registered email address
-                  </a>
-                  {% else  %}
-                   <a href="/confirmation-statement/rea" aria-describedby="company-information-status">
-                    Registered email address
-                  </a> 
-                  {% endif %}
-                </span>
+                <!-- user is taken to one of two different screens here, depending on choice made at /confirmation-statement/rea-test-scenario.html -->
+                          {% if reaScenario === 'noRea' %}
+                            <a href="/confirmation-statement/provide-email-address" aria-describedby="company-information-status">
+                              Registered email address
+                            </a>
+                            {% else  %}
+                            <a href="/confirmation-statement/rea" aria-describedby="company-information-status">
+                              Registered email address
+                            </a> 
+                            {% endif %}
+                          </span>
+
+
                 {% if rea === 'yes' %}
                   <strong class="govuk-tag app-task-list__tag">
                     Checked</strong>
