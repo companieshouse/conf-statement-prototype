@@ -332,20 +332,15 @@ router.post('/task-list', function (req, res) {
   res.redirect('/confirmation-statement/rea')
  })
 
-// router.post('/task-list', function (req, res) {
+ router.post('/confirmation-statement/rea-test-scenario', function (req, res) {
 
-//   // Make a variable and give it the value from 'scenario' (/confirmation-statement/rea-test-scenario.html)
-//   var scenario = req.session.data['scenario']
+  // Make a variable and give it the value from 'reaScenario' (/confirmation-statement/rea-test-scenario.html)
+  var reaScenario = req.session.data['reaScenario']
 
-//   if (scenario == "noRea"){
-//   // If 'No current registered email address' exists, send user to the page asking them to add an REA
-//     res.redirect('/confirmation-statement/provide-email-address')
-//   } else {
-  //   // That is there IS a 'Current registered email address', send user to the page asking them to check and potentially provide an updated REA
-//     res.redirect('/confirmation-statement/rea')
-//   }
+ res.redirect('../start')
+ 
 
-// })
+})
 
 
 
@@ -436,17 +431,17 @@ router.post('/confirmation-statement/rea', function (req, res) {
       router.post('/change-data/change-rea-confirmation', function (req, res) {
         res.redirect('/task-list')
       })
-     // router.get('/change-data/change-rea-confirmation', function (req, res) {
-     // var email = req.session.data['email']
-     //   var scenario = req.session.scenario
-     //   var moment = require('moment') // require
+     router.get('/change-data/change-rea-confirmation', function (req, res) {
+     var email = req.session.data['email']
+       var scenario = req.session.scenario
+       var moment = require('moment') // require
       
-     //   res.render('change-data/change-rea-confirmation', {
-     //     email: email,
-     //     scenario: scenario,
-     //     moment: moment().format('D MMMM yyy h:mm a')
-     //   })
-    //})
+       res.render('change-data/change-rea-confirmation', {
+         email: email,
+         scenario: scenario,
+         moment: moment().format('D MMMM yyy h:mm a')
+       })
+    })
 
 
 
@@ -458,99 +453,99 @@ router.post('/confirmation-statement/rea', function (req, res) {
 // ro start //
 
 
-router.post('/task-list', function (req, res) {
-  res.redirect('/confirmation-statement/ro')
-})
-router.get('/confirmation-statement/ro', function (req, res, nl2br) {
-  var email = req.session.data['email']
-  var ro = req.session.data['registered-office-address']
-  var taskList = req.session.data['taskList']
-  var checked = {}
+// router.post('/task-list', function (req, res) {
+//   res.redirect('/confirmation-statement/ro')
+// })
+// router.get('/confirmation-statement/ro', function (req, res, nl2br) {
+//   var email = req.session.data['email']
+//   var ro = req.session.data['registered-office-address']
+//   var taskList = req.session.data['taskList']
+//   var checked = {}
 
-  res.render('confirmation-statement/ro', {
-    email: email,
-    scenario: req.session.scenario,
-    taskList: taskList,
-    checked: checked,
-    ro: ro
-  })
-})
-router.post('/confirmation-statement/ro', function (req, res) {
-  var email = req.session.data['email']
-  var ro = req.session.data['registered-office-address']
-  var checked = {}
-  var errorFlag = false
-  var roError = {}
-  var errorList = []
-  var taskList = req.session.data['taskList']
-  var govukButton = req.session.data['govukButton']
+//   res.render('confirmation-statement/ro', {
+//     email: email,
+//     scenario: req.session.scenario,
+//     taskList: taskList,
+//     checked: checked,
+//     ro: ro
+//   })
+// })
+// router.post('/confirmation-statement/ro', function (req, res) {
+//   var email = req.session.data['email']
+//   var ro = req.session.data['registered-office-address']
+//   var checked = {}
+//   var errorFlag = false
+//   var roError = {}
+//   var errorList = []
+//   var taskList = req.session.data['taskList']
+//   var govukButton = req.session.data['govukButton']
 
-  if (typeof ro === 'undefined') {
-    roError.type = 'blank'
-    roError.text = 'Select yes if the registered office address is correct'
-    roError.href = '#officers'
-    roError.flag = true
-  }
-  if (roError.flag) {
-    errorList.push(roError)
-    errorFlag = true
-  }
-  if (errorFlag === true) {
-    res.render('confirmation-statement/ro', {
-      scenario: req.session.scenario,
-      ro: ro,
-      taskList: taskList,
-      errorList: errorList,
-      roError: roError
-    })
-    } else {
+//   if (typeof ro === 'undefined') {
+//     roError.type = 'blank'
+//     roError.text = 'Select yes if the registered office address is correct'
+//     roError.href = '#officers'
+//     roError.flag = true
+//   }
+//   if (roError.flag) {
+//     errorList.push(roError)
+//     errorFlag = true
+//   }
+//   if (errorFlag === true) {
+//     res.render('confirmation-statement/ro', {
+//       scenario: req.session.scenario,
+//       ro: ro,
+//       taskList: taskList,
+//       errorList: errorList,
+//       roError: roError
+//     })
+//     } else {
 
-if ('taskList' == true) {
-  checked.yes = true
-  res.redirect('/task-list')
-} else {
-  switch (ro) {
-    case 'yes':
-      checked.yes = true
-      res.redirect('/task-list')
-      break
-    case 'no':
-      checked.yes = true
-      res.redirect('/incorrect-information/wrong-ro')
-      break
-    }
-  }}
-})
-router.get('/incorrect-information/wrong-ro', function (req, res) {
-  var email = req.session.data['email']
-  res.render('incorrect-information/wrong-ro', {
-    scenario: req.session.scenario,
-    email: email
-  })
-})
-router.post('/incorrect-information/wrong-ro', function (req, res) {
-  res.redirect('/task-list')
-})
-router.get('/change-data/change-address', function (req, res) {
-  var scenario = req.session.scenario
-  var moment = require('moment') // require
+// if ('taskList' == true) {
+//   checked.yes = true
+//   res.redirect('/task-list')
+// } else {
+//   switch (ro) {
+//     case 'yes':
+//       checked.yes = true
+//       res.redirect('/task-list')
+//       break
+//     case 'no':
+//       checked.yes = true
+//       res.redirect('/incorrect-information/wrong-ro')
+//       break
+//     }
+//   }}
+// })
+// router.get('/incorrect-information/wrong-ro', function (req, res) {
+//   var email = req.session.data['email']
+//   res.render('incorrect-information/wrong-ro', {
+//     scenario: req.session.scenario,
+//     email: email
+//   })
+// })
+// router.post('/incorrect-information/wrong-ro', function (req, res) {
+//   res.redirect('/task-list')
+// })
+// router.get('/change-data/change-address', function (req, res) {
+//   var scenario = req.session.scenario
+//   var moment = require('moment') // require
 
-  res.render('change-data/change-address', {
-    scenario: scenario,
-    moment: moment().format('D MMMM yyy h:mm a')
-  })
-})
-router.get('/change-data/change-address-confirmation', function (req, res) {
-var email = req.session.data['email']
-  var scenario = req.session.scenario
-  var moment = require('moment') // require
+//   res.render('change-data/change-address', {
+//     scenario: scenario,
+//     moment: moment().format('D MMMM yyy h:mm a')
+//   })
+// })
+// router.get('/change-data/change-address-confirmation', function (req, res) {
+// var email = req.session.data['email']
+//   var scenario = req.session.scenario
+//   var moment = require('moment') // require
 
-  res.render('change-data/change-address-confirmation', {
-    email: email,
-    scenario: scenario,
-    moment: moment().format('D MMMM yyy h:mm a')
-  })
-})
+//   res.render('change-data/change-address-confirmation', {
+//     email: email,
+//     scenario: scenario,
+//     moment: moment().format('D MMMM yyy h:mm a')
+//   })
+// })
 
 
 
@@ -1330,4 +1325,16 @@ router.get('/confirmation', function (req, res) {
     email: email,
     paymentOptions: paymentOptions
   })
+})
+
+
+// Show session data and URLs in the terminal  
+router.use((req, res, next) => {  
+  const log = {  
+    method: req.method,  
+    url: req.originalUrl,  
+    data: req.session.data  
+  }  
+  console.log(JSON.stringify(log, null, 2))  
+  next()  
 })
