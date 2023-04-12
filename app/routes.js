@@ -83,9 +83,9 @@ router.get('/your-filings', function (req, res) {
 router.get('/start', function (req, res) {
   res.render('start')
 })
-router.post('/start', function (req, res) {
-  res.redirect('/sign-in')
-})
+// router.post('/start', function (req, res) {
+//   res.redirect('/sign-in')
+// })
 router.get('/sign-in', function (req, res) {
   res.render('sign-in')
 })
@@ -239,6 +239,7 @@ router.get('/task-list-external', function (req, res) {
   var register = req.session.data['registers']
   var result = 0
   var rea = req.session.data['registered-email-address']
+  var reaScenario = req.session.data['reaScenario']
   var ro = req.session.data['registered-office-address']
   var statementOfCapital = req.session.data['statement-of-capital']
   var shareholders = req.session.data['shareholders']
@@ -292,6 +293,7 @@ router.get('/task-list', function (req, res) {
   var register = req.session.data['registers']
   var result = 0
   var rea = req.session.data['registered-email-address']
+  var reaScenario = req.session.data['reaScenario']
   var ro = req.session.data['registered-office-address']
   var statementOfCapital = req.session.data['statement-of-capital']
   var shareholders = req.session.data['shareholders']
@@ -317,6 +319,7 @@ router.get('/task-list', function (req, res) {
     register: register,
     result: result,
     rea: rea,
+    reaScenario: reaScenario,
     ro: ro,
     statementOfCapital: statementOfCapital,
     shareholders: shareholders,
@@ -327,23 +330,6 @@ router.get('/task-list', function (req, res) {
 
 
 // rea start //
-
-router.post('/task-list', function (req, res) {
-  res.redirect('/confirmation-statement/rea')
- })
-
- router.post('/confirmation-statement/rea-test-scenario', function (req, res) {
-
-  // Make a variable and give it the value from 'reaScenario' (/confirmation-statement/rea-test-scenario.html)
-  var reaScenario = req.session.data['reaScenario']
-
- res.redirect('../start')
- 
-
-})
-
-
-
 
 router.get('/confirmation-statement/rea', function (req, res, nl2br) {
   var email = req.session.data['email']
