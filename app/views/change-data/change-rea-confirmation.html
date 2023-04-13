@@ -22,16 +22,13 @@
       <h1 class="govuk-heading-l">Check your answer before sending your application</h1>
 
     
-
+{% if data['rea-email'] %}
       {{ govukSummaryList({
         classes: 'govuk-!-margin-bottom-9',
         rows: [
-         
-          
-          
           {
             key: {
-              text: "New registered email address"
+              text: "Updated email address"
             },
                value: {
             text: data['rea-email']
@@ -49,8 +46,31 @@
         ]
       }) }}
 
+{% else %}
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Updated email address"
+            },
+               value: {
+            text: data['email']
+            },
+            actions: {
+              items: [
+                {
+                  href: "Javascript:void(0)",
+                  text: "Change",
+                  visuallyHiddenText: "email address"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+{% endif %}
 
-     
 
       <h2 class="govuk-heading-m">Now send your application</h2>
 
