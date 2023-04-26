@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  What's the company's registered email address? – {{ serviceName }} – GOV.UK Prototype Kit
+ Registered email address – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 {% set serviceName %}
      File a confirmation statement
@@ -26,79 +26,42 @@
 
         <div class="govuk-form-group">
           <h1 class="govuk-heading-xl">
-          What's the company's registered email address?
+        Registered email address
           </h1>
-          <p class="govuk-body">In future, we may use this email address to send important information and notices to this company.</p>
-          <p class="govuk-body">This email address will not be available on the Companies House online register.</p>
-
-
-
-        <details class="govuk-details" data-module="govuk-details">
-              <summary class="govuk-details__summary">
-                <span class="govuk-details__summary-text">
-                  What will the registered email address be used for?
-                </span>
-              </summary>
-              <div class="govuk-details__text">
-              <p class="govuk-body"> Information that we might send to this email address includes:</p>
-
-            <ul class="govuk-list govuk-list--bullet">
-              <li>reminders to file confirmation statements and accounts</li>
-              <li>warnings about missed filing deadlines</li>
-              <li>information from other government departments that may be crucial to the running of your company (only in exceptional circumstances)</li>
-            </ul>
-
-            <p class="govuk-body">Emails sent to the registered email address are expected to come to the attention of someone acting on behalf of the company.<p>
-
-            </div>
-            </details>
-
-{% set differentHtml %}
-{{ govukInput({
-  id: "rea-email",
-  name: "rea-email",
-  type: "email",
-  autocomplete: "email",
-  spellcheck: false,
-  classes: "govuk-!-width-one-half",
-  label: {
-    text: "Enter the email address"
-  }
-}) }}
-{% endset -%}
-
-          {{ govukRadios({
-              name: "registered-email",
-              fieldset: {
-                legend: {
-                  text: "What's the company's registered email address?",
-                  isPageHeading: true,
-                  classes: "govuk-visually-hidden"
-                }
-              },
-              items: [
-                  {
-                   value: data['email'],
-                   text: data['email']
-                },
-                {
-                  value: "text",
-                  text: "A different email address",
-                  conditional: {
-                    html: differentHtml
-                  }
-                }
-              ]
-            }) }}
-
-        </div>
-
+          <p class="govuk-body">There is a new legal requirement to provide an email address that Companies House can use to contact the company or someone acting on its behalf..</p>
+          <p class="govuk-body">The email address will be registered with Companies House, and in future we will start using it to send important information such as warnings about missing deadlines.</p>
+          <p class="govuk-body">It will not be shown on the public register.</p>
 
       
+
+{{ govukInput({
+  label: {
+    text: "What is the registered email address?",
+    classes: "govuk-label--m"
+  },
+
+  id: "rea",
+  name: "rea",
+  type: "email",
+  autocomplete: "email",
+  spellcheck: false
+}) }}
+
+
+
+
+
+
+
+ <div class="govuk-button-group">     
 {{ govukButton({
   text: "Continue"
 }) }}
+  </div>
 
+
+
+  
 </form>
     </div>
   </div>
