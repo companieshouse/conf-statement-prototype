@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Check the email address – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+
+
+
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+   <form class="form" method="post">
+
+
+
+      <h1 class="govuk-heading-l">Check the email address</h1>
+
+      <p class="govuk-body"> In the next few days, we'll be sending an email to verify this email address.</p>
+
+
+
+
+
+    
+
+
+
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Email address"
+            },
+               value: {
+            text: data['rea']
+            },
+            actions: {
+              items: [
+                {
+                  href: "provide-email-address",
+                  text: "Change",
+                  visuallyHiddenText: "email address"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+
+
+      {# <h2 class="govuk-heading-m">Now send your application</h2>
+
+      <p class="govuk-body">By submitting this application you are confirming that, to the best of your knowledge, the details you are providing are correct.</p>
+ #}
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
+
+

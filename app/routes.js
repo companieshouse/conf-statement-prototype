@@ -402,7 +402,7 @@ router.post('/confirmation-statement/rea', function (req, res) {
         res.redirect('/change-data/change-rea-confirmation')
       })
       router.post('/confirmation-statement/provide-email-address', function (req, res) {
-        res.redirect('/change-data/change-rea-confirmation')
+        res.redirect('/confirmation-statement/provide-rea-confirmation')
       })
       router.get('/change-data/change-rea', function (req, res) {
         var scenario = req.session.scenario
