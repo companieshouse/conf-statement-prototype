@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Check your answer – {{ serviceName }} – GOV.UK Prototype Kit
+   Application submitted – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% set serviceName %}
@@ -12,82 +12,37 @@
 
 
 {% block content %}
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-   <form class="form" method="post">
+     
 
-
-
-      <h1 class="govuk-heading-l">Check your answer before sending your application</h1>
-
-      <p class="govuk-body"> In the next few days, we'll be sending an email to verify this email address.</p>
-
-    
-{% if data['rea-email'] %}
-      {{ govukSummaryList({
-        classes: 'govuk-!-margin-bottom-9',
-        rows: [
-          {
-            key: {
-              text: "Updated email address"
-            },
-               value: {
-            text: data['rea-email']
-            },
-            actions: {
-              items: [
-                {
-                  href: "Javascript:void(0)",
-                  text: "Change",
-                  visuallyHiddenText: "email address"
-                }
-              ]
-            }
-          }
-        ]
+      {{ govukPanel({
+        titleText: "Update submitted",
+        html: "Your reference number<br><strong>HDJ2123F</strong>"
       }) }}
 
-{% else %}
-      {{ govukSummaryList({
-        classes: 'govuk-!-margin-bottom-9',
-        rows: [
-          {
-            key: {
-              text: "Updated email address"
-            },
-               value: {
-            text: data['email']
-            },
-            actions: {
-              items: [
-                {
-                  href: "Javascript:void(0)",
-                  text: "Change",
-                  visuallyHiddenText: "email address"
-                }
-              ]
-            }
-          }
-        ]
-      }) }}
-{% endif %}
+  <p>We have sent a confirmation email to <strong> {{ data['email'] }} </strong> which contains your reference number.</p>
+
+       <h2 class="govuk-heading-m">What happens next</h2>
+      <p>We'll email you to let you know if your filing to update the registered email address has been accepted or rejected. We'll process the application as soon as we can.</p>
 
 
-      {# <h2 class="govuk-heading-m">Now send your application</h2>
-
-      <p class="govuk-body">By submitting this application you are confirming that, to the best of your knowledge, the details you are providing are correct.</p>
- #}
 
 
-        {{ govukButton({
-          text: "Continue"
-        }) }}
+{{ govukButton({
+  text: "Return to confirmation statement"
+}) }}
 
-      </form>
+
+
+
+      <p class="govuk-body">
+        <a href="#" class="govuk-link">What did you think of this service?</a> (takes 30 seconds)
+      </p>
 
     </div>
   </div>
+
 {% endblock %}
-
-

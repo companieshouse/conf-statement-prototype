@@ -1,0 +1,93 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Check your answer – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% set serviceName %}
+     Update a registered company email address
+{% endset%}
+
+
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+   <form class="form" method="post">
+
+
+
+      <h1 class="govuk-heading-l">Check your answer before sending your application</h1>
+
+      <p class="govuk-body"> In the next few days, we'll be sending an email to verify this email address.</p>
+
+    
+{% if data['rea-email'] %}
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Updated email address"
+            },
+               value: {
+            text: data['rea-email']
+            },
+            actions: {
+              items: [
+                {
+                  href: "Javascript:void(0)",
+                  text: "Change",
+                  visuallyHiddenText: "email address"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+{% else %}
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Updated email address"
+            },
+               value: {
+            text: data['email']
+            },
+            actions: {
+              items: [
+                {
+                  href: "Javascript:void(0)",
+                  text: "Change",
+                  visuallyHiddenText: "email address"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+{% endif %}
+
+
+      {# <h2 class="govuk-heading-m">Now send your application</h2>
+
+      <p class="govuk-body">By submitting this application you are confirming that, to the best of your knowledge, the details you are providing are correct.</p>
+ #}
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
+
+
