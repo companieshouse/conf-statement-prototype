@@ -404,6 +404,27 @@ router.post('/confirmation-statement/rea', function (req, res) {
       router.post('/confirmation-statement/provide-email-address', function (req, res) {
         res.redirect('/confirmation-statement/provide-rea-confirmation')
       })
+ 
+      router.post('/confirmation-statement/provide-rea-confirmation', function (req, res) {
+        res.redirect('/task-list')
+      })
+     router.get('/confirmation-statement/provide-rea-confirmation', function (req, res) {
+     var newrea = req.session.data['new-rea']
+       var scenario = req.session.scenario
+       var moment = require('moment') // require
+      
+       res.render('confirmation-statement/provide-rea-confirmation', {
+        newrea: newrea,
+         scenario: scenario,
+         moment: moment().format('D MMMM yyy h:mm a')
+       })
+    })
+
+
+
+
+
+
       router.get('/change-data/change-rea', function (req, res) {
         var scenario = req.session.scenario
         var moment = require('moment') // require
