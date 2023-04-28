@@ -413,16 +413,18 @@ router.post('/confirmation-statement/rea', function (req, res) {
           moment: moment().format('D MMMM yyy h:mm a')
         })
       })
-
       router.post('/change-data/change-rea-check-your-answer', function (req, res) {
+        res.redirect('/change-data/change-rea-confirmation')
+      })
+      router.post('/change-data/change-rea-confirmation', function (req, res) {
         res.redirect('/task-list')
       })
-     router.get('/change-data/change-rea-check-your-answer', function (req, res) {
+     router.get('/change-data/change-rea-confirmation', function (req, res) {
      var email = req.session.data['email']
        var scenario = req.session.scenario
        var moment = require('moment') // require
       
-       res.render('change-data/change-rea-check-your-answer', {
+       res.render('change-data/change-rea-confirmation', {
          email: email,
          scenario: scenario,
          moment: moment().format('D MMMM yyy h:mm a')
