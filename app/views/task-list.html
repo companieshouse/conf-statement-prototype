@@ -249,15 +249,25 @@
                             {% endif %}
                           </span>
 
-
-                {% if rea === 'yes' %}
+                 {% if rea === 'yes' or newrea !== ' ' %} 
                   <strong class="govuk-tag app-task-list__tag">
                     Checked</strong>
 
+               
+
+ 
+                 
                 {% elseif rea === 'no' %}
                   {# <strong class="govuk-tag govuk-tag--blue app-task-list__tag">  <a href="/confirmation-statement/rea" class="govuk-link govuk-link--no-underline">Ready to continue</a></strong> #}
   <strong class="govuk-tag app-task-list__tag">
                     Checked</strong>
+
+
+  
+
+
+
+
                 {% else %}
                   <strong class="govuk-tag govuk-tag--grey app-task-list__tag">Not checked</strong>
                 {% endif %}

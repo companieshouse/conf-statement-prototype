@@ -287,7 +287,7 @@ router.get('/task-list', function (req, res) {
   var additionalMembers = req.session.data['additional-members']
   var members = req.session.data['members']
   var moment = require('moment') // require
-  var newrea = req.session.data['new-rea']
+  var newrea = req.session.data['newrea']
   var officers = req.session.data['officers']
   var psc = req.session.data['psc']
   var pscStatement = req.session.data['psc-statement']
@@ -411,7 +411,7 @@ router.post('/confirmation-statement/rea', function (req, res) {
         res.redirect('/task-list')
       })
      router.get('/confirmation-statement/provide-rea-confirmation', function (req, res) {
-     var newrea = req.session.data['new-rea']
+     var newrea = req.session.data['newrea']
        var scenario = req.session.scenario
        var moment = require('moment') // require
       
