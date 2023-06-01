@@ -20,14 +20,15 @@
 
 
       {{ govukPanel({
-        titleText: "Update submitted",
+        titleText: "Registered email address update submitted",
         html: "Your reference number<br><strong>HDJ2123F</strong>"
       }) }}
 
   <p>We have sent a confirmation email to <strong> {{ data['email'] }} </strong> which contains your reference number.</p>
 
-       <h2 class="govuk-heading-m">What happens next</h2>
-      <p>We'll email you to let you know if your filing to update the registered email address has been accepted or rejected. We'll process the application as soon as we can.</p>
+       <h2 class="govuk-heading-m">What you need to do next</h2>
+      <p>In the next few days, we'll send an email to <strong> {{ data['new-email'] }} </strong> which contains a verification link. You'll need to open the email and select the link.</p> 
+      <p>Once the registered email address has been verified, we can process the update filing. We'll send an email to <strong> {{ data['email'] }} </strong> to let you know if the filing has been accepted or rejected. </p>
 
 
 
