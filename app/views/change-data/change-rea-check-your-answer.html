@@ -14,17 +14,16 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+  <a class="govuk-back-link govuk-!-margin-top-0 govuk-!-margin-bottom-5" href="javascript:window.history.back()">Back</a>
 
    <form class="form" method="post">
 
 
+ <span class="govuk-caption-m">HAPPY HOUSE LTD (00222333)</span>
 
-      <h1 class="govuk-heading-l">Check your answer before sending your application</h1>
+      <h1 class="govuk-heading-xl">Check your answer before submitting this filing</h1>
 
-<!--
-      <p class="govuk-body"> In the next few days, we'll be sending an email to verify this email address.</p>
--->
-    
+
 {% if data['rea-email'] %}
       {{ govukSummaryList({
         classes: 'govuk-!-margin-bottom-9',
@@ -75,15 +74,40 @@
 {% endif %}
 
 
-      {# <h2 class="govuk-heading-m">Now send your application</h2>
 
-      <p class="govuk-body">By submitting this application you are confirming that, to the best of your knowledge, the details you are providing are correct.</p>
- #}
-
+{{ govukCheckboxes({
+  name: "waste",
+  fieldset: {
+    legend: {
+      text: "The new email address is an appropriate email address as outlined in section 88A(2) of the Companies Act 2006.",
+      isPageHeading: false,
+      classes: "govuk-visually-hidden"
+    }
+  },
+  items: [
+    {
+      value: "appropriate",
+      text: "The new email address is an appropriate email address as outlined in section 88A(2) of the Companies Act 2006."
+    }
+  ]
+}) }}
+     
+     <details class="govuk-details" data-module="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      What does 'appropriate email address' mean?
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+    An email address is an 'appropriate email address' if, in the ordinary course of events, emails sent to it by the registrar would be expected to come to the attention of a person acting on behalf of the company.
+  </div>
+</details>
 
         {{ govukButton({
           text: "Continue"
         }) }}
+
+        
 
       </form>
 
