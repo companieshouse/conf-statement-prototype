@@ -1,0 +1,45 @@
+{#
+For guidance on how to use layouts see:
+https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
+#}
+
+{% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
+{% if useAutoStoreData %}
+  {% block footer %}
+    {{ govukFooter({
+      meta: {
+        items: [
+          {
+            href: "javascript:void(0)",
+            text: "Policies"
+          },
+          {
+            href: "javascript:void(0)",
+            text: "Cookies"
+          },
+          {
+            href: "https://www.gov.uk/government/organisations/companies-house#org-contacts",
+            text: "Contact Us"
+          },
+          {
+            href: "/accessibility-statement",
+            text: "Accessibility statement"
+          },
+          {
+            href: "javascript:void(0)",
+            text: "Developers"
+          },
+          {
+            href: "https://govuk-prototype-kit.herokuapp.com/",
+            text: "GOV.UK Prototype Kit " + releaseVersion
+          },
+          {
+            href: "/prototype-admin/clear-data",
+            text: "Clear data"
+          }
+        ],
+        visuallyHiddenTitle: "Footer links"
+      }
+    }) }}
+  {% endblock %}
+{% endif %}
