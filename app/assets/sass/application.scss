@@ -154,3 +154,19 @@
   border: 6px solid #d4351c;
   color: #d4351c;
 }
+
+//Styles for user bar
+
+ul#navigation {
+  font-size: 0.9em;
+  margin-top: 15px;
+  text-align: right;
+  font-family: 'GDS Transport', Arial, Helvetica, sans-serif;
+  display: block;    
+  li {
+    display: inline;
+    font-size: 16px;
+    overflow-wrap: break-word;
+    a {margin-left: 0.9em;}
+  }
+}
