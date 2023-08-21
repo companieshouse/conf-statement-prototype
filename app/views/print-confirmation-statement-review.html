@@ -4,16 +4,14 @@
   Review company information for
   {{scenario.company.name}}
 {% endblock %}
-{% block signOut %}{% endblock %}
-{% block backLink %}
-  {{ govukBackLink({
-    text: "Back",
-    href: "/confirmation-statement/review"
-  }) }}
+{% block beforeContent %}
+  {% include "/includes/phase-banner.html" %}
+  {% include "/includes/user-bar.html" %}
 {% endblock %}
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
       <h1 class="govuk-heading-l">Review company information for
         <strong>{{scenario.company.name}}</strong>
       </h1>
