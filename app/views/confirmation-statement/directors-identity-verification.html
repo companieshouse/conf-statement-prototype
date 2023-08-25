@@ -1,0 +1,117 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+{% if errorList.length > 0 %}
+  Error:
+{% endif %}  Verify the directors' identities
+{% endblock %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/confirmation-statement/active-officers"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-three-quarters">
+
+
+  <form action="" method="post">
+        <h1 class="govuk-heading-l">Verify the directors' identities</h1>
+
+
+
+
+
+  <div class="govuk-summary-card govuk-!-margin-bottom-4">
+    <div class="govuk-summary-card_heading govuk-!-padding-top-4 govuk-!-padding-bottom-4 govuk-!-padding-right-3 govuk-!-padding-left-3" style="display: flex; justify-content: space-between; align-items: center">
+      <p class="govuk-!-font-weight-bold govuk-!-margin-0">IRVING, Kyrie</p>
+    </div>
+    <div style="display: flex" class="govuk-!-padding-1">
+      <dl style="display: block" class="govuk-summary-list govuk-!-margin-3">
+ 
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Date of birth</dt>
+          <dd class="govuk-summary-list__value">
+            <p>1 January 1988</p>
+          </dd>
+        </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Appointment date</dt>
+              <dd class="govuk-summary-list__value">
+                <p>20 June 2019</p>
+              </dd>
+            </div>
+
+    
+
+{{ govukInput({
+  label: {
+    text: "What is the Companies House user ID for IRVING, Kyrie",
+    classes: "govuk-label--m govuk-!-margin-top-6"
+  },
+  hint: {
+    text: "This is a code that is issued once a person has verified their identity for Companies House."
+  },
+  classes: "govuk-input--width-5 govuk-input--extra-letter-spacing",
+  id: "idv-code",
+  name: "idv-code",
+  spellcheck: false,
+  value: ""
+}) }}
+
+
+
+
+  <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            I don't have a Companies House user ID for IRVING, Kyrie
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <p>Check if IRVING, Kyrie has verified their identity for Companies House. </p> 
+          <p>They can do this through the <a class="govuk-link govuk-link--no-visited-state" href="https://prove-your-identity-prototype.herokuapp.com/v5/pre-one-login/start" target="blank">Verify your identity for Companies House service</a>.</p>
+          <p>Once they have successfully verified, they will be sent a Companies House user ID. They cannot be appointed as a director without it.</p>
+
+        </div>
+      </details>
+
+{{ govukCheckboxes({
+  name: "idv-statement",
+  fieldset: {
+    legend: {
+      text: "Identity verification statement",
+      isPageHeading: true,
+      classes: "govuk-visually-hidden"
+    }
+  },
+  items: [
+    {
+      value: "idv-statement",
+      text: "I confirm that IRVING, Kyrie has verified their identity for Companies House."
+    }
+  ]
+}) }}
+
+      </dl>
+    </div>
+
+
+
+
+
+   
+    </div>  
+    
+          <div class="govuk-button-group">
+              {{ govukButton({
+                text: "Continue"
+                }) }}
+          </div>
+
+       </form>
+  </div>
+{% endblock %}
