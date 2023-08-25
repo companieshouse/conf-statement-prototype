@@ -21,7 +21,7 @@
         titleText: "There is a problem",
         errorList: [
           {
-            text: "Select yes if the director details are correct",
+            text: "Select yes if the  officers' details are correct",
             href: "#officers"
           }
         ]
@@ -29,9 +29,9 @@
       {% endif %}
       <form action="" method="post">
         <h1 class="govuk-heading-l">Check the {% if scenario.company.directors === '1' %}
-          director's
+          officer's'
         {% else %}
-            directors'
+           officers'
         {% endif %} details</h1>
 
         {% if scenario.company.directors === '1' %}
@@ -64,7 +64,7 @@
           errorMessage: directorDetailsError,
           fieldset: {
             legend: {
-              html: "Are the director details correct?",
+              html: "Are the officers' details correct?",
               isPageHeading: false,
               classes: "govuk-fieldset__legend--l"
             }
@@ -96,7 +96,7 @@
           errorMessage: directorDetailsError,
           fieldset: {
             legend: {
-              html: "Are the director details correct?",
+              html: "Are the officers' details correct?",
               isPageHeading: false,
               classes: "govuk-fieldset__legend--l"
             }
@@ -128,7 +128,7 @@
           errorMessage: directorDetailsError,
           fieldset: {
             legend: {
-              html: "Are the director details correct?",
+              html: "Are the officers' details correct?",
               isPageHeading: false,
               classes: "govuk-fieldset__legend--l"
             }
@@ -161,7 +161,7 @@
   errorMessage: directorDetailsError,
   fieldset: {
     legend: {
-      html: "Are the director details correct?",
+              html: "Are the officers' details correct?",
       isPageHeading: false,
       classes: "govuk-fieldset__legend--l"
     }
@@ -189,7 +189,7 @@ html: officerHTML
   errorMessage: directorDetailsError,
   fieldset: {
     legend: {
-      html: "Are the director details correct?",
+              html: "Are the officers' details correct?",
       isPageHeading: false,
       classes: "govuk-fieldset__legend--l"
     }
@@ -217,7 +217,7 @@ html: officerHTML
   errorMessage: directorDetailsError,
   fieldset: {
     legend: {
-      html: "Are the director details correct?",
+              html: "Are the officers' details correct?",
       isPageHeading: false,
       classes: "govuk-fieldset__legend--l"
     }
