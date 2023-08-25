@@ -1,0 +1,214 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+{% if errorList.length > 0 %}
+  Error:
+{% endif %}  Verify the directors' identities
+{% endblock %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/confirmation-statement/active-officers"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-three-quarters">
+
+
+  <form action="" method="post">
+      
+
+  <h1 class="govuk-heading-l">Check the 
+          officer's'
+         details</h1>
+
+        
+          <h2 class="govuk-heading-m">1 director</h2>
+
+
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      html: 'IRVING, Kyrie  <strong class="govuk-tag govuk-tag--green">
+  Active</strong>'
+    },
+    actions: {
+      items: [
+        {
+          href: "directors-identity-verification-questions",
+          text: "Verify identity",
+          classes: "govuk-link--no-visited-state",
+          visuallyHiddenText: "of IRVING, Kyrie"
+        }
+      ]
+    }
+  },
+  rows: [
+    {
+      key: {
+        text: "Nationality"
+      },
+      value: {
+        html: "British"
+      }
+    },
+    {
+      key: {
+        text: "Country of residency"
+      },
+      value: {
+        html: "Nationality"
+      }
+    },
+    {
+      key: {
+        text: "Date of birth"
+      },
+      value: {
+        html: "1 January 1988"
+      }
+    },
+    {
+      key: {
+        text: "Appointment date"
+      },
+      value: {
+        html: "20 June 2019"
+      }
+    },
+    {
+      key: {
+        text: "Country of residency"
+      },
+      value: {
+        html: "Nationality"
+      }
+    },
+    {
+      key: {
+        text: "Occupation"
+      },
+      value: {
+        html: "Occupation"
+      }
+    },
+    {
+      key: {
+        text: "Correspondence address"
+      },
+      value: {
+        html: "2 Nets Way, Newcastle, NE2 3BB"
+      }
+    },
+    {
+      key: {
+        text: "Usual residential address"
+      },
+      value: {
+        html: "2 Nets Way, Newcastle, NE2 3BB"
+      }
+    }
+  ]
+}) }}
+
+        
+
+   
+        
+          
+
+<div class="govuk-form-group">
+
+  <fieldset class="govuk-fieldset" aria-describedby="officers-hint">
+  
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+  
+    Are the officers' details correct?
+  
+  </legend>
+  
+
+  <div id="officers-hint" class="govuk-hint">
+    
+  </div>
+
+
+  <div class="govuk-radios govuk-radios"
+    data-module="govuk-radios">
+    
+      
+          
+        
+        
+        
+        <div class="govuk-radios__item">
+          <input class="govuk-radios__input" id="officers" name="officers" type="radio" value="yes">
+          <label class="govuk-label govuk-radios__label" for="officers">
+        Yes
+      </label>
+          
+        </div>
+        
+        
+      
+    
+      
+        
+        
+        
+        <div class="govuk-radios__item">
+          <input class="govuk-radios__input" id="officers-2" name="officers" type="radio" value="no" checked>
+          <label class="govuk-label govuk-radios__label" for="officers-2">
+        No
+      </label>
+          
+        </div>
+        
+        
+      
+    
+      
+        
+        
+        
+        <div class="govuk-radios__item">
+          <input class="govuk-radios__input" id="officers-3" name="officers" type="radio" value="yes">
+          <label class="govuk-label govuk-radios__label" for="officers-3">
+        No, but an update has been submitted
+      </label>
+          
+        </div>
+        
+        
+      
+    
+  </div>
+  
+
+</fieldset>
+
+
+</div>
+
+        
+
+        
+
+  
+    
+  
+
+<button class="govuk-button" data-module="govuk-button">
+  Continue
+</button>
+
+
+
+
+       </form>
+  </div>
+{% endblock %}
