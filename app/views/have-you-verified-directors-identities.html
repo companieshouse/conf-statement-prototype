@@ -1,7 +1,7 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-Have all the company directors verified their identities for Companies House? - File a confirmation statement - GOV.UK
+Have all company directors verified their identity and received a Companies House user ID? - File a confirmation statement - GOV.UK
 {% endblock %}
 {% block signOut %}{% endblock %}
 {% block beforeContent %}
@@ -20,13 +20,10 @@ Have all the company directors verified their identities for Companies House? - 
             name: "directors-idv",
             fieldset: {
               legend: {
-                text: "Have all the company directors verified their identities for Companies House?",
+                text: "Have all company directors verified their identity and received a Companies House user ID?",
                 isPageHeading: true,
                 classes: "govuk-fieldset__legend--l"
               }
-            },
-            hint: {
-              text: "Hint here."
             },
             items: [
               {
@@ -40,6 +37,11 @@ Have all the company directors verified their identities for Companies House? - 
             ]
           }) }}
      
+{{ govukDetails({
+  summaryText: "What is a Companies House user ID?",
+  html: 'This is a code sent to each director once they have <a class="govuk-link govuk-link--no-visited-state" href="https://prove-your-identity-prototype.herokuapp.com/v5/pre-one-login/start" target="blank">verified their identity for Companies House</a>.'
+}) }}
+
 
 {{ govukButton({
   text: "Continue",

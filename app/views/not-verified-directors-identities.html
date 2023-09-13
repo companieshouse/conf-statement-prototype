@@ -1,0 +1,40 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+All company directors need to verify their identity - File a confirmation statement - GOV.UK
+{% endblock %}
+{% block signOut %}{% endblock %}
+{% block beforeContent %}
+  {% include "/includes/phase-banner.html" %}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+                   {% include "/includes/back-link.html" %}
+
+
+
+  <h1 class="govuk-heading-l">All company directors need to verify their identity</h1>
+
+      <p class="govuk-body">Before the confirmation statement can be filed, all its 
+        directors must have verified their identity with Companies House.
+      </p>
+
+      <p class="govuk-body">They can do this through a seperate service <a class="govuk-link govuk-link--no-visited-state" href="https://prove-your-identity-prototype.herokuapp.com/v5/pre-one-login/start" target="blank">
+        Verify your identity for Companies House service (opens in a new tab)</a>.</b>
+      </p>
+
+  
+
+      <p class="govuk-body">Once successfully verified, each 
+        director will be sent a <strong>Companies House user ID</strong>. They 
+        need to share this with you, as you'll be asked to 
+        provide it when filing the confirmation statement.  
+      </p>
+
+
+
+    </div>
+  </div>
+{% endblock %}
