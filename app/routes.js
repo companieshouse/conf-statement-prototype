@@ -1354,3 +1354,16 @@ router.use((req, res, next) => {
   console.log(JSON.stringify(log, null, 2))  
   next()  
 })
+
+
+// Have all company directors verified their identity and received a Companies House user ID?
+
+router.post('/have-you-verified-directors-identities', function(request, response) {
+
+  var directorsidv = request.session.data['directors-idv']
+  if (directorsidv == "no"){
+      response.redirect("/not-verified-directors-identities")
+  } else {
+      response.redirect("/sign-in")
+  }
+})

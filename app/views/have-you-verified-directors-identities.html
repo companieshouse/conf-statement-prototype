@@ -13,6 +13,7 @@ Have all company directors verified their identity and received a Companies Hous
       <div class="govuk-grid-column-two-thirds">
                    {% include "/includes/back-link.html" %}
 
+<form class="form" action="/have-you-verified-directors-identities" method="post">
 
 
       {{ govukRadios({
@@ -44,8 +45,7 @@ Have all company directors verified their identity and received a Companies Hous
 
 
 {{ govukButton({
-  text: "Continue",
-  href: 'sign-in'
+  text: "Continue"
 }) }}    
 
 </form>
