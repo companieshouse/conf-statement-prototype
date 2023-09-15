@@ -21,7 +21,7 @@ Have all company directors verified their identity and received a Companies Hous
             name: "directors-idv",
             fieldset: {
               legend: {
-                text: "Have all company directors verified their identity and received a Companies House user ID?",
+                text: "Have all company directors verified their identity and received a Companies House personal code?",
                 isPageHeading: true,
                 classes: "govuk-fieldset__legend--l"
               }
@@ -39,8 +39,11 @@ Have all company directors verified their identity and received a Companies Hous
           }) }}
      
 {{ govukDetails({
-  summaryText: "What is a Companies House user ID?",
-  html: 'This is a code sent to each director once they have <a class="govuk-link govuk-link--no-visited-state" href="https://prove-your-identity-prototype.herokuapp.com/v5/pre-one-login/start" target="blank">verified their identity for Companies House</a>.'
+  summaryText: "What is a Companies House personal code?",
+  html: '<p>This is a code sent to each director once they have <a class="govuk-link govuk-link--no-visited-state" href="https://prove-your-identity-prototype.herokuapp.com/v5/pre-one-login/start" target="blank">verified their identity for Companies House</a>.</p>
+  
+  <p>As part of this confirmation statement, you will need to provide us with each directors personal code. This allows us to connect their verified identity to our records.</p>
+  '
 }) }}
 
 
