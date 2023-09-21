@@ -7,10 +7,15 @@
   "name": "govuk-prototype-kit",
   "dependencies": {
     "@govuk-prototype-kit/step-by-step": "2.2.2",
+    "date-fns": "^2.30.0",
+    "dateformat": "^5.0.3",
+    "fs": "^0.0.1-security",
     "govuk-frontend": "4.7.0",
     "govuk-prototype-kit": "13.12.1",
     "jquery": "3.7.0",
+    "mkdirp": "^3.0.1",
     "moment": "^2.29.4",
-    "notifications-node-client": "5.2.3"
+    "notifications-node-client": "5.2.3",
+    "puppeteer": "^21.3.1"
   }
 }
