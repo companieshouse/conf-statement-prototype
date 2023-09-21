@@ -61,8 +61,16 @@ async function captureScreenshotsInDirectory(directory, page) {
 
 (async () => {
   try {
-    // Create the output folder
-    fs.mkdirSync(outputFolderPath);
+    // Create a unique output folder with a timestamp
+    let folderNumber = 1;
+    let uniqueFolderPath = outputFolderPath;
+
+    while (fs.existsSync(uniqueFolderPath)) {
+      uniqueFolderPath = path.join(process.env.HOME || process.env.USERPROFILE, 'Desktop', `${outputFolderName}_${folderNumber}`);
+      folderNumber++;
+    }
+
+    fs.mkdirSync(uniqueFolderPath);
 
     // Launch a headless browser
     const browser = await puppeteer.launch();
