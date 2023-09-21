@@ -1,9 +1,13 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 const path = require('path');
+const dotenv = require('dotenv'); // Load the dotenv package
 
-const prototypeURL = 'https://conf-statement-enhancement-v1-c372e06a2a22.herokuapp.com/'; // Replace with your URL
-const htmlFilesFolder = '/Users/jamesfrancis/Documents/GitHub/conf-statement-prototype/app/views'; // Replace with your path
+// Specify the path to your .env file
+dotenv.config({ path: '/Users/jamesfrancis/Documents/GitHub/conf-statement-prototype/.env' });
+
+const prototypeURL = 'https://conf-statement-enhancement-v1-c372e06a2a22.herokuapp.com/';
+const htmlFilesFolder = '/Users/jamesfrancis/Documents/GitHub/conf-statement-prototype/app/views'; // Replace with the actual path
 
 // Create a folder name with the domain name and today's date
 const domainName = prototypeURL.split('/')[2];
@@ -12,11 +16,22 @@ const outputFolderName = `${domainName}_${currentDate}`;
 
 const outputFolderPath = path.join(process.env.HOME || process.env.USERPROFILE, 'Desktop', outputFolderName);
 
-const passwordSelector = '#password'; // check on your password screen that the password input field has an ID of #password
-const buttonSelector = '.govuk-button'; // check on your password screen that the button has a class of .govuk-button
+const passwordSelector = '#password';
+const buttonSelector = '.govuk-button';
 
 const navigationTimeout = 60000; // Increase the navigation timeout to 60 seconds (adjust as needed)
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+
+// Get the password from the environment variables
+const password = process.env.SCREENSHOTPASSWORD;
+
+// Check if the password is defined in the environment variables
+if (!password) {
+  console.error('Password not found in environment variables. Please set the PASSWORD variable in your .env file.');
+  process.exit(1);
+}
+
 
 // Define a function to capture screenshots for a given URL
 async function captureScreenshot(url, page) {
@@ -83,7 +98,7 @@ async function captureScreenshotsInDirectory(directory, page) {
 
     // Enter the password
     await page.goto(prototypeURL);
-    await page.type(passwordSelector, 'process.env.ScreenshotPassword'); // Add your prototype password to /.env, like this: ScreenshotPassword = FOO
+    await page.type(passwordSelector, process.env.SCREENSHOTPASSWORD);
     await page.click(buttonSelector);
     await delay(5000);
 
