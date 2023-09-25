@@ -72,14 +72,13 @@ async function captureScreenshot(url, page, outputPath) {
       const div = document.createElement('div');
       div.textContent = url;
       div.style.position = 'fixed';
-      div.style.bottom = '10px';
-      div.style.left = '10px';
-      div.style.backgroundColor = 'black';
-      div.style.padding = '5px';
-      div.style.border = '1px solid #ccc';
+      div.style.bottom = '6px';
+      div.style.left = '6px';
+      div.style.backgroundColor = '#505a5f';
+      div.style.padding = '5px 10px';
       div.style.color = 'white';
       div.style.fontFamily = 'Arial, Helvetica, sans-serif';
-      div.style.fontSize = '16px';
+      div.style.fontSize = '18px';
       document.body.appendChild(div);
     }, url);
 
