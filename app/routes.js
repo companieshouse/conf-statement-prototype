@@ -1356,7 +1356,7 @@ router.use((req, res, next) => {
 })
 
 
-// Have all company directors verified their identity and received a Companies House user ID?
+// Have all company directors verified their identity and received a Companies House personal code?
 
 router.post('/have-you-verified-directors-identities', function(request, response) {
 
