@@ -1,0 +1,74 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Review the SIC codes
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/phase-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="{{currentUrl}}" method="post">
+
+        <h1 class="govuk-heading-l">Check the SIC codes</h1>
+        <details class="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              What is a SIC code?
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+            <p>The SIC (Standard Industrial Classification) code indicates the nature of the company’s business. A company can have up to 4 SIC codes.
+            </p>
+            <p>Check the
+              <a href="http://resources.companieshouse.gov.uk/sic/" target="_blank">condensed SIC codes list (opens in a new tab)</a>.</p>
+          </div>
+        </details>
+
+        <p>Our records show these SIC codes for the company:</p>
+
+        <p class="govuk-body-m">
+          <b>82990</b>
+          - Other business support service activities not elsewhere classified<br>
+          <b>82110</b>
+          - Combined office administrative service activities
+        </p>
+
+          {{ govukRadios({
+            classes: "govuk-radios--inline",
+            idPrefix: "sic",
+            name: "sic",
+            errorMessage: sicError,
+            fieldset: {
+              legend: {
+                html: "Are the SIC codes correct?",
+                isPageHeading: false,
+                classes: "govuk-fieldset__legend--l"
+              }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes",
+              checked: true
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

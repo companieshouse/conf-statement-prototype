@@ -8,6 +8,8 @@ const router = govukPrototypeKit.requests.setupRouter()
 
 // Add your routes here
 
+router.use('/', require('./routes/v13-routes.js'))
+
 
 router.get('/', function (req, res) {
   res.render('index')
