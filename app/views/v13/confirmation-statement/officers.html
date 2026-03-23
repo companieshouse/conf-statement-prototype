@@ -1,0 +1,275 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Review the officers
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/phase-banner.html" %}
+  {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-three-quarters">
+
+      <form action="{{currentUrl}}" method="post">
+        <h1 class="govuk-heading-l">Check the director's details</h1>
+
+          <h2 class="govuk-heading-m">1 director</h2>
+
+          <div class="govuk-summary-card govuk-!-margin-bottom-4">
+            <div class="govuk-summary-card_heading govuk-!-padding-top-4 govuk-!-padding-bottom-4 govuk-!-padding-right-3 govuk-!-padding-left-3" style="display: flex; justify-content: space-between; align-items: center">
+              <p class="govuk-!-font-weight-bold govuk-!-margin-0">IRVING, Kyrie</p>
+                {{govukTag({
+                    text: "Active",
+                    classes: "govuk-tag--green"
+                  })}}
+            </div>
+            <div style="display: flex" class="govuk-!-padding-1">
+              <dl style="display: block" class="govuk-summary-list govuk-!-margin-3">
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">Nationality</dt>
+                  <dd class="govuk-summary-list__value">
+                    <p>British</p>
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">Country of residence</dt>
+                  <dd class="govuk-summary-list__value">
+                    <p>United Kingdom</p>
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">Date of birth</dt>
+                  <dd class="govuk-summary-list__value">
+                    <p>1 January 1988</p>
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">Appointment date</dt>
+                  <dd class="govuk-summary-list__value">
+                    <p>20 June 2019</p>
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">Occupation</dt>
+                  <dd class="govuk-summary-list__value">
+                    <p>Director</p>
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">Correspondence address</dt>
+                  <dd class="govuk-summary-list__value">
+                    <p>2 Nets Way, Newcastle, NE2 3BB</p>
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">Usual residential address</dt>
+                  <dd class="govuk-summary-list__value">
+                    <p>2 Nets Way, Newcastle, NE2 3BB</p>
+                  </dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+
+        {{ govukTable({
+          rows: [
+            [
+              {
+                html: directorHTML
+              }
+            ]
+          ]
+        }) }}
+{% if scenario.company.recentFiling === 'yes' %}
+        {% if officers === 'yes' %}
+          {{ govukRadios({
+          classes: "govuk-radios",
+          idPrefix: "officers",
+          name: "officers",
+          errorMessage: directorDetailsError,
+          fieldset: {
+            legend: {
+              html: "Are the director details correct?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+    html: officerHTML
+  },
+          items: [
+            {
+              value: "yes",
+              text: "Yes",
+              checked: true
+            },
+            {
+              value: "no",
+              text: "No"
+            },
+            {
+              value: "yes",
+              text: "No, but an update has been submitted"
+            }
+          ]
+        }) }}
+        {% elseif officers === 'no' %}
+          {{ govukRadios({
+          classes: "govuk-radios",
+          idPrefix: "officers",
+          name: "officers",
+          errorMessage: directorDetailsError,
+          fieldset: {
+            legend: {
+              html: "Are the director details correct?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+    html: officerHTML
+  },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No",
+              checked: true
+            },
+            {
+              value: "yes",
+              text: "No, but an update has been submitted"
+            }
+          ]
+        }) }}
+        {% else %}
+          {{ govukRadios({
+          classes: "govuk-radios",
+          idPrefix: "officers",
+          name: "officers",
+          errorMessage: directorDetailsError,
+          fieldset: {
+            legend: {
+              html: "Are the director details correct?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+    html: officerHTML
+  },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No"
+            },
+            {
+              value: "yes",
+              text: "No, but an update has been submitted"
+            }
+          ]
+        }) }}
+        {% endif %}
+{% else %}
+{% if officers === 'yes' %}
+  {{ govukRadios({
+  classes: "govuk-radios",
+  idPrefix: "officers",
+  name: "officers",
+  errorMessage: directorDetailsError,
+  fieldset: {
+    legend: {
+      html: "Are the director details correct?",
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  hint: {
+html: officerHTML
+},
+  items: [
+    {
+      value: "yes",
+      text: "Yes",
+      checked: true
+    },
+    {
+      value: "no",
+      text: "No"
+    }
+  ]
+}) }}
+{% elseif officers === 'no' %}
+  {{ govukRadios({
+  classes: "govuk-radios",
+  idPrefix: "officers",
+  name: "officers",
+  errorMessage: directorDetailsError,
+  fieldset: {
+    legend: {
+      html: "Are the director details correct?",
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  hint: {
+html: officerHTML
+},
+  items: [
+    {
+      value: "yes",
+      text: "Yes"
+    },
+    {
+      value: "no",
+      text: "No",
+      checked: true
+    }
+  ]
+}) }}
+{% else %}
+  {{ govukRadios({
+  classes: "govuk-radios",
+  idPrefix: "officers",
+  name: "officers",
+  errorMessage: directorDetailsError,
+  fieldset: {
+    legend: {
+      html: "Are the director details correct?",
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  hint: {
+html: officerHTML
+},
+  items: [
+    {
+      value: "yes",
+      text: "Yes"
+    },
+    {
+      value: "no",
+      text: "No"
+    }
+  ]
+}) }}
+{% endif %}
+{% endif %}
+        {{ govukButton({
+text: "Continue"
+}) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

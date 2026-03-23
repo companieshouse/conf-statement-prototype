@@ -278,6 +278,7 @@ router.get('/task-list-external', function (req, res) {
 router.post('/task-list-external', function (req, res) {
   res.redirect('/confirmation-statement/ro')
 })
+
 router.get('/task-list', function (req, res) {
   var completedTasks = req.session.data['completed']
   var email = req.session.data['email']

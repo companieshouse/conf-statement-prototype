@@ -1,0 +1,154 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Review where the company records are held
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/phase-banner.html" %}
+  {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="{{currentUrl}}" method="post">
+
+      <h1 class="govuk-heading-l">Check where the company records are kept</h1>
+
+      {% if registers === 'no' %}
+        {{ govukInsetText({
+        html: "A filing to update these details has been received. You can continue filing this confirmation statement, even if the change is not yet reflected on this page." }) }}
+      {% endif %}
+
+      <div class="govuk-summary-card govuk-!-margin-bottom-4">
+        <div class="govuk-summary-card_heading govuk-!-padding-top-4 govuk-!-padding-bottom-4 govuk-!-padding-right-3 govuk-!-padding-left-3" style="display: flex; justify-content: space-between; align-items: center">
+          <p class="govuk-!-font-weight-bold govuk-!-margin-0">Single alternative inspection location (SAIL)
+          </p>
+      
+        </div>
+        <div style="display: flex" class="govuk-!-padding-1">
+          <dl style="display: block" class="govuk-summary-list govuk-!-margin-3">
+      
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Address
+              </dt>
+              <dd class="govuk-summary-list__value">
+                2 Nets Way, Newcastle, NE2 3BB
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Company records
+              </dt>
+              <dd class="govuk-summary-list__value">
+                <ul class="govuk-list govuk-list--bullet">
+                    <li>Register of people of significant control</li>
+      
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+        
+      <p>Any other company records are kept at the registered office address, or on the public record.</p>
+
+
+        {% if registers === 'yes' %}
+          {{ govukRadios({
+          classes: "govuk-radios",
+          idPrefix: "registers",
+          name: "registers",
+          fieldset: {
+            legend: {
+              html: "Is this where the company records are kept?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes",
+              checked: true
+            },
+            {
+              value: "no",
+              text: "No"
+            },
+            {
+              value: "yes",
+              text: "No, but an update has been submitted"
+            }
+          ]
+        }) }}
+        {% elseif registers === 'no' %}
+          {{ govukRadios({
+          classes: "govuk-radios",
+          idPrefix: "registers",
+          name: "registers",
+          fieldset: {
+            legend: {
+              html: "Is this where the company records are kept?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No",
+              checked: true
+            },
+            {
+              value: "yes",
+              text: "No, but an update has been submitted"
+            }
+          ]
+        }) }}
+        {% else %}
+          {{ govukRadios({
+  classes: "govuk-radios",
+  idPrefix: "registers",
+  name: "registers",
+  fieldset: {
+    legend: {
+      html: "Is this where the company records are kept?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  hint: {
+html: registerHTML
+},
+  items: [
+    {
+      value: "yes",
+      text: "Yes"
+    },
+    {
+      value: "no",
+      text: "No"
+    },
+    {
+      value: "yes",
+      text: "No, but an update has been submitted"
+    }
+  ]
+}) }}
+        {% endif %}
+
+
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+
+
+      </form>
+    </div>
+  </div>
+{% endblock %}

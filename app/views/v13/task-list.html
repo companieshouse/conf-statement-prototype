@@ -13,6 +13,7 @@ Task list
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      {% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
 
       <h1 class="govuk-heading-l">
         {{ serviceName }}
@@ -20,15 +21,52 @@ Task list
 
       <p>
         Check and confirm that the company information we have on record is correct as of
-        DATE.
+        {{ scenario.company.csDate }}.
       </p>
       <p class="govuk-body govuk-!-margin-bottom-7">
-        You have checked 0 of 7 sections
+        {% set result = 0 %}
+
+        {% if data['officers'] == 'yes' %}
+          {% set result = result + 1 %}
+        {% endif %}
+
+        {% if data['psc'] == 'yes' %}
+          {% set result = result + 1 %}
+        {% endif %}
+
+        {% if data['registers'] == 'yes' %}
+          {% set result = result + 1 %}
+        {% endif %}
+
+        {% if data['registered-office-address'] == 'yes' %}
+          {% set result = result + 1 %}
+        {% endif %}
+
+        {% if data['statement-of-capital'] == 'yes' %}
+          {% set result = result + 1 %}
+        {% endif %}
+
+        {% if data['shareholders'] == 'yes' %}
+          {% set result = result + 1 %}
+        {% endif %}
+
+        {% if data['sic'] == 'yes' %}
+          {% set result = result + 1 %}
+        {% endif %}
+
+        {% if additionalMembers === 'no' %}
+          {% set result = result + 1 %}
+        {% endif %}
+
+        You have checked
+          {{result}}
+        of 7 sections
       </p>
 
       <ol class="app-task-list">
         <li>
           <h2 class="app-task-list__section">
+
             Nature of business
           </h2>
           <ul class="app-task-list__items">
@@ -40,8 +78,11 @@ Task list
               </span>
               {% if data['sic'] == 'yes' %}
                 <strong class="govuk-tag app-task-list__tag">
-                  Checked
-                </strong>
+                  Checked</strong>
+
+              {% elif data['sic'] == 'no' %}
+                <strong class="govuk-tag govuk-tag--blue app-task-list__tag"><a href="./confirmation-statement/sic" class="govuk-link govuk-link--no-underline">Ready to continue</a></strong>
+
               {% else %}
                 <strong class="govuk-tag govuk-tag--grey app-task-list__tag">Not checked</strong>
               {% endif %}
@@ -52,11 +93,12 @@ Task list
                   Statement of capital
                 </a>
               </span>
-              {% if statementOfCapital === 'yes' %}
+
+              {% if data['statement-of-capital'] == 'yes' %}
                 <strong class="govuk-tag app-task-list__tag">
                   Checked</strong>
-              {% elif statementOfCapital === 'no' %}
-                <strong class="govuk-tag govuk-tag--blue app-task-list__tag"><a href="/confirmation-statement/statement-of-capital" class="govuk-link govuk-link--no-underline">Ready to continue</a></strong>
+              {% elif data['statement-of-capital'] == 'no' %}
+                <strong class="govuk-tag govuk-tag--blue app-task-list__tag"><a href="./confirmation-statement/statement-of-capital" class="govuk-link govuk-link--no-underline">Ready to continue</a></strong>
               {% else %}
                 <strong class="govuk-tag govuk-tag--grey app-task-list__tag">Not checked</strong>
               {% endif %}
@@ -66,20 +108,23 @@ Task list
 
         <li>
           <h2 class="app-task-list__section">
+
             People
           </h2>
           <ul class="app-task-list__items">
             <li class="app-task-list__item">
               <span class="app-task-list__task-name">
-                <a href="/confirmation-statement/officers">
+                <a href="./confirmation-statement/officers">
                   Officers
                 </a>
               </span>
-              {% if officers === 'yes' %}
+              {% if data['officers'] == 'yes' %}
                 <strong class="govuk-tag app-task-list__tag">
                   Checked</strong>
+
               {% elseif additionalDirectors === 'yes' or officers === 'no' or activeDirectors === 'no' %}
-                <strong class="govuk-tag govuk-tag--blue app-task-list__tag"><a href="/confirmation-statement/officers" class="govuk-link govuk-link--no-underline">Ready to continue</a></strong>
+                <strong class="govuk-tag govuk-tag--blue app-task-list__tag"><a href="./confirmation-statement/officers" class="govuk-link govuk-link--no-underline">Ready to continue</a></strong>
+
               {% else %}
                 <strong class="govuk-tag govuk-tag--grey app-task-list__tag">Not checked</strong>
               {% endif %}
@@ -87,89 +132,76 @@ Task list
 
             <li class="app-task-list__item">
               <span class="app-task-list__task-name">
-              {% if scenario.company.tradingStatus === '1' %}
-                  <a href="/confirmation-statement/people-with-significant-control">
+                  <a href="./confirmation-statement/people-with-significant-control">
                     People with significant control (PSCs)
                   </a>
                 </span>
-                {% if pscStatement === 'yes' %}
+                {% if data['psc'] == 'yes' %}
                   <strong class="govuk-tag app-task-list__tag">
                     Checked</strong>
                 {% elseif psc === 'no' or pscStatement === 'no' %}
-                  <strong class="govuk-tag govuk-tag--blue app-task-list__tag"><a href="/confirmation-statement/people-with-significant-control" class="govuk-link govuk-link--no-underline">Ready to continue</a></strong>
+                  <strong class="govuk-tag govuk-tag--blue app-task-list__tag"><a href="./confirmation-statement/people-with-significant-control" class="govuk-link govuk-link--no-underline">Ready to continue</a></strong>
                 {% else %}
                   <strong class="govuk-tag govuk-tag--grey app-task-list__tag">Not checked</strong>
                 {% endif %}
-              {% elseif trading === '2' %}
-                <a href="/psc-exemption">
-                  People with significant control (PSC)
-                </a>
-              </span>
-                {% if exemption === 'no' and psc === 'yes' %}
-                <strong class="govuk-tag app-task-list__tag">
-                  Checked</strong>
-                {% elseif exemption === 'no' and additionalPscs === 'yes' or psc === 'no' or activePSCs === 'no' %}
-                <strong class="govuk-tag govuk-tag--blue app-task-list__tag"><a href="/confirmation-statement/people-with-significant-control" class="govuk-link govuk-link--no-underline">Ready to continue</a></strong>
-                {% elseif exemption === 'yes' %}
-                <strong class="govuk-tag app-task-list__tag">
-                  Checked</strong>
-                {% else %}
-                <strong class="govuk-tag govuk-tag--grey app-task-list__tag">Not checked</strong>
-                {% endif %}
+            </li>
+
+          <li class="app-task-list__item">
+            <span class="app-task-list__task-name">
+              <a href="./confirmation-statement/shareholders">
+                Shareholders
+              </a>
+            </span>
+            {% if data['shareholders'] == 'yes' %}
+              <strong class="govuk-tag app-task-list__tag">
+                Checked</strong>
+
+            {% elif data['shareholders'] == 'no' %}
+              <strong class="govuk-tag govuk-tag--blue app-task-list__tag"><a href="./confirmation-statement/shareholders" class="govuk-link govuk-link--no-underline">Ready to continue</a></strong>
+
+            {% else %}
+              <strong class="govuk-tag govuk-tag--grey app-task-list__tag">Not checked</strong>
             {% endif %}
-            </li>
-
-            <li class="app-task-list__item">
-              <span class="app-task-list__task-name">
-                <a href="/confirmation-statement/shareholders">
-                  Shareholders
-                </a>
-              </span>
-              {% if shareholders === 'yes' %}
-                <strong class="govuk-tag app-task-list__tag">
-                  Checked</strong>
-
-              {% elif shareholders === 'no' %}
-                <strong class="govuk-tag govuk-tag--blue app-task-list__tag"><a href="/confirmation-statement/shareholders" class="govuk-link govuk-link--no-underline">Ready to continue</a></strong>
-
-              {% else %}
-                <strong class="govuk-tag govuk-tag--grey app-task-list__tag">Not checked</strong>
-              {% endif %}
-            </li>
+          </li>
           </ul>
         </li>
 
         <li>
           <h2 class="app-task-list__section">
+
             Addresses
           </h2>
           <ul class="app-task-list__items">
             <li class="app-task-list__item">
               <span class="app-task-list__task-name">
-                <a href="/confirmation-statement/ro" aria-describedby="company-information-status">
+                <a href="./confirmation-statement/ro" aria-describedby="company-information-status">
                   Registered office address
                 </a>
               </span>
-              {% if ro === 'yes' %}
+              {% if data['registered-office-address'] == 'yes' %}
                 <strong class="govuk-tag app-task-list__tag">
                   Checked</strong>
-              {% elseif ro === 'no' %}
-                <strong class="govuk-tag govuk-tag--blue app-task-list__tag">  <a href="/confirmation-statement/ro" class="govuk-link govuk-link--no-underline">Ready to continue</a></strong>
+
+              {% elif data['registered-office-address'] == 'no' %}
+                <strong class="govuk-tag govuk-tag--blue app-task-list__tag">  <a href="./confirmation-statement/ro" class="govuk-link govuk-link--no-underline">Ready to continue</a></strong>
+
               {% else %}
                 <strong class="govuk-tag govuk-tag--grey app-task-list__tag">Not checked</strong>
               {% endif %}
             </li>
             <li class="app-task-list__item">
               <span class="app-task-list__task-name">
-                <a href="/confirmation-statement/registers">
+                <a href="./confirmation-statement/registers">
                   Register locations
                 </a>
               </span>
-              {% if register === 'yes' %}
+              {% if data['registers'] == 'yes' %}
                 <strong class="govuk-tag app-task-list__tag">
                   Checked</strong>
-              {% elseif register === 'no' %}
-                <strong class="govuk-tag govuk-tag--blue app-task-list__tag"><a href="/confirmation-statement/registers" class="govuk-link govuk-link--no-underline">Ready to continue</a></strong>
+
+              {% elif data['registers'] == 'no' %}
+                <strong class="govuk-tag govuk-tag--blue app-task-list__tag"><a href="./confirmation-statement/registers" class="govuk-link govuk-link--no-underline">Ready to continue</a></strong>
+
               {% else %}
                 <strong class="govuk-tag govuk-tag--grey app-task-list__tag">Not checked</strong>
               {% endif %}
@@ -185,22 +217,20 @@ Task list
             <li class="app-task-list__item">
               <span class="app-task-list__task-name">
               {% if result === 7 %}
-                {% if scenario.company.csDue === 'notdue' %}
-                  <a href="/confirmation-statement/review">Submit</a>
-                {% else %}
-                  <a href="/confirmation-statement/review">Submit</a>
-                {% endif %}
+                  <a href="./confirmation-statement/review">Submit</a>
               </span>
-              <strong class="govuk-tag govuk-tag--grey app-task-list__tag" id="submit-pay-status">Not started</strong>
+                <strong class="govuk-tag govuk-tag--grey app-task-list__tag" id="submit-pay-status">Not started</strong>
               {% else %}
                 Submit
               </span>
               <strong class="govuk-tag govuk-tag--grey app-task-list__tag" id="submit-pay-status">Cannot start yet</strong>
-              {% endif %}
-            </li>
-          </ul>
+            {% endif %}
+
+          </li>
+        </ul>
         </li>
       </ol>
     </div>
   </div>
+
 {% endblock %}

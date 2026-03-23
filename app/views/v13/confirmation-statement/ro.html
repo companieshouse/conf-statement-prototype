@@ -1,7 +1,7 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-Review the statement of capital
+Review the registered office address
 {% endblock %}
 
 {% block beforeContent %}
@@ -9,25 +9,30 @@ Review the statement of capital
   {% include "includes/back-link.html" %}
 {% endblock %}
 
+{% extends "layouts/main.html" %}
+
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
       <form action="{{currentUrl}}" method="post">
 
-        <h1 class="govuk-heading-l">Check the statement of capital</h1>
-        {% include "includes/confirmation-statement-details/statement-of-capital.html" %}
+        <h1 class="govuk-heading-l">Check the registered office address</h1>
 
-        {% if statementOfCapital === 'yes' %}
+        <p>
+          <p>125 Feather Hedge</br>Salisbury</br>SP4 7DE</p>
+        </p>
+
+        {% if ro === 'yes' %}
           {{ govukRadios({
           classes: "govuk-radios",
-          idPrefix: "statement-of-capital",
-          name: "statement-of-capital",
-          errorMessage: statementOfCapitalError,
+          idPrefix: "registered-office-address",
+          name: "registered-office-address",
+          errorMessage: roError,
           fieldset: {
             legend: {
-              html: "Is the statement of capital correct?",
-              isPageHeading: false,
+              html: "Is the registered office address correct?",
+              isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
@@ -47,16 +52,16 @@ Review the statement of capital
             }
           ]
         }) }}
-        {% elseif statementOfCapital === 'no' %}
+        {% elseif ro === 'no' %}
           {{ govukRadios({
           classes: "govuk-radios",
-          idPrefix: "statement-of-capital",
-          name: "statement-of-capital",
-          errorMessage: statementOfCapitalError,
+          idPrefix: "registered-office-address",
+          name: "registered-office-address",
+          errorMessage: roError,
           fieldset: {
             legend: {
-              html: "Is the statement of capital correct?",
-              isPageHeading: false,
+              html: "Is the registered office address correct?",
+              isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
@@ -79,13 +84,13 @@ Review the statement of capital
         {% else %}
           {{ govukRadios({
           classes: "govuk-radios",
-          idPrefix: "statement-of-capital",
-          name: "statement-of-capital",
-          errorMessage: statementOfCapitalError,
+          idPrefix: "registered-office-address",
+          name: "registered-office-address",
+          errorMessage: roError,
           fieldset: {
             legend: {
-              html: "Is the statement of capital correct?",
-              isPageHeading: false,
+              html: "Is the registered office address correct?",
+              isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
@@ -106,9 +111,10 @@ Review the statement of capital
         }) }}
         {% endif %}
 
-        {{ govukButton({
-text: "Continue"
-}) }}
+  {{ govukButton({
+    text: "Continue"
+  }) }}
+
       </form>
     </div>
   </div>
