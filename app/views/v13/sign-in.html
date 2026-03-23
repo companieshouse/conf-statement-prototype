@@ -13,25 +13,21 @@
     <div class="govuk-grid-column-one-half">
       <h1 class="govuk-heading-xl">Sign in to Companies House</h1>
       <p class="govuk-hint-text">You cannot use your WebFiling details to sign in. You must sign in to or register a Companies House account.</p>
+      
       <form action="{{currentUrl}}" method="post">
-          {{ govukInput({
-            label: {
-              text: "Email address"
-            },
-            id: "email",
-            name: "email",
-            value: email
-          }) }}
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="email">
+            Email address
+          </label>
+          <input class="govuk-input" id="email" name="email" type="text">
+        </div>
 
-          {{ govukInput({
-            label: {
-              text: "Password"
-            },
-            id: "password",
-            name: "password",
-            type: 'password',
-            value: password
-          }) }}
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="password">
+            Password
+          </label>
+          <input class="govuk-input" id="password" name="password" type="text">
+        </div>
 
         {{ govukButton({
           text: "Sign in"

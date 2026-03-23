@@ -17,19 +17,8 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {% set fileByPostHTML %}
-      <p>You can also file a confirmation statement by post using the
-        <a href="https://www.gov.uk/government/publications/confirmation-statement-cs01">CS01 paper form</a>. It costs £40 and will take longer to process than if you file online.</p>
-      {% endset %}
-
-      {% set insetHTML %}
-      <p>Your WebFiling details will not work with this service. You will need to register a Companies House account if you do not already have one, which you can do within this service.</p>
-      {% endset %}
-
       <h1 class="govuk-heading-xl">
-        {% if serviceName %}
-          {{ serviceName }}
-        {% endif %}
+        {{ serviceName }}
       </h1>
 
       <p class="govuk-body-l">This service allows private limited companies to confirm that company information is correct and file a confirmation statement (previously known as an annual return).</p>
@@ -57,9 +46,9 @@
         <li>to pay the £13 annual fee using a credit or debit card, or Companies House account</li>
       </ul>
 
-      {{ govukInsetText({
-        html: insetHTML
-      }) }}
+      <div class="govuk-inset-text">
+        <p>Your WebFiling details will not work with this service. You will need to register a Companies House account if you do not already have one, which you can do within this service.</p>
+      </div>
 
       <p>It can take up to 15 minutes to file a confirmation statement. The service will time out after 60 minutes and your answers will not be saved.</p>
 
@@ -76,10 +65,19 @@
         <a href="https://www.gov.uk/guidance/confirmation-statement-guidance">Read the guidance on filing a confirmation statement</a>, including how to make changes to your company information.
       </p>
 
-      {{ govukDetails({
-      summaryText: "Other ways to file a confirmation statement",
-      html: fileByPostHTML
-      }) }}
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Other ways to file a confirmation statement
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <p>You can also file a confirmation statement by post using the
+            <a href="https://www.gov.uk/government/publications/confirmation-statement-cs01">CS01 paper form</a>. 
+            It costs £40 and will take longer to process than if you file online.
+          </p>
+        </div>
+      </details>
 
     </div>
   </div>

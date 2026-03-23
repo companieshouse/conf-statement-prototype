@@ -51,7 +51,7 @@ router.get('/v13/confirm-company', function (req, res) {
 })
 
 router.post('/v13/confirm-company', function (req, res) {
-  res.redirect('/v13/authenticate')
+  res.redirect('/v13/company-number-error')
 })
 
 
