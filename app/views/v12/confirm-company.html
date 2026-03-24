@@ -1,0 +1,127 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Confirm the company
+{% endblock %}
+
+{% block signOut %}
+{% endblock %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/v12/company-number"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">Confirm this is the correct company {{scenario.company.number}}</h1>
+      <h2 class="govuk-heading-l">{{scenario.company.name}}</h2>
+      <form action="" method="post">
+
+        {% set notDueWarningHTML %}
+        <p>
+          You are not due to file a confirmation statement. If you file a confirmation statement today, it will show the date as
+          <b>19 March 2025</b>
+          and this will change your future review periods.
+          <br><br>You will not need to pay a fee if you file your confirmation statement before
+          <b>{{scenario.company.csDueDate}}</b>.
+          <br><br>
+          <a href="https://www.youtube.com/watch?v=dxN4djaAE3k">This video explains review periods and payment periods (opens in new tab).</a>
+        </p>
+        {% endset %}
+
+        {% set coTypeWarningHTML %}
+          This company does not meet all the criteria, you will need to file a confirmation statement using our
+          <a href="https://ewf.companieshouse.gov.uk//seclogin?tc=1">WebFiling service</a>.<br><br>
+          This service can only be used to file confirmation statements for private limited companies of a certain size.
+        {% endset %}
+
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Company number
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{scenario.company.number}}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Status
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{scenario.company.status}}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Incorporation date
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{scenario.company.incorporationDate}}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Company type
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{scenario.company.companyType}}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Date of next confirmation statement
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{scenario.company.csDate}}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              To be filed by
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{scenario.company.csDueDate}}
+            </dd>
+          </div>
+        </dl>
+
+
+        {% if scenario.company.csDue === "notdue" %}
+          {{ govukWarningText({
+            html: notDueWarningHTML,
+            iconFallbackText: "Warning"
+          }) }}
+        {% else %}
+        {% endif %}
+
+        {% if scenario.company.type === "PLC" %}
+          {{ govukWarningText({
+          html: coTypeWarningHTML,
+          iconFallbackText: "Warning"
+        }) }}
+        {% else %}
+        {% endif %}
+        
+        {% if scenario.company.type === 'PLC' %}
+          {{ govukButton({
+          text: "Confirm and continue",
+          href: "/v12/use-webfiling"
+          }) }}
+        {% else %}
+          {{ govukButton({
+          text: "Confirm and continue",
+          href: "/v12/authenticate"
+          }) }}
+        {% endif %}
+        <p>
+          <a href="/v12/company-number">Choose a different company</a>
+        </p>
+      </form>
+    </div>
+  </div>
+{% endblock %}

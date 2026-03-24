@@ -1,0 +1,80 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  File a confirmation statement - Companies House
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+{{ govukHeader() }}
+{% endblock %}
+{% block signOut %}{% endblock %}
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% set fileByPostHTML %}
+      <p>You can also file a confirmation statement by post using the
+        <a href="https://www.gov.uk/government/publications/confirmation-statement-cs01">CS01 paper form</a>. It costs £40 and will take longer to process than if you file online.</p>
+      {% endset %}
+
+      {% set insetHTML %}
+      <p>Your WebFiling details will not work with this service. You will need to register a Companies House account if you do not already have one, which you can do within this service.</p>
+      {% endset %}
+
+      <h1 class="govuk-heading-xl">
+        {% if serviceName %}
+          {{ serviceName }}
+        {% endif %}
+      </h1>
+
+      <p class="govuk-body-l">This service allows private limited companies to confirm that company information is correct and file a confirmation statement (previously known as an annual return).</p>
+      <p class="govuk-body govuk-!-font-weight-bold">You can only use this service if the company:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>is a private company limited by shares</li>
+        <li>has only one shareholder</li>
+        <li>has between 1 and 5 officers</li>
+        <li>has 5 people with significant control (PSCs) or less</li>
+      </ul>
+      <p>If the company does not meet these criteria, you will need to file a confirmation statement using our
+        <a href="https://ewf.companieshouse.gov.uk//seclogin?tc=1">WebFiling service</a>.</p>
+
+      <p>You cannot use this service to make any changes to company information. You should
+        <a href="https://find-and-update.company-information.service.gov.uk/?_ga=2.234418846.1677422186.1609766992-866947589.1602497498">check the company's details</a>
+        and update any information that is incorrect or out of date before filing the confirmation statement.
+
+        <p class="govuk-body govuk-!-font-weight-bold">To file a confirmation statement, you'll need:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>a Companies House account, which is different from a WebFiling account</li>
+          <li>the company number</li>
+          <li>the company authentication code</li>
+          <li>to pay the £13 annual fee using a credit or debit card, or Companies House account</li>
+        </ul>
+
+        {{ govukInsetText({
+          html: insetHTML
+        }) }}
+
+<p>It can take up to 15 minutes to file a confirmation statement. The service will time out after 60 minutes and your answers will not be saved.</p>
+
+        <a href="/v12/sign-in" role="button" draggable="false" class="govuk-button govuk-button--start govuk-!-margin-top-2 govuk-!-margin-bottom-8" data-module="govuk-button">
+          Start now
+          <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewbox="0 0 33 40" role="presentation" focusable="false">
+            <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"></path>
+          </svg>
+        </a>
+
+        <h2 class="govuk-heading-m">Before you start</h2>
+
+        <p>
+          <a href="https://www.gov.uk/guidance/confirmation-statement-guidance">Read the guidance on filing a confirmation statement</a>, including how to make changes to your company information.</p>
+
+        {{ govukDetails({
+        summaryText: "Other ways to file a confirmation statement",
+        html: fileByPostHTML
+      }) }}
+
+      </div>
+    </div>
+
+  {% endblock %}

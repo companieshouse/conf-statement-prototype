@@ -1,0 +1,110 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Review the shareholders
+{% endblock %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/v12/task-list"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="" method="post">
+
+        <h1 class="govuk-heading-xl">Check the shareholder details</h1>
+
+        {% if scenario.company.shareholders === '1' %}
+          <h2 class="govuk-heading-m">1 shareholder</h2>
+        {% else %}
+          <h2 class="govuk-heading-m">{{scenario.company.shareholders}}
+            shareholders</h2>
+        {% endif %}
+        {% include "includes/confirmation-statement-details/shareholders.html" %}
+
+
+        {% if shareholders === 'yes' %}
+          {{ govukRadios({
+          classes: "govuk-radios--inline",
+          idPrefix: "shareholders",
+          name: "shareholders",
+          fieldset: {
+            legend: {
+              html: "Are the shareholder details correct?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes",
+              checked: true
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+        {% elseif shareholder === 'no' %}
+          {{ govukRadios({
+          classes: "govuk-radios--inline",
+          idPrefix: "shareholders",
+          name: "shareholders",
+          fieldset: {
+            legend: {
+              html: "Are the shareholder details correct?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No",
+              checked: true
+            }
+          ]
+        }) }}
+        {% else %}
+          {{ govukRadios({
+          classes: "govuk-radios--inline",
+          idPrefix: "shareholders",
+          name: "shareholders",
+          fieldset: {
+            legend: {
+              html: "Are the shareholder details correct?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+        {% endif %}
+
+        {{ govukButton({
+text: "Continue"
+}) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

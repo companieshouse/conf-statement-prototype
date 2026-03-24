@@ -1,0 +1,62 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Company trading details
+{% endblock %}
+{% block signOut %}{% endblock %}
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/v12/trading-status"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% set dtrDetails %}
+      <p>DTR5 refers to Vote Holder and Issuer Notification Rules in
+        <a href="https://www.handbook.fca.org.uk/handbook/DTR/5.pdf">Chapter 5 of the Financial Conduct Authority's Disclosure and Transparency Rules</a>.</p>
+      <p>It applies to UK companies with shares traded on a market. Under DTR5, shareholders must notify the company if their shareholding reaches or falls below certain percentage thresholds (starting at 3%).</p>
+      {% endset %}
+
+      <form action="" method="post">
+        <h1 class="govuk-heading-xl">Check the DTR5 status</h1>
+                {{ govukDetails({
+                  summaryText: "What is DTR5?",
+                  html: dtrDetails
+                }) }}
+                <p>The company has not been subject to DTR5 throughout this confirmation period</p>
+        {{ govukRadios({
+          classes: "govuk-radios--inline",
+          idPrefix: "trading-dtr5",
+          name: "trading-dtr5",
+          fieldset: {
+            legend: {
+              text: "Is the DTR5 status correct?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+
+
+        {{ govukButton({
+text: "Continue"
+}) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

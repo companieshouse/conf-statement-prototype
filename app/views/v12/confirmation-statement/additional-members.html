@@ -1,0 +1,108 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Review the members
+{% endblock %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/v12/confirmation-statement/members"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-three-quarters">
+
+      <form action="" method="post">
+
+        {% if additionalMembers === 'yes' %}
+          {{ govukRadios({
+          classes: "govuk-radios--inline",
+          idPrefix: "additional-members",
+          name: "additional-members",
+          fieldset: {
+            legend: {
+              html: "Are there any members to appoint?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+    text: "This includes directors, corporate directors, secretaries and corporate secretaries."
+  },
+          items: [
+            {
+              value: "yes",
+              text: "Yes",
+              checked: true
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+        {% elseif additionalMembers === 'no' %}
+          {{ govukRadios({
+          classes: "govuk-radios--inline",
+          idPrefix: "additional-members",
+          name: "additional-members",
+          fieldset: {
+            legend: {
+              html: "Are there any members to appoint?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+    text: "This includes all types of members."
+  },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No",
+              checked: true
+            }
+          ]
+        }) }}
+        {% else %}
+          {{ govukRadios({
+          classes: "govuk-radios--inline",
+          idPrefix: "additional-members",
+          name: "additional-members",
+          fieldset: {
+            legend: {
+              html: "Are there any members to appoint?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+    text: "This includes all types of members."
+  },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+        {% endif %}
+
+        {{ govukButton({
+text: "Continue"
+}) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

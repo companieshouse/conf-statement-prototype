@@ -1,0 +1,224 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+{% if errorList.length > 0 %}
+  Error:
+{% endif %}  Review the directors
+{% endblock %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/v12/confirmation-statement/officers"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-three-quarters">
+
+      <form action="" method="post">
+
+        {% if errorList.length > 0 %}
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: [
+            {
+              text: "Select no if there are no directors to appoint",
+              href: "#additional-directors"
+            }
+          ]
+        }) }}
+        {% endif %}
+
+{% if scenario.company.recentFiling === 'yes' %}
+        {% if additionalDirectors === 'yes' %}
+          {{ govukRadios({
+          classes: "govuk-radios",
+          idPrefix: "additional-directors",
+          name: "additional-directors",
+          errorMessage: additionalDirectorsError,
+          fieldset: {
+            legend: {
+              html: "Are there any directors to appoint?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+    text: "This includes directors, corporate directors, secretaries and corporate secretaries."
+  },
+          items: [
+            {
+              value: "no",
+              text: "No",
+              checked: true
+            },
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "Yes, but I've recently filed an update"
+            }
+          ]
+        }) }}
+        {% elseif additionalDirectors === 'no' %}
+          {{ govukRadios({
+          classes: "govuk-radios",
+          idPrefix: "additional-directors",
+          name: "additional-directors",
+          errorMessage: additionalDirectorsError,
+          fieldset: {
+            legend: {
+              html: "Are there any directors to appoint?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+    text: "This includes directors, corporate directors, secretaries and corporate secretaries."
+  },
+          items: [
+            {
+              value: "no",
+              text: "No"
+            },
+            {
+              value: "yes",
+              text: "Yes",
+              checked: true
+            },
+            {
+              value: "no",
+              text: "Yes, but I've recently filed an update"
+            }
+          ]
+        }) }}
+        {% else %}
+          {{ govukRadios({
+          classes: "govuk-radios",
+          idPrefix: "additional-directors",
+          name: "additional-directors",
+          errorMessage: additionalDirectorsError,
+          fieldset: {
+            legend: {
+              html: "Are there any directors to appoint?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+    text: "This includes directors, corporate directors, secretaries and corporate secretaries."
+  },
+          items: [
+            {
+              value: "no",
+              text: "No"
+            },
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "Yes, but I've recently filed an update"
+            }
+          ]
+        }) }}
+        {% endif %}
+        {% else %}
+        {% if additionalDirectors === 'yes' %}
+          {{ govukRadios({
+          classes: "govuk-radios",
+          idPrefix: "additional-directors",
+          name: "additional-directors",
+          errorMessage: additionalDirectorsError,
+          fieldset: {
+            legend: {
+              html: "Are there any directors to appoint?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+    text: "This includes directors, corporate directors, secretaries and corporate secretaries."
+  },
+          items: [
+            {
+              value: "yes",
+              text: "Yes",
+              checked: true
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+        {% elseif additionalDirectors === 'no' %}
+          {{ govukRadios({
+          classes: "govuk-radios",
+          idPrefix: "additional-directors",
+          name: "additional-directors",
+          errorMessage: additionalDirectorsError,
+          fieldset: {
+            legend: {
+              html: "Are there any directors to appoint?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+    text: "This includes directors, corporate directors, secretaries and corporate secretaries."
+  },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No",
+              checked: true
+            }
+          ]
+        }) }}
+        {% else %}
+          {{ govukRadios({
+          classes: "govuk-radios",
+          idPrefix: "additional-directors",
+          name: "additional-directors",
+          errorMessage: additionalDirectorsError,
+          fieldset: {
+            legend: {
+              html: "Are there any directors to appoint?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+    text: "This includes directors, corporate directors, secretaries and corporate secretaries."
+  },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+        {% endif %}
+        {% endif %}
+
+        {{ govukButton({
+text: "Continue"
+}) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

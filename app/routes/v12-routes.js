@@ -1,15 +1,19 @@
-//
-// For guidance on how to create routes see:
-// https://prototype-kit.service.gov.uk/docs/create-routes
-//
-
 const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
 
-// Add your routes here
 
-router.use('/', require('./routes/v13-routes.js'))
-router.use('/', require('./routes/v12-routes.js'))
+module.exports=router;
+
+// Show session data and URLs in the terminal  
+router.use((req, res, next) => {  
+  const log = {  
+    method: req.method,  
+    url: req.originalUrl,  
+    data: req.session.data  
+  }  
+  console.log(JSON.stringify(log, null, 2))  
+  next()  
+}) 
 
 
 router.get('/', function (req, res) {
@@ -17,178 +21,181 @@ router.get('/', function (req, res) {
 })
 // filter journey
 
-router.get('/start-2', function (req, res) {
-  res.render('start-2')
+router.get('/v12/start-2', function (req, res) {
+  res.render('v12/start-2')
 })
-router.post('/start-2', function (req, res) {
-  res.redirect('/sign-in')
+router.post('/v12/start-2', function (req, res) {
+  res.redirect('/v12/sign-in')
 })
 
-router.get('/limited-company', function (req, res) {
-  res.render('limited-company')
+
+router.get('/v12/limited-company', function (req, res) {
+  res.render('v12/limited-company')
 })
-router.post('/limited-company', function (req, res) {
+router.post('/v12/limited-company', function (req, res) {
   var limitedCompany = req.session.data['limited-company']
 
   switch (limitedCompany) {
     case 'yes':
-      res.redirect('/more-than-5-officers')
+      res.redirect('/v12/more-than-5-officers')
       break
     case 'no':
-      res.redirect('/use-webfiling')
+      res.redirect('/v12/use-webfiling')
       break
   }
 })
 
-router.get('/more-than-5-officers', function (req, res) {
-  res.render('more-than-5-officers')
+
+router.get('/v12/more-than-5-officers', function (req, res) {
+  res.render('v12/more-than-5-officers')
 })
-router.post('/more-than-5-officers', function (req, res) {
+router.post('/v12/more-than-5-officers', function (req, res) {
   var fiveOfficers = req.session.data['5-officers']
 
   switch (fiveOfficers) {
     case 'moreThan6':
-      res.redirect('/use-webfiling')
+      res.redirect('/v12/use-webfiling')
       break
     case 'upTo5':
-      res.redirect('/more-than-5-shareholders')
+      res.redirect('/v12/more-than-5-shareholders')
       break
   }
 })
 
-router.get('/more-than-5-shareholders', function (req, res) {
-  res.render('more-than-5-shareholders')
+
+
+router.get('/v12/more-than-5-shareholders', function (req, res) {
+  res.render('v12/more-than-5-shareholders')
 })
-router.post('/more-than-5-shareholders', function (req, res) {
+router.post('/v12/more-than-5-shareholders', function (req, res) {
   var fiveShareholders = req.session.data['5-shareholders']
 
   switch (fiveShareholders) {
     case 'moreThan6':
-      res.redirect('/use-webfiling')
+      res.redirect('/v12/use-webfiling')
       break
     case 'upTo5':
-      res.redirect('/sign-in')
+      res.redirect('/v12/sign-in')
       break
   }
 })
 
+
+
 // standard journey
-router.get('/recognised-user', function (req, res) {
+router.get('/v12/recognised-user', function (req, res) {
   var scenario = req.session.scenario
-  var moment = require('moment') // require
 
-  res.render('recognised-user', {
-    scenario: scenario,
-    moment: moment().format('D MMMM yyy')
+  res.render('v12/recognised-user', {
+    scenario: scenario
   })
 })
 
 
 
-router.get('/your-filings', function (req, res) {
+router.get('/v12/your-filings', function (req, res) {
   var scenario = req.session.scenario
-  var moment = require('moment') // require
 
-  res.render('your-filings', {
-    scenario: scenario,
-    moment: moment().format('D MMMM yyy h:mm a')
+  res.render('v12/your-filings', {
+    scenario: scenario
   })
 })
 
 
 
-router.get('/start', function (req, res) {
-  res.render('start')
+router.get('/v12/start', function (req, res) {
+  res.render('v12/start')
 })
-router.post('/start', function (req, res) {
-  res.redirect('/sign-in')
-})
-
-
-
-router.get('/sign-in', function (req, res) {
-  res.render('sign-in')
+router.post('/v12/start', function (req, res) {
+  res.redirect('/v12/sign-in')
 })
 
-router.post('/sign-in', function (req, res) {
+
+
+router.get('/v12/sign-in', function (req, res) {
+  res.render('v12/sign-in')
+})
+
+router.post('/v12/sign-in', function (req, res) {
   var email = req.session.data['email']
-  res.redirect('/company-number')
+  res.redirect('/v12/company-number')
 })
 
 
 
-router.get('/company-number', function (req, res) {
-  res.render('company-number')
+router.get('/v12/company-number', function (req, res) {
+  res.render('v12/company-number')
 })
 
-router.post('/company-number', function (req, res) {
+router.post('/v12/company-number', function (req, res) {
   var companyNumber = req.session.data['company-number']
-  req.session.scenario = require('../app/data/scenarios/' + companyNumber)
-  res.redirect('/confirm-company')
+  req.session.scenario = require('../../app/data/scenarios/' + companyNumber)
+  res.redirect('/v12/confirm-company')
 })
 
 
 
-router.get('/confirm-company', function (req, res) {
+router.get('/v12/confirm-company', function (req, res) {
   var scenario = req.session.scenario
-  res.render('confirm-company', {
+  res.render('v12/confirm-company', {
     scenario: scenario
   })
 })
 
-router.post('/confirm-company', function (req, res) {
-  res.redirect('/authenticate')
+router.post('/v12/confirm-company', function (req, res) {
+  res.redirect('/v12/authenticate')
 })
 
 
 
-router.get('/co-not-supported-use-webfiling', function (req, res) {
+router.get('/v12/co-not-supported-use-webfiling', function (req, res) {
   var scenario = req.session.scenario
-  res.render('co-not-supported-use-webfiling', {
+  res.render('v12/co-not-supported-use-webfiling', {
     scenario: scenario
   })
 })
 
 
-router.get('/paper-filing', function (req, res) {
-  res.render('paper-filing', {
+router.get('/v12/paper-filing', function (req, res) {
+  res.render('v12/paper-filing', {
     scenario: req.session.scenario
   })
 })
 
 
 
-router.get('/authenticate', function (req, res) {
-  res.render('authenticate', {
+router.get('/v12/authenticate', function (req, res) {
+  res.render('v12/authenticate', {
     scenario: req.session.scenario
   })
 })
 
-router.post('/authenticate', function (req, res) {
+router.post('/v12/authenticate', function (req, res) {
   var authCode = req.body.authCode
   var scenario = req.session.scenario
 
   authCode = authCode.toUpperCase()
 
   if (scenario.company.type === 'LLP') {
-    res.redirect('/task-list')
+    res.redirect('/v12/task-list')
   } else {
-    res.redirect('/check-trading-status')
+    res.redirect('/v12/check-trading-status')
   }
 })
 
 
 
-router.get('/check-trading-status', function (req, res) {
+router.get('/v12/check-trading-status', function (req, res) {
   var scenario = req.session.scenario
   var tradingStatus = req.session.data['trading-status']
 
-  res.render('check-trading-status', {
+  res.render('v12/check-trading-status', {
     scenario: scenario,
     tradingStatus: tradingStatus
   })
 })
-router.post('/check-trading-status', function (req, res) {
+
+router.post('/v12/check-trading-status', function (req, res) {
   var scenario = req.session.scenario
   var tradingStatus = req.session.data['trading-status']
   var errorFlag = false
@@ -206,7 +213,7 @@ router.post('/check-trading-status', function (req, res) {
     errorFlag = true
   }
   if (errorFlag === true) {
-    res.render('check-trading-status', {
+    res.render('v12/check-trading-status', {
       scenario: scenario,
       tradingStatus: tradingStatus,
       errorList: errorList,
@@ -217,55 +224,55 @@ router.post('/check-trading-status', function (req, res) {
   switch (tradingStatus) {
     case 'yes':
     if (scenario.company.pscExempt === '0') {
-      res.redirect('/task-list')
+      res.redirect('/v12/task-list')
     } else {
-      res.redirect('/psc-exempt-options')
+      res.redirect('/v12/psc-exempt-options')
     }
       break
     case 'no':
-      res.redirect('/trading-stop')
+      res.redirect('/v12/trading-stop')
       break
   }}
 })
 
 
 
-router.get('/trading-status', function (req, res) {
+router.get('/v12/trading-status', function (req, res) {
   var tradingStatus = req.session.data['trading-status']
 
-  res.render('trading-status', {
+  res.render('v12/trading-status', {
     tradingStatus: tradingStatus,
     scenario: req.session.scenario
   })
 })
 
-router.post('/trading-status', function (req, res) {
+router.post('/v12/trading-status', function (req, res) {
   var tradingStatus = req.session.data['trading-status']
 
   switch (tradingStatus) {
     case 'yes':
-      res.redirect('/trading-status-dtr5')
+      res.redirect('/v12/trading-status-dtr5')
       break
     case 'no':
-      res.redirect('/task-list')
+      res.redirect('/v12/task-list')
       break
   }
 })
 
 
 
-router.get('/trading-status-dtr5', function (req, res) {
-  res.render('trading-status-dtr5', {
+router.get('/v12/trading-status-dtr5', function (req, res) {
+  res.render('v12/trading-status-dtr5', {
     scenario: req.session.scenario
   })
 })
-router.post('/trading-status-dtr5', function (req, res) {
-  res.redirect('/task-list')
+router.post('/v12/trading-status-dtr5', function (req, res) {
+  res.redirect('/v12/task-list')
 })
 
 
 
-router.get('/task-list-external', function (req, res) {
+router.get('/v12/task-list-external', function (req, res) {
   var completedTasks = req.session.data['completed']
   var email = req.session.data['email']
   var exemption = req.session.data['exemption']
@@ -288,7 +295,7 @@ router.get('/task-list-external', function (req, res) {
   var sic = req.session.data['sic']
   var trading = req.session.data['trading-status']
 
-  res.render('task-list-external', {
+  res.render('v12/task-list-external', {
     scenario: req.session.scenario,
     activeOfficers: activeOfficers,
     activePscs: activePscs,
@@ -314,13 +321,13 @@ router.get('/task-list-external', function (req, res) {
   })
 })
 
-router.post('/task-list-external', function (req, res) {
-  res.redirect('/confirmation-statement/ro')
+router.post('/v12/task-list-external', function (req, res) {
+  res.redirect('/v12/confirmation-statement/ro')
 })
 
 
 
-router.get('/task-list', function (req, res) {
+router.get('/v12/task-list', function (req, res) {
   var completedTasks = req.session.data['completed']
   var email = req.session.data['email']
   var exemption = req.session.data['exemption']
@@ -343,7 +350,7 @@ router.get('/task-list', function (req, res) {
   var sic = req.session.data['sic']
   var trading = req.session.data['trading-status']
 
-  res.render('task-list', {
+  res.render('v12/task-list', {
     scenario: req.session.scenario,
     activeDirectors: activeDirectors,
     activePscs: activePscs,
@@ -369,19 +376,19 @@ router.get('/task-list', function (req, res) {
   })
 })
 
-router.post('/task-list', function (req, res) {
-  res.redirect('/confirmation-statement/ro')
+router.post('/v12/task-list', function (req, res) {
+  res.redirect('/v12/confirmation-statement/ro')
 })
 
 
 
-router.get('/confirmation-statement/ro', function (req, res, nl2br) {
+router.get('/v12/confirmation-statement/ro', function (req, res, nl2br) {
   var email = req.session.data['email']
   var ro = req.session.data['registered-office-address']
   var taskList = req.session.data['taskList']
   var checked = {}
 
-  res.render('confirmation-statement/ro', {
+  res.render('v12/confirmation-statement/ro', {
     email: email,
     scenario: req.session.scenario,
     taskList: taskList,
@@ -390,7 +397,7 @@ router.get('/confirmation-statement/ro', function (req, res, nl2br) {
   })
 })
 
-router.post('/confirmation-statement/ro', function (req, res) {
+router.post('/v12/confirmation-statement/ro', function (req, res) {
   var email = req.session.data['email']
   var ro = req.session.data['registered-office-address']
   var checked = {}
@@ -411,7 +418,7 @@ router.post('/confirmation-statement/ro', function (req, res) {
     errorFlag = true
   }
   if (errorFlag === true) {
-    res.render('confirmation-statement/ro', {
+    res.render('v12/confirmation-statement/ro', {
       scenario: req.session.scenario,
       ro: ro,
       taskList: taskList,
@@ -422,16 +429,16 @@ router.post('/confirmation-statement/ro', function (req, res) {
 
 if ('taskList' == true) {
   checked.yes = true
-  res.redirect('/task-list')
+  res.redirect('/v12/task-list')
 } else {
   switch (ro) {
     case 'yes':
       checked.yes = true
-      res.redirect('/task-list')
+      res.redirect('/v12/task-list')
       break
     case 'no':
       checked.yes = true
-      res.redirect('/incorrect-information/wrong-ro')
+      res.redirect('/v12/incorrect-information/wrong-ro')
       break
     }
   }}
@@ -439,59 +446,55 @@ if ('taskList' == true) {
 
 
 
-router.get('/incorrect-information/wrong-ro', function (req, res) {
+router.get('/v12/incorrect-information/wrong-ro', function (req, res) {
   var email = req.session.data['email']
-  res.render('incorrect-information/wrong-ro', {
+  res.render('v12/incorrect-information/wrong-ro', {
     scenario: req.session.scenario,
     email: email
   })
 })
 
-router.post('/incorrect-information/wrong-ro', function (req, res) {
-  res.redirect('/task-list')
+router.post('/v12/incorrect-information/wrong-ro', function (req, res) {
+  res.redirect('/v12/task-list')
 })
 
 
 
-router.get('/change-data/change-address', function (req, res) {
+router.get('/v12/change-data/change-address', function (req, res) {
   var scenario = req.session.scenario
-  var moment = require('moment') // require
 
-  res.render('change-data/change-address', {
-    scenario: scenario,
-    moment: moment().format('D MMMM yyy h:mm a')
+  res.render('v12/change-data/change-address', {
+    scenario: scenario
   })
 })
 
 
 
-router.get('/change-data/change-address-confirmation', function (req, res) {
+router.get('/v12/change-data/change-address-confirmation', function (req, res) {
 var email = req.session.data['email']
   var scenario = req.session.scenario
-  var moment = require('moment') // require
 
-  res.render('change-data/change-address-confirmation', {
+  res.render('v12/change-data/change-address-confirmation', {
     email: email,
-    scenario: scenario,
-    moment: moment().format('D MMMM yyy h:mm a')
+    scenario: scenario
   })
 })
 
 
 
 // officers start //
-router.get('/confirmation-statement/active-officers', function (req, res) {
+router.get('/v12/confirmation-statement/active-officers', function (req, res) {
   var email = req.session.data['email']
   var activeDirectors = req.session.data['active-directors']
 
-  res.render('confirmation-statement/active-officers', {
+  res.render('v12/confirmation-statement/active-officers', {
     scenario: req.session.scenario,
     email: email,
     activeDirectors: activeDirectors
   })
 })
 
-router.post('/confirmation-statement/active-officers', function (req, res) {
+router.post('/v12/confirmation-statement/active-officers', function (req, res) {
   var activeDirectors = req.session.data['active-directors']
   var errorFlag = false
   var activeDirectorsError = {}
@@ -508,7 +511,7 @@ router.post('/confirmation-statement/active-officers', function (req, res) {
     errorFlag = true
   }
   if (errorFlag === true) {
-    res.render('confirmation-statement/active-officers', {
+    res.render('v12/confirmation-statement/active-officers', {
       scenario: req.session.scenario,
       activeDirectors: activeDirectors,
       errorList: errorList,
@@ -519,28 +522,28 @@ router.post('/confirmation-statement/active-officers', function (req, res) {
 
   switch (activeDirectors) {
     case 'yes':
-      res.redirect('/confirmation-statement/officers')
+      res.redirect('/v12/confirmation-statement/officers')
       break
     case 'no':
-      res.redirect('/incorrect-information/wrong-active-officers')
+      res.redirect('/v12/incorrect-information/wrong-active-officers')
       break
   }}
 })
 
 
 
-router.get('/confirmation-statement/officers', function (req, res) {
+router.get('/v12/confirmation-statement/officers', function (req, res) {
   var email = req.session.data['email']
   var officers = req.session.data['officers']
 
-  res.render('confirmation-statement/officers', {
+  res.render('v12/confirmation-statement/officers', {
     email: email,
     scenario: req.session.scenario,
     officers: officers
   })
 })
 
-router.post('/confirmation-statement/officers', function (req, res) {
+router.post('/v12/confirmation-statement/officers', function (req, res) {
   var officers = req.session.data['officers']
   var errorFlag = false
   var directorDetailsError = {}
@@ -557,7 +560,7 @@ router.post('/confirmation-statement/officers', function (req, res) {
     errorFlag = true
   }
   if (errorFlag === true) {
-    res.render('confirmation-statement/officers', {
+    res.render('v12/confirmation-statement/officers', {
       scenario: req.session.scenario,
       officers: officers,
       errorList: errorList,
@@ -568,28 +571,28 @@ router.post('/confirmation-statement/officers', function (req, res) {
 
   switch (officers) {
     case 'yes':
-      res.redirect('/task-list')
+      res.redirect('/v12/task-list')
       break
     case 'no':
-      res.redirect('/incorrect-information/wrong-officers')
+      res.redirect('/v12/incorrect-information/wrong-officers')
       break
   }}
 })
 
 
 
-router.get('/confirmation-statement/additional-officers', function (req, res) {
+router.get('/v12/confirmation-statement/additional-officers', function (req, res) {
   var email = req.session.data['email']
   var additionalDirectors = req.session.data['additional-directors']
 
-  res.render('confirmation-statement/additional-officers', {
+  res.render('v12/confirmation-statement/additional-officers', {
     email: email,
     scenario: req.session.scenario,
     additionalDirectors: additionalDirectors
   })
 })
 
-router.post('/confirmation-statement/additional-officers', function (req, res) {
+router.post('/v12/confirmation-statement/additional-officers', function (req, res) {
   var additionalDirectors = req.session.data['additional-directors']
   var errorFlag = false
   var additionalDirectorsError = {}
@@ -606,7 +609,7 @@ router.post('/confirmation-statement/additional-officers', function (req, res) {
     errorFlag = true
   }
   if (errorFlag === true) {
-    res.render('confirmation-statement/additional-officers', {
+    res.render('v12/confirmation-statement/additional-officers', {
       scenario: req.session.scenario,
       additionalDirectors: additionalDirectors,
       errorList: errorList,
@@ -617,39 +620,39 @@ router.post('/confirmation-statement/additional-officers', function (req, res) {
 
   switch (additionalDirectors) {
     case 'yes':
-      res.redirect('/incorrect-information/wrong-appoint-officers')
+      res.redirect('/v12/incorrect-information/wrong-appoint-officers')
       break
     case 'no':
-      res.redirect('/task-list')
+      res.redirect('/v12/task-list')
       break
   }}
 })
 
 
 
-router.get('/confirmation-statement/officers-2', function (req, res) {
+router.get('/v12/confirmation-statement/officers-2', function (req, res) {
   var email = req.session.data['email']
-  res.render('confirmation-statement/officers-2', {
+  res.render('v12/confirmation-statement/officers-2', {
     scenario: req.session.scenario,
     email: email
   })
 })
 
-router.post('/confirmation-statement/officers-2', function (req, res) {
+router.post('/v12/confirmation-statement/officers-2', function (req, res) {
   var officers = req.session.data['officers']
 
   switch (officers) {
     case 'yes':
-      res.redirect('/task-list')
+      res.redirect('/v12/task-list')
       break
     case 'no':
-      res.redirect('/incorrect-information/wrong-officers')
+      res.redirect('/v12/incorrect-information/wrong-officers')
       break
   }
 })
-router.get('/incorrect-information/wrong-active-officers', function (req, res) {
+router.get('/v12/incorrect-information/wrong-active-officers', function (req, res) {
   var email = req.session.data['email']
-  res.render('incorrect-information/wrong-active-officers', {
+  res.render('v12/incorrect-information/wrong-active-officers', {
     scenario: req.session.scenario,
     email: email
   })
@@ -657,23 +660,23 @@ router.get('/incorrect-information/wrong-active-officers', function (req, res) {
 
 
 
-router.post('/incorrect-information/wrong-active-officers', function (req, res) {
-  res.redirect('/task-list')
+router.post('/v12/incorrect-information/wrong-active-officers', function (req, res) {
+  res.redirect('/v12/task-list')
 })
-router.get('/incorrect-information/wrong-officers', function (req, res) {
+router.get('/v12/incorrect-information/wrong-officers', function (req, res) {
   var email = req.session.data['email']
-  res.render('incorrect-information/wrong-officers', {
+  res.render('v12/incorrect-information/wrong-officers', {
     scenario: req.session.scenario,
     email: email
   })
 })
 
-router.post('/incorrect-information/wrong-officers', function (req, res) {
-  res.redirect('/task-list')
+router.post('/v12/incorrect-information/wrong-officers', function (req, res) {
+  res.redirect('/v12/task-list')
 })
-router.get('/incorrect-information/wrong-appoint-officers', function (req, res) {
+router.get('/v12/incorrect-information/wrong-appoint-officers', function (req, res) {
   var email = req.session.data['email']
-  res.render('incorrect-information/wrong-appoint-officers', {
+  res.render('v12/incorrect-information/wrong-appoint-officers', {
     scenario: req.session.scenario,
     email: email
   })
@@ -681,163 +684,163 @@ router.get('/incorrect-information/wrong-appoint-officers', function (req, res) 
 
 
 
-router.post('/incorrect-information/wrong-appoint-officers', function (req, res) {
-  res.redirect('/task-list')
+router.post('/v12/incorrect-information/wrong-appoint-officers', function (req, res) {
+  res.redirect('/v12/task-list')
 })
 // members start //
-router.get('/confirmation-statement/active-members', function (req, res) {
+router.get('/v12/confirmation-statement/active-members', function (req, res) {
   var email = req.session.data['email']
   var activeMembers = req.session.data['active-members']
 
-  res.render('confirmation-statement/active-members', {
+  res.render('v12/confirmation-statement/active-members', {
     email: email,
     scenario: req.session.scenario,
     activeMembers: activeMembers
   })
 })
 
-router.post('/confirmation-statement/active-members', function (req, res) {
+router.post('/v12/confirmation-statement/active-members', function (req, res) {
   var activeMembers = req.session.data['active-members']
 
   switch (activeMembers) {
     case 'yes':
-      res.redirect('/confirmation-statement/members')
+      res.redirect('/v12/confirmation-statement/members')
       break
     case 'no':
-      res.redirect('/incorrect-information/wrong-members')
+      res.redirect('/v12/incorrect-information/wrong-members')
       break
   }
 })
 
 
 
-router.get('/confirmation-statement/members', function (req, res) {
+router.get('/v12/confirmation-statement/members', function (req, res) {
   var members = req.session.data['members']
   var email = req.session.data.email
 
-  res.render('confirmation-statement/members', {
+  res.render('v12/confirmation-statement/members', {
     scenario: req.session.scenario,
     email: email,
     members: members
   })
 })
 
-router.post('/confirmation-statement/members', function (req, res) {
+router.post('/v12/confirmation-statement/members', function (req, res) {
   var members = req.session.data['members']
 
   switch (members) {
     case 'yes':
-      res.redirect('/confirmation-statement/additional-members')
+      res.redirect('/v12/confirmation-statement/additional-members')
       break
     case 'no':
-      res.redirect('/incorrect-information/wrong-members')
+      res.redirect('/v12/incorrect-information/wrong-members')
       break
   }
 })
 
 
 
-router.get('/confirmation-statement/additional-members', function (req, res) {
+router.get('/v12/confirmation-statement/additional-members', function (req, res) {
   var additionalMembers = req.session.data['additional-members']
   var email = req.session.data['email']
 
-  res.render('confirmation-statement/additional-members', {
+  res.render('v12/confirmation-statement/additional-members', {
     scenario: req.session.scenario,
     email: email,
     additionalMembers: additionalMembers
   })
 })
 
-router.post('/confirmation-statement/additional-members', function (req, res) {
+router.post('/v12/confirmation-statement/additional-members', function (req, res) {
   var additionalMembers = req.session.data['additional-members']
 
   switch (additionalMembers) {
     case 'yes':
-      res.redirect('/incorrect-information/wrong-members')
+      res.redirect('/v12/incorrect-information/wrong-members')
       break
     case 'no':
-      res.redirect('/task-list')
+      res.redirect('/v12/task-list')
       break
   }
 })
 
 
 
-router.get('/incorrect-information/wrong-members', function (req, res) {
+router.get('/v12/incorrect-information/wrong-members', function (req, res) {
   var email = req.session.data['email']
-  res.render('incorrect-information/wrong-members', {
+  res.render('v12/incorrect-information/wrong-members', {
     scenario: req.session.scenario,
     email: email
   })
 })
 
-router.post('/incorrect-information/wrong-members', function (req, res) {
-  res.redirect('/task-list')
+router.post('/v12/incorrect-information/wrong-members', function (req, res) {
+  res.redirect('/v12/task-list')
 })
 
 
 
 // end of officers //
-router.get('/confirmation-statement/registers', function (req, res) {
+router.get('/v12/confirmation-statement/registers', function (req, res) {
   var email = req.session.data['email']
   var registers = req.session.data['registers']
-  res.render('confirmation-statement/registers', {
+  res.render('v12/confirmation-statement/registers', {
     scenario: req.session.scenario,
     email: email,
     registers: registers
   })
 })
 
-router.post('/confirmation-statement/registers', function (req, res) {
+router.post('/v12/confirmation-statement/registers', function (req, res) {
   var registers = req.session.data['registers']
   var next = req.session.data['next']
 
 if (next === true) {
   switch (registers) {
     case 'yes':
-      res.redirect('/task-list')
+      res.redirect('/v12/task-list')
       break
     case 'no':
-      res.redirect('/incorrect-information/wrong-registers')
+      res.redirect('/v12/incorrect-information/wrong-registers')
       break
     }
     } else {
       switch (registers) {
         case 'yes':
-          res.redirect('/task-list')
+          res.redirect('/v12/task-list')
           break
         case 'no':
-          res.redirect('/incorrect-information/wrong-registers')
+          res.redirect('/v12/incorrect-information/wrong-registers')
           break
         }
   }
 })
 
-router.get('/incorrect-information/wrong-registers', function (req, res) {
+router.get('/v12/incorrect-information/wrong-registers', function (req, res) {
   var email = req.session.data['email']
-  res.render('incorrect-information/wrong-registers', {
+  res.render('v12/incorrect-information/wrong-registers', {
     scenario: req.session.scenario,
     email: email
   })
 })
 
-router.post('/incorrect-information/wrong-registers', function (req, res) {
-  res.redirect('/task-list')
+router.post('/v12/incorrect-information/wrong-registers', function (req, res) {
+  res.redirect('/v12/task-list')
 })
 
 
 
-router.get('/confirmation-statement/sic', function (req, res) {
+router.get('/v12/confirmation-statement/sic', function (req, res) {
   var email = req.session.data['email']
   var sic = req.session.data['sic']
-  res.render('confirmation-statement/sic', {
+  res.render('v12/confirmation-statement/sic', {
     scenario: req.session.scenario,
     sic: sic,
     email: email
   })
 })
 
-router.post('/confirmation-statement/sic', function (req, res) {
+router.post('/v12/confirmation-statement/sic', function (req, res) {
   var sic = req.session.data['sic']
   var errorFlag = false
   var sicError = {}
@@ -854,7 +857,7 @@ router.post('/confirmation-statement/sic', function (req, res) {
     errorFlag = true
   }
   if (errorFlag === true) {
-    res.render('confirmation-statement/sic', {
+    res.render('v12/confirmation-statement/sic', {
       scenario: req.session.scenario,
       sic: sic,
       errorList: errorList,
@@ -864,31 +867,31 @@ router.post('/confirmation-statement/sic', function (req, res) {
 
   switch (sic) {
     case 'yes':
-      res.redirect('/task-list')
+      res.redirect('/v12/task-list')
       break
     case 'no':
-      res.redirect('/incorrect-information/wrong-sic')
+      res.redirect('/v12/incorrect-information/wrong-sic')
       break
   }}
 })
 
 
 
-router.get('/incorrect-information/wrong-sic', function (req, res) {
+router.get('/v12/incorrect-information/wrong-sic', function (req, res) {
   var email = req.session.data['email']
-  res.render('incorrect-information/wrong-sic', {
+  res.render('v12/incorrect-information/wrong-sic', {
     scenario: req.session.scenario,
     email: email
   })
 })
 
-router.post('/incorrect-information/wrong-sic', function (req, res) {
-  res.redirect('/task-list')
+router.post('/v12/incorrect-information/wrong-sic', function (req, res) {
+  res.redirect('/v12/task-list')
 })
-router.get('/confirmation-statement/statement-of-capital', function (req, res) {
+router.get('/v12/confirmation-statement/statement-of-capital', function (req, res) {
   var email = req.session.data['email']
   var statementOfCapital = req.session.data['statement-of-capital']
-  res.render('confirmation-statement/statement-of-capital', {
+  res.render('v12/confirmation-statement/statement-of-capital', {
     scenario: req.session.scenario,
     email: email,
     statementOfCapital: statementOfCapital
@@ -897,7 +900,7 @@ router.get('/confirmation-statement/statement-of-capital', function (req, res) {
 
 
 
-router.post('/confirmation-statement/statement-of-capital', function (req, res) {
+router.post('/v12/confirmation-statement/statement-of-capital', function (req, res) {
   var statementOfCapital = req.session.data['statement-of-capital']
   var trading = req.session.data['trading']
   var errorFlag = false
@@ -915,7 +918,7 @@ router.post('/confirmation-statement/statement-of-capital', function (req, res) 
     errorFlag = true
   }
   if (errorFlag === true) {
-    res.render('confirmation-statement/statement-of-capital', {
+    res.render('v12/confirmation-statement/statement-of-capital', {
       scenario: req.session.scenario,
       statementOfCapital: statementOfCapital,
       errorList: errorList,
@@ -925,21 +928,21 @@ router.post('/confirmation-statement/statement-of-capital', function (req, res) 
   switch (statementOfCapital) {
     case 'yes':
       if (trading === 'yes') {
-        res.redirect('/task-list')
+        res.redirect('/v12/task-list')
       } else {
-        res.redirect('/task-list')
+        res.redirect('/v12/task-list')
       }
       break
     case 'no':
-      res.redirect('/incorrect-information/wrong-statement-of-capital')
+      res.redirect('/v12/incorrect-information/wrong-statement-of-capital')
       break
   }}
 })
 
-router.get('/confirmation-statement/statement-of-capital-mismatch', function (req, res) {
+router.get('/v12/confirmation-statement/statement-of-capital-mismatch', function (req, res) {
   var email = req.session.data['email']
   var statementOfCapital = req.session.data['statement-of-capital']
-  res.render('confirmation-statement/statement-of-capital-mismatch', {
+  res.render('v12/confirmation-statement/statement-of-capital-mismatch', {
     scenario: req.session.scenario,
     email: email,
     statementOfCapital: statementOfCapital
@@ -948,114 +951,114 @@ router.get('/confirmation-statement/statement-of-capital-mismatch', function (re
 
 
 
-router.get('/incorrect-information/wrong-statement-of-capital', function (req, res) {
+router.get('/v12/incorrect-information/wrong-statement-of-capital', function (req, res) {
   var email = req.session.data['email']
-  res.render('incorrect-information/wrong-statement-of-capital', {
+  res.render('v12/incorrect-information/wrong-statement-of-capital', {
     scenario: req.session.scenario,
     email: email
   })
 })
 
-router.post('/incorrect-information/wrong-statement-of-capital', function (req, res) {
-  res.redirect('/task-list')
+router.post('/v12/incorrect-information/wrong-statement-of-capital', function (req, res) {
+  res.redirect('/v12/task-list')
 })
 
 
 
-router.get('/confirmation-statement/shareholders', function (req, res) {
+router.get('/v12/confirmation-statement/shareholders', function (req, res) {
   var email = req.session.data['email']
-  res.render('confirmation-statement/shareholders', {
+  res.render('v12/confirmation-statement/shareholders', {
     scenario: req.session.scenario,
     email: email
   })
 })
 
-router.post('/confirmation-statement/shareholders', function (req, res) {
+router.post('/v12/confirmation-statement/shareholders', function (req, res) {
   var shareholders = req.session.data['shareholders']
   var tradingStatus = req.session.data['trading-status']
 
   switch (shareholders) {
     case 'yes':
-      res.redirect('/task-list')
+      res.redirect('/v12/task-list')
       break
     case 'no':
-      res.redirect('/incorrect-information/wrong-shareholders')
+      res.redirect('/v12/incorrect-information/wrong-shareholders')
       break
   }
 })
 
 
 
-router.get('/confirmation-statement/shareholders-mismatch', function (req, res) {
+router.get('/v12/confirmation-statement/shareholders-mismatch', function (req, res) {
   var email = req.session.data['email']
-  res.render('confirmation-statement/shareholders-mismatch', {
+  res.render('v12/confirmation-statement/shareholders-mismatch', {
     scenario: req.session.scenario,
     email: email
   })
 })
 
-router.get('/incorrect-information/wrong-shareholders', function (req, res) {
+router.get('/v12/incorrect-information/wrong-shareholders', function (req, res) {
   var email = req.session.data['email']
-  res.render('incorrect-information/wrong-shareholders', {
+  res.render('v12/incorrect-information/wrong-shareholders', {
     scenario: req.session.scenario,
     email: email
   })
 })
 
-router.post('/incorrect-information/wrong-shareholders', function (req, res) {
-  res.redirect('/task-list')
+router.post('/v12/incorrect-information/wrong-shareholders', function (req, res) {
+  res.redirect('/v12/task-list')
 })
 
 
 
-router.get('/psc-exemption', function (req, res) {
+router.get('/v12/psc-exemption', function (req, res) {
   var email = req.session.data['email']
-  res.render('psc-exemption', {
+  res.render('v12/psc-exemption', {
     scenario: req.session.scenario,
     email: email
   })
 })
 
-router.post('/psc-exemption', function (req, res) {
+router.post('/v12/psc-exemption', function (req, res) {
   var exemption = req.session.data['exemption']
 
   switch (exemption) {
     case 'yes':
-      res.redirect('/psc-exempt-options')
+      res.redirect('/v12/psc-exempt-options')
       break
     case 'no':
-      res.redirect('/confirmation-statement/people-with-significant-control')
+      res.redirect('/v12/confirmation-statement/people-with-significant-control')
       break
   }
 })
 
 
 
-router.get('/psc-exempt-options', function (req, res) {
+router.get('/v12/psc-exempt-options', function (req, res) {
   var email = req.session.data['email']
-  res.render('psc-exempt-options', {
+  res.render('v12/psc-exempt-options', {
     scenario: req.session.scenario,
     email: email
   })
 })
 
-router.post('/psc-exempt-options', function (req, res) {
-  res.redirect('/task-list')
+router.post('/v12/psc-exempt-options', function (req, res) {
+  res.redirect('/v12/task-list')
 })
 
 
 
-router.get('/confirmation-statement/active-pscs', function (req, res) {
+router.get('/v12/confirmation-statement/active-pscs', function (req, res) {
   var activePscs = req.session.data['active-pscs']
   var email = req.session.data['email']
-  res.render('confirmation-statement/active-pscs', {
+  res.render('v12/confirmation-statement/active-pscs', {
     scenario: req.session.scenario,
     activePscs: activePscs,
     email: email
   })
 })
 
-router.post('/confirmation-statement/active-pscs', function (req, res) {
+router.post('/v12/confirmation-statement/active-pscs', function (req, res) {
   var activePscs = req.session.data['active-pscs']
   var errorFlag = false
   var activePscsError = {}
@@ -1072,7 +1075,7 @@ router.post('/confirmation-statement/active-pscs', function (req, res) {
     errorFlag = true
   }
   if (errorFlag === true) {
-    res.render('confirmation-statement/active-pscs', {
+    res.render('v12/confirmation-statement/active-pscs', {
       scenario: req.session.scenario,
       activePscs: activePscs,
       errorList: errorList,
@@ -1083,41 +1086,41 @@ router.post('/confirmation-statement/active-pscs', function (req, res) {
 
   switch (activePscs) {
     case 'yes':
-      res.redirect('/confirmation-statement/people-with-significant-control')
+      res.redirect('/v12/confirmation-statement/people-with-significant-control')
       break
     case 'no':
-      res.redirect('/incorrect-information/wrong-active-psc')
+      res.redirect('/v12/incorrect-information/wrong-active-psc')
       break
   }}
 })
 
 
 
-router.get('/incorrect-information/wrong-active-psc', function (req, res) {
+router.get('/v12/incorrect-information/wrong-active-psc', function (req, res) {
   var email = req.session.data['email']
-  res.render('incorrect-information/wrong-active-psc', {
+  res.render('v12/incorrect-information/wrong-active-psc', {
     scenario: req.session.scenario,
     email: email
   })
 })
 
-router.post('/incorrect-information/wrong-active-psc', function (req, res) {
-  res.redirect('/task-list')
+router.post('/v12/incorrect-information/wrong-active-psc', function (req, res) {
+  res.redirect('/v12/task-list')
 })
 
 
 
-router.get('/confirmation-statement/people-with-significant-control', function (req, res) {
+router.get('/v12/confirmation-statement/people-with-significant-control', function (req, res) {
   var psc = req.session.data['psc']
   var email = req.session.data['email']
-  res.render('confirmation-statement/people-with-significant-control', {
+  res.render('v12/confirmation-statement/people-with-significant-control', {
     scenario: req.session.scenario,
     psc: psc,
     email: email
   })
 })
 
-router.post('/confirmation-statement/people-with-significant-control', function (req, res) {
+router.post('/v12/confirmation-statement/people-with-significant-control', function (req, res) {
   var psc = req.session.data['psc']
   var errorFlag = false
   var pscDetailsError = {}
@@ -1134,7 +1137,7 @@ router.post('/confirmation-statement/people-with-significant-control', function 
     errorFlag = true
   }
   if (errorFlag === true) {
-    res.render('confirmation-statement/people-with-significant-control', {
+    res.render('v12/confirmation-statement/people-with-significant-control', {
       scenario: req.session.scenario,
       psc: psc,
       errorList: errorList,
@@ -1145,123 +1148,123 @@ router.post('/confirmation-statement/people-with-significant-control', function 
 
   switch (psc) {
     case 'yes':
-      res.redirect('/confirmation-statement/psc-statement')
+      res.redirect('/v12/confirmation-statement/psc-statement')
       break
     case 'no':
-      res.redirect('/incorrect-information/wrong-psc-details')
+      res.redirect('/v12/incorrect-information/wrong-psc-details')
       break
   }}
 })
 
 
 
-router.get('/confirmation-statement/additional-pscs', function (req, res) {
+router.get('/v12/confirmation-statement/additional-pscs', function (req, res) {
   var email = req.session.data['email']
   var additionalPscs = req.session.data['additional-pscs']
-  res.render('confirmation-statement/additional-pscs', {
+  res.render('v12/confirmation-statement/additional-pscs', {
     scenario: req.session.scenario,
     additionalPscs: additionalPscs,
     email: email
   })
 })
 
-router.post('/confirmation-statement/additional-pscs', function (req, res) {
+router.post('/v12/confirmation-statement/additional-pscs', function (req, res) {
   var additionalPscs = req.session.data['additional-pscs']
 
   switch (additionalPscs) {
     case 'no':
-      res.redirect('/confirmation-statement/psc-statement')
+      res.redirect('/v12/confirmation-statement/psc-statement')
       break
     case 'yes':
-      res.redirect('/incorrect-information/wrong-appoint-psc')
+      res.redirect('/v12/incorrect-information/wrong-appoint-psc')
       break
   }
 })
 
 
 
-router.get('/incorrect-information/wrong-appoint-psc', function (req, res) {
+router.get('/v12/incorrect-information/wrong-appoint-psc', function (req, res) {
   var email = req.session.data['email']
-  res.render('incorrect-information/wrong-appoint-psc', {
+  res.render('v12/incorrect-information/wrong-appoint-psc', {
     scenario: req.session.scenario,
     email: email
   })
 })
 
-router.post('/incorrect-information/wrong-appoint-psc', function (req, res) {
-  res.redirect('/task-list')
+router.post('/v12/incorrect-information/wrong-appoint-psc', function (req, res) {
+  res.redirect('/v12/task-list')
 })
 
 
 
-router.get('/incorrect-information/wrong-psc', function (req, res) {
+router.get('/v12/incorrect-information/wrong-psc', function (req, res) {
   var email = req.session.data['email']
-  res.render('incorrect-information/wrong-psc', {
+  res.render('v12/incorrect-information/wrong-psc', {
     scenario: req.session.scenario,
     email: email
   })
 })
 
-router.post('/incorrect-information/wrong-psc', function (req, res) {
-  res.redirect('/task-list')
+router.post('/v12/incorrect-information/wrong-psc', function (req, res) {
+  res.redirect('/v12/task-list')
 })
 
 
 
-router.get('/incorrect-information/wrong-psc-details', function (req, res) {
+router.get('/v12/incorrect-information/wrong-psc-details', function (req, res) {
   var email = req.session.data['email']
-  res.render('incorrect-information/wrong-psc-details', {
+  res.render('v12/incorrect-information/wrong-psc-details', {
     scenario: req.session.scenario,
     email: email
   })
 })
 
-router.post('/incorrect-information/wrong-psc-details', function (req, res) {
-  res.redirect('/task-list')
+router.post('/v12/incorrect-information/wrong-psc-details', function (req, res) {
+  res.redirect('/v12/task-list')
 })
 
 
 
-router.get('/confirmation-statement/psc-statement', function (req, res) {
+router.get('/v12/confirmation-statement/psc-statement', function (req, res) {
   var pscStatement = req.session.data['psc-statement']
   var email = req.session.data['email']
-  res.render('confirmation-statement/psc-statement', {
+  res.render('v12/confirmation-statement/psc-statement', {
     scenario: req.session.scenario,
     pscStatement: pscStatement,
     email: email
   })
 })
 
-router.post('/confirmation-statement/psc-statement', function (req, res) {
+router.post('/v12/confirmation-statement/psc-statement', function (req, res) {
   var pscStatement = req.session.data['psc-statement']
 
   switch (pscStatement) {
     case 'yes':
-      res.redirect('/task-list')
+      res.redirect('/v12/task-list')
       break
     case 'no':
-      res.redirect('/incorrect-information/wrong-psc-details')
+      res.redirect('/v12/incorrect-information/wrong-psc-details')
       break
   }
 })
 
 
 
-router.get('/incorrect-information/wrong-psc-statement', function (req, res) {
+router.get('/v12/incorrect-information/wrong-psc-statement', function (req, res) {
   var email = req.session.data['email']
-  res.render('incorrect-information/wrong-psc-statement', {
+  res.render('v12/incorrect-information/wrong-psc-statement', {
     scenario: req.session.scenario,
     email: email
   })
 })
 
-router.post('/incorrect-information/wrong-psc-statement', function (req, res) {
-  res.redirect('/task-list')
+router.post('/v12/incorrect-information/wrong-psc-statement', function (req, res) {
+  res.redirect('/v12/task-list')
 })
 
 
 
-router.get('/task-list-complete', function (req, res) {
+router.get('/v12/task-list-complete', function (req, res) {
   var completedTasks = req.session.data['completed']
   var exemption = req.session.data['exemption']
   var officers = req.session.data['officers']
@@ -1269,7 +1272,7 @@ router.get('/task-list-complete', function (req, res) {
   var register = req.session.data['register']
   var ro = req.session.data['registered-office-address']
 
-  res.render('task-list-complete', {
+  res.render('v12/task-list-complete', {
     scenario: req.session.scenario,
     completedTasks: completedTasks,
     exemption: exemption,
@@ -1280,68 +1283,62 @@ router.get('/task-list-complete', function (req, res) {
   })
 })
 
-router.post('/task-list-complete', function (req, res) {
-  res.redirect('/confirmation-statement/review')
+router.post('/v12/task-list-complete', function (req, res) {
+  res.redirect('/v12/confirmation-statement/review')
 })
 
 
 
-router.get('/confirmation-statement/review', function (req, res) {
+router.get('/v12/confirmation-statement/review', function (req, res) {
   var date = new Date()
   var exemption = req.session.data['exemption']
   var email = req.session.data['email']
-  var moment = require('moment') // require
 
-  res.render('confirmation-statement/review', {
+  res.render('v12/confirmation-statement/review', {
     scenario: req.session.scenario,
     date: date,
-    moment: moment().format('D MMMM yyy'),
     exemption: exemption,
     email: email
   })
 })
 
-router.get('/print-confirmation-statement-review', function (req, res) {
+router.get('/v12/print-confirmation-statement-review', function (req, res) {
   var date = new Date()
   var email = req.session.data['email']
-  var moment = require('moment') // require
 
-  res.render('print-confirmation-statement-review', {
+  res.render('v12/print-confirmation-statement-review', {
     scenario: req.session.scenario,
     date: date,
-    moment: moment().format('D MMMM yyy'),
     email: email
   })
 })
 
 
 
-router.get('/review-payment', function (req, res) {
-  var moment = require('moment') // require
+router.get('/v12/review-payment', function (req, res) {
   var email = req.session.data['email']
 
-  res.render('review-payment', {
-    scenario: req.session.scenario,
-    moment: moment().format('D MMMM yyy'),
-    email: email
-  })
-})
-
-router.post('/review-payment', function (req, res) {
-  res.redirect('/payment-options')
-})
-
-
-
-router.get('/payment-options', function (req, res) {
-  var email = req.session.data['email']
-  res.render('payment-options', {
+  res.render('v12/review-payment', {
     scenario: req.session.scenario,
     email: email
   })
 })
 
-router.post('/payment-options', function (req, res) {
+router.post('/v12/review-payment', function (req, res) {
+  res.redirect('/v12/payment-options')
+})
+
+
+
+router.get('/v12/payment-options', function (req, res) {
+  var email = req.session.data['email']
+  res.render('v12/payment-options', {
+    scenario: req.session.scenario,
+    email: email
+  })
+})
+
+router.post('/v12/payment-options', function (req, res) {
   var paymentOptions = req.session.data['payment-options']
 
   switch (paymentOptions) {
@@ -1349,31 +1346,31 @@ router.post('/payment-options', function (req, res) {
       res.redirect('https://products.payments.service.gov.uk/pay/f90761a2258f4b60baa29f045cd78ca2')
       break
     case 'account':
-      res.redirect('/pay-by-account')
+      res.redirect('/v12/pay-by-account')
       break
   }
 })
 
 
 
-router.get('/pay-by-account', function (req, res) {
+router.get('/v12/pay-by-account', function (req, res) {
   var email = req.session.data['email']
-  res.render('pay-by-account', {
+  res.render('v12/pay-by-account', {
     email: email
   })
 })
 
-router.post('/pay-by-account', function (req, res) {
-  res.redirect('/confirmation')
+router.post('/v12/pay-by-account', function (req, res) {
+  res.redirect('/v12/confirmation')
 })
 
 
 
-router.get('/confirmation', function (req, res) {
+router.get('/v12/confirmation', function (req, res) {
   var email = req.session.data.email
   var paymentOptions = req.session.data['payment-options']
 
-  res.render('confirmation', {
+  res.render('v12/confirmation', {
     scenario: req.session.scenario,
     email: email,
     paymentOptions: paymentOptions

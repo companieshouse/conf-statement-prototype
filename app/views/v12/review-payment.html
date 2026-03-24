@@ -1,0 +1,54 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Review payment
+{% endblock %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/v12/confirmation-statement-review"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">Review payment</h1>
+
+      {{ govukTable({
+  caption: feeHTML,
+  firstCellIsHeader: false,
+  head: [
+    {
+      text: "Item"
+    },
+    {
+      text: "Amount to pay"
+    }
+  ],
+  rows: [
+    [
+      {
+        text: "Annual confirmation statement fee"
+      },
+      {
+        text: "£13"
+      }
+    ]
+  ]
+}) }}
+
+      <h2 class="govuk-heading-m">The total amount to pay is £13</h2>
+
+      <form action="" method="post">
+
+        {{ govukButton({
+        text: "Continue and pay"
+        }) }}
+
+      </form>
+    </div>
+  </div>
+{% endblock %}
