@@ -1,0 +1,21 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  You have signed out
+{% endblock %}
+{% block signOut %}{% endblock %}
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form action="" method="post">
+        <h1 class="govuk-heading-xl">
+          You have signed out
+        </h1>
+        <p>Your answers have been saved.</p>
+        <p>You can return to this confirmation statement by signing in to
+          <a href="/your-filings">your Companies House account</a>
+          and selecting Your Filings.</p>
+      </form>
+    </div>
+  </div>
+{% endblock %}

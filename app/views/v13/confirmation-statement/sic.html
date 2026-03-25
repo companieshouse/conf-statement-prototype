@@ -1,19 +1,35 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-Review the SIC codes
+{% if errorList.length > 0 %}
+  Error:
+{% endif %} Review the SIC codes
 {% endblock %}
 
-{% block beforeContent %}
-  {% include "includes/phase-banner.html" %}
-  {% include "includes/back-link.html" %}
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/v13/task-list"
+  }) }}
 {% endblock %}
 
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="{{currentUrl}}" method="post">
+      <form action="" method="post">
+
+        {% if errorList.length > 0 %}
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: [
+            {
+              text: "Select yes if the SIC codes are correct",
+              href: "#sic"
+            }
+          ]
+        }) }}
+        {% endif %}
 
         {% set sicDetails %}
         <p>The SIC (Standard Industrial Classification) code indicates the nature of the company’s business. A company can have up to 4 SIC codes.
@@ -109,8 +125,8 @@ Review the SIC codes
         {% endif %}
 
         {{ govukButton({
-text: "Continue"
-}) }}
+        text: "Continue"
+        }) }}
       </form>
     </div>
   </div>

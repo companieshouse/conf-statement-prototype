@@ -1,0 +1,124 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Review the officers
+{% endblock %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/v13/confirmation-statement/active-members"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-three-quarters">
+
+      <form action="" method="post">
+        <h1 class="govuk-heading-l">Check the member details</h1>
+
+        {% if scenario.company.members === '1' %}
+          <h2 class="govuk-heading-m">1 Member</h2>
+        {% else %}
+          <h2 class="govuk-heading-m">{{scenario.company.members}}
+            Members</h2>
+        {% endif %}
+
+        {% set memberHTML %}
+        {% include "includes/confirmation-statement-details/members.html" %}
+        {% endset %}
+
+        {{ govukTable({
+
+  rows: [
+    [
+      {
+        html: memberHTML
+      }
+    ]
+  ]
+}) }}
+        {% if members === 'yes' %}
+          {{ govukRadios({
+          classes: "govuk-radios--inline",
+          idPrefix: "members",
+          name: "members",
+          fieldset: {
+            legend: {
+              html: "Are the member details correct?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+
+          items: [
+            {
+              value: "yes",
+              text: "Yes",
+              checked: true
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+        {% elseif members === 'no' %}
+          {{ govukRadios({
+          classes: "govuk-radios--inline",
+          idPrefix: "members",
+          name: "members",
+          fieldset: {
+            legend: {
+              html: "Are the member details correct?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No",
+              checked: true
+            }
+          ]
+        }) }}
+        {% else %}
+          {{ govukRadios({
+          classes: "govuk-radios--inline",
+          idPrefix: "members",
+          name: "members",
+          fieldset: {
+            legend: {
+              html: "Are the member details correct?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+        {% endif %}
+
+        {{ govukButton({
+text: "Continue"
+}) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

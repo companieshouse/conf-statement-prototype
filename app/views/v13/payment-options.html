@@ -1,21 +1,21 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-How do you want to pay
+  How do you want to pay
 {% endblock %}
 
-{% block beforeContent %}
-  {% include "includes/phase-banner.html" %}
-  {% include "includes/back-link.html" %}
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/v13/review-payment"
+  }) }}
 {% endblock %}
-
-{% extends "layouts/main.html" %}
 
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="{{currentUrl}}" method="post">
+      <form action="" method="post">
         {{ govukRadios({
           classes: "govuk-radios",
           idPrefix: "payment-options",
@@ -40,8 +40,8 @@ How do you want to pay
         }) }}
 
         {{ govukButton({
-          text: "Confirm"
-          }) }}
+        text: "Confirm"
+        }) }}
       </form>
     </div>
   </div>

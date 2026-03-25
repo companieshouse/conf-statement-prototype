@@ -1,15 +1,15 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-Review payment
+  Review payment
 {% endblock %}
 
-{% block beforeContent %}
-  {% include "includes/phase-banner.html" %}
-  {% include "includes/back-link.html" %}
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/v13/confirmation-statement-review"
+  }) }}
 {% endblock %}
-
-{% extends "layouts/main.html" %}
 
 {% block content %}
 
@@ -42,10 +42,10 @@ Review payment
 
       <h2 class="govuk-heading-m">The total amount to pay is £13</h2>
 
-      <form action="{{currentUrl}}" method="post">
+      <form action="" method="post">
 
         {{ govukButton({
-          text: "Continue and pay"
+        text: "Continue and pay"
         }) }}
 
       </form>

@@ -1,20 +1,36 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-Review the statement of capital
+{% if errorList.length > 0 %}
+  Error:
+{% endif %}  Review the statement of capital
 {% endblock %}
 
-{% block beforeContent %}
-  {% include "includes/phase-banner.html" %}
-  {% include "includes/back-link.html" %}
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/v13/task-list"
+  }) }}
 {% endblock %}
 
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="{{currentUrl}}" method="post">
+      <form action="" method="post">
 
+        {% if errorList.length > 0 %}
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: [
+            {
+              text: "Select yes if the statement of capital is correct",
+              href: "#trading-status"
+            }
+          ]
+        }) }}
+        {% endif %}
+        
         <h1 class="govuk-heading-l">Check the statement of capital</h1>
         {% include "includes/confirmation-statement-details/statement-of-capital.html" %}
 

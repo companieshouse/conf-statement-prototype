@@ -1,0 +1,53 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Exemption from keeping a PSC register
+{% endblock %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/v13/shareholders"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="" method="post">
+
+        {{ govukRadios({
+
+          classes: "govuk-radios--inline",
+          idPrefix: "exemption",
+          name: "exemption",
+          fieldset: {
+             legend: {
+             text: "Has the company ever been exempt from keeping a people with significant control (PSC) register?",
+             isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+    }
+  },
+  hint: {
+    text: "This includes if the company is currently exempt."
+  }
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+text: "Continue"
+}) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

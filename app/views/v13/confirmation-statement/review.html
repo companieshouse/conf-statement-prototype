@@ -1,15 +1,15 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-Submit the confirmation statement
+  Submit the confirmation statement
 {% endblock %}
 
-{% block beforeContent %}
-  {% include "includes/phase-banner.html" %}
-  {% include "includes/back-link.html" %}
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/v13/task-list"
+  }) }}
 {% endblock %}
-
-{% extends "layouts/main.html" %}
 
 {% block content %}
 
@@ -18,12 +18,12 @@ Submit the confirmation statement
       <h1 class="govuk-heading-xl">Submit the confirmation statement</h1>
 
       <h2 class="govuk-heading-m">Company name:
-        Big Shop ltd<br>Company number:
-        {{ data['companyNumber'] }}<br>Confirmation statement date:
-        20 July 2026
+        {{scenario.company.name}}<br>Company number:
+        {{scenario.company.number}}<br>Confirmation statement date:
+        {{ scenario.company.csDate }}
       </h2>
-
-      <form action="{{currentUrl}}" method="post">
+      
+      <form action="" method="post">
         <p>
           <a href="/print-confirmation-statement-review">Review all the company information being confirmed with this confirmation statement.</a>
         </p>
@@ -36,9 +36,17 @@ Submit the confirmation statement
           <p>You will need to pay a fee of £13 to submit your confirmation statement.</p>
         {% endif %}
 
-        {{ govukButton({
-        text: "Confirm and pay",
-        }) }}
+        {% if scenario.company.csDue === 'due' %}
+          {{ govukButton({
+            text: "Confirm and pay",
+            href: "/v13/review-payment"
+            }) }}
+                    {% else %}
+                      {{ govukButton({
+            text: "Confirm and submit",
+            href: "/v13/confirmation"
+            }) }}
+          {% endif %}
 
       </form>
     </div>

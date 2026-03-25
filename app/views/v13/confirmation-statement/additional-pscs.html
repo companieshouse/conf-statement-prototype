@@ -1,0 +1,219 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Review the PSCs
+{% endblock %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/v13/confirmation-statement/people-with-significant-control"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-three-quarters">
+
+      <form action="" method="post">
+
+        {% set pscTypesHTML %}
+        <p>An individual person with significant control is someone who owns or controls the company. For example, anyone with more than 25% of voting rights or shares.</p>
+        <p>A relevant legal entity is a corporate body which, if it were a person, would qualify as a PSC.</p>
+        <p>An other registrable person (ORP) is a non-corporate entity or office that can legally act as a PSC. An ORP can be a government or government department, a corporation sole, a local authority, or an international organisation whose members include
+          two or more countries, territories or their governments.</p>
+        {% endset %}
+
+        {% set hintHTML %}
+        <p class="govuk-colour-grey">This includes individual people, relevant legal entitities and other registrable people.</p>
+        {{ govukDetails({
+          summaryText: "More about different types of PSC",
+          html: pscTypesHTML
+        }) }}
+        {% endset %}
+
+{% if scenario.company.recentFiling === 'yes' %}
+        {% if additionalPscs === 'yes' %}
+          {{ govukRadios({
+          classes: "govuk-radios",
+          idPrefix: "additional-pscs",
+          name: "additional-pscs",
+          fieldset: {
+            legend: {
+              html: "Are there any PSCs to appoint?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            html: hintHTML
+          },
+          items: [
+            {
+              value: "no",
+              text: "No"
+            },
+            {
+              value: "yes",
+              text: "Yes",
+              checked: true
+            },
+            {
+              value: "no",
+              text: "Yes, but I've recently filed an update"
+            }
+          ]
+        }) }}
+        {% elseif additionalPscs === 'no' %}
+          {{ govukRadios({
+          classes: "govuk-radios",
+          idPrefix: "additional-pscs",
+          name: "additional-pscs",
+          fieldset: {
+            legend: {
+              html: "Are there any PSCs to appoint?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            html: hintHTML
+          },
+          items: [
+            {
+              value: "no",
+              text: "No",
+              checked: true
+            },
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "Yes, but I've recently filed an update"
+            }
+          ]
+        }) }}
+        {% else %}
+          {{ govukRadios({
+          classes: "govuk-radios",
+          idPrefix: "additional-pscs",
+          name: "additional-pscs",
+          fieldset: {
+            legend: {
+              html: "Are there any PSCs to appoint?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            html: hintHTML
+          },
+          items: [
+            {
+              value: "no",
+              text: "No"
+            },
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "Yes, but I've recently filed an update"
+            }
+          ]
+        }) }}
+        {% endif %}
+        {% else %}
+        {% if additionalPscs === 'yes' %}
+          {{ govukRadios({
+          classes: "govuk-radios",
+          idPrefix: "additional-pscs",
+          name: "additional-pscs",
+          fieldset: {
+            legend: {
+              html: "Are there any PSCs to appoint?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            html: hintHTML
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes",
+              checked: true
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+        {% elseif additionalPscs === 'no' %}
+          {{ govukRadios({
+          classes: "govuk-radios",
+          idPrefix: "additional-pscs",
+          name: "additional-pscs",
+          fieldset: {
+            legend: {
+              html: "Are there any PSCs to appoint?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            html: hintHTML
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No",
+              checked: true
+            }
+          ]
+        }) }}
+        {% else %}
+          {{ govukRadios({
+          classes: "govuk-radios",
+          idPrefix: "additional-pscs",
+          name: "additional-pscs",
+          fieldset: {
+            legend: {
+              html: "Are there any PSCs to appoint?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            html: hintHTML
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+        {% endif %}
+        {% endif %}
+
+        {{ govukButton({
+text: "Continue"
+}) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

@@ -4,18 +4,20 @@
 Company-number-error
 {% endblock %}
 
-{% block beforeContent %}
-  {% include "includes/phase-banner.html" %}
-  {% include "includes/back-link.html" %}
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/v13/confirm-company"
+  }) }}
 {% endblock %}
 
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     
-        <h1 class="govuk-heading-xl">You need to use WebFiling to file this confirmation statement</h1>
+    <h1 class="govuk-heading-xl">You need to use WebFiling to file this confirmation statement</h1>
     
-        <p class="govuk-body">As part of your next confirmation statement, you must provide each director's <a href="https://www.gov.uk/guidance/companies-house-personal-codes-for-identity-verification">Companies House personal code</a>. This confirms they've verified their identity for Companies House.</p>
+    <p class="govuk-body">As part of your next confirmation statement, you must provide each director's <a href="https://www.gov.uk/guidance/companies-house-personal-codes-for-identity-verification">Companies House personal code</a>. This confirms they've verified their identity for Companies House.</p>
 
         <p class="govuk-body">To do this, you need to file your confirmation statement using our WebFiling service.</p>
       
