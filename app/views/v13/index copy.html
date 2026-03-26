@@ -9,6 +9,10 @@
   {% include "includes/back-link.html" %}
 {% endblock %}
 
+{% block beforeContent %}
+  {% include "includes/phase-banner.html" %}
+{% endblock %}
+
 {% block content %}
   {{ govukTag({
     classes: "govuk-tag--blue govuk-!-margin-bottom-4",

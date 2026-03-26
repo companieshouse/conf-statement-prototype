@@ -12,6 +12,10 @@
     href: "/v13/task-list"
   }) }}
 {% endblock %}
+{% block beforeContent %}
+  {% include "includes/phase-banner.html" %}
+{% endblock %}
+
 {% block content %}
   {% set pscDetails %}
   <p>A person with significant control (PSC) is anyone who:
